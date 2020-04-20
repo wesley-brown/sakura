@@ -7,8 +7,6 @@ namespace Sakura.Movement
     /// </summary>
     public sealed class DestinationMover : MonoBehaviour
     {
-        [SerializeField]
-        private Camera camera;
         private CharacterController characterController;
 
         [SerializeField]

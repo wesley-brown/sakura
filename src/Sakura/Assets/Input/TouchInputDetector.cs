@@ -11,39 +11,47 @@ namespace Sakura.Input
         [SerializeField]
         private Camera camera;
         private DestinationMover destinationMover;
+        private int layerMask = 1;
+
+        private static bool ScreenWasTouched()
+        {
+            return (UnityEngine.Input.touchCount > 0);
+        }
 
         private void Awake()
         {
             destinationMover = GetComponent<DestinationMover>();
+            layerMask = layerMask <<
+                LayerMask.NameToLayer("TouchInputRaycastable");
         }
 
         private void Update()
         {
-            if (UnityEngine.Input.touchCount > 0)
+            if (ScreenWasTouched())
             {
-                Touch touch = UnityEngine.Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Moved)
-                {
-                    var touchedScreenPosition = touch.position;
-                    var touchedScreenPositionWithDepth =
-                        AddDepthToTouchedScreenPosition(touchedScreenPosition);
-                    var destination = camera
-                        .ScreenToWorldPoint(touchedScreenPositionWithDepth);
-                    destinationMover.MoveTowardsDestination(destination);
-                }
+                ReactToTouch();
             }
         }
 
-        private Vector3 AddDepthToTouchedScreenPosition(
-            Vector2 touchedScreenPosition)
+        private void ReactToTouch()
         {
-            var cameraDistanceFromPlayer =
-                (camera.transform.position - transform.position).magnitude;
-            return new Vector3(
-                touchedScreenPosition.x,
-                touchedScreenPosition.y,
-                cameraDistanceFromPlayer
-            );
+            Touch touch = UnityEngine.Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved)
+            {
+                MovePlayerTowardsTouchedPosition(touch.position);
+            }
+        }
+
+        private void MovePlayerTowardsTouchedPosition(Vector2 touchedPosition)
+        {
+            var ray = camera.ScreenPointToRay(touchedPosition);
+            RaycastHit hit;
+            bool didHit = Physics
+                .Raycast(ray, out hit, float.PositiveInfinity, layerMask);
+            if (didHit)
+            {
+                destinationMover.MoveTowardsDestination(hit.point);
+            }
         }
     }
 }
