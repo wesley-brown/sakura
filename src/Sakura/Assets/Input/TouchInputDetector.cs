@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Sakura.Crop;
 using Sakura.Movement;
 
 namespace Sakura.Input
@@ -11,6 +12,7 @@ namespace Sakura.Input
         [SerializeField]
         private Camera camera;
         private DestinationMover destinationMover;
+        private InteractableRaycaster interactableRaycaster;
         private int layerMask = 1;
 
         private static bool ScreenWasTouched()
@@ -21,6 +23,7 @@ namespace Sakura.Input
         private void Awake()
         {
             destinationMover = GetComponent<DestinationMover>();
+            interactableRaycaster = GetComponent<InteractableRaycaster>();
             layerMask = layerMask <<
                 LayerMask.NameToLayer("TouchInputRaycastable");
         }
@@ -38,6 +41,14 @@ namespace Sakura.Input
             Touch touch = UnityEngine.Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
+                var ray = camera.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+                if (interactableRaycaster.DidHitInteractable(ray, out hit))
+                {
+                    var emptyTilledSoil = hit.collider.gameObject.
+                        GetComponentInParent<InteractableEmptyTilledSoil>();
+                    emptyTilledSoil.PlantPotato();
+                }
                 MovePlayerTowardsTouchedPosition(touch.position);
             }
         }

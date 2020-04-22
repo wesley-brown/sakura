@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975991802116253276}
+  - component: {fileID: 8170958510519866318}
   m_Layer: 0
   m_Name: EmptyTilledSoil
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8170958510519866318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79902238305874541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3f64a80de844d1b93ee517903b010b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestableCropPotatoPrefab: {fileID: 7739606347855887258, guid: de3676288a7834a7ea43828006cfc02a,
+    type: 3}
 --- !u!1 &6477109524913139646
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +59,7 @@ GameObject:
   - component: {fileID: 3212269929064252457}
   - component: {fileID: 470132633187495472}
   - component: {fileID: 700921271142154653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: InteractableArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tilled Soil
       objectReference: {fileID: 0}
+    - target: {fileID: 8776092553053997961, guid: 2cb0615b1d0be4c5693ea745ee811c8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4495438560896437431, guid: 2cb0615b1d0be4c5693ea745ee811c8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -194,6 +214,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716588999065963901, guid: 2cb0615b1d0be4c5693ea745ee811c8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cb0615b1d0be4c5693ea745ee811c8c, type: 3}
