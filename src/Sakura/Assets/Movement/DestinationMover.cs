@@ -10,7 +10,7 @@ namespace Sakura.Movement
         private CharacterController characterController;
 
         [SerializeField]
-        private float speed;
+        private float speed = 0;
 
         /// <summary>
         /// Move towards a given destination.

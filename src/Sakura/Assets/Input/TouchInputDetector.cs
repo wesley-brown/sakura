@@ -10,7 +10,7 @@ namespace Sakura.Input
     public sealed class TouchInputDetector : MonoBehaviour
     {
         [SerializeField]
-        private Camera camera;
+        private new Camera camera = null;
         private DestinationMover destinationMover;
         private InteractableRaycaster interactableRaycaster;
         private int layerMask = 1;

@@ -3,7 +3,9 @@ guid: fd3f64a80de844d1b93ee517903b010b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - harvestableCropPotatoPrefab: {fileID: 7739606347855887258, guid: de3676288a7834a7ea43828006cfc02a,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

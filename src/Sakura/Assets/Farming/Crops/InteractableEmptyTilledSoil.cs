@@ -5,13 +5,16 @@ namespace Sakura.Crop
     public sealed class InteractableEmptyTilledSoil : MonoBehaviour
     {
         [SerializeField]
-        private GameObject harvestableCropPotatoPrefab;
+        private GameObject harvestableCropPotatoPrefab = null;
 
         public void PlantPotato()
         {
-            GameObject harvestableCropPotato =
-                GameObject.Instantiate(harvestableCropPotatoPrefab, transform.position, transform.rotation);
-            Object.Destroy(gameObject);
+            var harvestableCropPotato = Instantiate(
+                harvestableCropPotatoPrefab,
+                transform.position,
+                transform.rotation
+            );
+            Destroy(gameObject);
         }
     }
 }
