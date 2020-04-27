@@ -29,10 +29,28 @@
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || ! this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                var otherInventoryItem = (InventoryItem) obj;
+                return (itemName == otherInventoryItem.itemName);
+            }
+        }
+
         public override int GetHashCode()
         {
             int result = itemName.GetHashCode();
             return result;
+        }
+
+        public override string ToString()
+        {
+            return "<InventoryItem: itemName=" + itemName + ">";
         }
     }
 }
