@@ -1,0 +1,16 @@
+{
+    "name": "Sakura.Inventory.Tests",
+    "references": [
+        "Sakura.Inventory"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
