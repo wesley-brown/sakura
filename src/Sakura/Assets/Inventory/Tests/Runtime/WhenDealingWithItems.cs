@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Sakura.Inventory
+namespace Sakura.Inventory.Tests
 {
     [TestFixture]
     sealed class WhenDealingWithItems
