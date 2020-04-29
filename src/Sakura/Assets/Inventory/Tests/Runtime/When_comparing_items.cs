@@ -3,7 +3,7 @@
 namespace Sakura.Inventory.Tests
 {
     [TestFixture]
-    sealed class WhenDealingWithItems
+    sealed class When_comparing_items
     {
         private InventoryItem potatoSeed;
 
@@ -14,7 +14,7 @@ namespace Sakura.Inventory.Tests
         }
 
         [Test]
-        public void Identical_inventory_items_have_the_same_hash_codes()
+        public void Identical_items_have_the_same_hash_codes()
         {
             var potatoSeedClone = new InventoryItem("Potato Seed");
             Assert.That(potatoSeedClone.GetHashCode(),
@@ -22,7 +22,7 @@ namespace Sakura.Inventory.Tests
         }
 
         [Test]
-        public void Identical_inventory_items_are_equal()
+        public void Identical_items_are_equal()
         {
             var potatoSeedClone = new InventoryItem("Potato Seed");
             Assert.That(potatoSeedClone, Is.EqualTo(potatoSeed));
