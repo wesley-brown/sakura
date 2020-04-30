@@ -55,12 +55,13 @@ namespace Sakura.Inventory
         /// Add an item to this inventory.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        public void AddItem(InventoryItem item)
+        public bool AddItem(InventoryItem item)
         {
             if (ThereIsAnEmptyItemSlot)
             {
                 items.Add(item);
             }
+            return false;
         }
 
         public override string ToString()

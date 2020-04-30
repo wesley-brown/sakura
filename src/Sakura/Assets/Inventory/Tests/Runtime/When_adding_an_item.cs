@@ -53,6 +53,13 @@ namespace Sakura.Inventory.Tests
                 inventory.AddItem(potatoSeed);
                 Assert.That(inventory.Items, Is.EquivalentTo(initialItems));
             }
+
+            [Test]
+            public void It_fails()
+            {
+                var result = inventory.AddItem(potatoSeed);
+                Assert.That(result, Is.False);
+            }
         }
 	}
 }
