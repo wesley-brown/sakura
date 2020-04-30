@@ -41,7 +41,7 @@ namespace Sakura.Inventory
         }
 
         /// <summary>
-        /// The list of items this inventory currenlty contains.
+        /// The list of items this inventory currently contains.
         /// </summary>
         public IList<InventoryItem> Items
         {
