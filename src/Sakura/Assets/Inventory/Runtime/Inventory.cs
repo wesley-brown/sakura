@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Sakura.Inventory
 {
@@ -18,6 +19,28 @@ namespace Sakura.Inventory
         }
 
         /// <summary>
+        /// Create a new inventory with the given items initially in it.
+        /// </summary>
+        /// <param name="initialItems">
+        /// The items the new inventory will initially have in it.
+        /// </param>
+        public Inventory(IList<InventoryItem> initialItems)
+        {
+            items = initialItems.ToList();
+        }
+
+        /// <summary>
+        /// The maximum number of items an inventory can hold.
+        /// </summary>
+        public static int Capacity
+        {
+            get
+            {
+                return 28;
+            }
+        }
+
+        /// <summary>
         /// The list of items this inventory currenlty contains.
         /// </summary>
         public IList<InventoryItem> Items
@@ -34,7 +57,31 @@ namespace Sakura.Inventory
         /// <param name="item">The item to add.</param>
         public void AddItem(InventoryItem item)
         {
-            items.Add(item);
+            if (ThereIsAnEmptyItemSlot)
+            {
+                items.Add(item);
+            }
+        }
+
+        public override string ToString()
+        {
+            var stringRepresentation = "<Inventory: ";
+            for (int i = 0; i < items.Count; i = i + 1)
+            {
+                var item = items[i];
+                stringRepresentation = stringRepresentation + item.ToString();
+                if (i != items.Count - 1)
+                {
+                    stringRepresentation = stringRepresentation + ",";
+                }
+            }
+            stringRepresentation = stringRepresentation + ">";
+            return stringRepresentation;
+        }
+
+        private bool ThereIsAnEmptyItemSlot
+        {
+            get { return (items.Count < Capacity); }
         }
     }
 }
