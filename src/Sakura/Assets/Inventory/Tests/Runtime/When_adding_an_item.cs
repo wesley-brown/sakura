@@ -15,12 +15,19 @@ namespace Sakura.Inventory.Tests
         }
 
         [TestFixture]
-        sealed class To_a_non_full_inventory : When_adding_an_item
+        sealed class To_an_unfilled_inventory : When_adding_an_item
         {
             [SetUp]
             public void SetUp()
             {
                 inventory = new Inventory();
+            }
+
+            [Test]
+            public void It_succeeds()
+            {
+                var result = inventory.AddItem(potatoSeed);
+                Assert.That(result, Is.True);
             }
 
             [Test]
@@ -35,7 +42,7 @@ namespace Sakura.Inventory.Tests
         }
 
         [TestFixture]
-        sealed class To_a_full_inventory : When_adding_an_item
+        sealed class To_a_filled_inventory : When_adding_an_item
         {
             private List<InventoryItem> initialItems;
 
