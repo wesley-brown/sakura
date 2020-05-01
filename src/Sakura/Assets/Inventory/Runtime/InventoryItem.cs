@@ -5,7 +5,17 @@
     /// </summary>
     public struct InventoryItem
 	{
+        private static readonly InventoryItem nullItem =
+            new InventoryItem("Null Item");
         private readonly string itemName;
+
+        public static InventoryItem NullItem
+        {
+            get
+            {
+                return nullItem;
+            }
+        }
 
         /// <summary>
         /// Create a new inventory item.

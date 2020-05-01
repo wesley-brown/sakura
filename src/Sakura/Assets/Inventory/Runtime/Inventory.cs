@@ -83,6 +83,19 @@ namespace Sakura.Inventory
             }
         }
 
+        /// <summary>
+        /// Remove the item in the given inventory slot.
+        /// </summary>
+        /// <param name="slotNumber">
+        /// The inventory slot number to remove the item from.
+        /// </param>
+        /// <returns>The removed item.</returns>
+        public InventoryItem RemoveItemFromSlot(int slotNumber)
+        {
+            var requestedItem = items[slotNumber];
+            return requestedItem;
+        }
+
         public override string ToString()
         {
             var stringRepresentation = "<Inventory: ";
