@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sakura.Inventory
@@ -24,9 +25,19 @@ namespace Sakura.Inventory
         /// <param name="initialItems">
         /// The items the new inventory will initially have in it.
         /// </param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Initial items is null.
+        /// </exception>
         public Inventory(IList<InventoryItem> initialItems)
         {
-            items = initialItems.ToList();
+            if (initialItems == null)
+            {
+                throw new ArgumentNullException("initialItems");
+            }
+            else
+            {
+                items = initialItems.ToList();
+            }
         }
 
         /// <summary>
