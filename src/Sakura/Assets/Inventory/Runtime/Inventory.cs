@@ -28,7 +28,7 @@ namespace Sakura.Inventory
         /// <exception cref="System.ArgumentNullException">
         /// Initial items is null.
         /// </exception>
-        public Inventory(IList<InventoryItem> initialItems)
+        public Inventory(IEnumerable<InventoryItem> initialItems)
         {
             if (initialItems == null)
             {
@@ -54,11 +54,11 @@ namespace Sakura.Inventory
         /// <summary>
         /// The list of items this inventory currently contains.
         /// </summary>
-        public IList<InventoryItem> Items
+        public IEnumerable<InventoryItem> Items
         {
             get
             {
-                return items.AsReadOnly();
+                return items;
             }
         }
 
