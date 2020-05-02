@@ -51,7 +51,7 @@ namespace Sakura.Inventory.Tests
             {
                 initialItems = new List<InventoryItem>();
                 initialItems.AddRange(Enumerable.Repeat(potatoSeed, 28));
-                inventory = new Inventory(initialItems);
+                inventory = Inventory.WithInitialItems(initialItems);
             }
 
             [Test]

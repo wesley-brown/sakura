@@ -18,13 +18,6 @@ namespace Sakura.Inventory
             return new Inventory();
         }
 
-        private readonly List<InventoryItem> items;
-
-        private Inventory()
-        {
-            items = new List<InventoryItem>();
-        }
-
         /// <summary>
         /// Create a new inventory with the given items initially in it.
         /// </summary>
@@ -32,9 +25,10 @@ namespace Sakura.Inventory
         /// The items the new inventory will initially have in it.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Initial items is null.
+        /// initialItems is null.
         /// </exception>
-        public Inventory(IEnumerable<InventoryItem> initialItems)
+        public static Inventory WithInitialItems(
+            IEnumerable<InventoryItem> initialItems)
         {
             if (initialItems == null)
             {
@@ -42,8 +36,20 @@ namespace Sakura.Inventory
             }
             else
             {
-                items = initialItems.ToList();
+                return new Inventory(initialItems);
             }
+        }
+
+        private readonly List<InventoryItem> items;
+
+        private Inventory()
+        {
+            items = new List<InventoryItem>();
+        }
+
+        private Inventory(IEnumerable<InventoryItem> initialItems)
+        {
+            items = initialItems.ToList();
         }
 
         /// <summary>

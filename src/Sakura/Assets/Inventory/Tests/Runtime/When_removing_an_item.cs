@@ -14,7 +14,7 @@ namespace Sakura.Inventory.Tests
                 var initialItems = new List<InventoryItem>() {
                     new InventoryItem("Potato Seed")
                 };
-                var inventory = new Inventory(initialItems);
+                var inventory = Inventory.WithInitialItems(initialItems);
                 var expectedItem = new InventoryItem("Potato Seed");
 
                 var removedItem = inventory.RemoveItemFromSlot(0);
