@@ -9,12 +9,18 @@ namespace Sakura.Inventory
     /// </summary>
     public sealed class Inventory
     {
-        private readonly List<InventoryItem> items;
-
         /// <summary>
         /// Create a new empty inventory.
         /// </summary>
-        public Inventory()
+        /// <returns>A new empty inventory.</returns>
+        public static Inventory Empty()
+        {
+            return new Inventory();
+        }
+
+        private readonly List<InventoryItem> items;
+
+        private Inventory()
         {
             items = new List<InventoryItem>();
         }

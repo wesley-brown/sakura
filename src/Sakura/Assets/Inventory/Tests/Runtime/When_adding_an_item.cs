@@ -20,7 +20,7 @@ namespace Sakura.Inventory.Tests
             [SetUp]
             public void SetUp()
             {
-                inventory = new Inventory();
+                inventory = Inventory.Empty();
             }
 
             [Test]
