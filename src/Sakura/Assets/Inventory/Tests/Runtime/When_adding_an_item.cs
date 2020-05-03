@@ -7,6 +7,7 @@ namespace Sakura.Inventory.Tests
     class When_adding_an_item
 	{
         protected Inventory inventory;
+        protected readonly int inventorySize = 4;
         protected InventoryItem potatoSeed;
 
         private When_adding_an_item()
@@ -15,18 +16,18 @@ namespace Sakura.Inventory.Tests
         }
 
         [TestFixture]
-        sealed class To_an_unfilled_inventory : When_adding_an_item
+        sealed class To_an_unoccupied_inventory_slot : When_adding_an_item
         {
             [SetUp]
             public void SetUp()
             {
-                inventory = Inventory.Empty();
+                inventory = Inventory.WithCapacityAndEmpty(inventorySize);
             }
 
             [Test]
             public void It_succeeds()
             {
-                var result = inventory.AddItem(potatoSeed);
+                var result = inventory.AddItemToSlot(potatoSeed, 0);
                 Assert.That(result, Is.True);
             }
 
@@ -34,38 +35,41 @@ namespace Sakura.Inventory.Tests
             public void That_item_is_put_in_the_list_of_all_inventory_items()
             {
                 var expectedItemList = new List<InventoryItem>() {
-                    new InventoryItem("Potato Seed")
+                    new InventoryItem("Potato Seed"),
+                    InventoryItem.NullItem,
+                    InventoryItem.NullItem,
+                    InventoryItem.NullItem
                 };
-                inventory.AddItem(potatoSeed);
+                inventory.AddItemToSlot(potatoSeed, 0);
                 Assert.That(inventory.Items, Is.EquivalentTo(expectedItemList));
             }
         }
 
         [TestFixture]
-        sealed class To_a_filled_inventory : When_adding_an_item
+        sealed class To_an_occupied_inventory_slot : When_adding_an_item
         {
-            private List<InventoryItem> initialItems;
+            private List<InventoryItem> _initialItems;
+            private IEnumerable<InventoryItem> initialItems;
 
             [SetUp]
             public void SetUp()
             {
-                initialItems = new List<InventoryItem>();
-                initialItems.AddRange(Enumerable.Repeat(potatoSeed, 28));
+                initialItems = Enumerable.Repeat(new InventoryItem("Potato Seed"), inventorySize);
                 inventory = Inventory.WithInitialItems(initialItems);
-            }
-
-            [Test]
-            public void The_inventorys_item_list_remains_the_same()
-            {
-                inventory.AddItem(potatoSeed);
-                Assert.That(inventory.Items, Is.EquivalentTo(initialItems));
             }
 
             [Test]
             public void It_fails()
             {
-                var result = inventory.AddItem(potatoSeed);
+                var result = inventory.AddItemToSlot(potatoSeed, 0);
                 Assert.That(result, Is.False);
+            }
+
+            [Test]
+            public void The_inventorys_item_list_remains_the_same()
+            {
+                inventory.AddItemToSlot(potatoSeed, 0);
+                Assert.That(inventory.Items, Is.EquivalentTo(initialItems));
             }
         }
 	}

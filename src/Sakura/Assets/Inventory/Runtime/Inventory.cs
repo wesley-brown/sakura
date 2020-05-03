@@ -5,17 +5,30 @@ using System.Linq;
 namespace Sakura.Inventory
 {
     /// <summary>
-    /// An inventory.
+    /// An inventory with a certain number of slots for items.
     /// </summary>
     public sealed class Inventory
     {
-        /// <summary>
-        /// Create a new empty inventory.
-        /// </summary>
-        /// <returns>A new empty inventory.</returns>
-        public static Inventory Empty()
+        private readonly int capacity;
+        private readonly List<InventoryItem> items;
+
+        private Inventory(IEnumerable<InventoryItem> initialItems)
         {
-            return new Inventory();
+            items = initialItems.ToList();
+        }
+
+        /// <summary>
+        /// Create a new empty inventory with a given capacity.
+        /// </summary>
+        /// <param name="capacity">
+        /// The capacity of the new empty inventory.
+        /// </param>
+        /// <returns>An empty inventory with the given capacity.</returns>
+        public static Inventory WithCapacityAndEmpty(int capacity)
+        {
+            var initialItems =
+                Enumerable.Repeat(InventoryItem.NullItem, capacity);
+            return new Inventory(initialItems);
         }
 
         /// <summary>
@@ -40,31 +53,19 @@ namespace Sakura.Inventory
             }
         }
 
-        private readonly List<InventoryItem> items;
-
-        private Inventory()
-        {
-            items = new List<InventoryItem>();
-        }
-
-        private Inventory(IEnumerable<InventoryItem> initialItems)
-        {
-            items = initialItems.ToList();
-        }
-
         /// <summary>
-        /// The maximum number of items an inventory can hold.
+        /// The maximum number of items this inventory can hold.
         /// </summary>
-        public static int Capacity
+        public int Capacity
         {
             get
             {
-                return 28;
+                return capacity;
             }
         }
 
         /// <summary>
-        /// The list of items this inventory currently contains.
+        /// The list of items in each inventory slot.
         /// </summary>
         public IEnumerable<InventoryItem> Items
         {
@@ -75,18 +76,22 @@ namespace Sakura.Inventory
         }
 
         /// <summary>
-        /// Add an item to this inventory.
+        /// Add an item to the given inventory slot.
         /// </summary>
         /// <param name="item">The item to add.</param>
+        /// <param name="inventorySlot">
+        /// The inventory slot to put the item in.
+        /// </param>
         /// <returns>
-        /// Returns true if the given item was added to this inventory.
-        /// Otherwise, returns false.
+        /// Returns true if the given item was added to the given inventory
+        /// slot. Otherwise, returns false.
         /// </returns>
-        public bool AddItem(InventoryItem item)
+        public bool AddItemToSlot(InventoryItem item, int inventorySlot)
         {
-            if (ThereIsAnEmptyItemSlot)
+            var itemInSlot = items[inventorySlot];
+            if (itemInSlot.Equals(InventoryItem.NullItem))
             {
-                items.Add(item);
+                items[inventorySlot] = item;
                 return true;
             }
             else
@@ -122,11 +127,6 @@ namespace Sakura.Inventory
             }
             stringRepresentation = stringRepresentation + ">";
             return stringRepresentation;
-        }
-
-        private bool ThereIsAnEmptyItemSlot
-        {
-            get { return (items.Count < Capacity); }
         }
     }
 }
