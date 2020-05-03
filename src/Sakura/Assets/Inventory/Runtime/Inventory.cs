@@ -21,7 +21,7 @@ namespace Sakura.Inventory
         /// Create a new empty inventory with a given capacity.
         /// </summary>
         /// <param name="capacity">
-        /// The capacity of the new empty inventory.
+        /// The maximum number of items the new inventory can hold.
         /// </param>
         /// <returns>An empty inventory with the given capacity.</returns>
         public static Inventory WithCapacityAndEmpty(int capacity)
@@ -32,15 +32,19 @@ namespace Sakura.Inventory
         }
 
         /// <summary>
-        /// Create a new inventory with the given items initially in it.
+        /// Create a new inventory with a given capacity and items initially in
+        /// it.
         /// </summary>
+        /// <param name="capacity">
+        /// The maximum number of items the new inventory can hold.
+        /// </param>
         /// <param name="initialItems">
         /// The items the new inventory will initially have in it.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
         /// initialItems is null.
         /// </exception>
-        public static Inventory WithInitialItems(
+        public static Inventory WithCapacityAndInitialItems(int capacity, 
             IEnumerable<InventoryItem> initialItems)
         {
             if (initialItems == null)

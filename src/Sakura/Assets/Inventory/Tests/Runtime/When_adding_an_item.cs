@@ -54,8 +54,10 @@ namespace Sakura.Inventory.Tests
             [SetUp]
             public void SetUp()
             {
-                initialItems = Enumerable.Repeat(new InventoryItem("Potato Seed"), inventorySize);
-                inventory = Inventory.WithInitialItems(initialItems);
+                initialItems = Enumerable.Repeat(
+                    new InventoryItem("Potato Seed"), inventorySize);
+                inventory = Inventory.WithCapacityAndInitialItems(
+                    inventorySize, initialItems);
             }
 
             [Test]
