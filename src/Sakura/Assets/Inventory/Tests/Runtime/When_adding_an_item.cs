@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Sakura.Inventory.Tests
 {
@@ -48,14 +47,14 @@ namespace Sakura.Inventory.Tests
         [TestFixture]
         sealed class To_an_occupied_inventory_slot : When_adding_an_item
         {
-            private List<InventoryItem> _initialItems;
-            private IEnumerable<InventoryItem> initialItems;
+            private IList<InventoryItem> initialItems;
 
             [SetUp]
             public void SetUp()
             {
-                initialItems = Enumerable.Repeat(
-                    new InventoryItem("Potato Seed"), inventorySize);
+                initialItems = new List<InventoryItem> {
+                    new InventoryItem("Potato Seed")
+                };
                 inventory = Inventory.WithCapacityAndInitialItems(
                     inventorySize, initialItems);
             }
@@ -70,8 +69,14 @@ namespace Sakura.Inventory.Tests
             [Test]
             public void The_inventorys_item_list_remains_the_same()
             {
+                var expectedItems = new List<InventoryItem> {
+                    new InventoryItem("Potato Seed"),
+                    InventoryItem.NullItem,
+                    InventoryItem.NullItem,
+                    InventoryItem.NullItem
+                };
                 inventory.AddItemToSlot(potatoSeed, 0);
-                Assert.That(inventory.Items, Is.EquivalentTo(initialItems));
+                Assert.That(inventory.Items, Is.EquivalentTo(expectedItems));
             }
         }
 	}

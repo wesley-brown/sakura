@@ -12,9 +12,16 @@ namespace Sakura.Inventory
         private readonly int capacity;
         private readonly List<InventoryItem> items;
 
-        private Inventory(IEnumerable<InventoryItem> initialItems)
+        private Inventory(int capacity, IList<InventoryItem> initialItems)
         {
-            items = initialItems.ToList();
+            this.capacity = capacity;
+            items = new List<InventoryItem>(capacity);
+            items.AddRange(Enumerable.Repeat(InventoryItem.NullItem, capacity));
+            for (var itemSlot = 0; itemSlot < initialItems.Count;
+                itemSlot = itemSlot + 1)
+            {
+                items[itemSlot] = initialItems[itemSlot];
+            }
         }
 
         /// <summary>
@@ -23,12 +30,23 @@ namespace Sakura.Inventory
         /// <param name="capacity">
         /// The maximum number of items the new inventory can hold.
         /// </param>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// capacity is less than or equal to 0.
+        /// </exception>
         /// <returns>An empty inventory with the given capacity.</returns>
         public static Inventory WithCapacityAndEmpty(int capacity)
         {
-            var initialItems =
-                Enumerable.Repeat(InventoryItem.NullItem, capacity);
-            return new Inventory(initialItems);
+            if (capacity <= 0)
+            {
+                throw new ArgumentOutOfRangeException("capacity");
+            }
+            else
+            {
+                var initialItems = new List<InventoryItem>();
+                initialItems.AddRange(
+                    Enumerable.Repeat(InventoryItem.NullItem, capacity));
+                return new Inventory(capacity, initialItems);
+            }
         }
 
         /// <summary>
@@ -44,8 +62,12 @@ namespace Sakura.Inventory
         /// <exception cref="System.ArgumentNullException">
         /// initialItems is null.
         /// </exception>
-        public static Inventory WithCapacityAndInitialItems(int capacity, 
-            IEnumerable<InventoryItem> initialItems)
+        /// <returns>
+        /// A new inventory the given capacity and the given list of initial
+        /// items taking up the slots.
+        /// </returns>
+        public static Inventory WithCapacityAndInitialItems(int capacity,
+            IList<InventoryItem> initialItems)
         {
             if (initialItems == null)
             {
@@ -53,7 +75,7 @@ namespace Sakura.Inventory
             }
             else
             {
-                return new Inventory(initialItems);
+                return new Inventory(capacity, initialItems);
             }
         }
 
@@ -71,7 +93,7 @@ namespace Sakura.Inventory
         /// <summary>
         /// The list of items in each inventory slot.
         /// </summary>
-        public IEnumerable<InventoryItem> Items
+        public IList<InventoryItem> Items
         {
             get
             {
