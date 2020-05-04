@@ -139,6 +139,19 @@ namespace Sakura.Inventory
             return requestedItem;
         }
 
+        /// <summary>
+        /// Check if this inventory contains the given item.
+        /// </summary>
+        /// <param name="item">The item to check for.</param>
+        /// <returns>
+        /// Returns true if this inventory contains the given item. Otherwise,
+        /// returns false.
+        /// </returns>
+        public bool Contains(InventoryItem item)
+        {
+            return true;
+        }
+
         public override string ToString()
         {
             var stringRepresentation = "<Inventory: ";
