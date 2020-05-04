@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace Sakura.Inventory
+namespace Sakura.InventoryUI
 {
     public sealed class InventoryScreen : MonoBehaviour
 	{

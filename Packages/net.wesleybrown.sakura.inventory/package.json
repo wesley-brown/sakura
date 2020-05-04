@@ -1,0 +1,10 @@
+{
+  "name": "net.wesleybrown.sakura.inventory",
+  "version": "0.0.0",
+  "displayName": "Sakura Inventory",
+  "description": "A basic inventory system.",
+  "author": {
+    "name": "Wesley Brown",
+    "email": "wesleybrown@wesleybrown.net"
+  }
+}

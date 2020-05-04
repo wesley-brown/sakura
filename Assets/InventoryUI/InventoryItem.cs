@@ -1,4 +1,4 @@
-﻿namespace Sakura.Inventory
+﻿namespace Sakura.InventoryUI
 {
     public sealed class InventoryItem
 	{

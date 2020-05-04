@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura.Inventory
+namespace Sakura.InventoryUI
 {
     public sealed class InventoryItemSlot : MonoBehaviour
     {
