@@ -1,0 +1,10 @@
+{
+  "name": "net.wesleybrown.sakura.inventory.ui",
+  "version": "0.0.0",
+  "displayName": "Sakura Inventory UI",
+  "description": "UI for Sakura Inventory system.",
+  "author": {
+    "name": "Wesley Brown",
+    "email": "wesleybrown@wesleybrown.net"
+  }
+}
