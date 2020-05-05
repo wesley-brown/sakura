@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Sakura.Inventory.Tests
+namespace Sakura.Inventories.Runtime.Tests
 {
     [TestFixture]
     sealed class When_comparing_items

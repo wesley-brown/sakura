@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sakura.Inventory
+namespace Sakura.Inventories.Runtime
 {
     /// <summary>
     /// An inventory with a certain number of slots for items.

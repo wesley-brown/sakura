@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Sakura.Inventory.Tests
+namespace Sakura.Inventories.Runtime.Tests
 {
     class When_removing_an_item
     {

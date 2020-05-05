@@ -1,7 +1,7 @@
 {
-  "name": "net.wesleybrown.sakura.inventory",
-  "version": "0.0.0",
-  "displayName": "Sakura Inventory",
+  "name": "net.wesleybrown.sakura.inventories",
+  "version": "0.1.0",
+  "displayName": "Sakura Inventories",
   "description": "A basic inventory system.",
   "author": {
     "name": "Wesley Brown",

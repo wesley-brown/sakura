@@ -1,5 +1,5 @@
 {
-    "name": "Sakura.Inventory",
+    "name": "Sakura.Inventories.Runtime",
     "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],

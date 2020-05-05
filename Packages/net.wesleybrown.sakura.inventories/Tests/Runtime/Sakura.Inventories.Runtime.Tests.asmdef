@@ -1,7 +1,7 @@
 {
-    "name": "Sakura.Inventory.Tests",
+    "name": "Sakura.Inventories.Runtime.Tests",
     "references": [
-        "Sakura.Inventory"
+        "Sakura.Inventories.Runtime"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

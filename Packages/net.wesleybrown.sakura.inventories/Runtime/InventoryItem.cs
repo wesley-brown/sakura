@@ -1,4 +1,4 @@
-﻿namespace Sakura.Inventory
+﻿namespace Sakura.Inventories.Runtime
 {
     /// <summary>
     /// An item that is in an inventory.
