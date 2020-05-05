@@ -149,7 +149,7 @@ namespace Sakura.Inventory
         /// </returns>
         public bool Contains(InventoryItem item)
         {
-            return true;
+            return items.Contains(item);
         }
 
         public override string ToString()
