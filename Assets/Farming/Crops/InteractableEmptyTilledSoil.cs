@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Sakura.Inventories.Runtime;
 
 namespace Sakura.Crop
 {
@@ -7,14 +8,22 @@ namespace Sakura.Crop
         [SerializeField]
         private GameObject harvestableCropPotatoPrefab = null;
 
+        [SerializeField]
+        private InventoryReference playerInventoryReference = null;
+
         public void PlantPotato()
         {
-            var harvestableCropPotato = Instantiate(
-                harvestableCropPotatoPrefab,
-                transform.position,
-                transform.rotation
-            );
-            Destroy(gameObject);
+            var playersInventory = playerInventoryReference.Inventory;
+            var potatoSeed = new InventoryItem("Potato Seed");
+            if (playersInventory.Contains(potatoSeed))
+            {
+                Instantiate(
+                    harvestableCropPotatoPrefab,
+                    transform.position,
+                    transform.rotation
+                );
+                Destroy(gameObject);
+            }
         }
     }
 }

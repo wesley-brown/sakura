@@ -6,7 +6,7 @@ namespace Sakura.Inventories.Runtime
     /// A reference to an inventory.
     /// </summary>
     [CreateAssetMenu(fileName = "InventoryReference",
-        menuName = "Inventories/Inventory")]
+        menuName = "Inventories/Inventory Reference")]
     public sealed class InventoryReference : ScriptableObject
 	{
         private Inventory inventory = null;
