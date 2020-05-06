@@ -1,29 +1,22 @@
 ﻿using UnityEngine;
-using Sakura.Inventories.Runtime;
+using Sakura.Runtime;
 
 namespace Sakura.Crop
 {
-    public sealed class InteractableEmptyTilledSoil : MonoBehaviour
+    public sealed class InteractableEmptyTilledSoil : MonoBehaviour,
+        Interactable
     {
         [SerializeField]
         private GameObject plantableTilledSoilPrefab = null;
 
-        [SerializeField]
-        private InventoryReference playerInventoryReference = null;
-
-        public void PlantPotato()
+        public void React()
         {
-            var playersInventory = playerInventoryReference.Inventory;
-            var potatoSeed = new InventoryItem("Potato Seed");
-            if (playersInventory.Contains(potatoSeed))
-            {
-                Instantiate(
-                    plantableTilledSoilPrefab,
-                    transform.position,
-                    transform.rotation
-                );
-                Destroy(gameObject);
-            }
+            Instantiate(
+                plantableTilledSoilPrefab,
+                transform.position,
+                transform.rotation
+            );
+            Destroy(gameObject);
         }
     }
 }

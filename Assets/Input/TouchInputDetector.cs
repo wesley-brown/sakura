@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Sakura.Crop;
 using Sakura.Movement;
+using Sakura.Runtime;
 
 namespace Sakura.Input
 {
@@ -45,9 +45,9 @@ namespace Sakura.Input
                 RaycastHit hit;
                 if (interactableRaycaster.DidHitInteractable(ray, out hit))
                 {
-                    var emptyTilledSoil = hit.collider.gameObject.
-                        GetComponentInParent<InteractableEmptyTilledSoil>();
-                    emptyTilledSoil.PlantPotato();
+                    var touchedGameObject = hit.collider.gameObject.
+                        GetComponentInParent<Interactable>();
+                    touchedGameObject.React();
                 }
                 MovePlayerTowardsTouchedPosition(touch.position);
             }
