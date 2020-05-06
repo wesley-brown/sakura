@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   harvestableCropPotatoPrefab: {fileID: 7739606347855887258, guid: de3676288a7834a7ea43828006cfc02a,
     type: 3}
+  playerInventoryReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37,
+    type: 2}
 --- !u!1 &6477109524913139646
 GameObject:
   m_ObjectHideFlags: 0

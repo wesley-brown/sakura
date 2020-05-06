@@ -6,7 +6,7 @@ namespace Sakura.Crop
     public sealed class InteractableEmptyTilledSoil : MonoBehaviour
     {
         [SerializeField]
-        private GameObject harvestableCropPotatoPrefab = null;
+        private GameObject plantableTilledSoilPrefab = null;
 
         [SerializeField]
         private InventoryReference playerInventoryReference = null;
@@ -18,7 +18,7 @@ namespace Sakura.Crop
             if (playersInventory.Contains(potatoSeed))
             {
                 Instantiate(
-                    harvestableCropPotatoPrefab,
+                    plantableTilledSoilPrefab,
                     transform.position,
                     transform.rotation
                 );

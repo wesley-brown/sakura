@@ -2101,10 +2101,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8170958510519866318, guid: 2f1be1c94843b4e7ca6638cbb47d0d70,
         type: 3}
-      propertyPath: playerInventoryReference
+      propertyPath: plantableTilledSoilPrefab
       value: 
-      objectReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37,
-        type: 2}
+      objectReference: {fileID: 2631306833892014422, guid: 2b4d39896520c417384afdf96fdb173e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f1be1c94843b4e7ca6638cbb47d0d70, type: 3}
 --- !u!1001 &2788908874172082402
