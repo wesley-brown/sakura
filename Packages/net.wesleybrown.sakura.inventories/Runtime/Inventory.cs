@@ -127,6 +127,28 @@ namespace Sakura.Inventories.Runtime
         }
 
         /// <summary>
+        /// Remove the first instance of the given item. This method will
+        /// search each inventory slot, starting from the first, in order,
+        /// until an instance of the given item is found or all inventory slots
+        /// were checked and none contained the given item.
+        /// </summary>
+        /// <param name="itemToRemove">
+        /// The item to remove the first instance of.
+        /// </param>
+        public void RemoveFirstInstanceOfItem(InventoryItem itemToRemove)
+        {
+            for (var i = 0; i < items.Count; i = i + 1)
+            {
+                var item = items[i];
+                if (item.Equals(itemToRemove))
+                {
+                    items[i] = InventoryItem.NullItem;
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Remove the item in the given inventory slot.
         /// </summary>
         /// <param name="slotNumber">
