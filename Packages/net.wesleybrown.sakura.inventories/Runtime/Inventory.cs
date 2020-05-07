@@ -135,17 +135,23 @@ namespace Sakura.Inventories.Runtime
         /// <param name="itemToRemove">
         /// The item to remove the first instance of.
         /// </param>
-        public void RemoveFirstInstanceOfItem(InventoryItem itemToRemove)
+        /// <returns>
+        /// If there was an instance of the given item, then returns the first
+        /// instance of that item. Otherwise, returns the null item.
+        /// </returns>
+        public InventoryItem RemoveFirstInstanceOfItem(InventoryItem itemToRemove)
         {
+            var firstInstance = InventoryItem.NullItem;
             for (var i = 0; i < items.Count; i = i + 1)
             {
                 var item = items[i];
                 if (item.Equals(itemToRemove))
                 {
-                    items[i] = InventoryItem.NullItem;
+                    firstInstance = RemoveItemFromSlot(i);
                     break;
                 }
             }
+            return firstInstance;
         }
 
         /// <summary>

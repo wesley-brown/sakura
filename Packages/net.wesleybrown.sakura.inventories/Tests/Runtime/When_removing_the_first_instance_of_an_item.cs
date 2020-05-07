@@ -8,22 +8,46 @@ namespace Sakura.Inventories.Runtime.Tests
         [TestFixture]
         sealed class That_an_inventory_has
         {
-            [Test]
-            public void The_first_instance_of_it_is_removed()
+            private InventoryItem potatoSeed;
+            private Inventory playersInventory;
+
+            [SetUp]
+            public void SetUp()
             {
-                var potatoSeed = new InventoryItem("Potato Seed");
-                var initialItems = new List<InventoryItem> {
+                potatoSeed = new InventoryItem("Potato Seed");
+                var playersInitialItems = new List<InventoryItem> {
                     potatoSeed,
                     potatoSeed
                 };
-                var inventory =
-                    Inventory.WithCapacityAndInitialItems(2, initialItems);
-                inventory.RemoveFirstInstanceOfItem(potatoSeed);
-                var expectedItems = new List<InventoryItem> {
-                    InventoryItem.NullItem,
-                    potatoSeed
+                playersInventory = Inventory.WithCapacityAndInitialItems(2,
+                    playersInitialItems);
+            }
+
+            [Test]
+            public void The_first_instance_of_it_is_removed()
+            {
+                var playersExpectedInventoryAfterPlanting =
+                    new List<InventoryItem> {
+                        InventoryItem.NullItem,
+                        potatoSeed
                 };
-                Assert.That(inventory.Items, Is.EqualTo(expectedItems));
+                PlayerPlantsAPotatoSeed();
+                Assert.That(
+                    playersInventory.Items,
+                    Is.EqualTo(playersExpectedInventoryAfterPlanting)
+                );
+            }
+
+            [Test]
+            public void The_removed_item_is_returned()
+            {
+                var removedItem = PlayerPlantsAPotatoSeed();
+                Assert.That(removedItem, Is.EqualTo(potatoSeed));
+            }
+
+            private InventoryItem PlayerPlantsAPotatoSeed()
+            {
+                return playersInventory.RemoveFirstInstanceOfItem(potatoSeed);
             }
         }
     }
