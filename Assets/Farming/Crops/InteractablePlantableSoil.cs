@@ -17,6 +17,7 @@ namespace Sakura.Runtime
             var potatoSeed = new InventoryItem("Potato Seed");
             if (playersInventory.Contains(potatoSeed))
             {
+                playersInventory.RemoveFirstInstanceOfItem(potatoSeed);
                 Instantiate(
                     potatoCropPrefab,
                     transform.position,
