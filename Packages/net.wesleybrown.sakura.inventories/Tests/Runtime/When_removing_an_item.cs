@@ -26,8 +26,23 @@ namespace Sakura.Inventories.Runtime.Tests
             public void The_item_in_that_inventory_slot_is_returned()
             {
                 var expectedItem = new InventoryItem("Potato Seed");
-                var removedItem = inventory.RemoveItemFromSlot(0);
+                var removedItem = RemoveItemInFirstSlot();
                 Assert.That(removedItem, Is.EqualTo(expectedItem));
+            }
+
+            [Test]
+            public void The_null_item_fills_that_slot()
+            {
+                RemoveItemInFirstSlot();
+                Assert.That(
+                    inventory.Items[0],
+                    Is.EqualTo(InventoryItem.NullItem)
+                );
+            }
+
+            private InventoryItem RemoveItemInFirstSlot()
+            {
+                return inventory.RemoveItemFromSlot(0);
             }
         }
 

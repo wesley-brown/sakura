@@ -158,6 +158,7 @@ namespace Sakura.Inventories.Runtime
         public InventoryItem RemoveItemFromSlot(int slotNumber)
         {
             var requestedItem = items[slotNumber];
+            items[slotNumber] = InventoryItem.NullItem;
             return requestedItem;
         }
 
