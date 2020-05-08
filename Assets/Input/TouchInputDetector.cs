@@ -41,14 +41,6 @@ namespace Sakura.Input
             Touch touch = UnityEngine.Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
-                var ray = camera.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (interactableRaycaster.DidHitInteractable(ray, out hit))
-                {
-                    var touchedGameObject = hit.collider.gameObject.
-                        GetComponentInParent<Interactable>();
-                    touchedGameObject.React();
-                }
                 MovePlayerTowardsTouchedPosition(touch.position);
             }
         }
