@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Sakura.Interactions;
 using Sakura.Inventories.Runtime;
 
 namespace Sakura.Runtime
 {
-    public sealed class InteractablePlantableSoil : MonoBehaviour, Interactable
+    public sealed class InteractablePlantableSoil : MonoBehaviour, Reaction
     {
         [SerializeField]
         private InventoryReference playerInventoryReference = null;
@@ -23,7 +24,6 @@ namespace Sakura.Runtime
                     transform.position,
                     transform.rotation
                 );
-                Destroy(gameObject);
             }
         }
     }

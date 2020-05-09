@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Sakura.Input;
+using Sakura.Interactions;
+using System.Collections.Generic;
 
 namespace Sakura.Runtime
 {
@@ -11,14 +13,14 @@ namespace Sakura.Runtime
     public sealed class InteractionDetector : MonoBehaviour
     {
         private new Collider collider = null;
-        private Interactable interactable = null;
         private InteractableRaycaster interactableRaycaster = null;
+        private IList<Reaction> reactions = null;
 
         private void Awake()
         {
             collider = GetComponent<Collider>();
-            interactable = GetComponent<Interactable>();
             interactableRaycaster = GetComponent<InteractableRaycaster>();
+            reactions = GetComponents<Reaction>();
         }
 
         private void Update()
@@ -50,7 +52,10 @@ namespace Sakura.Runtime
         {
             if (hit.collider == collider)
             {
-                interactable.React();
+                foreach (var reaction in reactions)
+                {
+                    reaction.React();
+                }
             }
         }
     }

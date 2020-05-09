@@ -1,9 +1,9 @@
-﻿namespace Sakura.Runtime
+﻿namespace Sakura.Interactions
 {
     /// <summary>
-    /// A game object that can be interacted with.
+    /// A reaction to being interacted with.
     /// </summary>
-    interface Interactable
+    interface Reaction
     {
         /// <summary>
         /// React to being interacted with.

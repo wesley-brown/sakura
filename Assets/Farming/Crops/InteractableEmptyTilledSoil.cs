@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using Sakura.Runtime;
+using Sakura.Interactions;
 
 namespace Sakura.Crop
 {
     public sealed class InteractableEmptyTilledSoil : MonoBehaviour,
-        Interactable
+        Reaction
     {
         [SerializeField]
         private GameObject plantableTilledSoilPrefab = null;
@@ -16,7 +16,6 @@ namespace Sakura.Crop
                 transform.position,
                 transform.rotation
             );
-            Destroy(gameObject);
         }
     }
 }
