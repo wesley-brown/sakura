@@ -3,11 +3,14 @@
 namespace Sakura.Interactions
 {
     /// <summary>
-    /// A reaction that deletes its attached game object when interacted with.
+    /// A component that deletes the game object it is attached to.
     /// </summary>
-    public sealed class AttachedGameObjectDeleter : MonoBehaviour, Reaction
+    public sealed class AttachedGameObjectDeleter : MonoBehaviour
     {
-        public void React()
+        /// <summary>
+        /// Delete the game object that this component is attached to.
+        /// </summary>
+        public void DeleteAttachedGameObject()
         {
             Destroy(gameObject);
         }

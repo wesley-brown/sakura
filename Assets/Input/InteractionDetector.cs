@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Sakura.Input;
 using Sakura.Interactions;
-using System.Collections.Generic;
 
 namespace Sakura.Runtime
 {
@@ -14,13 +13,13 @@ namespace Sakura.Runtime
     {
         private new Collider collider = null;
         private InteractableRaycaster interactableRaycaster = null;
-        private IList<Reaction> reactions = null;
+        private InteractionReactor interactionReactor = null;
 
         private void Awake()
         {
             collider = GetComponent<Collider>();
             interactableRaycaster = GetComponent<InteractableRaycaster>();
-            reactions = GetComponents<Reaction>();
+            interactionReactor = GetComponent<InteractionReactor>();
         }
 
         private void Update()
@@ -52,9 +51,9 @@ namespace Sakura.Runtime
         {
             if (hit.collider == collider)
             {
-                foreach (var reaction in reactions)
+                if (interactionReactor != null)
                 {
-                    reaction.React();
+                    interactionReactor.React();
                 }
             }
         }

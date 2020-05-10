@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3064650600298904868}
   - component: {fileID: 7528105437182777403}
   - component: {fileID: 4374340604143109703}
-  - component: {fileID: 8170958510519866318}
-  - component: {fileID: 8202928204412911783}
+  - component: {fileID: 8006646945149049490}
+  - component: {fileID: 3342501957698108206}
+  - component: {fileID: 5883398876906617291}
   m_Layer: 10
   m_Name: EmptyTilledSoil
   m_TagString: Untagged
@@ -73,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5cf4a10108a42da97751c5740da10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8170958510519866318
+--- !u!114 &8006646945149049490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,12 +83,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 79902238305874541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd3f64a80de844d1b93ee517903b010b, type: 3}
+  m_Script: {fileID: 11500000, guid: 974ca57be92df47edbbe76860f695d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantableTilledSoilPrefab: {fileID: 2631306833892014422, guid: 2b4d39896520c417384afdf96fdb173e,
-    type: 3}
---- !u!114 &8202928204412911783
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3342501957698108206}
+        m_MethodName: DeleteAttachedGameObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5883398876906617291}
+        m_MethodName: PlacePrefabInplace
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &3342501957698108206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,6 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691ea6083bff74997a4616de7744d25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5883398876906617291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79902238305874541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5d8e69f9b294331b3d98b406599863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2631306833892014422, guid: 2b4d39896520c417384afdf96fdb173e, type: 3}
 --- !u!1001 &4200468134506400138
 PrefabInstance:
   m_ObjectHideFlags: 0
