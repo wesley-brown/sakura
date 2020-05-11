@@ -8,12 +8,12 @@ namespace Sakura.Inventories.Runtime.Tests
         protected readonly IList<InventoryItem> initialItems;
         protected readonly int inventoryCapacity;
         protected readonly Inventory inventory;
+        protected readonly InventoryItem theItem;
 
         private When_removing_an_item()
         {
-            initialItems = new List<InventoryItem> {
-                new InventoryItem("Potato Seed")
-            };
+            theItem = new InventoryItem("Potato Seed");
+            initialItems = new List<InventoryItem> { theItem };
             inventoryCapacity = 2;
             inventory = Inventory.WithCapacityAndInitialItems(
                 inventoryCapacity, initialItems);
@@ -25,9 +25,8 @@ namespace Sakura.Inventories.Runtime.Tests
             [Test]
             public void The_item_in_that_inventory_slot_is_returned()
             {
-                var expectedItem = new InventoryItem("Potato Seed");
                 var removedItem = RemoveItemInFirstSlot();
-                Assert.That(removedItem, Is.EqualTo(expectedItem));
+                Assert.That(removedItem, Is.EqualTo(theItem));
             }
 
             [Test]

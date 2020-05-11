@@ -34,7 +34,7 @@ namespace Sakura.Inventories.Runtime.Tests
             public void That_item_is_put_in_the_list_of_all_inventory_items()
             {
                 var expectedItemList = new List<InventoryItem>() {
-                    new InventoryItem("Potato Seed"),
+                    potatoSeed,
                     InventoryItem.NullItem,
                     InventoryItem.NullItem,
                     InventoryItem.NullItem
@@ -53,7 +53,7 @@ namespace Sakura.Inventories.Runtime.Tests
             public void SetUp()
             {
                 initialItems = new List<InventoryItem> {
-                    new InventoryItem("Potato Seed")
+                    potatoSeed
                 };
                 inventory = Inventory.WithCapacityAndInitialItems(
                     inventorySize, initialItems);
@@ -70,7 +70,7 @@ namespace Sakura.Inventories.Runtime.Tests
             public void The_inventorys_item_list_remains_the_same()
             {
                 var expectedItems = new List<InventoryItem> {
-                    new InventoryItem("Potato Seed"),
+                    potatoSeed,
                     InventoryItem.NullItem,
                     InventoryItem.NullItem,
                     InventoryItem.NullItem

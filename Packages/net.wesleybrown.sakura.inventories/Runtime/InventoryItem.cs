@@ -1,12 +1,16 @@
-﻿namespace Sakura.Inventories.Runtime
+﻿using System;
+
+namespace Sakura.Inventories.Runtime
 {
     /// <summary>
-    /// An item that is in an inventory.
+    /// An instance of an item that is in an inventory.
     /// </summary>
-    public struct InventoryItem
+    public sealed class InventoryItem
 	{
         private static readonly InventoryItem nullItem =
             new InventoryItem("Null Item");
+
+        private readonly Guid id;
         private readonly string itemName;
 
         public static InventoryItem NullItem
@@ -25,7 +29,19 @@
         /// </param>
         public InventoryItem(string itemName)
         {
+            id = Guid.NewGuid();
             this.itemName = itemName;
+        }
+
+        /// <summary>
+        /// The unique identifier of this inventory item.
+        /// </summary>
+        public Guid Id
+        {
+            get
+            {
+                return id;
+            }
         }
 
         /// <summary>
@@ -48,14 +64,13 @@
             else
             {
                 var otherInventoryItem = (InventoryItem) obj;
-                return (itemName == otherInventoryItem.itemName);
+                return id == otherInventoryItem.id;
             }
         }
 
         public override int GetHashCode()
         {
-            int result = itemName.GetHashCode();
-            return result;
+            return id.GetHashCode();
         }
 
         public override string ToString()
