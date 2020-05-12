@@ -3,17 +3,20 @@
 namespace Sakura.Inventories.Runtime
 {
     /// <summary>
-    /// An instance of an item that is in an inventory.
+    /// An instance of an item template.
     /// </summary>
-    public sealed class InventoryItem
+    public sealed class Item
 	{
-        private static readonly InventoryItem nullItem =
-            new InventoryItem("Null Item");
+        private static readonly Item nullItem = new Item("Null Item");
 
         private readonly Guid id;
-        private readonly string itemName;
+        private readonly string name;
 
-        public static InventoryItem NullItem
+        /// <summary>
+        /// The null item.
+        /// The null item is a special item that there is only one instance of.
+        /// </summary>
+        public static Item NullItem
         {
             get
             {
@@ -22,19 +25,19 @@ namespace Sakura.Inventories.Runtime
         }
 
         /// <summary>
-        /// Create a new inventory item.
+        /// Create a new item.
         /// </summary>
-        /// <param name="itemName">
-        /// The name of the item that the new inventory item will represent.
+        /// <param name="name">
+        /// The name of the new item.
         /// </param>
-        public InventoryItem(string itemName)
+        public Item(string name)
         {
             id = Guid.NewGuid();
-            this.itemName = itemName;
+            this.name = name;
         }
 
         /// <summary>
-        /// The unique identifier of this inventory item.
+        /// The unique identifier of this item.
         /// </summary>
         public Guid Id
         {
@@ -45,13 +48,13 @@ namespace Sakura.Inventories.Runtime
         }
 
         /// <summary>
-        /// The name of the item that this inventory item represents.
+        /// The name of this item.
         /// </summary>
-        public string ItemName
+        public string Name
         {
             get
             {
-                return itemName;
+                return name;
             }
         }
 
@@ -63,7 +66,7 @@ namespace Sakura.Inventories.Runtime
             }
             else
             {
-                var otherInventoryItem = (InventoryItem) obj;
+                var otherInventoryItem = (Item) obj;
                 return id == otherInventoryItem.id;
             }
         }
@@ -75,7 +78,7 @@ namespace Sakura.Inventories.Runtime
 
         public override string ToString()
         {
-            return "<InventoryItem: itemName=" + itemName + ">";
+            return "<Item: name=" + name + ">";
         }
     }
 }

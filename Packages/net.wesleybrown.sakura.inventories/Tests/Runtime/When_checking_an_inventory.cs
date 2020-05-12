@@ -5,23 +5,23 @@ namespace Sakura.Inventories.Runtime.Tests
 {
     class When_checking_an_inventory
     {
-        protected InventoryItem potatoSeed;
+        protected Item potatoSeed;
         protected Inventory inventory;
 
         private When_checking_an_inventory()
         {
-            potatoSeed = new InventoryItem("Potato Seed");
+            potatoSeed = new Item("Potato Seed");
         }
         
         [TestFixture]
         sealed class For_an_existing_item : When_checking_an_inventory
         {
-            private IList<InventoryItem> initialItems;
+            private IList<Item> initialItems;
 
             [SetUp]
             public void SetUp()
             {
-                initialItems = new List<InventoryItem> { potatoSeed };
+                initialItems = new List<Item> { potatoSeed };
                 inventory =
                     Inventory.WithCapacityAndInitialItems(1, initialItems);
             }

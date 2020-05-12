@@ -10,13 +10,13 @@ namespace Sakura.Inventories.Runtime
     public sealed class Inventory
     {
         private readonly int capacity;
-        private readonly List<InventoryItem> items;
+        private readonly List<Item> items;
 
-        private Inventory(int capacity, IList<InventoryItem> initialItems)
+        private Inventory(int capacity, IList<Item> initialItems)
         {
             this.capacity = capacity;
-            items = new List<InventoryItem>(capacity);
-            items.AddRange(Enumerable.Repeat(InventoryItem.NullItem, capacity));
+            items = new List<Item>(capacity);
+            items.AddRange(Enumerable.Repeat(Item.NullItem, capacity));
             for (var itemSlot = 0; itemSlot < initialItems.Count;
                 itemSlot = itemSlot + 1)
             {
@@ -42,9 +42,9 @@ namespace Sakura.Inventories.Runtime
             }
             else
             {
-                var initialItems = new List<InventoryItem>();
+                var initialItems = new List<Item>();
                 initialItems.AddRange(
-                    Enumerable.Repeat(InventoryItem.NullItem, capacity));
+                    Enumerable.Repeat(Item.NullItem, capacity));
                 return new Inventory(capacity, initialItems);
             }
         }
@@ -67,7 +67,7 @@ namespace Sakura.Inventories.Runtime
         /// items taking up the slots.
         /// </returns>
         public static Inventory WithCapacityAndInitialItems(int capacity,
-            IList<InventoryItem> initialItems)
+            IList<Item> initialItems)
         {
             if (initialItems == null)
             {
@@ -93,7 +93,7 @@ namespace Sakura.Inventories.Runtime
         /// <summary>
         /// The list of items in each inventory slot.
         /// </summary>
-        public IList<InventoryItem> Items
+        public IList<Item> Items
         {
             get
             {
@@ -112,10 +112,10 @@ namespace Sakura.Inventories.Runtime
         /// Returns true if the given item was added to the given inventory
         /// slot. Otherwise, returns false.
         /// </returns>
-        public bool AddItemToSlot(InventoryItem item, int inventorySlot)
+        public bool AddItemToSlot(Item item, int inventorySlot)
         {
             var itemInSlot = items[inventorySlot];
-            if (itemInSlot.Equals(InventoryItem.NullItem))
+            if (itemInSlot.Equals(Item.NullItem))
             {
                 items[inventorySlot] = item;
                 return true;
@@ -139,9 +139,9 @@ namespace Sakura.Inventories.Runtime
         /// If there was an instance of the given item, then returns the first
         /// instance of that item. Otherwise, returns the null item.
         /// </returns>
-        public InventoryItem RemoveFirstInstanceOfItem(InventoryItem itemToRemove)
+        public Item RemoveFirstInstanceOfItem(Item itemToRemove)
         {
-            var firstInstance = InventoryItem.NullItem;
+            var firstInstance = Item.NullItem;
             for (var i = 0; i < items.Count; i = i + 1)
             {
                 var item = items[i];
@@ -161,10 +161,10 @@ namespace Sakura.Inventories.Runtime
         /// The inventory slot number to remove the item from.
         /// </param>
         /// <returns>The removed item.</returns>
-        public InventoryItem RemoveItemFromSlot(int slotNumber)
+        public Item RemoveItemFromSlot(int slotNumber)
         {
             var requestedItem = items[slotNumber];
-            items[slotNumber] = InventoryItem.NullItem;
+            items[slotNumber] = Item.NullItem;
             return requestedItem;
         }
 
@@ -176,7 +176,7 @@ namespace Sakura.Inventories.Runtime
         /// Returns true if this inventory contains the given item. Otherwise,
         /// returns false.
         /// </returns>
-        public bool Contains(InventoryItem item)
+        public bool Contains(Item item)
         {
             return items.Contains(item);
         }

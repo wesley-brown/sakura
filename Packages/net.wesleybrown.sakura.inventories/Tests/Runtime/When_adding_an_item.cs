@@ -7,11 +7,11 @@ namespace Sakura.Inventories.Runtime.Tests
 	{
         protected Inventory inventory;
         protected readonly int inventorySize = 4;
-        protected InventoryItem potatoSeed;
+        protected Item potatoSeed;
 
         private When_adding_an_item()
         {
-            potatoSeed = new InventoryItem("Potato Seed");
+            potatoSeed = new Item("Potato Seed");
         }
 
         [TestFixture]
@@ -33,11 +33,11 @@ namespace Sakura.Inventories.Runtime.Tests
             [Test]
             public void That_item_is_put_in_the_list_of_all_inventory_items()
             {
-                var expectedItemList = new List<InventoryItem>() {
+                var expectedItemList = new List<Item>() {
                     potatoSeed,
-                    InventoryItem.NullItem,
-                    InventoryItem.NullItem,
-                    InventoryItem.NullItem
+                    Item.NullItem,
+                    Item.NullItem,
+                    Item.NullItem
                 };
                 inventory.AddItemToSlot(potatoSeed, 0);
                 Assert.That(inventory.Items, Is.EquivalentTo(expectedItemList));
@@ -47,12 +47,12 @@ namespace Sakura.Inventories.Runtime.Tests
         [TestFixture]
         sealed class To_an_occupied_inventory_slot : When_adding_an_item
         {
-            private IList<InventoryItem> initialItems;
+            private IList<Item> initialItems;
 
             [SetUp]
             public void SetUp()
             {
-                initialItems = new List<InventoryItem> {
+                initialItems = new List<Item> {
                     potatoSeed
                 };
                 inventory = Inventory.WithCapacityAndInitialItems(
@@ -69,11 +69,11 @@ namespace Sakura.Inventories.Runtime.Tests
             [Test]
             public void The_inventorys_item_list_remains_the_same()
             {
-                var expectedItems = new List<InventoryItem> {
+                var expectedItems = new List<Item> {
                     potatoSeed,
-                    InventoryItem.NullItem,
-                    InventoryItem.NullItem,
-                    InventoryItem.NullItem
+                    Item.NullItem,
+                    Item.NullItem,
+                    Item.NullItem
                 };
                 inventory.AddItemToSlot(potatoSeed, 0);
                 Assert.That(inventory.Items, Is.EquivalentTo(expectedItems));

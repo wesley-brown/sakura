@@ -5,15 +5,15 @@ namespace Sakura.Inventories.Runtime.Tests
 {
     class When_removing_an_item
     {
-        protected readonly IList<InventoryItem> initialItems;
+        protected readonly IList<Item> initialItems;
         protected readonly int inventoryCapacity;
         protected readonly Inventory inventory;
-        protected readonly InventoryItem theItem;
+        protected readonly Item theItem;
 
         private When_removing_an_item()
         {
-            theItem = new InventoryItem("Potato Seed");
-            initialItems = new List<InventoryItem> { theItem };
+            theItem = new Item("Potato Seed");
+            initialItems = new List<Item> { theItem };
             inventoryCapacity = 2;
             inventory = Inventory.WithCapacityAndInitialItems(
                 inventoryCapacity, initialItems);
@@ -35,11 +35,11 @@ namespace Sakura.Inventories.Runtime.Tests
                 RemoveItemInFirstSlot();
                 Assert.That(
                     inventory.Items[0],
-                    Is.EqualTo(InventoryItem.NullItem)
+                    Is.EqualTo(Item.NullItem)
                 );
             }
 
-            private InventoryItem RemoveItemInFirstSlot()
+            private Item RemoveItemInFirstSlot()
             {
                 return inventory.RemoveItemFromSlot(0);
             }
@@ -52,7 +52,7 @@ namespace Sakura.Inventories.Runtime.Tests
             public void The_null_item_is_returned()
             {
                 var removedItem = inventory.RemoveItemFromSlot(1);
-                Assert.That(removedItem, Is.EqualTo(InventoryItem.NullItem));
+                Assert.That(removedItem, Is.EqualTo(Item.NullItem));
             }
         }
     }

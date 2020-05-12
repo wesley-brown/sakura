@@ -8,8 +8,8 @@ namespace Sakura.Inventories.Runtime.Tests
         [Test]
         public void Each_inventory_item_is_unique()
         {
-            var firstPotatoSeed = new InventoryItem("Potato Seed");
-            var secondPotatoSeed = new InventoryItem("Potato Seed");
+            var firstPotatoSeed = new Item("Potato Seed");
+            var secondPotatoSeed = new Item("Potato Seed");
             Assert.That(secondPotatoSeed, Is.Not.EqualTo(firstPotatoSeed));
         }
     }

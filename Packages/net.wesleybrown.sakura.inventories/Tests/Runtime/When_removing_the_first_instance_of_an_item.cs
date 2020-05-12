@@ -8,14 +8,14 @@ namespace Sakura.Inventories.Runtime.Tests
         [TestFixture]
         sealed class That_an_inventory_has
         {
-            private InventoryItem potatoSeed;
+            private Item potatoSeed;
             private Inventory playersInventory;
 
             [SetUp]
             public void SetUp()
             {
-                potatoSeed = new InventoryItem("Potato Seed");
-                var playersInitialItems = new List<InventoryItem> {
+                potatoSeed = new Item("Potato Seed");
+                var playersInitialItems = new List<Item> {
                     potatoSeed,
                     potatoSeed
                 };
@@ -27,8 +27,8 @@ namespace Sakura.Inventories.Runtime.Tests
             public void The_first_instance_of_it_is_removed()
             {
                 var playersExpectedInventoryAfterPlanting =
-                    new List<InventoryItem> {
-                        InventoryItem.NullItem,
+                    new List<Item> {
+                        Item.NullItem,
                         potatoSeed
                 };
                 PlayerPlantsAPotatoSeed();
@@ -45,7 +45,7 @@ namespace Sakura.Inventories.Runtime.Tests
                 Assert.That(removedItem, Is.EqualTo(potatoSeed));
             }
 
-            private InventoryItem PlayerPlantsAPotatoSeed()
+            private Item PlayerPlantsAPotatoSeed()
             {
                 return playersInventory.RemoveFirstInstanceOfItem(potatoSeed);
             }
