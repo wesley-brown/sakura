@@ -10,16 +10,16 @@ namespace Sakura.Inventories.Runtime
     public sealed class ItemTemplate : ScriptableObject
     {
         [SerializeField]
-        private string externalItemName;
+        private string externalItemName = "";
         [SerializeField]
-        private string internalItemName;
+        private string internalItemName = "";
         [SerializeField]
-        private string itemDescription;
+        private string itemDescription = "";
         [SerializeField]
-        private string description;
+        private string description = "";
 
         [SerializeField]
-        private Sprite icon;
+        private Sprite icon = null;
 
         /// <summary>
         /// The in-game name of items created from this template.
