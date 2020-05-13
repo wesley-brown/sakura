@@ -7,7 +7,7 @@ namespace Sakura.Inventories.Runtime
     /// </summary>
     public sealed class Item
 	{
-        private static readonly Item nullItem = new Item("Null Item", null);
+        private static readonly Item nullItem = new Item("Null Item");
 
         private readonly Guid id;
         private readonly string name;
@@ -21,7 +21,14 @@ namespace Sakura.Inventories.Runtime
         /// </returns>
         public static Item FromTemplate(ItemTemplate template)
         {
-            return new Item(template.ExternalItemName);
+            if (template.Equals(null))
+            {
+                return nullItem;
+            }
+            else
+            {
+                return new Item(template);
+            }
         }
 
         /// <summary>
@@ -36,23 +43,17 @@ namespace Sakura.Inventories.Runtime
             }
         }
 
-        /// <summary>
-        /// Create a new item.
-        /// </summary>
-        /// <param name="name">
-        /// The name of the new item.
-        /// </param>
-        public Item(string name)
+        private Item(string name)
         {
             id = Guid.NewGuid();
             this.name = name;
             template = null;
         }
 
-        private Item(string name, ItemTemplate template)
+        private Item(ItemTemplate template)
         {
             id = Guid.NewGuid();
-            this.name = name;
+            this.name = template.ExternalItemName;
             this.template = template;
         }
 

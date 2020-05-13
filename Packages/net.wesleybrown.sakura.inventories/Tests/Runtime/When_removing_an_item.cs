@@ -1,21 +1,29 @@
 ﻿using NUnit.Framework;
+using UnityEditor;
 using System.Collections.Generic;
 
 namespace Sakura.Inventories.Runtime.Tests
 {
     class When_removing_an_item
     {
+        private static readonly string path = "Packages/" +
+            "net.wesleybrown.sakura.inventories/" + "Tests/" + "Runtime/";
+
+        protected readonly string templateName = "TestItem.asset";
+        protected readonly ItemTemplate theTemplate;
         protected readonly IList<Item> initialItems;
         protected readonly int inventoryCapacity;
-        protected readonly Inventory inventory;
+        protected readonly Inventory theInventory;
         protected readonly Item theItem;
 
         private When_removing_an_item()
         {
-            theItem = new Item("Potato Seed");
+            theTemplate = AssetDatabase
+                .LoadAssetAtPath<ItemTemplate>(path + templateName);
+            theItem = Item.FromTemplate(theTemplate);
             initialItems = new List<Item> { theItem };
             inventoryCapacity = 2;
-            inventory = Inventory.WithCapacityAndInitialItems(
+            theInventory = Inventory.WithCapacityAndInitialItems(
                 inventoryCapacity, initialItems);
         }
 
@@ -33,15 +41,12 @@ namespace Sakura.Inventories.Runtime.Tests
             public void The_null_item_fills_that_slot()
             {
                 RemoveItemInFirstSlot();
-                Assert.That(
-                    inventory.Items[0],
-                    Is.EqualTo(Item.NullItem)
-                );
+                Assert.That(theInventory.Items[0], Is.EqualTo(Item.NullItem));
             }
 
             private Item RemoveItemInFirstSlot()
             {
-                return inventory.RemoveItemFromSlot(0);
+                return theInventory.RemoveItemFromSlot(0);
             }
         }
 
@@ -51,7 +56,7 @@ namespace Sakura.Inventories.Runtime.Tests
             [Test]
             public void The_null_item_is_returned()
             {
-                var removedItem = inventory.RemoveItemFromSlot(1);
+                var removedItem = theInventory.RemoveItemFromSlot(1);
                 Assert.That(removedItem, Is.EqualTo(Item.NullItem));
             }
         }

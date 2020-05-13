@@ -1,16 +1,24 @@
 ﻿using NUnit.Framework;
+using UnityEditor;
 using System.Collections.Generic;
 
 namespace Sakura.Inventories.Runtime.Tests
 {
     class When_checking_an_inventory
     {
-        protected Item potatoSeed;
-        protected Inventory inventory;
+        private static readonly string path = "Packages/" +
+            "net.wesleybrown.sakura.inventories/" + "Tests/" + "Runtime/";
+
+        private readonly string templateName = "TestItem.asset";
+        protected readonly ItemTemplate theTemplate;
+        protected Item theItem;
+        protected Inventory theInventory;
 
         private When_checking_an_inventory()
         {
-            potatoSeed = new Item("Potato Seed");
+            theTemplate = AssetDatabase
+                .LoadAssetAtPath<ItemTemplate>(path + templateName);
+            theItem = Item.FromTemplate(theTemplate);
         }
         
         [TestFixture]
@@ -21,16 +29,16 @@ namespace Sakura.Inventories.Runtime.Tests
             [SetUp]
             public void SetUp()
             {
-                initialItems = new List<Item> { potatoSeed };
-                inventory =
+                initialItems = new List<Item> { theItem };
+                theInventory =
                     Inventory.WithCapacityAndInitialItems(1, initialItems);
             }
 
             [Test]
             public void It_succeeds()
             {
-                var hasPotatoSeed = inventory.Contains(potatoSeed);
-                Assert.That(hasPotatoSeed, Is.True);
+                var hasTheItem = theInventory.Contains(theItem);
+                Assert.That(hasTheItem, Is.True);
             }
         }
 
@@ -40,14 +48,14 @@ namespace Sakura.Inventories.Runtime.Tests
             [SetUp]
             public void SetUp()
             {
-                inventory = Inventory.WithCapacityAndEmpty(1);
+                theInventory = Inventory.WithCapacityAndEmpty(1);
             }
 
             [Test]
             public void It_fails()
             {
-                var hasPotatoSeed = inventory.Contains(potatoSeed);
-                Assert.That(hasPotatoSeed, Is.False);
+                var hasTheItem = theInventory.Contains(theItem);
+                Assert.That(hasTheItem, Is.False);
             }
         }
     }

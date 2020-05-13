@@ -1,17 +1,25 @@
 ﻿using NUnit.Framework;
+using UnityEditor;
 using System.Collections.Generic;
 
 namespace Sakura.Inventories.Runtime.Tests
 {
     class When_adding_an_item
 	{
-        protected Inventory inventory;
+        private static readonly string path = "Packages/" +
+            "net.wesleybrown.sakura.inventories/" + "Tests/" + "Runtime/";
+
+        protected Inventory theInventory;
         protected readonly int inventorySize = 4;
-        protected Item potatoSeed;
+        private readonly string templateName = "TestItem.asset";
+        private readonly ItemTemplate theTemplate;
+        protected Item theItem;
 
         private When_adding_an_item()
         {
-            potatoSeed = new Item("Potato Seed");
+            theTemplate = AssetDatabase.LoadAssetAtPath<ItemTemplate>(
+                path + templateName);
+            theItem = Item.FromTemplate(theTemplate);
         }
 
         [TestFixture]
@@ -20,13 +28,13 @@ namespace Sakura.Inventories.Runtime.Tests
             [SetUp]
             public void SetUp()
             {
-                inventory = Inventory.WithCapacityAndEmpty(inventorySize);
+                theInventory = Inventory.WithCapacityAndEmpty(inventorySize);
             }
 
             [Test]
             public void It_succeeds()
             {
-                var result = inventory.AddItemToSlot(potatoSeed, 0);
+                var result = theInventory.AddItemToSlot(theItem, 0);
                 Assert.That(result, Is.True);
             }
 
@@ -34,13 +42,14 @@ namespace Sakura.Inventories.Runtime.Tests
             public void That_item_is_put_in_the_list_of_all_inventory_items()
             {
                 var expectedItemList = new List<Item>() {
-                    potatoSeed,
+                    theItem,
                     Item.NullItem,
                     Item.NullItem,
                     Item.NullItem
                 };
-                inventory.AddItemToSlot(potatoSeed, 0);
-                Assert.That(inventory.Items, Is.EquivalentTo(expectedItemList));
+                theInventory.AddItemToSlot(theItem, 0);
+                Assert.That(theInventory.Items,
+                    Is.EquivalentTo(expectedItemList));
             }
         }
 
@@ -53,16 +62,16 @@ namespace Sakura.Inventories.Runtime.Tests
             public void SetUp()
             {
                 initialItems = new List<Item> {
-                    potatoSeed
+                    theItem
                 };
-                inventory = Inventory.WithCapacityAndInitialItems(
+                theInventory = Inventory.WithCapacityAndInitialItems(
                     inventorySize, initialItems);
             }
 
             [Test]
             public void It_fails()
             {
-                var result = inventory.AddItemToSlot(potatoSeed, 0);
+                var result = theInventory.AddItemToSlot(theItem, 0);
                 Assert.That(result, Is.False);
             }
 
@@ -70,13 +79,13 @@ namespace Sakura.Inventories.Runtime.Tests
             public void The_inventorys_item_list_remains_the_same()
             {
                 var expectedItems = new List<Item> {
-                    potatoSeed,
+                    theItem,
                     Item.NullItem,
                     Item.NullItem,
                     Item.NullItem
                 };
-                inventory.AddItemToSlot(potatoSeed, 0);
-                Assert.That(inventory.Items, Is.EquivalentTo(expectedItems));
+                theInventory.AddItemToSlot(theItem, 0);
+                Assert.That(theInventory.Items, Is.EquivalentTo(expectedItems));
             }
         }
 	}
