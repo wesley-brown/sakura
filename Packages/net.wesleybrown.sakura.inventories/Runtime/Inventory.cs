@@ -127,31 +127,27 @@ namespace Sakura.Inventories.Runtime
         }
 
         /// <summary>
-        /// Remove the first instance of the given item. This method will
-        /// search each inventory slot, starting from the first, in order,
-        /// until an instance of the given item is found or all inventory slots
-        /// were checked and none contained the given item.
+        /// Remove the first item in this inventory that was made from a given
+        /// item template, if one exists.
         /// </summary>
-        /// <param name="itemToRemove">
-        /// The item to remove the first instance of.
-        /// </param>
+        /// <param name="template">The item template to check for.</param>
         /// <returns>
-        /// If there was an instance of the given item, then returns the first
-        /// instance of that item. Otherwise, returns the null item.
+        /// If there were any items made from the given item template, then
+        /// returns the first one found. Otherwise, returns the null item.
         /// </returns>
-        public Item RemoveFirstInstanceOfItem(Item itemToRemove)
+        public Item RemoveFirstItemMadeFromTemplate(ItemTemplate template)
         {
-            var firstInstance = Item.NullItem;
+            var firstItemMadeFromTemplate = Item.NullItem;
             for (var i = 0; i < items.Count; i = i + 1)
             {
                 var item = items[i];
-                if (item.Equals(itemToRemove))
+                if (item.Template.Equals(template))
                 {
-                    firstInstance = RemoveItemFromSlot(i);
+                    firstItemMadeFromTemplate = RemoveItemFromSlot(i);
                     break;
                 }
             }
-            return firstInstance;
+            return firstItemMadeFromTemplate;
         }
 
         /// <summary>

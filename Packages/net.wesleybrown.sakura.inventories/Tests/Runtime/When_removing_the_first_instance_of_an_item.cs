@@ -16,7 +16,7 @@ namespace Sakura.Inventories.Runtime.Tests
             private ItemTemplate theTemplate;
             private Item theFirstItem;
             private Item theSecondItem;
-            private Inventory playersInventory;
+            private Inventory theInventory;
 
             [SetUp]
             public void SetUp()
@@ -29,35 +29,34 @@ namespace Sakura.Inventories.Runtime.Tests
                     theFirstItem,
                     theSecondItem
                 };
-                playersInventory = Inventory.WithCapacityAndInitialItems(2,
+                theInventory = Inventory.WithCapacityAndInitialItems(2,
                     playersInitialItems);
             }
 
             [Test]
             public void The_first_instance_of_it_is_removed()
             {
-                var playersExpectedInventoryAfterPlanting =
-                    new List<Item> {
+                var expectedItems = new List<Item> {
                         Item.NullItem,
                         theSecondItem
                 };
-                PlayerPlantsAPotatoSeed();
+                RemoveFirstItemMadeFromTemplate();
                 Assert.That(
-                    playersInventory.Items,
-                    Is.EqualTo(playersExpectedInventoryAfterPlanting)
+                    theInventory.Items,
+                    Is.EqualTo(expectedItems)
                 );
             }
 
             [Test]
             public void The_removed_item_is_returned()
             {
-                var removedItem = PlayerPlantsAPotatoSeed();
+                var removedItem = RemoveFirstItemMadeFromTemplate();
                 Assert.That(removedItem, Is.EqualTo(theFirstItem));
             }
 
-            private Item PlayerPlantsAPotatoSeed()
+            private Item RemoveFirstItemMadeFromTemplate()
             {
-                return playersInventory.RemoveFirstInstanceOfItem(theFirstItem);
+                return theInventory.RemoveFirstItemMadeFromTemplate(theTemplate);
             }
         }
     }
