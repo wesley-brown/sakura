@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Sakura.Inventories.Runtime.Tests
 {
-    class When_checking_an_inventory
+    class When_checking_an_inventory_for_an_item
     {
         private static readonly string path = "Packages/" +
             "net.wesleybrown.sakura.inventories/" + "Tests/" + "Runtime/";
@@ -14,7 +14,7 @@ namespace Sakura.Inventories.Runtime.Tests
         protected Item theItem;
         protected Inventory theInventory;
 
-        private When_checking_an_inventory()
+        private When_checking_an_inventory_for_an_item()
         {
             theTemplate = AssetDatabase
                 .LoadAssetAtPath<ItemTemplate>(path + templateName);
@@ -22,9 +22,9 @@ namespace Sakura.Inventories.Runtime.Tests
         }
         
         [TestFixture]
-        sealed class For_an_existing_item : When_checking_an_inventory
+        class It_has : When_checking_an_inventory_for_an_item
         {
-            private IList<Item> initialItems;
+            protected IList<Item> initialItems;
 
             [SetUp]
             public void SetUp()
@@ -43,7 +43,7 @@ namespace Sakura.Inventories.Runtime.Tests
         }
 
         [TestFixture]
-        sealed class For_a_nonexistent_item : When_checking_an_inventory
+        sealed class It_doesnt_have : When_checking_an_inventory_for_an_item
         {
             [SetUp]
             public void SetUp()

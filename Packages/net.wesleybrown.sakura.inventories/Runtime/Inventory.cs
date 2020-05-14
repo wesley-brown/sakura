@@ -177,6 +177,17 @@ namespace Sakura.Inventories.Runtime
             return items.Contains(item);
         }
 
+        /// <summary>
+        /// Check if this inventory contains an item made from a given item
+        /// template.
+        /// </summary>
+        /// <param name="template">The item template to check for.</param>
+        /// <returns>Returns true.</returns>
+        public bool ContainsItemMadeFromTemplate(ItemTemplate template)
+        {
+            return true;
+        }
+
         public override string ToString()
         {
             var stringRepresentation = "<Inventory: ";
