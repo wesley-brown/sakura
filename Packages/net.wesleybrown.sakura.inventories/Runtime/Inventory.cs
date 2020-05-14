@@ -182,10 +182,22 @@ namespace Sakura.Inventories.Runtime
         /// template.
         /// </summary>
         /// <param name="template">The item template to check for.</param>
-        /// <returns>Returns true.</returns>
+        /// <returns>
+        /// Returns true if this inventory contains at least one item made from
+        /// the given template. Otherwise, returns false.
+        /// </returns>
         public bool ContainsItemMadeFromTemplate(ItemTemplate template)
         {
-            return true;
+            var hasItemMadeFromTemplate = false;
+            foreach (var item in items)
+            {
+                if (item != Item.NullItem && item.Template.Equals(template))
+                {
+                    hasItemMadeFromTemplate = true;
+                    break;
+                }
+            }
+            return hasItemMadeFromTemplate;
         }
 
         public override string ToString()
