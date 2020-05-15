@@ -6,7 +6,7 @@ namespace Sakura.Interactions
     /// <summary>
     /// Allows a game object to react to being interacted with.
     /// </summary>
-    public sealed class InteractionReactor : MonoBehaviour
+    public sealed class UnconditionalReactor : MonoBehaviour, Reactor
     {
         [SerializeField]
         private UnityEvent onInteract = null; 

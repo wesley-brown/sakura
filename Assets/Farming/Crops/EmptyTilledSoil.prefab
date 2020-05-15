@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3064650600298904868}
   - component: {fileID: 7528105437182777403}
   - component: {fileID: 4374340604143109703}
-  - component: {fileID: 8006646945149049490}
+  - component: {fileID: 8938065641928730932}
   - component: {fileID: 3342501957698108206}
   - component: {fileID: 5883398876906617291}
   m_Layer: 10
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5cf4a10108a42da97751c5740da10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8006646945149049490
+--- !u!114 &8938065641928730932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,10 +83,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 79902238305874541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 974ca57be92df47edbbe76860f695d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fac6ffcf911e4be2b12bf1cd9e19f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
+  tagToCheckFor: Player
+  maximumDistance: 2.5
+  whenIsCloseEnough:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3342501957698108206}
