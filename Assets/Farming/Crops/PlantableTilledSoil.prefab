@@ -44,8 +44,7 @@ GameObject:
   - component: {fileID: 2365521412715238644}
   - component: {fileID: 8219174888153417849}
   - component: {fileID: 2805832729389236316}
-  - component: {fileID: 2004206886208562615}
-  - component: {fileID: 5839481179711620838}
+  - component: {fileID: 6696602168512607328}
   m_Layer: 10
   m_Name: PlantableTilledSoil
   m_TagString: Untagged
@@ -123,18 +122,7 @@ MonoBehaviour:
   whenIsCloseEnough:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2004206886208562615}
-        m_MethodName: DeleteAttachedGameObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5839481179711620838}
+      - m_Target: {fileID: 6696602168512607328}
         m_MethodName: PlacePrefabInplace
         m_Mode: 1
         m_Arguments:
@@ -147,19 +135,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &2004206886208562615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2631306833892014422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 691ea6083bff74997a4616de7744d25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5839481179711620838
+--- !u!114 &6696602168512607328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5d8e69f9b294331b3d98b406599863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7739606347855887258, guid: de3676288a7834a7ea43828006cfc02a, type: 3}
+  prefab: {fileID: 8128493906706584000, guid: e91c74f8e16ed48258e2c301d4aea9da, type: 3}
 --- !u!1 &3142684456177518824
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,12 +385,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5f39c727506e842619cfe0b6dd3f0842, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e510c0b454d244099ca9d2a25191aa6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
