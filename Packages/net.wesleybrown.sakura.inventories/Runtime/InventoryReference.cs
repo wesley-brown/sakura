@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace Sakura.Inventories.Runtime
 {
@@ -9,6 +10,12 @@ namespace Sakura.Inventories.Runtime
         menuName = "Inventories/Inventory Reference")]
     public sealed class InventoryReference : ScriptableObject
 	{
+        [SerializeField]
+        private int capacity = 0;
+
+        [SerializeField]
+        private List<ItemTemplate> initialItemTemplates = null;
+
         private Inventory inventory = null;
 
         public Inventory Inventory
@@ -21,7 +28,16 @@ namespace Sakura.Inventories.Runtime
 
         private void OnEnable()
         {
-            inventory = Inventory.WithCapacityAndEmpty(4);
+            if (initialItemTemplates != null)
+            {
+                var items = new List<Item>();
+                foreach(var itemTemplate in initialItemTemplates)
+                {
+                    var item = Item.FromTemplate(itemTemplate);
+                    items.Add(item);
+                }
+                inventory = Inventory.WithCapacityAndInitialItems(capacity, items);
+            }
         }
     }
 }

@@ -30,6 +30,10 @@ namespace Sakura.Runtime.InventoryUI
             {
                 image.sprite = item.Template.Icon;
             }
+            else
+            {
+                image.sprite = null;
+            }
         }
     }
 }
