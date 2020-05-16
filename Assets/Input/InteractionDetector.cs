@@ -2,6 +2,7 @@
 using Sakura.Input;
 using Sakura.Interactions;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace Sakura.Runtime
 {
@@ -28,7 +29,8 @@ namespace Sakura.Runtime
             if (ScreenWasTouched)
             {
                 var touch = UnityEngine.Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Ended)
+                if (touch.phase == TouchPhase.Began &&
+                    !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
                     var ray = Camera.main.ScreenPointToRay(touch.position);
                     RaycastHit hit;
