@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b43788fce76954041b0c45e08700f34c, type: 3}
-  m_Name: type_item_potato
+  m_Name: type_seed
   m_EditorClassIdentifier: 
-  displayName: 
-  description: A harvested crop.
+  displayName: Seed
+  description: A seed for a crop.
