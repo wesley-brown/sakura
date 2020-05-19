@@ -97,7 +97,8 @@ namespace Sakura.Inventories.Runtime
         {
             get
             {
-                return items;
+                // Item is immutable so return shallow copy
+                return new List<Item>(items);
             }
         }
 
