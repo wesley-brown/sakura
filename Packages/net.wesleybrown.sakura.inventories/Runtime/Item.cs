@@ -12,6 +12,7 @@ namespace Sakura.Inventories.Runtime
         private readonly Guid id;
         private readonly string name;
         private readonly ItemTemplate template;
+        private readonly ItemType type;
 
         /// <summary>
         /// Create a new item from an item template.
@@ -48,6 +49,7 @@ namespace Sakura.Inventories.Runtime
             id = Guid.NewGuid();
             this.name = name;
             template = null;
+            type = null;
         }
 
         private Item(ItemTemplate template)
@@ -55,6 +57,7 @@ namespace Sakura.Inventories.Runtime
             id = Guid.NewGuid();
             this.name = template.ExternalItemName;
             this.template = template;
+            type = template.Type;
         }
 
         /// <summary>
@@ -87,6 +90,17 @@ namespace Sakura.Inventories.Runtime
             get
             {
                 return template;
+            }
+        }
+
+        /// <summary>
+        /// The type of this item.
+        /// </summary>
+        public ItemType Type
+        {
+            get
+            {
+                return type;
             }
         }
 

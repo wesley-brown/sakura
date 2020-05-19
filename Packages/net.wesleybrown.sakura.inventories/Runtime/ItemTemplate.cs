@@ -5,7 +5,8 @@ namespace Sakura.Inventories.Runtime
     /// <summary>
     /// A template from which items are created.
     /// </summary>
-    [CreateAssetMenu(fileName = "New Item Template",
+    [CreateAssetMenu(
+        fileName = "New Item Template",
         menuName = "Inventories/Item Template")]
     public sealed class ItemTemplate : ScriptableObject
     {
@@ -17,6 +18,8 @@ namespace Sakura.Inventories.Runtime
         private string itemDescription = "";
         [SerializeField]
         private string description = "";
+        [SerializeField]
+        private ItemType type = null;
 
         [SerializeField]
         private Sprite icon = null;
@@ -76,9 +79,18 @@ namespace Sakura.Inventories.Runtime
             }
         }
 
+        public ItemType Type
+        {
+            get
+            {
+                return type;
+            }
+        }
+
         public override string ToString()
         {
-            return "<ItemTemplate:" + " name=" + name + ">";
+            return "<ItemTemplate:" + " Name=" + ExternalItemName + ",Type=" +
+                Type +  ">";
         }
     }
 }
