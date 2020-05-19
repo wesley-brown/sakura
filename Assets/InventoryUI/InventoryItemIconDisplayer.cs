@@ -20,12 +20,13 @@ namespace Sakura.Runtime.InventoryUI
         private Item item = Item.NullItem;
         private Image image = null;
 
-        private void Awake()
+        /// <summary>
+        /// Update the sprite that is displayed to reflect the item currently
+        /// in the slot this is displaying.
+        /// </summary>
+        public void UpdateSprite()
         {
-            inventory = inventoryReference.Inventory;
             item = inventory.Items[slotNumber];
-            image = GetComponent<Image>();
-
             if (!item.Equals(Item.NullItem))
             {
                 image.sprite = item.Template.Icon;
@@ -34,6 +35,13 @@ namespace Sakura.Runtime.InventoryUI
             {
                 image.sprite = null;
             }
+        }
+
+        private void Awake()
+        {
+            inventory = inventoryReference.Inventory;
+            image = GetComponent<Image>();
+            UpdateSprite();
         }
     }
 }

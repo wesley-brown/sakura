@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8395283558438058868}
   - component: {fileID: 8395283558438058875}
   - component: {fileID: 8395283558438058874}
+  - component: {fileID: 8515922905677635781}
   m_Layer: 5
-  m_Name: ItemIcon
+  m_Name: SeedSelectionUIItemIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +116,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8395283558438058868}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8515922905677635781}
+        m_MethodName: RemoveItemFromInventory
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8395283558438058874}
+        m_MethodName: UpdateSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &8395283558438058874
@@ -132,3 +155,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37, type: 2}
   slotNumber: 0
+--- !u!114 &8515922905677635781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395283558438058873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9cd30efaf1d4fb1a413f3a622127a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37, type: 2}
