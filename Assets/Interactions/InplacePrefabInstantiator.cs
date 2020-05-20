@@ -31,7 +31,7 @@ namespace Sakura.Interactions
         {
             if (prefab == null)
             {
-                throw new InvalidOperationException("Prefab must be specified");
+                throw new InvalidOperationException("Prefab must not be null");
             }
         }
     }
