@@ -1,0 +1,16 @@
+{
+    "name": "Sakura.Instantiation.Runtime.Tests",
+    "references": [
+        "Sakura.Instantiation.Runtime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
