@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 namespace Sakura.Instantiation.Tests
-{
-    [SetUpFixture]
-    public class When_putting_a_root_entity_in_a_scene
+{    
+    class When_putting_a_root_entity_in_a_scene
     {
         private static readonly string path = "Packages/" +
             "net.wesleybrown.sakura.entities/" + "Tests/" + "Runtime/";
@@ -18,8 +17,7 @@ namespace Sakura.Instantiation.Tests
 
         protected RootEntity rootEntity;
 
-        [OneTimeSetUp]
-        public void SetUp()
+        public When_putting_a_root_entity_in_a_scene()
         {
             var rootEntityPrefab = AssetDatabase
                 .LoadAssetAtPath<GameObject>(rootEntityPrefabPath);
@@ -64,17 +62,35 @@ namespace Sakura.Instantiation.Tests
         sealed class At_the_same_location_as_another_game_object :
             When_putting_a_root_entity_in_a_scene
         {
+            private GameObject other;
+            private Scene scene;
+
+            [SetUp]
+            public void SetUp()
+            {
+                other = new GameObject("Other");
+                other.transform.position = new Vector3(1.0f, 1.0f, 1.0f);
+                scene = SceneManager.GetActiveScene();
+            }
+
             [Test]
             public void It_appears_in_the_scene()
             {
-                var other = new GameObject("Other");
-                other.transform.position = new Vector3(1.0f, 1.0f, 1.0f);
-                rootEntity.AppearInSceneAtLocationOf(other);
-                var allGameObjects = new List<GameObject>();
+                rootEntity.AppearInSceneAtLocationOf(other); 
                 var rootGameObject = rootEntity.GameObject;
-                var scene = SceneManager.GetActiveScene();
+                var allGameObjects = new List<GameObject>();
                 scene.GetRootGameObjects(allGameObjects);
                 Assert.That(allGameObjects.Contains(rootGameObject));
+            }
+
+            [Test]
+            public void It_appears_at_the_given_location()
+            {
+                rootEntity.AppearInSceneAtLocationOf(other);
+                var rootGameObject = rootEntity.GameObject;
+                Assert.That(
+                    rootGameObject.transform.position,
+                    Is.EqualTo(other.transform.position));
             }
         }
     }

@@ -29,16 +29,19 @@ namespace Sakura.Instantiation
         /// <returns></returns>
         public void AppearInScene()
         {
-            instantiatedGameObject = Instantiate(prefab);            
+            instantiatedGameObject = AppearAtLocation(Vector3.zero);
         }
 
         /// <summary>
-        /// 
+        /// Make this root entity appear in the current scene at the same
+        /// location as a given game object.
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="other">
+        /// The other game object to appear at the same location as.
+        /// </param>
         public void AppearInSceneAtLocationOf(GameObject other)
         {
-            AppearInScene();
+            instantiatedGameObject = AppearAtLocation(other.transform.position);
         }
 
         private void Awake()
@@ -47,6 +50,11 @@ namespace Sakura.Instantiation
             {
                 throw new InvalidOperationException("Prefab must not be null.");
             }
+        }
+
+        private GameObject AppearAtLocation(Vector3 location)
+        {
+            return Instantiate(prefab, location, Quaternion.identity);
         }
     }
 }
