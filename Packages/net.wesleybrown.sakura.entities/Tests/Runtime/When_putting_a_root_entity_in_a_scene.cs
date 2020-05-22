@@ -9,21 +9,21 @@ namespace Sakura.Instantiation.Tests
     [SetUpFixture]
     public class When_putting_a_root_entity_in_a_scene
     {
-        private static string path = "Packages/" +
-            "net.wesleybrown.sakura.instantiation/" + "Tests/" + "Runtime/";
-        private static string globalGameObjectFilename =
+        private static readonly string path = "Packages/" +
+            "net.wesleybrown.sakura.entities/" + "Tests/" + "Runtime/";
+        private static readonly string rootEntityPrefabFilename =
             "TestRootEntity.prefab";
-        private static string globalGameObjectPrefabPath =
-            path + globalGameObjectFilename;
+        private static readonly string rootEntityPrefabPath =
+            path + rootEntityPrefabFilename;
 
-        protected RootEntity globalGameObject;
+        protected RootEntity rootEntity;
 
         [OneTimeSetUp]
         public void SetUp()
         {
-            var globalGameObjectPrefab = AssetDatabase
-                .LoadAssetAtPath<GameObject>(globalGameObjectPrefabPath);
-            globalGameObject = globalGameObjectPrefab
+            var rootEntityPrefab = AssetDatabase
+                .LoadAssetAtPath<GameObject>(rootEntityPrefabPath);
+            rootEntity = rootEntityPrefab
                 .GetComponent<RootEntity>();
         }
 
@@ -34,20 +34,18 @@ namespace Sakura.Instantiation.Tests
             [Test]
             public void It_has_no_parent()
             {
-                var newGlobalGameObject = globalGameObject.AppearInScene();
-                Assert.That(
-                    newGlobalGameObject.transform.parent,
-                    Is.EqualTo(null));
+                var rootGameObject = rootEntity.AppearInScene();
+                Assert.That(rootGameObject.transform.parent, Is.EqualTo(null));
             }
 
             [Test]
             public void It_appears_in_the_current_scene()
             {
-                var newGlobalGameObject = globalGameObject.AppearInScene();
+                var rootGameObject = rootEntity.AppearInScene();
                 var allGameObjects = new List<GameObject>();
                 var scene = SceneManager.GetActiveScene();
                 scene.GetRootGameObjects(allGameObjects);
-                Assert.That(allGameObjects.Contains(newGlobalGameObject));
+                Assert.That(allGameObjects.Contains(rootGameObject));
             }
         }
 
@@ -60,12 +58,12 @@ namespace Sakura.Instantiation.Tests
             {
                 var other = new GameObject("Other");
                 other.transform.position = new Vector3(1.0f, 1.0f, 1.0f);
-                globalGameObject.AppearInSceneAtLocationOf(other);
+                rootEntity.AppearInSceneAtLocationOf(other);
                 var allGameObjects = new List<GameObject>();
+                var rootGameObject = rootEntity.GameObject;
                 var scene = SceneManager.GetActiveScene();
                 scene.GetRootGameObjects(allGameObjects);
-                Assert.That(
-                    allGameObjects.Contains(globalGameObject.GameObject));
+                Assert.That(allGameObjects.Contains(rootGameObject));
             }
         }
     }
