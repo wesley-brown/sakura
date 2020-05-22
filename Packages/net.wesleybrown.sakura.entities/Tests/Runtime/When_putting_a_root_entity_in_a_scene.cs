@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-namespace Sakura.Instantiation.Tests
+namespace Sakura.Entities.Tests
 {    
     class When_putting_a_root_entity_in_a_scene
     {

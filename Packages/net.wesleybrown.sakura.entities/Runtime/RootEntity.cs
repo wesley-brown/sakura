@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Sakura.Instantiation
+namespace Sakura.Entities
 {
     /// <summary>
     /// An entity that has no parent.
