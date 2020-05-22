@@ -1,10 +1,12 @@
 ﻿using NUnit.Framework;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace Sakura.Instantiation.Tests
 {
-    sealed class When_instantiating_prefabs
+    sealed class When_instantiating_a_prefab
     {
         [TestFixture]
         sealed class Globally
@@ -16,17 +18,36 @@ namespace Sakura.Instantiation.Tests
             private static string globalGameObjectPrefabPath =
                 path + globalGameObjectFilename;
 
-            [Test]
-            public void They_have_no_parent()
+            private GlobalGameObject globalGameObject;
+
+            [SetUp]
+            public void SetUp()
             {
                 var globalGameObjectPrefab = AssetDatabase
                     .LoadAssetAtPath<GameObject>(globalGameObjectPrefabPath);
-                var globalGameObject = globalGameObjectPrefab
+                globalGameObject = globalGameObjectPrefab
                     .GetComponent<GlobalGameObject>();
+            }
+
+            [Test]
+            public void It_has_no_parent()
+            {
                 var newGlobalGameObject = globalGameObject.AppearInScene();
                 Assert.That(
                     newGlobalGameObject.transform.parent,
                     Is.EqualTo(null));
+            }
+
+            [Test]
+            public void It_appears_in_the_current_scene()
+            {
+                var newGlobalGameObject = globalGameObject.AppearInScene();
+                var allGameObjects = new List<GameObject>();
+                var scene = SceneManager.GetActiveScene();
+                scene.GetRootGameObjects(allGameObjects);
+                Assert.That(
+                    allGameObjects.Contains(newGlobalGameObject),
+                    Is.True);
             }
         }
     }
