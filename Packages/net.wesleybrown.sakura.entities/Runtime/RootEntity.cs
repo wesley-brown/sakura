@@ -12,6 +12,9 @@ namespace Sakura.Instantiation
 
         private GameObject instantiatedGameObject = null;
 
+        /// <summary>
+        /// The game object representation of this root entity.
+        /// </summary>
         public GameObject GameObject
         {
             get
@@ -24,9 +27,9 @@ namespace Sakura.Instantiation
         /// Make this global game object appear in the current scene.
         /// </summary>
         /// <returns></returns>
-        public GameObject AppearInScene()
+        public void AppearInScene()
         {
-            return Instantiate(prefab);
+            instantiatedGameObject = Instantiate(prefab);            
         }
 
         /// <summary>
@@ -35,7 +38,7 @@ namespace Sakura.Instantiation
         /// <param name="other"></param>
         public void AppearInSceneAtLocationOf(GameObject other)
         {
-            instantiatedGameObject = AppearInScene();
+            AppearInScene();
         }
 
         private void Awake()

@@ -1,6 +1,6 @@
 {
   "name": "net.wesleybrown.sakura.entities",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "displayName": "Sakura Entities",
   "description": "Provides different entities that can be represented as game objects.",
   "author": {

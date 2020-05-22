@@ -34,14 +34,16 @@ namespace Sakura.Instantiation.Tests
             [Test]
             public void It_has_no_parent()
             {
-                var rootGameObject = rootEntity.AppearInScene();
+                rootEntity.AppearInScene();
+                var rootGameObject = rootEntity.GameObject;
                 Assert.That(rootGameObject.transform.parent, Is.EqualTo(null));
             }
 
             [Test]
             public void It_appears_in_the_current_scene()
             {
-                var rootGameObject = rootEntity.AppearInScene();
+                rootEntity.AppearInScene();
+                var rootGameObject = rootEntity.GameObject;
                 var allGameObjects = new List<GameObject>();
                 var scene = SceneManager.GetActiveScene();
                 scene.GetRootGameObjects(allGameObjects);
