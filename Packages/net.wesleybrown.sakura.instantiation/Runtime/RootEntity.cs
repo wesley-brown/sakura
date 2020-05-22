@@ -4,9 +4,9 @@ using System;
 namespace Sakura.Instantiation
 {
     /// <summary>
-    /// A game object that has no parent.
+    /// An entity that has no parent.
     /// </summary>
-    public sealed class GlobalGameObject : MonoBehaviour
+    public sealed class RootEntity : MonoBehaviour
     {
         [SerializeField] private GameObject prefab = null;
 

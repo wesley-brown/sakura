@@ -7,16 +7,16 @@ using System.Collections.Generic;
 namespace Sakura.Instantiation.Tests
 {
     [SetUpFixture]
-    public class When_putting_a_global_game_object_in_a_scene
+    public class When_putting_a_root_entity_in_a_scene
     {
         private static string path = "Packages/" +
             "net.wesleybrown.sakura.instantiation/" + "Tests/" + "Runtime/";
         private static string globalGameObjectFilename =
-            "TestGlobalGameObject.prefab";
+            "TestRootEntity.prefab";
         private static string globalGameObjectPrefabPath =
             path + globalGameObjectFilename;
 
-        protected GlobalGameObject globalGameObject;
+        protected RootEntity globalGameObject;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -24,12 +24,12 @@ namespace Sakura.Instantiation.Tests
             var globalGameObjectPrefab = AssetDatabase
                 .LoadAssetAtPath<GameObject>(globalGameObjectPrefabPath);
             globalGameObject = globalGameObjectPrefab
-                .GetComponent<GlobalGameObject>();
+                .GetComponent<RootEntity>();
         }
 
         [TestFixture]
         sealed class At_no_specific_location :
-            When_putting_a_global_game_object_in_a_scene
+            When_putting_a_root_entity_in_a_scene
         {
             [Test]
             public void It_has_no_parent()
@@ -53,7 +53,7 @@ namespace Sakura.Instantiation.Tests
 
         [TestFixture]
         sealed class At_the_same_location_as_another_game_object :
-            When_putting_a_global_game_object_in_a_scene
+            When_putting_a_root_entity_in_a_scene
         {
             [Test]
             public void It_appears_in_the_scene()
