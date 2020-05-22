@@ -49,6 +49,15 @@ namespace Sakura.Instantiation.Tests
                 scene.GetRootGameObjects(allGameObjects);
                 Assert.That(allGameObjects.Contains(rootGameObject));
             }
+
+            [Test]
+            public void It_appears_at_the_origin()
+            {
+                rootEntity.AppearInScene();
+                Assert.That(
+                    rootEntity.GameObject.transform.position,
+                    Is.EqualTo(Vector3.zero));
+            }
         }
 
         [TestFixture]
