@@ -1,31 +1,38 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Sakura.Entities
+namespace Sakura.Entities.Entity
 {
     /// <summary>
-    /// A reference to a game object in a scene.
+    /// A game object that references another game object which may or may not
+    /// be itself.
     /// </summary>
     public sealed class Entity : MonoBehaviour
     {
         [SerializeField]
         private GameObject forGameObject = null;
 
-        private GameObject referencedGameObject = null;
+        [SerializeField]
+        private GameObject forParentOf = null;
+
+        private ExistingGameObject referencedGameObject = null;
 
         private void Awake()
         {
-            if (forGameObject == null)
+            if (OnlyOnePropertyIsAssigned)
             {
-                throw new InvalidOperationException(
-                    "'For Game Object' property of "
-                    + gameObject.name
-                    + "'s Entity component "
-                    + "must not be null.");
+                InitializeUsingThatOneProperty();
             }
             else
             {
-                referencedGameObject = forGameObject;
+                throw new InvalidOperationException(
+                    "Only one of "
+                    + "'For Game Object' "
+                    + "or "
+                    + "'For Parent Of' "
+                    + " on "
+                    + gameObject.name
+                    + "'s Entity component may be assigned.");
             }
         }
 
@@ -33,7 +40,32 @@ namespace Sakura.Entities
         {
             get
             {
-                return referencedGameObject;
+                return referencedGameObject.GameObject;
+            }
+        }
+
+        private bool OnlyOnePropertyIsAssigned
+        {
+            get
+            {
+                return forGameObject ^ forParentOf;
+            }
+        }
+
+        private void InitializeUsingThatOneProperty()
+        {
+            if (forGameObject != null)
+            {
+                referencedGameObject =
+                    ExistingGameObject
+                    .ForGameObject(forGameObject);
+            }
+            else if (forParentOf != null)
+            {
+                referencedGameObject =
+                    ExistingGameObject
+                    .ForGameObject(forParentOf)
+                    .Parent;
             }
         }
     }
