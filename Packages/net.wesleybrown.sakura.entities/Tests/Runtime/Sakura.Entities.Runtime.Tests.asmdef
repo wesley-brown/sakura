@@ -1,14 +1,12 @@
 {
-    "name": "Sakura.Instantiation.Runtime.Tests",
+    "name": "Sakura.Entities.Runtime.Tests",
     "references": [
-        "Sakura.Instantiation.Runtime"
+        "Sakura.Entities.Runtime"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
