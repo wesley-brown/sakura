@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Sakura.Entities.Entity
+namespace Sakura.Entities
 {
     /// <summary>
     /// A game object that is not null.

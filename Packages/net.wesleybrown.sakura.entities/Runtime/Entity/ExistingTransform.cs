@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Sakura.Entities.Entity
+namespace Sakura.Entities
 {
     /// <summary>
     /// A transform that is not null.

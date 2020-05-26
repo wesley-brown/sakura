@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Sakura.Entities.Entity.Methods.Tests
+namespace Sakura.Entities.Methods.Tests
 {
     [TestFixture]
     internal sealed class When_destroying_an_entity

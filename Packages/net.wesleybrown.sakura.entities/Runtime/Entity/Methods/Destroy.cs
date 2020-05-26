@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System;
 
-namespace Sakura.Entities.Entity.Methods
+namespace Sakura.Entities.Methods
 {
     /// <summary>
     /// Causes an entity to destroy itself.

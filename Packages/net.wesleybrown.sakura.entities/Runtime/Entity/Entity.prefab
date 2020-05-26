@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forGameObject: {fileID: 0}
+  forParentOf: {fileID: 0}
 --- !u!114 &1572841506537731358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,4 +58,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03e1f38139e645c281a8c525a9f47b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 2455026744710587262}
