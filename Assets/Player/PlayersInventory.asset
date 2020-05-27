@@ -15,4 +15,6 @@ MonoBehaviour:
   capacity: 4
   initialItemTemplates:
   - {fileID: 11400000, guid: adb24a14c6dd64464b24ab3134bc0e38, type: 2}
-  - {fileID: 11400000, guid: 061153129b06240e08160044ce95eac5, type: 2}
+  - {fileID: 11400000, guid: adb24a14c6dd64464b24ab3134bc0e38, type: 2}
+  - {fileID: 11400000, guid: adb24a14c6dd64464b24ab3134bc0e38, type: 2}
+  - {fileID: 11400000, guid: adb24a14c6dd64464b24ab3134bc0e38, type: 2}
