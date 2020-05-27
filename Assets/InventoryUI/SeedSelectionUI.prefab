@@ -788,7 +788,8 @@ PrefabInstance:
       propertyPath: ofEntity
       value: 
       objectReference: {fileID: 2386432636656287899}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4140378181082618874, guid: 5587ece7fe9cd4b67955dab49ffeec02, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5587ece7fe9cd4b67955dab49ffeec02, type: 3}
 --- !u!4 &720518926209002890 stripped
 Transform:
@@ -1671,7 +1672,8 @@ PrefabInstance:
       propertyPath: ofEntity
       value: 
       objectReference: {fileID: 2386432636656287899}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4140378181082618874, guid: 5587ece7fe9cd4b67955dab49ffeec02, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5587ece7fe9cd4b67955dab49ffeec02, type: 3}
 --- !u!114 &1741241714484992109 stripped
 MonoBehaviour:

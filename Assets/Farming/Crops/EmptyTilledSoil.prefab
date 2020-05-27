@@ -371,7 +371,13 @@ PrefabInstance:
       propertyPath: ofEntity
       value: 
       objectReference: {fileID: 2807918500795491633}
-    m_RemovedComponents: []
+    - target: {fileID: 4140378181082618874, guid: 5587ece7fe9cd4b67955dab49ffeec02,
+        type: 3}
+      propertyPath: ofEntity
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4140378181082618874, guid: 5587ece7fe9cd4b67955dab49ffeec02, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5587ece7fe9cd4b67955dab49ffeec02, type: 3}
 --- !u!4 &8136940751622845257 stripped
 Transform:
