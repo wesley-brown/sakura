@@ -944,7 +944,7 @@ PrefabInstance:
     - target: {fileID: 2631306833892014422, guid: 2b4d39896520c417384afdf96fdb173e,
         type: 3}
       propertyPath: m_Name
-      value: PlantableTilledSoil
+      value: plantableTilledSoil
       objectReference: {fileID: 0}
     - target: {fileID: 827299084831029839, guid: 2b4d39896520c417384afdf96fdb173e,
         type: 3}
