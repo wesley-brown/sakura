@@ -6,8 +6,8 @@ using System.Collections;
 
 namespace Sakura.Entities.Methods.Tests
 {
-    [SetUpFixture]
-    internal class When_instantiating_a_prefab
+    [TestFixture]
+    internal abstract class When_instantiating_a_prefab
     {
         protected static readonly string testsPath =
             "Packages/"
@@ -24,10 +24,10 @@ namespace Sakura.Entities.Methods.Tests
             AssetDatabase
             .LoadAssetAtPath<GameObject>(testPrefabPath);
 
-        private Prefab testPrefab;
+        protected Prefab testPrefab;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             testPrefab =
                 Object
@@ -35,30 +35,14 @@ namespace Sakura.Entities.Methods.Tests
                 .GetComponent<Prefab>();
         }
 
-        internal class As_a_root_game_object : When_instantiating_a_prefab
+        [TearDown]
+        public void TearDown()
         {
-            [TestFixture]
-            internal sealed class At_the_same_location_as_a_given_entity :
-                As_a_root_game_object
-            {
-                [UnityTest]
-                public IEnumerator That_game_object_appears_at_that_location()
-                {
-                    var instantiateAtLocationOfEntity =
-                        testPrefab
-                        .GetComponent<InstantiateAtLocationOfEntity>();
-                    instantiateAtLocationOfEntity.enabled = true;
-                    yield return null;
-                    var instantiatedGameObject =
-                        instantiateAtLocationOfEntity
-                        .InstantiatedGameObject;
-                    Assert.That(
-                        instantiatedGameObject.transform.position,
-                        Is.EqualTo(instantiateAtLocationOfEntity.Location));
-                }
-            }
+            Object.Destroy(testPrefab.gameObject);
+            testPrefab = null;
         }
 
+        [TestFixture]
         internal class As_a_child_game_object : When_instantiating_a_prefab
         {
             [TestFixture]
@@ -80,6 +64,31 @@ namespace Sakura.Entities.Methods.Tests
                         instantiatedGameObject.transform.parent.gameObject,
                         Is.EqualTo(
                             instantiateAsChildOfEntity.Entity.GameObject));
+                }
+            }
+        }
+
+        [TestFixture]
+        internal class As_a_root_game_object : When_instantiating_a_prefab
+        {
+            [TestFixture]
+            internal sealed class At_the_same_location_as_a_given_entity :
+                As_a_root_game_object
+            {
+                [UnityTest]
+                public IEnumerator That_game_object_appears_at_that_location()
+                {
+                    var instantiateAtLocationOfEntity =
+                        testPrefab
+                        .GetComponent<InstantiateAtLocationOfEntity>();
+                    instantiateAtLocationOfEntity.enabled = true;
+                    yield return null;
+                    var instantiatedGameObject =
+                        instantiateAtLocationOfEntity
+                        .InstantiatedGameObject;
+                    Assert.That(
+                        instantiatedGameObject.transform.position,
+                        Is.EqualTo(instantiateAtLocationOfEntity.Location));
                 }
             }
         }
