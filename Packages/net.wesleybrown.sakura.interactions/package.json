@@ -1,0 +1,10 @@
+{
+  "name": "net.wesleybrown.sakura.interactions",
+  "version": "0.1.0",
+  "displayName": "Sakura Interactions",
+  "description": "Sakura interaction system.",
+  "author": {
+    "name": "Wesley Brown",
+    "email": "wesleybrown@wesleybrown.net"
+  }
+}
