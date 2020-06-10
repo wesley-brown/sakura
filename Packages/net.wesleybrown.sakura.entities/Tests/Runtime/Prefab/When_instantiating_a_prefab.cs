@@ -7,7 +7,7 @@ using System.Collections;
 namespace Sakura.Entities.Methods.Tests
 {
     [TestFixture]
-    internal abstract class When_instantiating_a_prefab
+    public class When_instantiating_a_prefab
     {
         protected static readonly string testsPath =
             "Packages/"
@@ -27,7 +27,7 @@ namespace Sakura.Entities.Methods.Tests
         protected Prefab testPrefab;
 
         [SetUp]
-        public void SetUp()
+        public virtual void SetUp()
         {
             testPrefab =
                 Object
@@ -35,60 +35,93 @@ namespace Sakura.Entities.Methods.Tests
                 .GetComponent<Prefab>();
         }
 
-        [TearDown]
-        public void TearDown()
+        class As_a_child_game_object : When_instantiating_a_prefab
         {
-            Object.Destroy(testPrefab.gameObject);
-            testPrefab = null;
-        }
-
-        [TestFixture]
-        internal class As_a_child_game_object : When_instantiating_a_prefab
-        {
-            [TestFixture]
-            internal sealed class Of_a_given_entity :
-                As_a_child_game_object
+            class Of_a_given_entity : As_a_child_game_object
             {
-                [UnityTest]
-                public IEnumerator It_appears_as_a_child_of_that_entity()
+                class At_no_specific_location : Of_a_given_entity
                 {
-                    var instantiateAsChildOfEntity =
-                        testPrefab
-                        .GetComponent<InstantiateAsChildOfEntity>();
-                    instantiateAsChildOfEntity.enabled = true;
-                    yield return null;
-                    var instantiatedGameObject =
-                        instantiateAsChildOfEntity
-                        .InstantiatedGameObject;
-                    Assert.That(
-                        instantiatedGameObject.transform.parent.gameObject,
-                        Is.EqualTo(
-                            instantiateAsChildOfEntity.Entity.GameObject));
+                    private InstantiateAsChildOfEntity method;
+
+                    [SetUp]
+                    public override void SetUp()
+                    {
+                        base.SetUp();
+                        method =
+                            testPrefab
+                            .GetComponent<InstantiateAsChildOfEntity>();
+                    }
+
+                    [UnityTest]
+                    public IEnumerator It_appears_as_a_child_of_that_entity()
+                    {
+                        method.enabled = true;
+                        yield return null;
+                        var instantiatedGameObject =
+                            method
+                            .InstantiatedGameObject;
+                        Assert.That(
+                            instantiatedGameObject.transform.parent.gameObject,
+                            Is.EqualTo(
+                                method.Entity.GameObject));
+                    }
+                }
+
+                class At_the_location_of_an_entity : Of_a_given_entity
+                {
+                    private InstantiateAsChildOfAtLocationOf method;
+
+                    [SetUp]
+                    public override void SetUp()
+                    {
+                        base.SetUp();
+                        method =
+                            testPrefab
+                            .GetComponent<InstantiateAsChildOfAtLocationOf>();
+                    }
+
+                    [UnityTest]
+                    public IEnumerator It_appears_as_a_child_at_that_location()
+                    {
+                        method.enabled = true;
+                        yield return null;
+                        var instantiatedGameObject =
+                            method
+                            .InstantiatedGameObject;
+                        Assert.That(
+                            instantiatedGameObject.transform.position,
+                            Is.EqualTo(method.Location));
+                    }
                 }
             }
         }
 
-        [TestFixture]
-        internal class As_a_root_game_object : When_instantiating_a_prefab
+        class As_a_root_game_object : When_instantiating_a_prefab
         {
-            [TestFixture]
-            internal sealed class At_the_same_location_as_a_given_entity :
-                As_a_root_game_object
+            class At_the_same_location_as_a_given_entity : As_a_root_game_object
             {
+                private InstantiateAtLocationOfEntity method;
+
+                [SetUp]
+                public override void SetUp()
+                {
+                    base.SetUp();
+                    method =
+                        testPrefab
+                        .GetComponent<InstantiateAtLocationOfEntity>();
+                }
+
                 [UnityTest]
                 public IEnumerator That_game_object_appears_at_that_location()
                 {
-                    var instantiateAtLocationOfEntity =
-                        testPrefab
-                        .GetComponent<InstantiateAtLocationOfEntity>();
-                    instantiateAtLocationOfEntity.enabled = true;
+                    method.enabled = true;
                     yield return null;
                     var instantiatedGameObject =
-                        instantiateAtLocationOfEntity
+                        method
                         .InstantiatedGameObject;
                     Assert.That(
                         instantiatedGameObject.transform.position,
-                        Is.EqualTo(instantiateAtLocationOfEntity.Location));
+                        Is.EqualTo(method.Location));
                 }
             }
         }
