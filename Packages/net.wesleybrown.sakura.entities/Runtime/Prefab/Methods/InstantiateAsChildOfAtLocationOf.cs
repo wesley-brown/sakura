@@ -39,7 +39,7 @@ namespace Sakura.Entities.Methods
 
         private void OnEnable()
         {
-            parentTransform = asChildOf.GameObject.transform.parent;
+            parentTransform = asChildOf.GameObject.transform;
             location = atLocationOf.GameObject.transform.position;
             instantiatedGameObject = Instantiate(
                 prefab.Asset,
