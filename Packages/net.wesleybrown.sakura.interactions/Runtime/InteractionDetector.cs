@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using Sakura.Input;
-using Sakura.Interactions;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-namespace Sakura.Runtime
+namespace Sakura.Interactions
 {
     /// <summary>
     /// Allows a game object to detect when it is interacted with.
