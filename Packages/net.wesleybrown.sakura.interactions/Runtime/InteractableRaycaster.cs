@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura.Input
+namespace Sakura.Interactions
 {
     /// <summary>
     /// Determines if any interactable game objects are hit by a raycast.
