@@ -1579,7 +1579,7 @@ PrefabInstance:
     - target: {fileID: 7739606347855887258, guid: de3676288a7834a7ea43828006cfc02a,
         type: 3}
       propertyPath: m_Name
-      value: HarvestableCropPotato
+      value: harvestableCropPotato
       objectReference: {fileID: 0}
     - target: {fileID: 8151346332260183979, guid: de3676288a7834a7ea43828006cfc02a,
         type: 3}

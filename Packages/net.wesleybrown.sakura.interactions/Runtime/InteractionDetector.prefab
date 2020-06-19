@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3391024269224144758}
   - component: {fileID: 2962431124043784866}
   - component: {fileID: 374143027662970727}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: InteractionDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
