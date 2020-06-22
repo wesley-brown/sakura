@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 namespace Sakura.Interactions
@@ -11,12 +10,12 @@ namespace Sakura.Interactions
     public sealed class InteractionDetector : MonoBehaviour
     {
         private new Collider collider = null;
-        private IEnumerable<Reactor> reactors = null;
+        private Interaction[] interactions = null;
 
         private void Awake()
         {
             collider = GetComponent<Collider>();
-            reactors = GetComponents<Reactor>();
+            interactions = GetComponentsInChildren<Interaction>();
         }
 
         private void Update()
@@ -47,9 +46,9 @@ namespace Sakura.Interactions
 
         private void React()
         {
-            foreach (var reactor in reactors)
+            foreach (var interaction in interactions)
             {
-                reactor.React();
+                interaction.Interact();
             }
         }
     }

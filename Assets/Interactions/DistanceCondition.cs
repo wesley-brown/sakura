@@ -1,0 +1,27 @@
+﻿using UnityEngine;
+using Sakura.Interactions;
+
+namespace Sakura
+{
+    /// <summary>
+    /// A condition based on the distance from a game object with a given tag.
+    /// </summary>
+    public sealed class DistanceCondition : MonoBehaviour, Condition
+    {
+        [SerializeField]
+        private string tagToCheckFor = "";
+        [SerializeField]
+        private float maximumDistance = 0.0f;
+
+        public bool IsTrue
+        {
+            get
+            {
+                var target = GameObject.FindGameObjectWithTag(tagToCheckFor);
+                var distance =
+                    target.transform.position - transform.root.position;
+                return distance.magnitude <= maximumDistance;
+            }
+        }
+    }
+}
