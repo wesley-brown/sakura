@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Sakura.Interactions;
 using Sakura.Movement;
 
 namespace Sakura.Input
@@ -12,7 +11,6 @@ namespace Sakura.Input
         [SerializeField]
         private new Camera camera = null;
         private DestinationMover destinationMover;
-        private InteractableRaycaster interactableRaycaster;
         private int layerMask = 1;
 
         private static bool ScreenWasTouched()
@@ -23,7 +21,6 @@ namespace Sakura.Input
         private void Awake()
         {
             destinationMover = GetComponent<DestinationMover>();
-            interactableRaycaster = GetComponent<InteractableRaycaster>();
             layerMask = layerMask <<
                 LayerMask.NameToLayer("TouchInputRaycastable");
         }

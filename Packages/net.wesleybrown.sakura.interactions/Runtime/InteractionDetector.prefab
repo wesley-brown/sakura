@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6880992418165584588}
   - component: {fileID: 3391024269224144758}
-  - component: {fileID: 2962431124043784866}
   - component: {fileID: 374143027662970727}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: InteractionDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,18 +45,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2962431124043784866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781860127992465311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e5aa9a1fdf54f6d8f875d0c56f55f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &374143027662970727
 MonoBehaviour:
   m_ObjectHideFlags: 0
