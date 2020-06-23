@@ -103,6 +103,23 @@ namespace Sakura.Inventories.Runtime
         }
 
         /// <summary>
+        /// Store a given item in the first available slot in this inventory.
+        /// </summary>
+        /// <param name="item">The item to store.</param>
+        public void Store(Item item)
+        {
+            for (int i = 0; i < items.Count; ++i)
+            {
+                var storedItem = items[i];
+                if (storedItem.Equals(Item.NullItem))
+                {
+                    items[i] = item;
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Add an item to the given inventory slot.
         /// </summary>
         /// <param name="item">The item to add.</param>

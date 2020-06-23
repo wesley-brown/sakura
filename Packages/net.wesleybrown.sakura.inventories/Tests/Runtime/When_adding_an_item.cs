@@ -24,6 +24,36 @@ namespace Sakura.Inventories.Runtime.Tests
             theItem = Item.FromTemplate(theTemplate);
         }
 
+        sealed class To_a_non_full_inventory : When_adding_an_item
+        {
+            [SetUp]
+            public override void SetUp()
+            {
+                base.SetUp();
+                var items = new List<Item> {
+                    Item.NullItem,
+                    Item.NullItem,
+                    Item.NullItem,
+                    Item.NullItem
+                };
+                theInventory = Inventory.WithCapacityAndInitialItems(
+                    inventorySize, items);
+            }
+
+            [Test]
+            public void That_item_is_added_to_the_first_available_slot()
+            {
+                var expectedItems = new List<Item> {
+                    theItem,
+                    Item.NullItem,
+                    Item.NullItem,
+                    Item.NullItem
+                };
+                theInventory.Store(theItem);
+                Assert.That(theInventory.Items, Is.EqualTo(expectedItems));
+            }
+        }
+
         sealed class To_an_unoccupied_inventory_slot : When_adding_an_item
         {
             [SetUp]
