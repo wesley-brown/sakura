@@ -7,7 +7,7 @@ namespace Sakura.Runtime
     /// Places a given item in a given inventory.
     /// </summary>
     [RequireComponent(typeof(ItemVariable))]
-    public sealed class PlaceItemInInventory : MonoBehaviour
+    public sealed class StoreItem : MonoBehaviour
     {
         [SerializeField]
         private InventoryReference inInventory = null;
@@ -24,7 +24,7 @@ namespace Sakura.Runtime
         private void OnEnable()
         {
             var item = itemVariable.Item;
-            inventory.AddItemToSlot(item, 0);
+            inventory.Store(item);
             enabled = false;
         }
     }
