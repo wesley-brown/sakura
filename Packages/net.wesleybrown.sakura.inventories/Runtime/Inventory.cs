@@ -106,7 +106,11 @@ namespace Sakura.Inventories.Runtime
         /// Store a given item in the first available slot in this inventory.
         /// </summary>
         /// <param name="item">The item to store.</param>
-        public void Store(Item item)
+        /// <returns>
+        /// Returns true if the given item was stored in this inventory.
+        /// Otherwise, returns false.
+        /// </returns>
+        public bool Store(Item item)
         {
             for (int i = 0; i < items.Count; ++i)
             {
@@ -117,6 +121,7 @@ namespace Sakura.Inventories.Runtime
                     break;
                 }
             }
+            return true;
         }
 
         /// <summary>

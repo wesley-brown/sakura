@@ -41,6 +41,13 @@ namespace Sakura.Inventories.Runtime.Tests
             }
 
             [Test]
+            public void It_succeeds()
+            {
+                var itemWasStored = theInventory.Store(theItem);
+                Assert.That(itemWasStored, Is.True);
+            }
+
+            [Test]
             public void That_item_is_added_to_the_first_available_slot()
             {
                 var expectedItems = new List<Item> {
