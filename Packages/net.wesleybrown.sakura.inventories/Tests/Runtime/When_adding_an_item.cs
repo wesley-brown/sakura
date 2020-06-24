@@ -61,6 +61,30 @@ namespace Sakura.Inventories.Runtime.Tests
             }
         }
 
+        sealed class To_a_full_inventory : When_adding_an_item
+        {
+            [SetUp]
+            public override void SetUp()
+            {
+                base.SetUp();
+                var items = new List<Item> {
+                    Item.FromTemplate(theTemplate),
+                    Item.FromTemplate(theTemplate),
+                    Item.FromTemplate(theTemplate),
+                    Item.FromTemplate(theTemplate)
+                };
+                theInventory = Inventory.WithCapacityAndInitialItems(
+                    inventorySize, items);
+            }
+
+            [Test]
+            public void It_fails()
+            {
+                var itemWasStored = theInventory.Store(theItem);
+                Assert.That(itemWasStored, Is.False);
+            }
+        }
+
         sealed class To_an_unoccupied_inventory_slot : When_adding_an_item
         {
             [SetUp]

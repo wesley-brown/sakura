@@ -112,16 +112,18 @@ namespace Sakura.Inventories.Runtime
         /// </returns>
         public bool Store(Item item)
         {
+            var wasStored = false;
             for (int i = 0; i < items.Count; ++i)
             {
                 var storedItem = items[i];
                 if (storedItem.Equals(Item.NullItem))
                 {
                     items[i] = item;
+                    wasStored = true;
                     break;
                 }
             }
-            return true;
+            return wasStored;
         }
 
         /// <summary>
