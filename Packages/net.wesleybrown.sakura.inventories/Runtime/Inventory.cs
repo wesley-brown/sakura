@@ -103,6 +103,17 @@ namespace Sakura.Inventories.Runtime
         }
 
         /// <summary>
+        /// Whether or not this inventory is full.
+        /// </summary>
+        public bool IsFull
+        {
+            get
+            {
+                return !items.Contains(Item.NullItem);
+            }
+        }
+
+        /// <summary>
         /// Store a given item in the first available slot in this inventory.
         /// </summary>
         /// <param name="item">The item to store.</param>

@@ -416,6 +416,11 @@ PrefabInstance:
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2683623991318613620, guid: 2b30b5f3a79ac424a86edf71f2ab8f72,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b30b5f3a79ac424a86edf71f2ab8f72, type: 3}
 --- !u!4 &9171737821794559984 stripped
@@ -560,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 1321955321214338023, guid: 2f9659265e3b34858b20e62b3986ebde,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1321955321214338023, guid: 2f9659265e3b34858b20e62b3986ebde,
         type: 3}
