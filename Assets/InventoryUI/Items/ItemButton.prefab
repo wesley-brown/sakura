@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1431155449862247439}
   - component: {fileID: 2015122015120540359}
-  - component: {fileID: 7515148357499866751}
-  - component: {fileID: 3811219634883527099}
+  - component: {fileID: 7338411202448204978}
+  - component: {fileID: 4196482273899578724}
+  - component: {fileID: 9205456560862932896}
   m_Layer: 0
   m_Name: ItemButton
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69458c47242c64ec68667a822cbba5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7515148357499866751
+--- !u!114 &7338411202448204978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,11 +61,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971423885875501952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540d3b881285243688a65f1743e837eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 54bc707fda552418bb3ff019e939e363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number: 0
---- !u!114 &3811219634883527099
+  asLiteral: {fileID: 0}
+  asReference: {fileID: 0}
+--- !u!114 &4196482273899578724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,10 +75,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971423885875501952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30473c025c82497495e35c56db8ceb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f2620f78475e44fc87f57bc8218f85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  for: {fileID: 0}
+  asLiteral: {fileID: 0}
+  asReference: {fileID: 0}
+--- !u!114 &9205456560862932896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971423885875501952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de938c98f18e4f16865ccf1a0c681aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asLiteral:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  asReference: {fileID: 0}
 --- !u!1 &2042134219090094063
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,18 +174,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3929055514578592816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015122015120540359}
-        m_MethodName: RemoveItemFromSlot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2909444321979279669
