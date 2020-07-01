@@ -2,7 +2,8 @@
     "name": "Sakura.Runtime",
     "references": [
         "Sakura.Inventories.Runtime",
-        "Sakura.Interactions.Runtime"
+        "Sakura.Interactions.Runtime",
+        "Sakura.Entities.Runtime"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

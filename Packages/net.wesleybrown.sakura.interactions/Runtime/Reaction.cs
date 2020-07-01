@@ -16,4 +16,6 @@ namespace Sakura.Interactions
             onInteract.Invoke();
         }
     }
+
+    
 }
