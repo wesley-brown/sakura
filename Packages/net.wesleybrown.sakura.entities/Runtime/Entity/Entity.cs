@@ -19,14 +19,14 @@ namespace Sakura.Entities
 
         private void Awake()
         {
-            if (OnlyOnePropertyIsAssigned)
+            if (BothPropertiesAreUnassigned || OnlyOnePropertyIsAssigned)
             {
                 InitializeUsingThatOneProperty();
             }
             else
             {
                 throw new InvalidOperationException(
-                    "Only one of "
+                    "Only one or neither of "
                     + "'For Game Object' "
                     + "or "
                     + "'For Parent Of' "
@@ -34,6 +34,14 @@ namespace Sakura.Entities
                     + gameObject.name
                     + "'s Entity component may be assigned.");
             }
+        }
+
+        /// <summary>
+        /// Destroy this entity's game object after the current frame.
+        /// </summary>
+        public void Destroy()
+        {
+            Destroy(gameObject);
         }
 
         public GameObject GameObject
@@ -49,6 +57,23 @@ namespace Sakura.Entities
             get
             {
                 return forGameObject ^ forParentOf;
+            }
+        }
+
+        /// <summary>
+        /// Whether or not both of the forGameObject and forParentOf properties 
+        /// have been unassigned.
+        /// </summary>
+        /// <remarks>
+        /// This property is temporary and used only to ensure backwards
+        /// compatibility with entities that existed before the adition of the
+        /// Destroy method.
+        /// </remarks>
+        private bool BothPropertiesAreUnassigned
+        {
+            get
+            {
+                return !(forGameObject && forParentOf);
             }
         }
 
