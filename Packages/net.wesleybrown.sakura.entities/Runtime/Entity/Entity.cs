@@ -79,7 +79,13 @@ namespace Sakura.Entities
 
         private void InitializeUsingThatOneProperty()
         {
-            if (forGameObject != null)
+            if (BothPropertiesAreUnassigned)
+            {
+                // For backwards compatibility
+                referencedGameObject = ExistingGameObject.ForGameObject(
+                    gameObject);
+            }
+            else if (forGameObject != null)
             {
                 referencedGameObject =
                     ExistingGameObject
