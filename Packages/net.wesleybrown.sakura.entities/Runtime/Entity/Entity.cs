@@ -5,8 +5,16 @@ namespace Sakura.Entities
     /// <summary>
     /// An entity.
     /// </summary>
+    [RequireComponent(typeof(GameObjectParameter))]
     public sealed class Entity : MonoBehaviour
     {
+        private GameObjectParameter gameObjectParameter = null;
+
+        private void Awake()
+        {
+            gameObjectParameter = GetComponent<GameObjectParameter>();
+        }
+
         /// <summary>
         /// The game object that this entity represents.
         /// </summary>
@@ -14,7 +22,7 @@ namespace Sakura.Entities
         {
             get
             {
-                return gameObject;
+                return gameObjectParameter.Value;
             }
         }
 
@@ -23,7 +31,7 @@ namespace Sakura.Entities
         /// </summary>
         public void Destroy()
         {
-            Destroy(gameObject);
+            Destroy(GameObject);
         }
     }
 }

@@ -10,21 +10,29 @@ namespace Sakura.Entities.Tests
     [TestFixture]
     public sealed class EntityTest
     {
+        private List<GameObject> initialRootGameObjects;
         private GameObject gameObject;
+        private GameObjectParameter gameObjectParameter;
         private Entity entity;
 
         [SetUp]
         public void SetUp()
         {
+            initialRootGameObjects = new List<GameObject>(
+                SceneManager.GetActiveScene().GetRootGameObjects());
             gameObject = new GameObject();
+            gameObjectParameter = gameObject
+                .AddComponent<GameObjectParameter>();
+            gameObjectParameter.Literal = gameObject;
             entity = gameObject.AddComponent<Entity>();
         }
 
-        [TearDown]
+        [UnityTearDown]
         public void TearDown()
         {
             gameObject = null;
             entity = null;
+            gameObjectParameter = null;
         }
 
 
@@ -33,9 +41,11 @@ namespace Sakura.Entities.Tests
         {
             entity.Destroy();
             yield return null;
-            var rootGameObjects = new List<GameObject>(
+            var actualRootGameObjects = new List<GameObject>(
                 SceneManager.GetActiveScene().GetRootGameObjects());
-            Assert.That(rootGameObjects.Contains(gameObject), Is.False);
+            Assert.That(
+                actualRootGameObjects,
+                Is.EqualTo(initialRootGameObjects));
         }
     }
 }
