@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
-using Sakura.Interactions;
 using Sakura.Inventories.Runtime;
 
 namespace Sakura.InventoryUI.Items
@@ -10,14 +8,13 @@ namespace Sakura.InventoryUI.Items
     /// A 
     /// </summary>
     [RequireComponent(typeof(SlotParameter))]
-    [RequireComponent(typeof(InventoryVariableParameter))]
-    [RequireComponent(typeof(EventParameter))]
+    [RequireComponent(typeof(SlotSelectionParameter))]
+    [RequireComponent(typeof(InventoryPanelParameter))]
     public sealed class ItemButton : MonoBehaviour
     {
-        private InventoryVariable inventoryVariable = null;
-        private Slot slot = null;
-
-        private EventParameter with = null;
+        private SlotParameter slotParameter = null;
+        private SlotSelectionParameter slotSelectionParameter = null;
+        private InventoryPanelParameter inventoryPanelParameter = null;
 
         private Sprite icon = null;
         private Image image = null;
@@ -25,26 +22,20 @@ namespace Sakura.InventoryUI.Items
 
         private void Awake()
         {
-            var @for = GetComponent<SlotParameter>();
-            slot = @for.Slot;
-
-            var @in = GetComponent<InventoryVariableParameter>();
-            inventoryVariable = @in.InventoryVariable;
-
-            with = GetComponent<EventParameter>();
-
+            slotParameter = GetComponent<SlotParameter>();
+            inventoryPanelParameter = GetComponent<InventoryPanelParameter>();
+            slotSelectionParameter = GetComponent<SlotSelectionParameter>();
             image = GetComponentInChildren<Image>();
             image.sprite = icon;
-
             button = GetComponentInChildren<Button>();
-            button.onClick.AddListener(Test);
+            button.onClick.AddListener(Respond);
             
         }
 
-        private void Test()
+        private void Respond()
         {
-            var @event = with.Event;
-            @event.Invoke();
+            var slotSelection = slotSelectionParameter.Value;
+            slotSelection.Invoke(slotParameter.Value);
         }
 
         private void Update()
@@ -52,14 +43,9 @@ namespace Sakura.InventoryUI.Items
             UpdateSprite();
         }
 
-        public void RemoveItemFromSlot()
-        {
-            inventoryVariable.Inventory.RemoveItemFromSlot(slot.Number);
-        }
-
         private void UpdateSprite()
         {
-            var item = inventoryVariable.Inventory.Items[slot.Number];
+            var item = inventoryPanelParameter.Value.Inventory.Items[slotParameter.Value.Number];
             if (item.Equals(Item.NullItem))
             {
                 image.sprite = null;

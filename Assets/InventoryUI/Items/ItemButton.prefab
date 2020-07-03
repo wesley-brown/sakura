@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1431155449862247439}
-  - component: {fileID: 2015122015120540359}
-  - component: {fileID: 7338411202448204978}
-  - component: {fileID: 4196482273899578724}
-  - component: {fileID: 9205456560862932896}
+  - component: {fileID: 4155537419471568398}
+  - component: {fileID: 4114562285026422602}
+  - component: {fileID: 5695845054816608583}
+  - component: {fileID: 3677330152668703518}
   m_Layer: 0
   m_Name: ItemButton
   m_TagString: Untagged
@@ -35,24 +35,12 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2015122015120540359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971423885875501952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69458c47242c64ec68667a822cbba5e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7338411202448204978
+--- !u!114 &4155537419471568398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asLiteral: {fileID: 0}
   asReference: {fileID: 0}
---- !u!114 &4196482273899578724
+--- !u!114 &4114562285026422602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,29 +63,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971423885875501952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f2620f78475e44fc87f57bc8218f85d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4718cba074f174978824b3fca98b73e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asLiteral: {fileID: 0}
-  asReference: {fileID: 0}
---- !u!114 &9205456560862932896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971423885875501952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de938c98f18e4f16865ccf1a0c681aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asLiteral:
+  Literal:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+    m_TypeName: Sakura.InventoryUI.SlotSelection, Sakura.Runtime, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  asReference: {fileID: 0}
+  Reference: {fileID: 0}
+--- !u!114 &5695845054816608583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971423885875501952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7042b3e4436e94a449f5449d40f216b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Literal: {fileID: 0}
+  Reference: {fileID: 0}
+--- !u!114 &3677330152668703518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971423885875501952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69458c47242c64ec68667a822cbba5e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2042134219090094063
 GameObject:
   m_ObjectHideFlags: 0

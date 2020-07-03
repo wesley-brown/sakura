@@ -13,17 +13,17 @@ namespace Sakura.Inventories.Runtime
         [SerializeField]
         private SlotParameter asReference = null;
 
-        public Slot Slot
+        public Slot Value
         {
             get
             {
-                if (asLiteral != null)
+                if (asReference)
                 {
-                    return asLiteral;
+                    return asReference.Value;
                 }
                 else
                 {
-                    return asReference.Slot;
+                    return asLiteral;
                 }
             }
         }
