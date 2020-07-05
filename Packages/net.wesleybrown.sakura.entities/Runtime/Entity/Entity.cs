@@ -33,5 +33,19 @@ namespace Sakura.Entities
         {
             Destroy(GameObject);
         }
+
+        /// <summary>
+        /// Instantiate a new copy this entity's game object at the given
+        /// location.
+        /// </summary>
+        /// <param name="location">Where to place the new copy.</param>
+        public void InstantiateAt(Location location)
+        {
+            var instantiated = Instantiate(
+                GameObject,
+                location.Coordinates,
+                Quaternion.identity);
+            instantiated.SetActive(true);
+        }
     }
 }
