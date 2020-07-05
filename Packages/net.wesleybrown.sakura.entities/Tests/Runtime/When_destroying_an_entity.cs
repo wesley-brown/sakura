@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 namespace Sakura.Entities.Tests
 {
     [TestFixture]
-    public sealed class EntityTest
+    public sealed class When_destroying_an_entity
     {
         private List<GameObject> initialRootGameObjects;
         private GameObject gameObject;
