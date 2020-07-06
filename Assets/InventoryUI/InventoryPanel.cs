@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using Sakura.Interactions;
 using Sakura.Inventories.Runtime;
 
 namespace Sakura.InventoryUI
 {
     [RequireComponent(typeof(SlotSelectionParameter))]
     [RequireComponent(typeof(InventoryVariableParameter))]
+    [RequireComponent(typeof(ConditionListParameter))]
     public sealed class InventoryPanel : MonoBehaviour
     {
         private SlotSelectionParameter slotSelectionParameter = null;

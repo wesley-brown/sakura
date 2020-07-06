@@ -1,10 +1,12 @@
-﻿namespace Sakura.Interactions
+﻿using UnityEngine;
+
+namespace Sakura.Interactions
 {
     /// <summary>
     /// A condition for an interaction.
     /// </summary>
-    public interface Condition
+    public abstract class Condition : MonoBehaviour
     {
-        bool IsTrue { get; }
+        public virtual bool IsTrue { get; }
     }
 }

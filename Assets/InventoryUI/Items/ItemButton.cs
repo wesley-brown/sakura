@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Sakura.Interactions;
 using Sakura.Inventories.Runtime;
+using System.Collections.Generic;
 
 namespace Sakura.InventoryUI.Items
 {
@@ -10,11 +12,13 @@ namespace Sakura.InventoryUI.Items
     [RequireComponent(typeof(SlotParameter))]
     [RequireComponent(typeof(SlotSelectionParameter))]
     [RequireComponent(typeof(InventoryPanelParameter))]
+    [RequireComponent(typeof(ConditionListParameter))]
     public sealed class ItemButton : MonoBehaviour
     {
         private SlotParameter slotParameter = null;
         private SlotSelectionParameter slotSelectionParameter = null;
         private InventoryPanelParameter inventoryPanelParameter = null;
+        private ConditionListParameter conditionListParameter = null;
 
         private Sprite icon = null;
         private Image image = null;
@@ -25,17 +29,30 @@ namespace Sakura.InventoryUI.Items
             slotParameter = GetComponent<SlotParameter>();
             inventoryPanelParameter = GetComponent<InventoryPanelParameter>();
             slotSelectionParameter = GetComponent<SlotSelectionParameter>();
+            conditionListParameter = GetComponent<ConditionListParameter>();
             image = GetComponentInChildren<Image>();
             image.sprite = icon;
             button = GetComponentInChildren<Button>();
             button.onClick.AddListener(Respond);
-            
         }
 
         private void Respond()
         {
-            var slotSelection = slotSelectionParameter.Value;
-            slotSelection.Invoke(slotParameter.Value);
+            var conditions = conditionListParameter.Value;
+            var allConditionsAreMet = true;
+            foreach (var condition in conditions)
+            {
+                if (!condition.IsTrue)
+                {
+                    allConditionsAreMet = false;
+                    break;
+                }
+            }
+            if (allConditionsAreMet)
+            {
+                var slotSelection = slotSelectionParameter.Value;
+                slotSelection.Invoke(slotParameter.Value);
+            }
         }
 
         private void Update()

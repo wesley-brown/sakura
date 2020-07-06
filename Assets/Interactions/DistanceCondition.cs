@@ -6,14 +6,14 @@ namespace Sakura
     /// <summary>
     /// A condition based on the distance from a game object with a given tag.
     /// </summary>
-    public sealed class DistanceCondition : MonoBehaviour, Condition
+    public sealed class DistanceCondition : Condition
     {
         [SerializeField]
         private string tagToCheckFor = "";
         [SerializeField]
         private float maximumDistance = 0.0f;
 
-        public bool IsTrue
+        public override bool IsTrue
         {
             get
             {

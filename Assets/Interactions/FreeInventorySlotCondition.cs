@@ -8,7 +8,7 @@ namespace Sakura
     /// A condition based on whether or not a given inventory has a free slot
     /// or not.
     /// </summary>
-    public sealed class FreeInventorySlotCondition : MonoBehaviour, Condition
+    public sealed class FreeInventorySlotCondition : Condition
     {
         [SerializeField]
         private InventoryReference forInventory = null;
@@ -19,7 +19,7 @@ namespace Sakura
             inventory = forInventory.Inventory;
         }
 
-        public bool IsTrue
+        public override bool IsTrue
         {
             get
             {

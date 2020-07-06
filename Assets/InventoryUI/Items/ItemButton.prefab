@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4155537419471568398}
   - component: {fileID: 4114562285026422602}
   - component: {fileID: 5695845054816608583}
+  - component: {fileID: 3795598754842766476}
   - component: {fileID: 3677330152668703518}
   m_Layer: 0
   m_Name: ItemButton
@@ -69,8 +70,8 @@ MonoBehaviour:
   Literal:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Sakura.InventoryUI.SlotSelection, Sakura.Runtime, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Sakura.Inventories.Runtime.SlotSelection, Sakura.Inventories.Runtime,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   Reference: {fileID: 0}
 --- !u!114 &5695845054816608583
 MonoBehaviour:
@@ -85,6 +86,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Literal: {fileID: 0}
+  Reference: {fileID: 0}
+--- !u!114 &3795598754842766476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971423885875501952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41ddd28c26a942f0b24be1a5e68ddb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Literal:
+  - {fileID: 0}
   Reference: {fileID: 0}
 --- !u!114 &3677330152668703518
 MonoBehaviour:
