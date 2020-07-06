@@ -10,12 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1431155449862247439}
   - component: {fileID: 4155537419471568398}
-  - component: {fileID: 4114562285026422602}
-  - component: {fileID: 5695845054816608583}
-  - component: {fileID: 3795598754842766476}
+  - component: {fileID: 6617949898469839322}
   - component: {fileID: 3677330152668703518}
   m_Layer: 0
-  m_Name: ItemButton
+  m_Name: SlotSelectionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,14 +28,14 @@ RectTransform:
   m_GameObject: {fileID: 1971423885875501952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5744900030051544736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -55,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asLiteral: {fileID: 0}
   asReference: {fileID: 0}
---- !u!114 &4114562285026422602
+--- !u!114 &6617949898469839322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,44 +62,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971423885875501952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4718cba074f174978824b3fca98b73e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f2620f78475e44fc87f57bc8218f85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Literal:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Sakura.Inventories.Runtime.SlotSelection, Sakura.Inventories.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  Reference: {fileID: 0}
---- !u!114 &5695845054816608583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971423885875501952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7042b3e4436e94a449f5449d40f216b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Literal: {fileID: 0}
-  Reference: {fileID: 0}
---- !u!114 &3795598754842766476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971423885875501952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41ddd28c26a942f0b24be1a5e68ddb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Literal:
-  - {fileID: 0}
-  Reference: {fileID: 0}
+  asLiteral: {fileID: 0}
+  asReference: {fileID: 0}
 --- !u!114 &3677330152668703518
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,10 @@ namespace Sakura.InventoryUI
 {
     [RequireComponent(typeof(SlotSelectionParameter))]
     [RequireComponent(typeof(InventoryVariableParameter))]
-    [RequireComponent(typeof(ConditionListParameter))]
-    public sealed class InventoryPanel : MonoBehaviour
+    public sealed class InventoryPanel : Responder<Slot>
     {
+        [SerializeField]
+        private ItemType requiredType = null;
         private SlotSelectionParameter slotSelectionParameter = null;
         private InventoryVariableParameter inventoryVariableParameter = null;
 
@@ -23,7 +24,16 @@ namespace Sakura.InventoryUI
         private void Awake()
         {
             slotSelectionParameter = GetComponent<SlotSelectionParameter>();
-            inventoryVariableParameter = GetComponent<InventoryVariableParameter>();
+            inventoryVariableParameter =
+                GetComponent<InventoryVariableParameter>();
+        }
+
+        public override void RespondTo(Slot slot)
+        {
+            if (Inventory.Items[slot.Number].Template.Type.Equals(requiredType))
+            {
+                slotSelectionParameter.Value.Invoke(slot);
+            }
         }
     }
 }
