@@ -35,6 +35,22 @@ namespace Sakura.Entities
         }
 
         /// <summary>
+        /// Deactivate this entity's game object.
+        /// </summary>
+        public void Deactivate()
+        {
+            GameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// Activate this entity's game object.
+        /// </summary>
+        public void Activate()
+        {
+            GameObject.SetActive(true);
+        }
+
+        /// <summary>
         /// Instantiate a new copy this entity's game object at the given
         /// location.
         /// </summary>

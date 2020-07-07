@@ -17,13 +17,13 @@ namespace Sakura.Entities
         {
             get
             {
-                if (Literal)
+                if (Reference)
                 {
-                    return Literal;
+                    return Reference.Value;
                 }
                 else
                 {
-                    return Reference.Value;
+                    return Literal;
                 }
             }
         }
