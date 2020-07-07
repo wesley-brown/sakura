@@ -5,12 +5,20 @@ namespace Sakura.Movement
     /// <summary>
     /// Moves game objects towards a destination.
     /// </summary>
+    [RequireComponent(typeof(CharacterControllerParameter))]
+    [RequireComponent(typeof(FloatParameter))]
     public sealed class DestinationMover : MonoBehaviour
     {
-        private CharacterController characterController;
+        private CharacterControllerParameter characterControllerParameter =
+            null;
+        private float speed = 0.0f;
 
-        [SerializeField]
-        private float speed = 0;
+        private void Awake()
+        {
+            characterControllerParameter =
+                GetComponent<CharacterControllerParameter>();
+            speed = GetComponent<FloatParameter>().Value;
+        }
 
         /// <summary>
         /// Move towards a given destination.
@@ -22,12 +30,9 @@ namespace Sakura.Movement
                 destination.x, transform.position.y, destination.z);
             var direction =
                 (yAdjustedDestination - transform.position).normalized;
-            characterController.Move(direction * Time.deltaTime * speed);
-        }
-
-        private void Awake()
-        {
-            characterController = GetComponent<CharacterController>();
+            characterControllerParameter
+                .Value
+                .Move(direction * Time.deltaTime * speed);
         }
     }
 }
