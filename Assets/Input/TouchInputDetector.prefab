@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4281174683811187833}
-  - component: {fileID: 7142989137747013184}
-  - component: {fileID: 2188656913356616830}
+  - component: {fileID: 701207563252775598}
+  - component: {fileID: 6014657197748537260}
+  - component: {fileID: 7341956172493988581}
   m_Layer: 0
   m_Name: TouchInputDetector
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7142989137747013184
+--- !u!114 &701207563252775598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +47,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Literal: {fileID: 0}
   Reference: {fileID: 0}
---- !u!114 &2188656913356616830
+--- !u!114 &6014657197748537260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808733016572210858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95772101befff4cae97326f25d7a2287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Literal: {fileID: 0}
+  Reference: {fileID: 0}
+--- !u!114 &7341956172493988581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,4 +73,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62a54a7bb85f445885283c40e17677c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}

@@ -7,11 +7,11 @@ namespace Sakura.Input
     /// Detects touch input.
     /// </summary>
     [RequireComponent(typeof(DestinationMoverParameter))]
+    [RequireComponent(typeof(CameraParameter))]
     public sealed class TouchInputDetector : MonoBehaviour
     {
-        [SerializeField]
-        private new Camera camera = null;
         private DestinationMoverParameter destinationMoverParameter = null;
+        private CameraParameter cameraParameter = null;
         private int layerMask = 1;
 
         private static bool ScreenWasTouched()
@@ -23,6 +23,7 @@ namespace Sakura.Input
         {
             destinationMoverParameter =
                 GetComponent<DestinationMoverParameter>();
+            cameraParameter = GetComponent<CameraParameter>();
             layerMask = layerMask <<
                 LayerMask.NameToLayer("TouchInputRaycastable");
         }
@@ -46,7 +47,7 @@ namespace Sakura.Input
 
         private void MovePlayerTowardsTouchedPosition(Vector2 touchedPosition)
         {
-            var ray = camera.ScreenPointToRay(touchedPosition);
+            var ray = cameraParameter.Value.ScreenPointToRay(touchedPosition);
             RaycastHit hit;
             bool didHit = Physics
                 .Raycast(ray, out hit, float.PositiveInfinity, layerMask);
