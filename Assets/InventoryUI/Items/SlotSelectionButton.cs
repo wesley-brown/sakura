@@ -36,7 +36,7 @@ namespace Sakura.InventoryUI.Items
 
         private void Respond()
         {
-            if (responder)
+            if (responder != null)
             {
                 responder.RespondTo(slotParameter.Value);
             }

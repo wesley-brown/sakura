@@ -6,7 +6,7 @@ namespace Sakura.InventoryUI
 {
     [RequireComponent(typeof(SlotSelectionParameter))]
     [RequireComponent(typeof(InventoryVariableParameter))]
-    public sealed class InventoryPanel : Responder<Slot>
+    public sealed class InventoryPanel : MonoBehaviour, Responder<Slot>
     {
         [SerializeField]
         private ItemType requiredType = null;
@@ -28,7 +28,7 @@ namespace Sakura.InventoryUI
                 GetComponent<InventoryVariableParameter>();
         }
 
-        public override void RespondTo(Slot slot)
+        public void RespondTo(Slot slot)
         {
             if (Inventory.Items[slot.Number].Template.Type.Equals(requiredType))
             {

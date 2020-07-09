@@ -1,14 +1,14 @@
-﻿using Sakura.Inventories.Runtime;
-using UnityEngine;
-using UnityEngine.Events;
-
-namespace Sakura.Interactions
+﻿namespace Sakura.Interactions
 {
     /// <summary>
     /// Responds to UI events.
     /// </summary>
-    public abstract class Responder<T> : MonoBehaviour
+    public interface Responder<T>
     {
-        public abstract void RespondTo(T t);
+        /// <summary>
+        /// Respond to an event involving the given parameter.
+        /// </summary>
+        /// <param name="t">The event parameter.</param>
+        void RespondTo(T t);
     }
 }
