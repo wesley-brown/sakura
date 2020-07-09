@@ -3,7 +3,8 @@
     "references": [
         "Sakura.Inventories.Runtime",
         "Sakura.Interactions.Runtime",
-        "Sakura.Entities.Runtime"
+        "Sakura.Entities.Runtime",
+        "Sakura.Parameters.Runtime"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

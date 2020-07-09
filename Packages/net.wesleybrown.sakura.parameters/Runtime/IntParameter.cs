@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura
+namespace Sakura.Parameters.Primitives
 {
     public sealed class IntParameter : MonoBehaviour
     {

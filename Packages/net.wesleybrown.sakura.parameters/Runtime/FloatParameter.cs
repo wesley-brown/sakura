@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura
+namespace Sakura.Parameters.Primitives
 {
     /// <summary>
     /// A constructor parameter for a float.

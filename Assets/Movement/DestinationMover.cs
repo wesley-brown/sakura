@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sakura.Parameters.Primitives;
+using UnityEngine;
 
 namespace Sakura.Movement
 {

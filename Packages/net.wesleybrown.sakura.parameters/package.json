@@ -1,0 +1,10 @@
+{
+  "name": "net.wesleybrown.sakura.parameters",
+  "version": "0.1.0",
+  "displayName": "Sakura Parameters",
+  "description": "Provides behaviors that act like function parameters.",
+  "author": {
+    "name": "Wesley Brown",
+    "email": "wesleybrown@wesleybrown.net"
+  }
+}

@@ -1,5 +1,6 @@
 ﻿using Sakura.Input;
 using Sakura.Movement;
+using Sakura.Parameters.Primitives;
 using UnityEngine;
 
 namespace Sakura
