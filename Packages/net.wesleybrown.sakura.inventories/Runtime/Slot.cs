@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System;
+﻿using Sakura.Parameters.Primitives;
+using UnityEngine;
 
 namespace Sakura.Inventories.Runtime
 {
@@ -8,22 +8,23 @@ namespace Sakura.Inventories.Runtime
     /// </summary>
     public sealed class Slot : MonoBehaviour
     {
-        [SerializeField]
-        private int number = 0;
+        private IntVariable number = null;
 
         private void Awake()
         {
-            var slotParameter = GetComponent<SlotParameter>();
-            if (slotParameter)
+            var literal = GetComponent<IntVariableParameter>();
+            if (literal)
             {
-                number = slotParameter.Value.Number;
+                number = literal.Value;
             }
-            else
+        }
+
+        private void Start()
+        {
+            var reference = GetComponent<SlotParameter>();
+            if (reference)
             {
-                if (number < 0)
-                {
-                    throw new InvalidOperationException("Number must be >= 0.");
-                }
+                number = reference.Value.number;
             }
         }
 
@@ -31,7 +32,7 @@ namespace Sakura.Inventories.Runtime
         {
             get
             {
-                return number;
+                return number.Value;
             }
         }
     }

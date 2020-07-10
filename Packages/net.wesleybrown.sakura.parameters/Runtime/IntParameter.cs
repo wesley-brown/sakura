@@ -2,24 +2,19 @@
 
 namespace Sakura.Parameters.Primitives
 {
+    /// <summary>
+    /// A constructor parameter for an int.
+    /// </summary>
     public sealed class IntParameter : MonoBehaviour
     {
-        public int Literal = 0;
-        public IntParameter Reference = null;
+        public int value = 0;
 
         public int Value
         {
             get
             {
                 Destroy(this);
-                if (Reference)
-                {
-                    return Reference.Value;
-                }
-                else
-                {
-                    return Literal;
-                }
+                return value;
             }
         }
     }
