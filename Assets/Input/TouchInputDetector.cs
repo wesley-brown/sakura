@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using Sakura.Movement;
+﻿using Sakura.Movement;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Sakura.Input
 {
@@ -39,7 +40,8 @@ namespace Sakura.Input
         private void ReactToTouch()
         {
             Touch touch = UnityEngine.Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
+            if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId)
+                && touch.phase == TouchPhase.Moved)
             {
                 MovePlayerTowardsTouchedPosition(touch.position);
             }
