@@ -7,22 +7,21 @@ namespace Sakura.Inventories.Runtime
     /// </summary>
     public sealed class InventoryVariableParameter : MonoBehaviour
     {
-        [SerializeField]
-        private InventoryVariable asLiteral = null;
-        [SerializeField]
-        private InventoryVariableParameter asReference = null;
+        public InventoryVariable Literal = null;
+        public InventoryVariableParameter Reference = null;
 
-        public InventoryVariable InventoryVariable
+        public InventoryVariable Value
         {
             get
             {
-                if (asLiteral != null)
+                Destroy(this);
+                if (Reference)
                 {
-                    return asLiteral;
+                    return Reference.Value;
                 }
                 else
                 {
-                    return asReference.InventoryVariable;
+                    return Literal;
                 }
             }
         }

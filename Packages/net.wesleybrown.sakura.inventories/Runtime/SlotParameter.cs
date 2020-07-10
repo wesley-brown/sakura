@@ -7,23 +7,21 @@ namespace Sakura.Inventories.Runtime
     /// </summary>
     public sealed class SlotParameter : MonoBehaviour
     {
-        [SerializeField]
-        private Slot asLiteral = null;
-
-        [SerializeField]
-        private SlotParameter asReference = null;
+        public Slot Literal = null;
+        public SlotParameter Reference = null;
 
         public Slot Value
         {
             get
             {
-                if (asReference)
+                Destroy(this);
+                if (Reference)
                 {
-                    return asReference.Value;
+                    return Reference.Value;
                 }
                 else
                 {
-                    return asLiteral;
+                    return Literal;
                 }
             }
         }

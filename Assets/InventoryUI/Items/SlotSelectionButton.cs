@@ -1,45 +1,41 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using Sakura.Interactions;
+﻿using Sakura.Interactions;
 using Sakura.Inventories.Runtime;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sakura.InventoryUI.Items
 {
     /// <summary>
     /// A UI button that produces a slot selection event when interacted with.
     /// </summary>
-    [RequireComponent(typeof(SlotParameter))]
-    [RequireComponent(typeof(InventoryVariableParameter))]
-    public sealed class SlotSelectionButton : MonoBehaviour
+    public sealed class SlotSelectionButton : MonoBehaviour, Responder<Slot>
     {
-        private SlotParameter slotParameter = null;
-        private InventoryVariableParameter inventoryVariableParameter = null;
-        private Responder<Slot> responder = null;
+        private Slot slot = null;
+        private Inventory inventory = null;
+        private Responder<Slot> nextResponder = null;
 
-        private Sprite icon = null;
+        //private Sprite icon = null;
         private Image image = null;
-        private Button button = null;
 
         private void Awake()
         {
-            slotParameter = GetComponent<SlotParameter>();
-            inventoryVariableParameter =
+            var slotParameter = GetComponent<SlotParameter>();
+            slot = slotParameter.Value;
+            var inventoryVariableParameter =
                 GetComponent<InventoryVariableParameter>();
-
-            responder = GetComponentInParent<Responder<Slot>>();
-
+            inventory = inventoryVariableParameter.Value.Inventory;
+            // Using just GetComponentInParent would result in this
+            // SlotSelectionButton being returned, resulting in a stack
+            // overflow, because the GetComponentInParent method first checks
+            // the object it is called on and then any parents.
+            nextResponder = transform.parent.gameObject
+                .GetComponent<Responder<Slot>>();
             image = GetComponentInChildren<Image>();
-            image.sprite = icon;
-            button = GetComponentInChildren<Button>();
-            button.onClick.AddListener(Respond);
         }
 
-        private void Respond()
+        public void RespondTo(Slot slot)
         {
-            if (responder != null)
-            {
-                responder.RespondTo(slotParameter.Value);
-            }
+            nextResponder.RespondTo(slot);
         }
 
         private void Update()
@@ -49,8 +45,7 @@ namespace Sakura.InventoryUI.Items
 
         private void UpdateSprite()
         {
-            var item = inventoryVariableParameter.InventoryVariable.Inventory
-                .Items[slotParameter.Value.Number];
+            var item = inventory.Items[slot.Number];
             if (item.Equals(Item.NullItem))
             {
                 image.sprite = null;

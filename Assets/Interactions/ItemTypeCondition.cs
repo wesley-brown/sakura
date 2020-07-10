@@ -24,7 +24,7 @@ namespace Sakura.Interactions
         {
             get
             {
-                return inventoryVariableParameter.InventoryVariable
+                return inventoryVariableParameter.Value
                     .Inventory
                     .Items[slotParameter.Value.Number]
                     .Template

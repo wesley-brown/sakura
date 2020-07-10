@@ -13,9 +13,17 @@ namespace Sakura.Inventories.Runtime
 
         private void Awake()
         {
-            if (number < 0)
+            var slotParameter = GetComponent<SlotParameter>();
+            if (slotParameter)
             {
-                throw new InvalidOperationException("Number must be >= 0.");
+                number = slotParameter.Value.Number;
+            }
+            else
+            {
+                if (number < 0)
+                {
+                    throw new InvalidOperationException("Number must be >= 0.");
+                }
             }
         }
 
