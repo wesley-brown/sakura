@@ -14,6 +14,7 @@ namespace Sakura.InventoryUI
         private ItemType requiredType = null;
         private SlotSelectionParameter slotSelectionParameter = null;
         private Inventory inventory = null;
+        private Responder<Slot> nextResponder = null;
 
         public Inventory Inventory
         {
@@ -29,6 +30,8 @@ namespace Sakura.InventoryUI
             var inventoryVariableParameter =
                 GetComponent<InventoryVariableParameter>();
             inventory = inventoryVariableParameter.Value.Inventory;
+            nextResponder = transform.parent.gameObject
+                .GetComponent<Responder<Slot>>();
         }
 
         public void RespondTo(Slot slot)
@@ -36,6 +39,10 @@ namespace Sakura.InventoryUI
             if (inventory.Items[slot.Number].Template.Type.Equals(requiredType))
             {
                 slotSelectionParameter.Value.Invoke(slot);
+            }
+            if (nextResponder != null)
+            {
+                nextResponder.RespondTo(slot);
             }
         }
     }
