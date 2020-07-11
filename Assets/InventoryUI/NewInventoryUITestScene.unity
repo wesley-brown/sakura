@@ -616,6 +616,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37,
         type: 2}
+    - target: {fileID: 2492739135301460819, guid: 0ac4b82d10ad04ef78ddcab43c41f814,
+        type: 3}
+      propertyPath: inventoryReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37,
+        type: 2}
+    - target: {fileID: 2492739135301460819, guid: 0ac4b82d10ad04ef78ddcab43c41f814,
+        type: 3}
+      propertyPath: buttonPrefab
+      value: 
+      objectReference: {fileID: 3263745371047446200, guid: 3da94e1ab989840ce917e6b3486de753,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac4b82d10ad04ef78ddcab43c41f814, type: 3}
 --- !u!224 &1744885734 stripped

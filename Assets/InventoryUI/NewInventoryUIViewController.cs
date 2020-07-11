@@ -1,5 +1,6 @@
 ﻿using Sakura.Inventories.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sakura.InventoryUI
 {
@@ -14,10 +15,11 @@ namespace Sakura.InventoryUI
 
         private void Awake()
         {
+            var scrollRect = GetComponentInChildren<ScrollRect>();
             inventory = inventoryReference.Inventory;
             for (var i = 0; i < inventory.Capacity; ++i)
             {
-                Instantiate(buttonPrefab, transform);
+                Instantiate(buttonPrefab, scrollRect.content);
             }
         }
     }
