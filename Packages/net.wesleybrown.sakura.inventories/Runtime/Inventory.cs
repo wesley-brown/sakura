@@ -11,6 +11,7 @@ namespace Sakura.Inventories.Runtime
     {
         private readonly int capacity;
         private readonly List<Item> items;
+        private readonly InventoryUpdate onInventoryUpdate;
 
         private Inventory(int capacity, IList<Item> initialItems)
         {
@@ -22,6 +23,7 @@ namespace Sakura.Inventories.Runtime
             {
                 items[itemSlot] = initialItems[itemSlot];
             }
+            onInventoryUpdate = new InventoryUpdate();
         }
 
         /// <summary>
@@ -113,6 +115,14 @@ namespace Sakura.Inventories.Runtime
             }
         }
 
+        public InventoryUpdate OnInventoryUpdate
+        {
+            get
+            {
+                return onInventoryUpdate;
+            }
+        }
+
         /// <summary>
         /// Store a given item in the first available slot in this inventory.
         /// </summary>
@@ -154,10 +164,12 @@ namespace Sakura.Inventories.Runtime
             if (itemInSlot.Equals(Item.NullItem))
             {
                 items[inventorySlot] = item;
+                onInventoryUpdate.Invoke(this);
                 return true;
             }
             else
             {
+                onInventoryUpdate.Invoke(this);
                 return false;
             }
         }
@@ -183,6 +195,7 @@ namespace Sakura.Inventories.Runtime
                     break;
                 }
             }
+            onInventoryUpdate.Invoke(this);
             return firstItemMadeFromTemplate;
         }
 
@@ -197,6 +210,7 @@ namespace Sakura.Inventories.Runtime
         {
             var requestedItem = items[slotNumber];
             items[slotNumber] = Item.NullItem;
+            onInventoryUpdate.Invoke(this);
             return requestedItem;
         }
 

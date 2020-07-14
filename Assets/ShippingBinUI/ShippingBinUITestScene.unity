@@ -284,6 +284,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewShippingBinUI
       objectReference: {fileID: 0}
+    - target: {fileID: 517762349622200416, guid: 0adf7b056566e4721a18f46ffc12780f,
+        type: 3}
+      propertyPath: buttonPrefab
+      value: 
+      objectReference: {fileID: 1181880999}
+    - target: {fileID: 517762349622200416, guid: 0adf7b056566e4721a18f46ffc12780f,
+        type: 3}
+      propertyPath: inventoryReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37,
+        type: 2}
     - target: {fileID: 1422971527786621647, guid: 0adf7b056566e4721a18f46ffc12780f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -505,17 +516,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 517762349622200416, guid: 0adf7b056566e4721a18f46ffc12780f,
-        type: 3}
-      propertyPath: buttonPrefab
-      value: 
-      objectReference: {fileID: 1181880999}
-    - target: {fileID: 517762349622200416, guid: 0adf7b056566e4721a18f46ffc12780f,
-        type: 3}
-      propertyPath: inventoryReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37,
-        type: 2}
     - target: {fileID: 231208384638995270, guid: 0adf7b056566e4721a18f46ffc12780f,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -945,6 +945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sellPanel: {fileID: 1072613948}
   keepPanel: {fileID: 14394900}
+  inventoryReference: {fileID: 11400000, guid: 8d33a593066654ea39c5dce63576fd37, type: 2}
+  template: {fileID: 11400000, guid: 061153129b06240e08160044ce95eac5, type: 2}
 --- !u!1 &1589747103
 GameObject:
   m_ObjectHideFlags: 0

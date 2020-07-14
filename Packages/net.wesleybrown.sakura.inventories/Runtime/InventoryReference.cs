@@ -1,12 +1,14 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Sakura.Inventories.Runtime
 {
     /// <summary>
     /// A reference to an inventory.
     /// </summary>
-    [CreateAssetMenu(fileName = "InventoryReference",
+    [CreateAssetMenu(
+        fileName = "InventoryReference",
         menuName = "Inventories/Inventory Reference")]
     public sealed class InventoryReference : ScriptableObject
 	{
@@ -18,12 +20,24 @@ namespace Sakura.Inventories.Runtime
 
         private Inventory inventory = null;
 
+        private InventoryUpdate onInventoryUpdate = null;
+
         public Inventory Inventory
         {
             get
             {
                 return inventory;
             }
+        }
+
+        public void Subscribe(UnityAction<Inventory> action)
+        {
+            onInventoryUpdate.AddListener(action);
+        }
+
+        public void Unsubscribe(UnityAction<Inventory> action)
+        {
+            onInventoryUpdate.RemoveListener(action);
         }
 
         private void OnEnable()
@@ -38,6 +52,7 @@ namespace Sakura.Inventories.Runtime
                 }
                 inventory = Inventory.WithCapacityAndInitialItems(capacity, items);
             }
+            onInventoryUpdate = inventory.OnInventoryUpdate;
         }
     }
 }
