@@ -18,17 +18,29 @@ namespace Sakura
 
         private void Awake()
         {
-            inventoryReference.Subscribe(Test);
+            inventoryReference.Subscribe(UpdateButtonIcons);
+            UpdateButtonIcons(inventoryReference.Inventory);
         }
 
-        public void Test(Inventory inventory)
+        private void UpdateButtonIcons(Inventory inventory)
         {
-            Debug.Log("Inventory Updated!");
+            var items = inventory.Items;
+            var buttons = keepPanel.GetComponentsInChildren<Button>();
+            for (var i = 0; i < items.Count; ++i)
+            {
+                var item = items[i];
+                buttons[i].GetComponent<Image>().sprite = item.Template.Icon;
+            }
         }
 
         public void SellItem(Button sender)
         {
             var slotNumber = sender.transform.GetSiblingIndex();
+        }
+
+        private void OnDestroy()
+        {
+            inventoryReference.Unsubscribe(UpdateButtonIcons);
         }
     }
 }
