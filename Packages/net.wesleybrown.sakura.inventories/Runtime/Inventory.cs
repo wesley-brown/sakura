@@ -144,6 +144,7 @@ namespace Sakura.Inventories.Runtime
                     break;
                 }
             }
+            onInventoryUpdate.Invoke(this);
             return wasStored;
         }
 

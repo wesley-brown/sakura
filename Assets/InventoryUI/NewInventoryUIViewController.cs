@@ -1,5 +1,6 @@
 ﻿using Sakura.Inventories.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Sakura.InventoryUI
@@ -10,6 +11,8 @@ namespace Sakura.InventoryUI
         private InventoryReference inventoryReference = null;
         [SerializeField]
         private GameObject buttonPrefab = null;
+        [SerializeField]
+        private UnityEvent<Button> onSlotSelection = null;
 
         private ScrollRect scrollRect = null;
         private Inventory inventory = null;
@@ -31,6 +34,11 @@ namespace Sakura.InventoryUI
                 var button = Instantiate(buttonPrefab, scrollRect.content);
                 button.SetActive(true);
             }
+        }
+
+        public void SelectSlot(Button sender)
+        {
+            onSlotSelection.Invoke(sender);
         }
     }
 }

@@ -12,35 +12,69 @@ namespace Sakura
         [SerializeField]
         private NewInventoryUIViewController keepPanel = null;
         [SerializeField]
-        private InventoryReference inventoryReference = null;
+        private InventoryReference playersInventory = null;
         [SerializeField]
-        private ItemTemplate template = null;
+        private InventoryReference shippingBinsInventory = null;
 
         private void Awake()
         {
-            inventoryReference.Subscribe(UpdateButtonIcons);
-            UpdateButtonIcons(inventoryReference.Inventory);
+            playersInventory.Subscribe(UpdateKeepPanel);
+            shippingBinsInventory.Subscribe(UpdateSellPanel);
         }
 
-        private void UpdateButtonIcons(Inventory inventory)
+        private void Start()
+        {
+            UpdateKeepPanel(playersInventory.Inventory);
+            UpdateSellPanel(shippingBinsInventory.Inventory);
+        }
+
+        private void UpdateKeepPanel(Inventory inventory)
         {
             var items = inventory.Items;
             var buttons = keepPanel.GetComponentsInChildren<Button>();
             for (var i = 0; i < items.Count; ++i)
             {
                 var item = items[i];
-                buttons[i].GetComponent<Image>().sprite = item.Template.Icon;
+                if (item.Equals(Item.NullItem))
+                {
+                    buttons[i].GetComponent<Image>().sprite = null;
+                }
+                else
+                {
+                    buttons[i].GetComponent<Image>().sprite = item.Template.Icon;
+                }
+            }
+        }
+
+        private void UpdateSellPanel(Inventory inventory)
+        {
+            var items = inventory.Items;
+            var buttons = sellPanel.GetComponentsInChildren<Button>();
+            for (var i = 0; i < items.Count; ++i)
+            {
+                var item = items[i];
+                if (item.Equals(Item.NullItem))
+                {
+                    buttons[i].GetComponent<Image>().sprite = null;
+                }
+                else
+                {
+                    buttons[i].GetComponent<Image>().sprite = item.Template.Icon;
+                }
             }
         }
 
         public void SellItem(Button sender)
         {
             var slotNumber = sender.transform.GetSiblingIndex();
+            var item = playersInventory.Inventory.RemoveItemFromSlot(slotNumber);
+            shippingBinsInventory.Inventory.Store(item);
         }
 
         private void OnDestroy()
         {
-            inventoryReference.Unsubscribe(UpdateButtonIcons);
+            playersInventory.Unsubscribe(UpdateKeepPanel);
+            shippingBinsInventory.Unsubscribe(UpdateSellPanel);
         }
     }
 }
