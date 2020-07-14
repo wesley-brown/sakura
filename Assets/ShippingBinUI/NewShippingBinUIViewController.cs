@@ -71,6 +71,16 @@ namespace Sakura
             shippingBinsInventory.Inventory.Store(item);
         }
 
+        public void KeepItem(Button sender)
+        {
+            var slotNumber = sender.transform.GetSiblingIndex();
+            if (!playersInventory.Inventory.IsFull)
+            {
+                var item = shippingBinsInventory.Inventory.RemoveItemFromSlot(slotNumber);
+                playersInventory.Inventory.Store(item);
+            }
+        }
+
         private void OnDestroy()
         {
             playersInventory.Unsubscribe(UpdateKeepPanel);
