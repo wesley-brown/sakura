@@ -81,6 +81,11 @@ namespace Sakura
             }
         }
 
+        public void Cancel()
+        {
+            Destroy(gameObject);
+        }
+
         private void OnDestroy()
         {
             playersInventory.Unsubscribe(UpdateKeepPanel);
