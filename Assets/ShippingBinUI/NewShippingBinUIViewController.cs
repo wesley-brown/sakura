@@ -94,7 +94,7 @@ namespace Sakura
             {
                 if (!item.Equals(Item.NullItem))
                 {
-                    playersWallet.Wallet = playersWallet.Wallet.Add(100);
+                    playersWallet.Wallet.Add(100);
                 }
             }
             Debug.Log(playersWallet.Wallet.Balance);

@@ -1,16 +1,20 @@
-﻿namespace Sakura
+﻿using Sakura.Events;
+
+namespace Sakura
 {
     public sealed class Wallet
     {
-        private readonly int balance;
+        private int balance;
+        private SakuraEvent<int> onUpdate;
 
-        public Wallet() : this(0)
+        public Wallet() : this(0, new SakuraEvent<int>())
         {
         }
 
-        public Wallet(int startingBalance)
+        public Wallet(int startingBalance, SakuraEvent<int> onUpdate)
         {
             balance = startingBalance;
+            this.onUpdate = onUpdate;
         }
 
         public int Balance
@@ -21,9 +25,20 @@
             }
         }
 
-        public Wallet Add(int amount)
+        public void Add(int amount)
         {
-            return new Wallet(balance + amount);
+            balance = balance + amount;
+            onUpdate.RaiseFor(balance);
+        }
+
+        public void Subscribe(SakuraAction<int> action)
+        {
+            onUpdate = onUpdate.AddListener(action);
+        }
+
+        public void Unsubscribe(SakuraAction<int> action)
+        {
+            onUpdate = onUpdate.RemoveListener(action);
         }
     }
 }

@@ -22,7 +22,18 @@ namespace Sakura
         private void Start()
         {
             wallet = walletReference.Wallet;
+            wallet.Subscribe(OnWalletUpdate);
             textBox.text = wallet.Balance.ToString();
+        }
+
+        private void OnWalletUpdate(int balance)
+        {
+            textBox.text = balance.ToString();
+        }
+
+        private void OnDestroy()
+        {
+            wallet.Unsubscribe(OnWalletUpdate);
         }
     }
 }

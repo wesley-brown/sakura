@@ -1,0 +1,10 @@
+{
+  "name": "net.wesleybrown.sakura.events",
+  "version": "0.1.0",
+  "displayName": "Sakura Events",
+  "description": "Sakura events system.",
+  "author": {
+    "name": "Wesley Brown",
+    "email": "wesleybrown@wesleybrown.net"
+  }
+}
