@@ -15,6 +15,8 @@ namespace Sakura
         private InventoryReference playersInventory = null;
         [SerializeField]
         private InventoryReference shippingBinsInventory = null;
+        [SerializeField]
+        private WalletReference playersWallet = null;
 
         private void Awake()
         {
@@ -84,6 +86,19 @@ namespace Sakura
         public void Cancel()
         {
             Destroy(gameObject);
+        }
+
+        public void Confirm()
+        {
+            foreach (var item in shippingBinsInventory.Inventory.Items)
+            {
+                if (!item.Equals(Item.NullItem))
+                {
+                    playersWallet.Wallet = playersWallet.Wallet.Add(100);
+                }
+            }
+            Debug.Log(playersWallet.Wallet.Balance);
+            Cancel();
         }
 
         private void OnDestroy()

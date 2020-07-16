@@ -1,26 +1,29 @@
-﻿using UnityEngine;
-
-namespace Sakura
+﻿namespace Sakura
 {
-    [CreateAssetMenu(
-        fileName = "New Wallet",
-        menuName = "Economy/Wallet")]
-    public sealed class Wallet : ScriptableObject
+    public sealed class Wallet
     {
-        [SerializeField]
-        private int startingBalance = 0;
+        private readonly int balance;
 
-        private int balance = 0;
+        public Wallet() : this(0)
+        {
+        }
 
-        private void OnEnable()
+        public Wallet(int startingBalance)
         {
             balance = startingBalance;
         }
 
-        public void Add(int balance)
+        public int Balance
         {
-            this.balance += balance;
-            Debug.Log(this.balance);
+            get
+            {
+                return balance;
+            }
+        }
+
+        public Wallet Add(int amount)
+        {
+            return new Wallet(balance + amount);
         }
     }
 }
