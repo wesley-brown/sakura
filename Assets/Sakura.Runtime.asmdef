@@ -4,7 +4,8 @@
         "Sakura.Inventories.Runtime",
         "Sakura.Interactions.Runtime",
         "Sakura.Entities.Runtime",
-        "Sakura.Parameters.Runtime"
+        "Sakura.Parameters.Runtime",
+        "Unity.TextMeshPro"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
