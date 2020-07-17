@@ -870,6 +870,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1189993103474969151, guid: 54e2a899613f54ed59b574bfeb5fdab7,
+        type: 3}
+      propertyPath: walletReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 7fa66a94efdb94a17b8b8077735eb664,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e2a899613f54ed59b574bfeb5fdab7, type: 3}
 --- !u!224 &2321158040533968137 stripped
