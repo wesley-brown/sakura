@@ -1928,8 +1928,26 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2474378280738787774, guid: 61fb2863bb2694180999fa60776e12d2,
+        type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 5535746580785415803, guid: 61fb2863bb2694180999fa60776e12d2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61fb2863bb2694180999fa60776e12d2, type: 3}
+--- !u!114 &1684119853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8704034672424800866, guid: 61fb2863bb2694180999fa60776e12d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1684119852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31af79edf97aa49529647765252c4792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1715044135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2737,6 +2755,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7fa66a94efdb94a17b8b8077735eb664,
         type: 2}
+    - target: {fileID: 3785275852710581340, guid: c235f782e9abd444ead0ecdd72a3ee80,
+        type: 3}
+      propertyPath: viewController
+      value: 
+      objectReference: {fileID: 1684119853}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c235f782e9abd444ead0ecdd72a3ee80, type: 3}
 --- !u!1001 &3885612391723019527

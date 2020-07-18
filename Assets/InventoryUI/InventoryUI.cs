@@ -1,4 +1,5 @@
 ﻿using Sakura.Entities;
+using Sakura.UI;
 using UnityEngine;
 
 namespace Sakura.InventoryUI
@@ -8,9 +9,10 @@ namespace Sakura.InventoryUI
     /// </summary>
     [RequireComponent(typeof(GameObjectParameter))]
     [RequireComponent(typeof(PlayerParameter))]
-    public sealed class InventoryUI : MonoBehaviour
+    public sealed class InventoryUI : ViewController
     {
         private PlayerParameter playerParameter = null;
+        [SerializeField] private GameObject HUD = null;
 
         private void Awake()
         {
@@ -23,6 +25,12 @@ namespace Sakura.InventoryUI
         public void UnfreezePlayer()
         {
             playerParameter.Value.Unfreeze();
+        }
+
+        public void DisplayHUD()
+        {
+            var temp = Instantiate(HUD);
+            Window.Display(temp);
         }
     }
 }

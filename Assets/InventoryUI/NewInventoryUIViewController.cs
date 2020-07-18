@@ -1,11 +1,12 @@
 ﻿using Sakura.Inventories.Runtime;
+using Sakura.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Sakura.InventoryUI
 {
-    public sealed class NewInventoryUIViewController : MonoBehaviour
+    public sealed class NewInventoryUIViewController : ViewController
     {
         [SerializeField]
         private InventoryReference inventoryReference = null;
@@ -33,6 +34,24 @@ namespace Sakura.InventoryUI
             {
                 var button = Instantiate(buttonPrefab, scrollRect.content);
                 button.SetActive(true);
+            }
+        }
+
+        protected override void Start()
+        {
+            //base.Start();
+            for (var i = 0; i < inventory.Capacity; ++i)
+            {
+                var item = inventory.Items[i];
+                var buttons = GetComponentsInChildren<Button>();
+                if (item.Equals(Item.NullItem))
+                {
+                    buttons[i].GetComponent<Image>().sprite = null;
+                }
+                else
+                {
+                    buttons[i].GetComponent<Image>().sprite = item.Template.Icon;
+                }
             }
         }
 

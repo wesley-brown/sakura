@@ -1,11 +1,12 @@
 ﻿using Sakura.Inventories.Runtime;
 using Sakura.InventoryUI;
+using Sakura.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Sakura
 {
-    public sealed class NewShippingBinUIViewController : MonoBehaviour
+    public sealed class NewShippingBinUIViewController : ViewController
     {
         [SerializeField]
         private NewInventoryUIViewController sellPanel = null;
@@ -18,14 +19,11 @@ namespace Sakura
         [SerializeField]
         private WalletReference playersWallet = null;
 
-        private void Awake()
+        protected override void Start()
         {
+            base.Start();
             playersInventory.Subscribe(UpdateKeepPanel);
             shippingBinsInventory.Subscribe(UpdateSellPanel);
-        }
-
-        private void Start()
-        {
             UpdateKeepPanel(playersInventory.Inventory);
             UpdateSellPanel(shippingBinsInventory.Inventory);
         }

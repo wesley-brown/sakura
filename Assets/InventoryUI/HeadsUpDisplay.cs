@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sakura.UI;
+using UnityEngine;
 
 namespace Sakura.InventoryUI
 {
@@ -6,9 +7,10 @@ namespace Sakura.InventoryUI
     /// A heads up display that acts as the default UI for the player.
     /// </summary>
     [RequireComponent(typeof(PlayerParameter))]
-    public sealed class HeadsUpDisplay : MonoBehaviour
+    public sealed class HeadsUpDisplay : ViewController
     {
         private PlayerParameter playerParameter = null;
+        [SerializeField] private GameObject inventoryUI = null;
 
         private void Awake()
         {
@@ -21,6 +23,12 @@ namespace Sakura.InventoryUI
         public void FreezePlayer()
         {
             playerParameter.Value.Freeze();
+        }
+
+        public void DisplayInventoryUI()
+        {
+            var temp = Instantiate(inventoryUI);
+            Window.Display(temp);
         }
     }
 }
