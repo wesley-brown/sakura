@@ -6,15 +6,17 @@ namespace Sakura
     public sealed class Main : MonoBehaviour
     {
         [SerializeField] private WalletReference playersWallet = null;
-        [SerializeField] private ViewController viewController = null;
+        [SerializeField] private GameObject initialWindowPrefab = null;
 
         private Window window = null;
+        private WindowController mainWindowController = null;
 
         private void Awake()
         {
             playersWallet.Wallet = new Wallet();
-            window = new Window(viewController);
-            viewController.Window = window;
+            var view = Instantiate(initialWindowPrefab);
+            mainWindowController = view.GetComponent<WindowController>();
+            window = new Window(mainWindowController);
         }
 
         private void Start()

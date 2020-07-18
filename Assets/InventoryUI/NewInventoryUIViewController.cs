@@ -39,7 +39,7 @@ namespace Sakura.InventoryUI
 
         protected override void Start()
         {
-            //base.Start();
+            base.Start();
             for (var i = 0; i < inventory.Capacity; ++i)
             {
                 var item = inventory.Items[i];

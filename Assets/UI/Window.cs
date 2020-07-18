@@ -4,25 +4,21 @@ namespace Sakura.UI
 {
     public sealed class Window
     {
-        private ViewController contentViewController;
+        private WindowController mainWindowController;
 
-        public Window(ViewController viewController)
+        public Window(WindowController windowController)
         {
-            contentViewController = viewController;
-            //Display(viewController.gameObject);
+            mainWindowController = windowController;
+            mainWindowController.Window = this;
         }
 
         public void Display(GameObject view)
         {
-            //if (contentViewController)
-            //{
-            //    Object.Destroy(contentViewController.gameObject);
-            //}
-            // Actually display the "view" in the current scene
-            //var contentView = Object.Instantiate(view);
-            view.SetActive(true);
-            contentViewController = view.GetComponent<ViewController>();
-            contentViewController.Window = this;
+            Object.Destroy(mainWindowController.gameObject);
+            var contentView = Object.Instantiate(view);
+            contentView.SetActive(true);
+            mainWindowController = contentView.GetComponent<WindowController>();
+            mainWindowController.Window = this;
         }
     }
 }
