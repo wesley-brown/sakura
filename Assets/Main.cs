@@ -8,7 +8,6 @@ namespace Sakura
     public sealed class Main : MonoBehaviour
     {
         [SerializeField] private WalletReference playersWallet = null;
-        [SerializeField] private GameObject initialWindowPrefab = null;
 
         private MonoBehaviour windowController = null;
 
