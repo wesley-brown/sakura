@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4334546942681208309}
   - component: {fileID: 1299200354124747062}
   - component: {fileID: 709339528230312236}
+  - component: {fileID: 9062815841797198712}
+  - component: {fileID: 5255200733977646045}
   - component: {fileID: 4799115697127139400}
   m_Layer: 0
   m_Name: InventoryUI
@@ -78,6 +80,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Literal: {fileID: 0}
   Reference: {fileID: 0}
+--- !u!114 &9062815841797198712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970504778043969994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00926cb5398e3452597ea7bc6b0e178b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPrefab: {fileID: 3785275852710581342, guid: c235f782e9abd444ead0ecdd72a3ee80,
+    type: 3}
+--- !u!114 &5255200733977646045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970504778043969994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bf1f7c462964f479ce5b42e5095cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4799115697127139400
 MonoBehaviour:
   m_ObjectHideFlags: 0

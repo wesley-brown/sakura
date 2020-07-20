@@ -1,12 +1,11 @@
 ﻿using Sakura.Inventories.Runtime;
-using Sakura.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Sakura.InventoryUI
 {
-    public sealed class NewInventoryUIViewController : ViewController
+    public sealed class NewInventoryUIViewController : MonoBehaviour
     {
         [SerializeField]
         private InventoryReference inventoryReference = null;
@@ -37,9 +36,8 @@ namespace Sakura.InventoryUI
             }
         }
 
-        protected override void Start()
+        private void Start()
         {
-            base.Start();
             for (var i = 0; i < inventory.Capacity; ++i)
             {
                 var item = inventory.Items[i];

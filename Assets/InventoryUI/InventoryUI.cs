@@ -9,7 +9,8 @@ namespace Sakura.InventoryUI
     /// </summary>
     [RequireComponent(typeof(GameObjectParameter))]
     [RequireComponent(typeof(PlayerParameter))]
-    public sealed class InventoryUI : WindowController
+    [RequireComponent(typeof(WindowController))]
+    public sealed class InventoryUI : MonoBehaviour
     {
         private PlayerParameter playerParameter = null;
         [SerializeField] private GameObject HUD = null;
@@ -29,7 +30,7 @@ namespace Sakura.InventoryUI
 
         public void DisplayHUD()
         {
-            Window.Display(HUD);
+            Instantiate(HUD);
         }
     }
 }

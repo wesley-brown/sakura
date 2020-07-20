@@ -1,32 +1,29 @@
-﻿using Sakura.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Sakura
 {
+    /// <summary>
+    /// Acts as the main function.
+    /// </summary>
     public sealed class Main : MonoBehaviour
     {
         [SerializeField] private WalletReference playersWallet = null;
         [SerializeField] private GameObject initialWindowPrefab = null;
 
-        private Window window = null;
-        private WindowController mainWindowController = null;
+        private MonoBehaviour windowController = null;
 
         private void Awake()
         {
             playersWallet.Wallet = new Wallet();
-            var view = Instantiate(initialWindowPrefab);
-            mainWindowController = view.GetComponent<WindowController>();
-            window = new Window(mainWindowController);
         }
 
-        private void Start()
+        public void RegisterWindowController(MonoBehaviour windowController)
         {
-            
-        }
-
-        private void FixedUpdate()
-        {
-            
+            if (this.windowController)
+            {
+                Destroy(this.windowController.gameObject);
+            }
+            this.windowController = windowController;
         }
     }
 }

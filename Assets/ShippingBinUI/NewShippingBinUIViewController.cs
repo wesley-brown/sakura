@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 namespace Sakura
 {
-    public sealed class NewShippingBinUIViewController : ViewController
+    [RequireComponent(typeof(WindowController))]
+    public sealed class NewShippingBinUIViewController : MonoBehaviour
     {
         [SerializeField]
         private NewInventoryUIViewController sellPanel = null;
@@ -18,10 +19,10 @@ namespace Sakura
         private InventoryReference shippingBinsInventory = null;
         [SerializeField]
         private WalletReference playersWallet = null;
+        [SerializeField] private GameObject HUD = null;
 
-        protected override void Start()
+        private void Start()
         {
-            base.Start();
             playersInventory.Subscribe(UpdateKeepPanel);
             shippingBinsInventory.Subscribe(UpdateSellPanel);
             UpdateKeepPanel(playersInventory.Inventory);
@@ -83,7 +84,12 @@ namespace Sakura
 
         public void Cancel()
         {
-            Destroy(gameObject);
+            DisplayHUD();
+        }
+
+        private void DisplayHUD()
+        {
+            Instantiate(HUD);
         }
 
         public void Confirm()
@@ -96,7 +102,7 @@ namespace Sakura
                 }
             }
             Debug.Log(playersWallet.Wallet.Balance);
-            Cancel();
+            DisplayHUD();
         }
 
         private void OnDestroy()
