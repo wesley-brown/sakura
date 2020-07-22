@@ -7,8 +7,14 @@ namespace Sakura
     /// </summary>
     public sealed class MainHook : MonoBehaviour
     {
-        [SerializeField] private GameObject mainPrefab = null;
         private Main main = null;
+
+        private void Awake()
+        {
+            var mainGameObject = GameObject.FindGameObjectWithTag(
+                "GameController");
+            main = mainGameObject.GetComponent<Main>();
+        }
 
         public Main Main
         {
@@ -16,11 +22,6 @@ namespace Sakura
             {
                 return main;
             }
-        }
-
-        private void Awake()
-        {
-            main = mainPrefab.GetComponent<Main>();
         }
     }
 }

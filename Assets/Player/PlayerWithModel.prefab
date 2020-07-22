@@ -185,6 +185,8 @@ GameObject:
   - component: {fileID: 9084701725514037563}
   - component: {fileID: 3818328825759525625}
   - component: {fileID: 1640464912809784717}
+  - component: {fileID: 6547978706944222536}
+  - component: {fileID: 7712327395410809939}
   m_Layer: 0
   m_Name: PlayerWithModel
   m_TagString: Player
@@ -241,6 +243,32 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6547978706944222536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823991750059615004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00926cb5398e3452597ea7bc6b0e178b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPrefab: {fileID: 3785275852710581342, guid: c235f782e9abd444ead0ecdd72a3ee80,
+    type: 3}
+--- !u!114 &7712327395410809939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823991750059615004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9930dbc8288340e0a47382ad3c0ec6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5288753279842066927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,11 +336,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8500639353447760143, guid: 536fd13f6c8bc472b8887202a8be5f52,
-        type: 3}
-      propertyPath: Literal
-      value: 
-      objectReference: {fileID: 534669904}
     - target: {fileID: 5526157960750769396, guid: 536fd13f6c8bc472b8887202a8be5f52,
         type: 3}
       propertyPath: Reference
@@ -323,6 +346,11 @@ PrefabInstance:
       propertyPath: Literal
       value: 
       objectReference: {fileID: 1640464912809784717}
+    - target: {fileID: 8500639353447760143, guid: 536fd13f6c8bc472b8887202a8be5f52,
+        type: 3}
+      propertyPath: Literal
+      value: 
+      objectReference: {fileID: 534669904}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536fd13f6c8bc472b8887202a8be5f52, type: 3}
 --- !u!4 &629296697152395244 stripped
