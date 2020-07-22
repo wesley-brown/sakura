@@ -1,5 +1,4 @@
-﻿using Sakura.Input;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sakura
@@ -13,11 +12,13 @@ namespace Sakura
 
         private MonoBehaviour windowController = null;
         private List<Entity> entities = null;
+        private List<UnityModel> models = null;
 
         private void Awake()
         {
             playersWallet.Wallet = new Wallet();
             entities = new List<Entity>();
+            models = new List<UnityModel>();
         }
 
         public void RegisterWindowController(MonoBehaviour windowController)
@@ -29,18 +30,21 @@ namespace Sakura
             this.windowController = windowController;
         }
 
-        public void RegisterEntity(GameObject gameObject)
+        public void BindToNewEntity(UnityModel model)
         {
-            entities.Add(new Entity(gameObject));
+            var entity = new Entity();
+            entities.Add(entity);
+            model.Entity = entity;
+            models.Add(model);
             Debug.Log(
                 "Registered pre-existing entity '"
-                + gameObject.name
+                + model.gameObject.name
                 + "'");
         }
 
-        public void UnregisterEntity(Entity entity)
+        public void UnbindFromEntity(UnityModel model)
         {
-            entities.Remove(entity);
+            models.Remove(model);
         }
     }
 }
