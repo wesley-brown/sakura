@@ -102,6 +102,7 @@ namespace Sakura
                 }
             }
             Debug.Log(playersWallet.Wallet.Balance);
+            shippingBinsInventory.Inventory.Clear();
             DisplayHUD();
         }
 

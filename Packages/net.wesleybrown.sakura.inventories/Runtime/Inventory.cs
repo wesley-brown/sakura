@@ -251,6 +251,14 @@ namespace Sakura.Inventories.Runtime
             return hasItemMadeFromTemplate;
         }
 
+        public void Clear()
+        {
+            for (var i = 0; i < items.Count; ++i)
+            {
+                items[i] = Item.NullItem;
+            }
+        }
+
         public override string ToString()
         {
             var stringRepresentation = "<Inventory: ";
