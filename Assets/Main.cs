@@ -37,5 +37,10 @@ namespace Sakura
                 + gameObject.name
                 + "'");
         }
+
+        public void UnregisterEntity(Entity entity)
+        {
+            entities.Remove(entity);
+        }
     }
 }
