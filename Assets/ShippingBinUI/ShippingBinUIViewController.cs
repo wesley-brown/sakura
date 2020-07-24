@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Sakura
 {
     [RequireComponent(typeof(WindowController))]
-    public sealed class NewShippingBinUIViewController : MonoBehaviour
+    public sealed class ShippingBinUIViewController : MonoBehaviour
     {
         [SerializeField]
         private NewInventoryUIViewController sellPanel = null;
