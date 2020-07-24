@@ -84,6 +84,13 @@ namespace Sakura
 
         public void Cancel()
         {
+            var shippingBin = shippingBinsInventory.Inventory;
+            var player = playersInventory.Inventory;
+            for (var i = 0; i < shippingBin.Items.Count; ++i)
+            {
+                var item = shippingBin.RemoveItemFromSlot(i);
+                player.Store(item);
+            }
             DisplayHUD();
         }
 
