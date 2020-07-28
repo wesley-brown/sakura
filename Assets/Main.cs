@@ -32,14 +32,16 @@ namespace Sakura
 
         public void BindToNewEntity(UnityModel model)
         {
-            var entity = new Entity();
+            var entity = new Entity(model.transform.position);
             entities.Add(entity);
             model.Entity = entity;
             models.Add(model);
             Debug.Log(
                 "Registered pre-existing entity '"
                 + model.gameObject.name
-                + "'");
+                + "'"
+                + " at location "
+                + entity.Location);
         }
 
         public void UnbindFromEntity(UnityModel model)
