@@ -3168,12 +3168,12 @@ PrefabInstance:
     - target: {fileID: 4513142281039252471, guid: 0747ae2f500d342a3bffda30f54770d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.7
+      value: 17.217
       objectReference: {fileID: 0}
     - target: {fileID: 4513142281039252471, guid: 0747ae2f500d342a3bffda30f54770d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 4513142281039252471, guid: 0747ae2f500d342a3bffda30f54770d6,
         type: 3}
@@ -3244,6 +3244,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Height
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 487065775768515411, guid: 0747ae2f500d342a3bffda30f54770d6,
+        type: 3}
+      propertyPath: distance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 487065775768515411, guid: 0747ae2f500d342a3bffda30f54770d6,
+        type: 3}
+      propertyPath: speed
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 487065775768515411, guid: 0747ae2f500d342a3bffda30f54770d6,
+        type: 3}
+      propertyPath: velocity.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5709087860430568383, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
