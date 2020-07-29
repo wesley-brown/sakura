@@ -3265,6 +3265,11 @@ PrefabInstance:
       propertyPath: velocity.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 374578405961308649, guid: 0747ae2f500d342a3bffda30f54770d6,
+        type: 3}
+      propertyPath: rotationAngle.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5709087860430568383, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
