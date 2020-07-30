@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sakura.Components;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sakura
@@ -32,7 +33,8 @@ namespace Sakura
 
         public void BindToNewEntity(UnityModel model)
         {
-            var entity = new Entity(model.transform.position);
+            var entity = new Entity(model.transform.position, 0.1f);
+            entity.Add(new MoveToDestination(entity, new Vector3(35.13f, 1.13f, -31.63f)));
             entities.Add(entity);
             model.Entity = entity;
             models.Add(model);
@@ -47,6 +49,14 @@ namespace Sakura
         public void UnbindFromEntity(UnityModel model)
         {
             models.Remove(model);
+        }
+
+        private void FixedUpdate()
+        {
+            foreach (var entity in entities)
+            {
+                entity.Update();
+            }
         }
     }
 }

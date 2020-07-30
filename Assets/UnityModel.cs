@@ -25,6 +25,12 @@ namespace Sakura
             }
         }
 
+        private void Update()
+        {
+            var interpolatedPosition = Vector3.Lerp(transform.position, Entity.Location, Time.deltaTime);
+            transform.position = interpolatedPosition;
+        }
+
         private void OnDestroy()
         {
             Destroy(gameObject);
