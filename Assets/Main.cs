@@ -1,5 +1,6 @@
 ﻿using Sakura.Components;
 using Sakura.Input;
+using Sakura.UnityComponents.Rendering;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Sakura
 
         private MonoBehaviour windowController = null;
         private List<Entity> entities = null;
-        private List<UnityModel> models = null;
+        private List<Model> models = null;
         private InputProcessor inputProcessor = null;
         private new Camera camera = null;
 
@@ -22,7 +23,7 @@ namespace Sakura
         {
             playersWallet.Wallet = new Wallet();
             entities = new List<Entity>();
-            models = new List<UnityModel>();
+            models = new List<Model>();
             camera = Camera.main;
         }
 

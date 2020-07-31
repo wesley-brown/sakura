@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sakura.UnityComponents.Rendering;
+using UnityEngine;
 
 namespace Sakura
 {
@@ -6,9 +7,30 @@ namespace Sakura
     /// A 3D representation of an entity rendered in Unity.
     /// </summary>
     [RequireComponent(typeof(MainHook))]
-    public sealed class UnityModel : MonoBehaviour
+    public sealed class UncontrollableModel : UnityModel
     {
-        public Entity Entity = null;
+        private Entity entity = null;
+
+        public override Entity Entity
+        {
+            get
+            {
+                return entity;
+            }
+
+            set
+            {
+                entity = value;
+            }
+        }
+
+        public override GameObject GameObject
+        {
+            get
+            {
+                return gameObject;
+            }
+        }
 
         private MainHook mainHook = null;
 
@@ -27,7 +49,7 @@ namespace Sakura
 
         private void Update()
         {
-            var interpolatedPosition = Vector3.Lerp(transform.position, Entity.Location, Time.deltaTime);
+            var interpolatedPosition = Vector3.Lerp(transform.position, entity.Location, Time.deltaTime);
             transform.position = interpolatedPosition;
         }
 
@@ -41,7 +63,7 @@ namespace Sakura
         {
             get
             {
-                return Entity == null;
+                return entity == null;
             }
         }
     }
