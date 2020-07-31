@@ -36,7 +36,7 @@ namespace Sakura
             this.windowController = windowController;
         }
 
-        public void BindToNewEntity(UnityModel model)
+        public Entity BindToNewEntity(UnityModel model)
         {
             var entity = new Entity(model.transform.position, 0.1f);
             if (model.gameObject.tag == "Player")
@@ -48,7 +48,7 @@ namespace Sakura
                 entity.Add(new MoveToDestination(entity, new Vector3(35.13f, 1.13f, -31.63f)));
             }
             entities.Add(entity);
-            model.Entity = entity;
+            //model.Entity = entity;
             models.Add(model);
             Debug.Log(
                 "Registered pre-existing entity '"
@@ -56,6 +56,7 @@ namespace Sakura
                 + "'"
                 + " at location "
                 + entity.Location);
+            return entity;
         }
 
         public void UnbindFromEntity(UnityModel model)

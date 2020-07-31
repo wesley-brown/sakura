@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sakura.UnityComponents.Rendering;
+using UnityEngine;
 
 namespace Sakura.UI
 {
@@ -18,8 +19,8 @@ namespace Sakura.UI
     {
         private void Start()
         {
-            var main = GetComponent<MainHook>().Main;
-            main.RegisterWindowController(this);
+            var mainHook = GetComponent<MainHook>();
+            mainHook.RegisterWindowController(this);
         }
 
         private void OnDestroy()

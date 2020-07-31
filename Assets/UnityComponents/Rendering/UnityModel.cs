@@ -2,9 +2,49 @@
 
 namespace Sakura.UnityComponents.Rendering
 {
-    public abstract class UnityModel : MonoBehaviour, Model
+    [RequireComponent(typeof(MainHook))]
+    public sealed class UnityModel : MonoBehaviour, Model
     {
-        public abstract Entity Entity { get; set; }
-        public abstract GameObject GameObject { get; }
+        private MainHook mainHook = null;
+        private Entity entity = null;
+
+        public Entity Entity
+        {
+            get
+            {
+                return entity;
+            }
+
+            set
+            {
+                entity = value;
+            }
+        }
+
+        private void Awake()
+        {
+            mainHook = GetComponent<MainHook>();
+        }
+
+        private void Start()
+        {
+            if (WasPlacedInEditor)
+            {
+                entity = mainHook.BindToNewEntity(this);
+            }
+        }
+
+        private bool WasPlacedInEditor
+        {
+            get
+            {
+                return entity == null;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            mainHook.UnbindFromEntity(this);
+        }
     }
 }

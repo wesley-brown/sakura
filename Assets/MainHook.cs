@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura
+namespace Sakura.UnityComponents.Rendering
 {
     /// <summary>
     /// Stores a reference to main.
@@ -16,12 +16,19 @@ namespace Sakura
             main = mainGameObject.GetComponent<Main>();
         }
 
-        public Main Main
+        public Entity BindToNewEntity(UnityModel unityModel)
         {
-            get
-            {
-                return main;
-            }
+            return main.BindToNewEntity(unityModel);
+        }
+
+        public void UnbindFromEntity(UnityModel unityModel)
+        {
+            main.UnbindFromEntity(unityModel);
+        }
+
+        public void RegisterWindowController(MonoBehaviour windowController)
+        {
+            main.RegisterWindowController(windowController);
         }
     }
 }

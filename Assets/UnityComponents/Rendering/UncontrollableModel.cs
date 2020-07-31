@@ -6,65 +6,26 @@ namespace Sakura
     /// <summary>
     /// A 3D representation of an entity rendered in Unity.
     /// </summary>
-    [RequireComponent(typeof(MainHook))]
-    public sealed class UncontrollableModel : UnityModel
+    [RequireComponent(typeof(UnityModel))]
+    public sealed class UncontrollableModel : MonoBehaviour
     {
-        private Entity entity = null;
-
-        public override Entity Entity
-        {
-            get
-            {
-                return entity;
-            }
-
-            set
-            {
-                entity = value;
-            }
-        }
-
-        public override GameObject GameObject
-        {
-            get
-            {
-                return gameObject;
-            }
-        }
-
-        private MainHook mainHook = null;
+        private UnityModel unityModel = null;
 
         private void Awake()
         {
-            mainHook = GetComponent<MainHook>();
-        }
-
-        private void Start()
-        {
-            if (WasPlacedInEditor)
-            {
-                mainHook.Main.BindToNewEntity(this);
-            }
+            unityModel = GetComponent<UnityModel>();
         }
 
         private void Update()
         {
+            var entity = unityModel.Entity;
             var interpolatedPosition = Vector3.Lerp(transform.position, entity.Location, Time.deltaTime);
             transform.position = interpolatedPosition;
         }
 
         private void OnDestroy()
         {
-            Destroy(gameObject);
-            mainHook.Main.UnbindFromEntity(this);
-        }
-
-        private bool WasPlacedInEditor
-        {
-            get
-            {
-                return entity == null;
-            }
+            Destroy(unityModel);
         }
     }
 }
