@@ -1,4 +1,5 @@
 ﻿using Sakura.Components;
+using Sakura.Input;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,12 +15,15 @@ namespace Sakura
         private MonoBehaviour windowController = null;
         private List<Entity> entities = null;
         private List<UnityModel> models = null;
+        private InputProcessor inputProcessor = null;
+        private new Camera camera = null;
 
         private void Awake()
         {
             playersWallet.Wallet = new Wallet();
             entities = new List<Entity>();
             models = new List<UnityModel>();
+            camera = Camera.main;
         }
 
         public void RegisterWindowController(MonoBehaviour windowController)
@@ -34,7 +38,14 @@ namespace Sakura
         public void BindToNewEntity(UnityModel model)
         {
             var entity = new Entity(model.transform.position, 0.1f);
-            entity.Add(new MoveToDestination(entity, new Vector3(35.13f, 1.13f, -31.63f)));
+            if (model.gameObject.tag == "Player")
+            {
+                inputProcessor = new InputProcessor(camera, entity);
+            }
+            else
+            {
+                entity.Add(new MoveToDestination(entity, new Vector3(35.13f, 1.13f, -31.63f)));
+            }
             entities.Add(entity);
             model.Entity = entity;
             models.Add(model);
@@ -57,6 +68,11 @@ namespace Sakura
             {
                 entity.Update();
             }
+        }
+
+        private void Update()
+        {
+            inputProcessor.ProcessInput();
         }
     }
 }
