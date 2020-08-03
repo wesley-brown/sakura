@@ -168,10 +168,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9084701725514037563}
-  - component: {fileID: 1640464912809784717}
+  - component: {fileID: 6807106443220815373}
+  - component: {fileID: 2892414725134797445}
   - component: {fileID: 6547978706944222536}
   - component: {fileID: 1386005375364827858}
-  - component: {fileID: 7712327395410809939}
+  - component: {fileID: 7933357779483047921}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -195,8 +196,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1640464912809784717
-CharacterController:
+--- !u!136 &6807106443220815373
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -205,14 +206,26 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2892414725134797445
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823991750059615004}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!114 &6547978706944222536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ca868daa57b4135b6a9041a49eea47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7712327395410809939
+--- !u!114 &7933357779483047921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,6 +259,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 823991750059615004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9930dbc8288340e0a47382ad3c0ec6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c881a02224e14ec4b57589488a41e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
