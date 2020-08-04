@@ -2,6 +2,9 @@
 
 namespace Sakura.UnityComponents.Rendering
 {
+    /// <summary>
+    /// A model for an entity.
+    /// </summary>
     [RequireComponent(typeof(MainHook))]
     public sealed class UnityModel : MonoBehaviour, Model
     {
@@ -31,6 +34,15 @@ namespace Sakura.UnityComponents.Rendering
             if (WasPlacedInEditor)
             {
                 entity = mainHook.BindToNewEntity(this);
+            }
+            else
+            {
+                Debug.Log(
+                    "Registered entity '"
+                    + gameObject.name
+                    + "'"
+                    + " at location "
+                    + entity.Location);
             }
         }
 

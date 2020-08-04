@@ -1,4 +1,5 @@
 ﻿using Sakura.Components;
+using Sakura.Config;
 using Sakura.UnityComponents.Rendering;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,22 +9,28 @@ namespace Sakura.Input
 {
     public sealed class InputProcessor
     {
+        private readonly Main main;
         private readonly Camera camera;
         private int layerMask;
         private Entity player;
         private MoveToDestination previousMove;
         private List<Interactable> interactables;
+        private readonly EntityConfig entityConfig;
 
         public InputProcessor(
+            Main main,
             Camera camera,
             Entity player,
-            List<Interactable> interactables)
+            List<Interactable> interactables,
+            EntityConfig entityConfig)
         {
+            this.main = main;
             this.camera = camera;
             layerMask = 1 << LayerMask.NameToLayer("TouchInputRaycastable");
             this.player = player;
             previousMove = new MoveToDestination(player, player.Location);
             this.interactables = interactables;
+            this.entityConfig = entityConfig;
         }
 
         public void ProcessInput()
@@ -65,8 +72,7 @@ namespace Sakura.Input
                 var model = hit.collider.GetComponent<Model>();
                 if (model != null)
                 {
-                    Debug.Log("Adding PrintDebugText component");
-                    model.Entity.Add(new PrintDebugText(model.Entity, "test"));
+                    model.Entity.Add(new SpawnEntity(model.Entity, main, entityConfig));
                 }
             }
         }

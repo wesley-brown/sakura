@@ -1,4 +1,5 @@
 ﻿using Sakura.Components;
+using Sakura.Config;
 using Sakura.Input;
 using Sakura.UnityComponents.Rendering;
 using System.Collections.Generic;
@@ -12,9 +13,13 @@ namespace Sakura
     public sealed class Main : MonoBehaviour
     {
         [SerializeField] private WalletReference playersWallet = null;
+        [SerializeField] private EntityConfig entityConfig = null;
 
         private MonoBehaviour windowController = null;
+
         private List<Entity> entities = null;
+        private List<Entity> entitiesToAdd = null;
+
         private List<Model> models = null;
         private InputProcessor inputProcessor = null;
         private new Camera camera = null;
@@ -23,7 +28,10 @@ namespace Sakura
         private void Awake()
         {
             playersWallet.Wallet = new Wallet();
+
             entities = new List<Entity>();
+            entitiesToAdd = new List<Entity>();
+
             models = new List<Model>();
             camera = Camera.main;
             interactables = new List<Interactable>();
@@ -43,12 +51,17 @@ namespace Sakura
             var entity = new Entity(model.transform.position, 0.1f);
             if (model.gameObject.tag == "Player")
             {
-                inputProcessor = new InputProcessor(camera, entity, interactables);
+                inputProcessor = new InputProcessor(
+                    this,
+                    camera,
+                    entity,
+                    interactables,
+                    entityConfig);
             }
-            else
-            {
-                entity.Add(new MoveToDestination(entity, new Vector3(35.13f, 1.13f, -31.63f)));
-            }
+            //else
+            //{
+            //    entity.Add(new MoveToDestination(entity, new Vector3(35.13f, 1.13f, -31.63f)));
+            //}
             entities.Add(entity);
             models.Add(model);
             Debug.Log(
@@ -65,8 +78,26 @@ namespace Sakura
             models.Remove(model);
         }
 
+        /// <summary>
+        /// Spawn a new entity on the next tick.
+        /// </summary>
+        /// <returns>The spawned entity.</returns>
+        public Entity SpawnEntity()
+        {
+            var entity = new Entity(Vector3.zero, 0.1f);
+            entitiesToAdd.Add(entity);
+            return entity;
+        }
+
         private void FixedUpdate()
         {
+            // Add any entities waiting to be added
+            foreach (var entity in entitiesToAdd)
+            {
+                entities.Add(entity);
+            }
+            entitiesToAdd.Clear();
+
             foreach (var entity in entities)
             {
                 entity.Update();

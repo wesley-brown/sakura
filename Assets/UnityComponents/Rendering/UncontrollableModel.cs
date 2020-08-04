@@ -19,8 +19,11 @@ namespace Sakura
         private void Update()
         {
             var entity = unityModel.Entity;
-            var interpolatedPosition = Vector3.Lerp(transform.position, entity.Location, Time.deltaTime);
-            transform.position = interpolatedPosition;
+            if (transform.position != entity.Location)
+            {
+                var interpolatedPosition = Vector3.Lerp(transform.position, entity.Location, Time.deltaTime);
+                transform.position = interpolatedPosition;
+            }
         }
 
         private void OnDestroy()
