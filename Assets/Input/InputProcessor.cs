@@ -1,4 +1,6 @@
 ﻿using Sakura.Components;
+using Sakura.UnityComponents.Rendering;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,13 +12,18 @@ namespace Sakura.Input
         private int layerMask;
         private Entity player;
         private MoveToDestination previousMove;
+        private List<Interactable> interactables;
 
-        public InputProcessor(Camera camera, Entity player)
+        public InputProcessor(
+            Camera camera,
+            Entity player,
+            List<Interactable> interactables)
         {
             this.camera = camera;
             layerMask = 1 << LayerMask.NameToLayer("TouchInputRaycastable");
             this.player = player;
             previousMove = new MoveToDestination(player, player.Location);
+            this.interactables = interactables;
         }
 
         public void ProcessInput()
@@ -52,11 +59,31 @@ namespace Sakura.Input
                 player.Remove(previousMove);
                 player.Add(new MoveToDestination(player, destination));
             }
+
+            if (TouchedInteractable(hit))
+            {
+                var model = hit.collider.GetComponent<Model>();
+                if (model != null)
+                {
+                    Debug.Log("Adding PrintDebugText component");
+                    model.Entity.Add(new PrintDebugText(model.Entity, "test"));
+                }
+            }
         }
 
         private static bool ScreenWasTouched()
         {
             return (UnityEngine.Input.touchCount > 0);
+        }
+
+        private bool TouchedInteractable(RaycastHit hit)
+        {            
+            var hitInteractable = hit.collider.CompareTag("Interactable");
+            if (hitInteractable)
+            {
+                Debug.Log("Touched interactable");
+            }
+            return hitInteractable;
         }
     }
 }
