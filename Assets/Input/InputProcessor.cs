@@ -72,7 +72,8 @@ namespace Sakura.Input
                 var model = hit.collider.GetComponent<Model>();
                 if (model != null)
                 {
-                    model.Entity.Add(new SpawnEntity(model.Entity, main, entityConfig));
+                    //model.Entity.Add(new SpawnEntity(model.Entity, main, entityConfig));
+                    hit.collider.gameObject.SendMessage("React", SendMessageOptions.DontRequireReceiver);
                 }
             }
         }

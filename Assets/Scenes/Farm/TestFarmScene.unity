@@ -2221,6 +2221,7 @@ GameObject:
   - component: {fileID: 79902239337625197}
   - component: {fileID: 79902239337625196}
   - component: {fileID: 79902239337625198}
+  - component: {fileID: 79902239337625199}
   m_Layer: 9
   m_Name: EmptyTilledSoil (1)
   m_TagString: Interactable
@@ -2277,6 +2278,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9930dbc8288340e0a47382ad3c0ec6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &79902239337625199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79902239337625194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923065dcc3cc84076a6cb3c775f0c465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3544646611625937056, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
 --- !u!4 &299504830773821754
 Transform:
   m_ObjectHideFlags: 0
