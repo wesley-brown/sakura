@@ -1,5 +1,6 @@
 ﻿using Sakura.Components;
 using Sakura.Config;
+using Sakura.Interactions;
 using Sakura.UnityComponents.Rendering;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,8 +74,9 @@ namespace Sakura.Input
                 if (model != null)
                 {
                     //model.Entity.Add(new SpawnEntity(model.Entity, main, entityConfig));
-                    hit.collider.gameObject.SendMessage("React", player, SendMessageOptions.DontRequireReceiver);
+                    //hit.collider.gameObject.SendMessage("React", player, SendMessageOptions.DontRequireReceiver);
                 }
+                hit.collider.GetComponent<Interaction>().React();
             }
         }
 

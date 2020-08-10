@@ -19,7 +19,8 @@ namespace Sakura
             {
                 var target = GameObject.FindGameObjectWithTag(tagToCheckFor);
                 var distance =
-                    target.transform.position - transform.root.position;
+                    target.transform.position - transform.position;
+                Destroy(this);
                 return distance.magnitude <= maximumDistance;
             }
         }

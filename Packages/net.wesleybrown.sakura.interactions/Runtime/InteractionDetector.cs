@@ -48,7 +48,7 @@ namespace Sakura.Interactions
         {
             foreach (var interaction in interactions)
             {
-                interaction.Interact();
+                interaction.React();
             }
         }
     }

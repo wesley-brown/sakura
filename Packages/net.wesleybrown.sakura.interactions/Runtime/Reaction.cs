@@ -6,14 +6,19 @@ namespace Sakura.Interactions
     /// <summary>
     /// A reaction.
     /// </summary>
+    [DisallowMultipleComponent]
     public sealed class Reaction : MonoBehaviour
     {
         [SerializeField]
         private UnityEvent onInteract = null;
 
+        [SerializeField] private GameObject nextStage = null;
+
         public void React()
         {
-            onInteract.Invoke();
+            Instantiate(nextStage, transform);
+            Destroy(gameObject);
+            //onInteract.Invoke();
         }
     }
 

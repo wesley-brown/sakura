@@ -1,37 +1,36 @@
-﻿using UnityEngine;
+﻿using Sakura.Interactions.Conditions;
+using UnityEngine;
 
-namespace Sakura.Interactions
+namespace Sakura
 {
     /// <summary>
     /// An interaction.
     /// </summary>
-    [RequireComponent(typeof(Reaction))]
+    [RequireComponent(typeof(Transform))]
     public sealed class Interaction : MonoBehaviour
     {
+        [SerializeField] private GameObject reaction = null;
         private Condition[] conditions = null;
-        private Reaction reaction = null;
 
         private void Awake()
         {
-            conditions = GetComponentsInChildren<Condition>();
-            reaction = GetComponentInChildren<Reaction>();
+            conditions = GetComponents<Condition>();
         }
 
-        public void Interact()
+        public void React()
         {
-            bool allConditionsMet = true;
+            var allConditionsHaveBeenMet = true;
             foreach (var condition in conditions)
             {
                 if (!condition.IsTrue)
                 {
-                    allConditionsMet = false;
-                    break;
+                    allConditionsHaveBeenMet = false;
                 }
             }
-
-            if (allConditionsMet)
+            if (allConditionsHaveBeenMet)
             {
-                reaction.React();
+                Instantiate(reaction, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
     }
