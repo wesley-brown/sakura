@@ -1,7 +1,7 @@
 ﻿using Sakura.UnityComponents.Rendering;
 using UnityEngine;
 
-namespace Sakura.UI
+namespace Sakura.UI.Windows
 {
     /// <summary>
     /// An MVC controller for a window with a game object as its contet view.

@@ -1,5 +1,5 @@
 ﻿using Sakura.Entities;
-using Sakura.UI;
+using Sakura.UI.Windows;
 using UnityEngine;
 
 namespace Sakura.InventoryUI
