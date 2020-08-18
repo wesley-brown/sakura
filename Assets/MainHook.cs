@@ -30,5 +30,13 @@ namespace Sakura.UnityComponents.Rendering
         {
             main.RegisterWindowController(windowController);
         }
+
+        public Entity Player
+        {
+            get
+            {
+                return main.Player;
+            }
+        }
     }
 }

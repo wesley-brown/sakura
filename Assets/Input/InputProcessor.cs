@@ -1,10 +1,12 @@
 ﻿using Sakura.Components;
 using Sakura.Config;
+using Sakura.Events.Interactions;
 using Sakura.Interactions;
 using Sakura.UnityComponents.Rendering;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Interactable = Sakura.Components.Interactable;
 
 namespace Sakura.Input
 {
@@ -76,7 +78,18 @@ namespace Sakura.Input
                     //model.Entity.Add(new SpawnEntity(model.Entity, main, entityConfig));
                     //hit.collider.gameObject.SendMessage("React", player, SendMessageOptions.DontRequireReceiver);
                 }
-                hit.collider.GetComponent<Interaction>().React();
+                var interaction = hit.collider.GetComponent<Interaction>();
+                if (interaction != null)
+                {
+                    interaction.React();
+                }
+                var gameObject = hit.collider.gameObject;
+                ExecuteEvents.Execute<InteractionReceiver>(
+                    gameObject,
+                    null,
+                    (interactionReceiver, eventData) => {
+                        interactionReceiver.Receive(new Events.Interactions.Interaction(null));
+                });
             }
         }
 

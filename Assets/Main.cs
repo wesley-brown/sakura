@@ -24,6 +24,7 @@ namespace Sakura
         private InputProcessor inputProcessor = null;
         private new Camera camera = null;
         private List<Interactable> interactables = null;
+        private Entity player = null;
 
         private void Awake()
         {
@@ -35,6 +36,14 @@ namespace Sakura
             models = new List<Model>();
             camera = Camera.main;
             interactables = new List<Interactable>();
+        }
+
+        public Entity Player
+        {
+            get
+            {
+                return player;
+            }
         }
 
         public void RegisterWindowController(MonoBehaviour windowController)
@@ -57,6 +66,7 @@ namespace Sakura
                     entity,
                     interactables,
                     entityConfig);
+                player = entity;
             }
             //else
             //{
