@@ -1,4 +1,5 @@
-﻿using Sakura.UnityComponents.Rendering;
+﻿using Sakura.Instantiation.UI.Windows;
+using Sakura.UnityComponents.Rendering;
 using UnityEngine;
 
 namespace Sakura.UI.Windows
@@ -15,12 +16,20 @@ namespace Sakura.UI.Windows
     /// all the others.
     /// </remarks>
     [RequireComponent(typeof(MainHook))]
-    public sealed class WindowController : MonoBehaviour
+    public sealed class WindowController : MonoBehaviour, WindowCreationHandler
     {
+        private GameObject creator = null;
+
         private void Start()
         {
             var mainHook = GetComponent<MainHook>();
             mainHook.RegisterWindowController(this);
+        }
+
+        public void OnWindowCreated(WindowCreated windowCreated)
+        {
+            creator = windowCreated.Creator;
+            Debug.Log("Creator = " + creator.name);
         }
 
         private void OnDestroy()
