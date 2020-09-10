@@ -109,7 +109,7 @@ PrefabInstance:
     - target: {fileID: 8776092553053997961, guid: 2cb0615b1d0be4c5693ea745ee811c8c,
         type: 3}
       propertyPath: m_Name
-      value: model_plot_empty
+      value: model_plot_empty_1x1
       objectReference: {fileID: 0}
     - target: {fileID: 4495438560896437431, guid: 2cb0615b1d0be4c5693ea745ee811c8c,
         type: 3}
