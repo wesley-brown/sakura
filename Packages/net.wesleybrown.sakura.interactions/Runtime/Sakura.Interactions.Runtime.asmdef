@@ -1,8 +1,6 @@
 {
     "name": "Sakura.Interactions.Runtime",
-    "references": [
-        "Sakura.Entities.Runtime"
-    ],
+    "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],

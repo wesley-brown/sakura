@@ -3,7 +3,6 @@
     "references": [
         "Sakura.Inventories.Runtime",
         "Sakura.Interactions.Runtime",
-        "Sakura.Entities.Runtime",
         "Sakura.Parameters.Runtime",
         "Sakura.Events.Runtime",
         "Unity.TextMeshPro"
