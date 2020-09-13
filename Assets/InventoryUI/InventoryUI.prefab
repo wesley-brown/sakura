@@ -713,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 4650285253099580281, guid: 0ac4b82d10ad04ef78ddcab43c41f814,
         type: 3}
       propertyPath: m_Name
-      value: NewInventoryPanel
+      value: InventoryPanel
       objectReference: {fileID: 0}
     - target: {fileID: 954086345725777810, guid: 0ac4b82d10ad04ef78ddcab43c41f814,
         type: 3}

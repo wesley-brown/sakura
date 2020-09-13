@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Sakura.InventoryUI
 {
-    public sealed class NewInventoryUIViewController : MonoBehaviour
+    public sealed class InventoryUIViewController : MonoBehaviour
     {
         [SerializeField]
         private InventoryReference inventoryReference = null;

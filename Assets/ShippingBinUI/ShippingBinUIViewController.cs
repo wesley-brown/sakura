@@ -10,9 +10,9 @@ namespace Sakura
     public sealed class ShippingBinUIViewController : MonoBehaviour
     {
         [SerializeField]
-        private NewInventoryUIViewController sellPanel = null;
+        private InventoryUIViewController sellPanel = null;
         [SerializeField]
-        private NewInventoryUIViewController keepPanel = null;
+        private InventoryUIViewController keepPanel = null;
         [SerializeField]
         private InventoryReference playersInventory = null;
         [SerializeField]
