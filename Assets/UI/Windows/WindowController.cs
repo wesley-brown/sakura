@@ -34,6 +34,7 @@ namespace Sakura.UI.Windows
 
         private void OnDestroy()
         {
+            Destroy(creator);
             Destroy(gameObject);
         }
     }
