@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 1169656645284624004}
   - component: {fileID: 7019427757952780111}
   - component: {fileID: 2122053402166749315}
+  - component: {fileID: 4539758724504181560}
   m_Layer: 9
-  m_Name: plot_empty
+  m_Name: plot_empty_1x1
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +100,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8441316371529076020, guid: 459cf36b1e5404a6586a3004b4f3737b, type: 3}
+--- !u!114 &4539758724504181560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527146012106230018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d95aa7251ad434291a70dd3780e859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8328668285903146817
 PrefabInstance:
   m_ObjectHideFlags: 0
