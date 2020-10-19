@@ -1,6 +1,7 @@
 ﻿using Sakura.Instantiation.UI.Windows;
 using Sakura.UnityComponents.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sakura.UI.Windows
 {
@@ -15,6 +16,8 @@ namespace Sakura.UI.Windows
     /// ran its Start method to act as the one "window" on screen, destroying
     /// all the others.
     /// </remarks>
+    [RequireComponent(typeof(Canvas))]
+    [RequireComponent(typeof(GraphicRaycaster))]
     [RequireComponent(typeof(MainHook))]
     public sealed class WindowController : MonoBehaviour, WindowCreationHandler
     {
@@ -30,6 +33,14 @@ namespace Sakura.UI.Windows
         {
             creator = windowCreated.Creator;
             Debug.Log("Creator = " + creator.name);
+        }
+
+        /// <summary>
+        /// Close this window controlled by this window controller.
+        /// </summary>
+        public void CloseWindow()
+        {
+            Destroy(gameObject);
         }
 
         private void OnDestroy()
