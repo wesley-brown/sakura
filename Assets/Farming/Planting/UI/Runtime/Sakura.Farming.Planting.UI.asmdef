@@ -1,0 +1,14 @@
+{
+    "name": "Sakura.Farming.Planting.UI",
+    "references": [
+        "Sakura.Runtime"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
