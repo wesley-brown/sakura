@@ -1,10 +1,10 @@
 ﻿using Sakura.UI.Windows;
 using UnityEngine;
 
-namespace Sakura.InventoryUI
+namespace Sakura.PlantSeed.UI
 {
     [RequireComponent(typeof(WindowController))]
-    public sealed class SeedSelectionUIViewController : MonoBehaviour
+    public sealed class Screen : MonoBehaviour
     {
         [SerializeField] private GameObject HUD = null;
 
