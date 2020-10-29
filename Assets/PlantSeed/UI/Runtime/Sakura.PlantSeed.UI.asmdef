@@ -1,6 +1,7 @@
 {
-    "name": "Sakura.Farming.Planting.UI",
+    "name": "Sakura.PlantSeed.UI",
     "references": [
+        "Sakura.UI",
         "Sakura.Runtime"
     ],
     "optionalUnityReferences": [],
