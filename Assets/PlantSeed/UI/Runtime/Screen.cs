@@ -1,16 +1,21 @@
-﻿using Sakura.UI.Windows;
+﻿using Sakura.UI;
 using UnityEngine;
 
 namespace Sakura.PlantSeed.UI
 {
-    [RequireComponent(typeof(WindowController))]
     public sealed class Screen : MonoBehaviour
     {
         [SerializeField] private GameObject HUD = null;
+        private Window window = null;
+
+        private void Awake()
+        {
+            window = GetComponent<Window>();
+        }
 
         public void Cancel()
         {
-            Instantiate(HUD);
+            window.Close();
         }
     }
 }

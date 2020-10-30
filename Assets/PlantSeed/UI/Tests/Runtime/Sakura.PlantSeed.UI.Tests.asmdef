@@ -1,9 +1,12 @@
 {
-    "name": "Sakura.PlantSeed.UI",
+    "name": "Sakura.PlantSeed.UI.Tests",
     "references": [
+        "Sakura.PlantSeed.UI",
         "Sakura.UI"
     ],
-    "optionalUnityReferences": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
