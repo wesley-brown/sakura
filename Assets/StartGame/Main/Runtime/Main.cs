@@ -5,7 +5,7 @@ using Sakura.UnityComponents.Rendering;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sakura
+namespace Sakura.StartGame.Main
 {
     /// <summary>
     /// Acts as the main function.

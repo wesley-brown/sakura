@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sakura.StartGame.Main;
+using UnityEngine;
 
 namespace Sakura.UnityComponents.Rendering
 {
