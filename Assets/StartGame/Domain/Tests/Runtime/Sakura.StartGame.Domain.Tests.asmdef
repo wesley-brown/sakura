@@ -1,0 +1,16 @@
+{
+    "name": "Sakura.StartGame.Domain.Tests",
+    "references": [
+        "Sakura.StartGame.Domain"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
