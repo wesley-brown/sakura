@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sakura.StartGame.Domain
 {
@@ -7,16 +8,32 @@ namespace Sakura.StartGame.Domain
     /// </summary>
     public sealed class EventBus : MonoBehaviour
     {
-        [SerializeField] private Simulation simulation = null;
+        [Header("Parameters")]
+        public Simulation forSimulation = null;
+
+        private Simulation simulation = null;
+
+        private void Start()
+        {
+            if (!forSimulation)
+            {
+                throw new InvalidOperationException(
+                    "forSimulation must not be null");
+            }
+            else
+            {
+                simulation = forSimulation;
+                forSimulation = null;
+            }
+        }
 
         /// <summary>
         /// Register a given entity.
         /// </summary>
         /// <param name="entity">The entity to register.</param>
-        /// <returns>True</returns>
-        public bool Register(Entity entity)
+        public void Register(Entity entity)
         {
-            return true;
+            simulation.Include(entity);
         }
     }
 }
