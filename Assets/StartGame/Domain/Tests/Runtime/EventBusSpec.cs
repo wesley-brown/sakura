@@ -8,11 +8,14 @@ namespace Sakura.StartGame.Domain.Tests
         [Test]
         public void Registering_an_unregistered_entity_succeeds()
         {
-            var eventBus = ScriptableObject.CreateInstance<EventBus>();
+            var eventBusGameObject = new GameObject("Event Bus");
+            var eventBus = eventBusGameObject.AddComponent<EventBus>();
             var player = new GameObject("Player");
             var playerEntity = player.AddComponent<Entity>();
             var playerWasRegistered = eventBus.Register(playerEntity);
             Assert.That(playerWasRegistered, Is.True);
+            Object.Destroy(eventBusGameObject);
+            Object.Destroy(player);
         }
     }
 }
