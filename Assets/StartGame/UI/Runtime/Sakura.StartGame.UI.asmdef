@@ -1,0 +1,14 @@
+{
+    "name": "Sakura.StartGame.UI",
+    "references": [
+        "Sakura.StartGame.Domain"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
