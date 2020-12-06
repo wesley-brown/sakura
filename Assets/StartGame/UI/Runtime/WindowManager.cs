@@ -11,14 +11,23 @@ namespace Sakura.StartGame.UI
     {
         [Header("Initialization")]
         public EventBus communicatesWith = null;
+        public Window initialWindow = null;
+
+        private Window activeWindow = null;
+
+        public Window ActiveWindow
+        {
+            get
+            {
+                return activeWindow;
+            }
+        }
 
         private void Start()
         {
-            if (!communicatesWith)
-            {
-                throw new InvalidOperationException(
-                    "communicatesWith must not be null");
-            }
+            if (!communicatesWith) throw new InvalidOperationException(
+                "communicatesWith must not be null");
+            activeWindow = initialWindow;
         }
     }
 }
