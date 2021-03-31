@@ -28,6 +28,8 @@ namespace Sakura.Identifiers.Client
 
         public void ClaimIDFor(Guid ID, int instanceID)
         {
+            if (IsClaimed(ID))
+                throw new EntityIdAlreadyClaimed();
             registry.ClaimIdFor(ID, instanceID);
         }
     }

@@ -27,6 +27,10 @@ namespace Sakura.Identifiers.Client
         /// <param name="gameObjectId">
         ///     The instance ID of the game object to make the claim for.
         /// </param>
+        /// <exception cref="EntityIdAlreadyClaimed">
+        ///     Thrown when the entity with the given ID has already been
+        ///     claimed.
+        /// </exception>
         void ClaimIDFor(Guid ID, int instanceID);
     }
 }
