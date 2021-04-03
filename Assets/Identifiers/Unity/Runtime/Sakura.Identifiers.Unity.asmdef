@@ -1,0 +1,16 @@
+{
+    "name": "Sakura.Identifiers.Unity",
+    "references": [
+        "GUID:21b340ae0deaa4082b3db8e756abc78a",
+        "GUID:ba5b84c35372a443da97f9e9b79973ba"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
