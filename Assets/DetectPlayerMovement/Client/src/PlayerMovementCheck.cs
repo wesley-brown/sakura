@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sakura.DetectPlayerMovement.Client
 {
@@ -48,8 +49,14 @@ namespace Sakura.DetectPlayerMovement.Client
         /// <returns>
         ///     The player's desired destination last frame.
         /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     Thrown when there is no desired destination for the last
+        ///     frame.
+        /// </exception>
         public Vector3 DesiredDestination()
         {
+            if (!PlayerMovedLastFrame())
+                throw new InvalidOperationException();
             return allDestinationInputs.PreviousFrameDestination();
         }
     }

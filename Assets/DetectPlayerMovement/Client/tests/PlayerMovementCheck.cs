@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Sakura.DetectPlayerMovement.Client;
 
 namespace PlayerMovementCheckSpec
@@ -16,6 +17,22 @@ namespace PlayerMovementCheckSpec
             Assert.AreEqual(
                 alwaysMoving.Destination,
                 destination);
+        }
+    }
+
+    [TestFixture]
+    public class When_the_player_did_not_move_during_the_previous_frame
+    {
+        [Test]
+        public void There_is_no_desired_destination()
+        {
+            var neverMoving = new NeverMoving();
+            var check = PlayerMovementCheck.Against(neverMoving);
+            Assert.IsFalse(check.PlayerMovedLastFrame());
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                check.DesiredDestination();
+            });
         }
     }
 }
