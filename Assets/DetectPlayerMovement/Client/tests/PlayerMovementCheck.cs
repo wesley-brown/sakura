@@ -5,6 +5,19 @@ using Sakura.DetectPlayerMovement.Client;
 namespace PlayerMovementCheckSpec
 {
     [TestFixture]
+    public class A_player_movement_check
+    {
+        [Test]
+        public void Throws_if_created_without_all_destination_inputs()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                PlayerMovementCheck.Against(null);
+            });
+        }
+    }
+
+    [TestFixture]
     public class When_the_player_moved_during_the_previous_frame
     {
         [Test]

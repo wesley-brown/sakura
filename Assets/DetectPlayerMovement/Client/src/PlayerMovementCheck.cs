@@ -19,9 +19,14 @@ namespace Sakura.DetectPlayerMovement.Client
         ///     A new player movement check against the given collection of all
         ///     destination inputs.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the collection of all destination inputs is null.
+        /// </exception>
         public static PlayerMovementCheck Against(
             AllDestinationInputs allDestinationInputs)
         {
+            if (allDestinationInputs == null)
+                throw new ArgumentNullException(nameof(allDestinationInputs));
             return new PlayerMovementCheck(allDestinationInputs);
         }
 
