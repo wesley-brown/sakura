@@ -1,7 +1,6 @@
-﻿using Sakura.DetectPlayerMovement.Client;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace PlayerMovementCheckSpec
+namespace Sakura.DetectPlayerMovement.Client.Tests
 {
     /// <summary>
     ///     A collection of all destination inputs for which the player is

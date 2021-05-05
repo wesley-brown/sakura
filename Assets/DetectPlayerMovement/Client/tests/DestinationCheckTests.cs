@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using Sakura.DetectPlayerMovement.Client;
 
-namespace PlayerMovementCheckSpec
+namespace Sakura.DetectPlayerMovement.Client.Tests
 {
     [TestFixture]
     public class A_player_movement_check
@@ -12,7 +11,7 @@ namespace PlayerMovementCheckSpec
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                PlayerMovementCheck.Against(null);
+                DestinationCheck.Against(null);
             });
         }
     }
@@ -24,7 +23,7 @@ namespace PlayerMovementCheckSpec
         public void There_is_a_desired_destination()
         {
             var alwaysMoving = new AlwaysMoving();
-            var check = PlayerMovementCheck.Against(alwaysMoving);
+            var check = DestinationCheck.Against(alwaysMoving);
             Assert.IsTrue(check.PlayerMovedLastFrame());
             var destination = check.DesiredDestination();
             Assert.AreEqual(
@@ -40,7 +39,7 @@ namespace PlayerMovementCheckSpec
         public void There_is_no_desired_destination()
         {
             var neverMoving = new NeverMoving();
-            var check = PlayerMovementCheck.Against(neverMoving);
+            var check = DestinationCheck.Against(neverMoving);
             Assert.IsFalse(check.PlayerMovedLastFrame());
             Assert.Throws<InvalidOperationException>(() =>
             {

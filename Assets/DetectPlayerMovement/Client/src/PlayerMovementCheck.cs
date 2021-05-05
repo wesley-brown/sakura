@@ -6,47 +6,15 @@ namespace Sakura.DetectPlayerMovement.Client
     /// <summary>
     ///     A check to see that the player moved last frame.
     /// </summary>
-    public sealed class PlayerMovementCheck
+    public interface PlayerMovementCheck
     {
-        /// <summary>
-        ///     Create a new player movement check against a colleciton of all
-        ///     destination inputs.
-        /// </summary>
-        /// <param name="allDestinationInputs">
-        ///     The collection of all destination inputs.
-        /// </param>
-        /// <returns>
-        ///     A new player movement check against the given collection of all
-        ///     destination inputs.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown when the collection of all destination inputs is null.
-        /// </exception>
-        public static PlayerMovementCheck Against(
-            AllDestinationInputs allDestinationInputs)
-        {
-            if (allDestinationInputs == null)
-                throw new ArgumentNullException(nameof(allDestinationInputs));
-            return new PlayerMovementCheck(allDestinationInputs);
-        }
-
-        private readonly AllDestinationInputs allDestinationInputs;
-
-        private PlayerMovementCheck(AllDestinationInputs allDestinationInputs)
-        {
-            this.allDestinationInputs = allDestinationInputs;
-        }
-
         /// <summary>
         ///     Whether or not the player moved last frame.
         /// </summary>
         /// <returns>
         ///     True if the player moved last frame; false otherwise.
         /// </returns>
-        public bool PlayerMovedLastFrame()
-        {
-            return allDestinationInputs.CapturedInputPreviousFrame();
-        }
+        bool PlayerMovedLastFrame();
 
         /// <summary>
         ///     The player's desired destination last frame.
@@ -58,11 +26,6 @@ namespace Sakura.DetectPlayerMovement.Client
         ///     Thrown when there is no desired destination for the last
         ///     frame.
         /// </exception>
-        public Vector3 DesiredDestination()
-        {
-            if (!PlayerMovedLastFrame())
-                throw new InvalidOperationException();
-            return allDestinationInputs.PreviousFrameDestination();
-        }
+        Vector3 DesiredDestination();
     }
 }
