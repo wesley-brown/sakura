@@ -1,0 +1,16 @@
+{
+    "name": "Sakura.DetectPlayerMovement.Unity",
+    "references": [
+        "GUID:7d972f4cebd064b8c84b4d06c3f7e088",
+        "GUID:8023e7e9293a74d48b7262bb677a826b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
