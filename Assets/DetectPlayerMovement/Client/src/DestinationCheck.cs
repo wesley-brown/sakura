@@ -49,5 +49,15 @@ namespace Sakura.DetectPlayerMovement.Client
                 throw new InvalidOperationException();
             return allDestinationInputs.PreviousFrameDestination();
         }
+
+        public override string ToString()
+        {
+            return "{"
+                + "PlayerMovedLastFrame="
+                + PlayerMovedLastFrame()
+                + ", DesiredDestination="
+                + DesiredDestination()
+                + "}";
+        }
     }
 }

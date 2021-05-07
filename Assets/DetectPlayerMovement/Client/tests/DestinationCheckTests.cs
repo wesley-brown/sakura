@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Sakura.DetectPlayerMovement.Client.Tests
 {
     [TestFixture]
-    public class A_player_movement_check
+    public class A_destination_check
     {
         [Test]
         public void Throws_if_created_without_all_destination_inputs()
@@ -29,6 +29,20 @@ namespace Sakura.DetectPlayerMovement.Client.Tests
             Assert.AreEqual(
                 alwaysMoving.Destination,
                 destination);
+        }
+
+        [Test]
+        public void The_desired_destination_is_in_the_string_representation()
+        {
+            var alwaysMoving = new AlwaysMoving();
+            var check = DestinationCheck.Against(alwaysMoving);
+            var expectedString = "{"
+                + "PlayerMovedLastFrame="
+                + check.PlayerMovedLastFrame()
+                + ", DesiredDestination="
+                + check.DesiredDestination()
+                + "}";
+            Assert.AreEqual(expectedString, check.ToString());
         }
     }
 
