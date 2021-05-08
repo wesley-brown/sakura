@@ -60,5 +60,17 @@ namespace Sakura.DetectPlayerMovement.Client.Tests
                 check.DesiredDestination();
             });
         }
+
+        [Test]
+        public void The_desired_destination_is_not_in_the_string_representation()
+        {
+            var neverMoving = new NeverMoving();
+            var check = DestinationCheck.Against(neverMoving);
+            var expectedString = "{"
+                + "PlayerMovedLastFrame="
+                + check.PlayerMovedLastFrame()
+                + "}";
+            Assert.AreEqual(expectedString, check.ToString());
+        }
     }
 }

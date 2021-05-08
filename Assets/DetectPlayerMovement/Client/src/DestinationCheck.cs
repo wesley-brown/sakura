@@ -52,12 +52,14 @@ namespace Sakura.DetectPlayerMovement.Client
 
         public override string ToString()
         {
-            return "{"
+            var representation = "{"
                 + "PlayerMovedLastFrame="
-                + PlayerMovedLastFrame()
-                + ", DesiredDestination="
-                + DesiredDestination()
-                + "}";
+                + PlayerMovedLastFrame();
+            if (PlayerMovedLastFrame())
+                representation += ", DesiredDestination="
+                    + DesiredDestination();
+            representation += "}";
+            return representation;
         }
     }
 }
