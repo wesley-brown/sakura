@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Sakura.Core.Bodies
 {
@@ -7,18 +8,51 @@ namespace Sakura.Core.Bodies
     /// </summary>
     public sealed class Body
     {
+        private readonly Guid entityID;
+        private readonly Vector3 location;
+
         /// <summary>
-        ///     Create a new body with a given entity ID.
+        ///     Create a new body with a given entity ID and a given location.
         /// </summary>
         /// <param name="entityID">
         ///     The entity ID.
         /// </param>
-        public Body(Guid entityID)
+        /// <param name="location">
+        ///     The location.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the given entity ID is the nil UUID.
+        /// </exception>
+        public Body(
+            Guid entityID,
+            Vector3 location)
         {
             if (entityID == Guid.Empty)
                 throw new ArgumentException(
                     "A body must not be created with the nil UUID",
                     nameof(entityID));
+            this.entityID = entityID;
+            this.location = location;
+        }
+
+        public Guid EntityID()
+        {
+            return entityID;
+        }
+
+        public Vector3 Location()
+        {
+            return location;
+        }
+
+        public override string ToString()
+        {
+            return "{"
+                + "EntityID="
+                + EntityID()
+                + ", Location="
+                + Location()
+                + "}";
         }
     }
 }
