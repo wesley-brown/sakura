@@ -40,13 +40,26 @@ namespace Sakura.Core.Bodies.Tests
         [Test]
         public void Have_the_same_hash_codes()
         {
-            var ID = new Guid("945b1142-2cb1-4df0-ba4e-901c028fce56");
-            var location = new Vector3(12.0f, 4.5f, 1.25f);
-            var body = new Body(ID, location);
-            var duplicateBody = new Body(ID, location);
+            var body = CreateBody();
+            var duplicateBody = CreateBody();
             Assert.AreEqual(
                 duplicateBody.GetHashCode(),
                 body.GetHashCode());
+        }
+
+        [Test]
+        public void Are_equal()
+        {
+            var body = CreateBody();
+            var duplicateBody = CreateBody();
+            Assert.IsTrue(duplicateBody.Equals(body));
+        }
+
+        private Body CreateBody()
+        {
+            var ID = new Guid("945b1142-2cb1-4df0-ba4e-901c028fce56");
+            var location = new Vector3(12.0f, 4.5f, 1.25f);
+            return new Body(ID, location);
         }
     }
 }
