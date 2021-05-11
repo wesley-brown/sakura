@@ -1,9 +1,9 @@
 {
-    "name": "Sakura.Core.Bodies.Tests",
+    "name": "Sakura.Core.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Sakura.Core.Bodies"
+        "Sakura.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Sakura.Core.Bodies
+namespace Sakura.Core
 {
     /// <summary>
     ///     A physical representation of an entity.
@@ -10,6 +10,7 @@ namespace Sakura.Core.Bodies
     {
         private readonly Guid entityID;
         private readonly Vector3 location;
+        private readonly string test;
 
         /// <summary>
         ///     Create a new body with a given entity ID and a given location.

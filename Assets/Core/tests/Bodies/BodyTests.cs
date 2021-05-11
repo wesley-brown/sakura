@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Sakura.Core.Bodies.Tests
+namespace Sakura.Core.Tests
 {
     [TestFixture]
     public class A_body
