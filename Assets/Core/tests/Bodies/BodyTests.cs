@@ -32,6 +32,17 @@ namespace Sakura.Core.Bodies.Tests
                 + "}";
             Assert.AreEqual(expectedString, body.ToString());
         }
+
+        [Test]
+        public void Can_be_moved_to_a_location()
+        {
+            var ID = new Guid("33294153-8a13-4a1d-b1b9-a8ae744463b2");
+            var startingLocation = new Vector3(1.0f, 1.0f, 1.0f);
+            var body = new Body(ID, startingLocation);
+            var newLocation = new Vector3(5.0f, 0.0f, 2.0f);
+            body = body.MoveTo(newLocation);
+            Assert.AreEqual(newLocation, body.Location());
+        }
     }
 
     [TestFixture]

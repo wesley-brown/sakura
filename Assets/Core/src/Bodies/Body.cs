@@ -45,6 +45,24 @@ namespace Sakura.Core.Bodies
             return location;
         }
 
+        /// <summary>
+        ///     Create a new <see cref="Body"/> representing the same entity as
+        ///     this instance that moves to a given location.
+        /// </summary>
+        /// <param name="location">
+        ///     The location of the new <see cref="Body"/>.
+        /// </param>
+        /// <returns>
+        ///     A new <see cref="Body"/> representing the same entity as this
+        ///     instance that has been moved to the given location.
+        /// </returns>
+        public Body MoveTo(Vector3 location)
+        {
+            return new Body(
+                EntityID(),
+                location);
+        }
+
         public override string ToString()
         {
             return "{"
