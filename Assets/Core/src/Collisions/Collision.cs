@@ -21,14 +21,25 @@ namespace Sakura.Core
         ///     A newly created collision between the given colliding body and
         ///     the other given body.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given colliding body is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given other body is null.
+        /// </exception>
         public static Collision ForBodyCollidingWithOther(
             Body collider,
             Body other)
         {
             if (collider == null)
                 throw new ArgumentNullException(
-                    "The given collider must not be null",
-                    nameof(collider));
+                    nameof(collider),
+                    "The given colliding body must not be null");
+            if (other == null)
+                throw new ArgumentNullException(
+                    nameof(other),
+                    "The given other body must not be null");
             return null;
         }
     }
