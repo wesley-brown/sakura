@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Sakura.Core
 {
@@ -7,6 +8,9 @@ namespace Sakura.Core
     /// </summary>
     public sealed class Collision
     {
+        private readonly Body collider;
+        private readonly Body other;
+
         /// <summary>
         ///     Create a new collision between a given colliding body and
         ///     another given body.
@@ -40,7 +44,43 @@ namespace Sakura.Core
                 throw new ArgumentNullException(
                     nameof(other),
                     "The given other body must not be null");
-            return null;
+            return new Collision(
+                collider,
+                other);
+        }
+
+        private Collision(
+            Body collider,
+            Body other)
+        {
+            Debug.Assert(
+                collider != null,
+                "The given colliding body was null");
+            this.collider = collider;
+            Debug.Assert(
+                other != null,
+                "The given other body was null");
+            this.other = other;
+        }
+
+        public Body Collider()
+        {
+            return collider;
+        }
+
+        public Body Other()
+        {
+            return other;
+        }
+
+        public override string ToString()
+        {
+            return "{"
+                + "Collider="
+                + Collider()
+                + ", Other="
+                + Other()
+                + "}";
         }
     }
 }

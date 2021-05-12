@@ -31,10 +31,36 @@ namespace Sakura.Core.Tests
             });
         }
 
+        [Test]
+        public void Has_a_custom_string_representation()
+        {
+            var body = CreateBody();
+            var otherBody = CreateOtherBody();
+            var collision = Collision.ForBodyCollidingWithOther(
+                body,
+                otherBody);
+            var expectedString = "{"
+                + "Collider="
+                + collision.Collider()
+                + ", Other="
+                + collision.Other()
+                + "}";
+            Assert.AreEqual(
+                expectedString,
+                collision.ToString());
+        }
+
         private Body CreateBody()
         {
             var ID = new Guid("b45ef316-b840-4bd6-9789-3f0a9ecf679c");
             var location = new Vector3(10.0f, 10.0f, 10.0f);
+            return new Body(ID, location);
+        }
+
+        private Body CreateOtherBody()
+        {
+            var ID = new Guid("bbf70d97-8dc7-4219-99e6-75da8741cdc9");
+            var location = new Vector3(9.0f, 10.0f, 10.0f);
             return new Body(ID, location);
         }
     }
