@@ -71,5 +71,15 @@ namespace Sakura.Core
                     && (location.Equals(otherMovement.Location()));
             }
         }
+
+        public override string ToString()
+        {
+            return "{"
+                + "Body="
+                + Body()
+                + ", Location="
+                + Location()
+                + "}";
+        }
     }
 }

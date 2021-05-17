@@ -5,6 +5,27 @@ using UnityEngine;
 namespace Sakura.Core
 {
     [TestFixture]
+    public class A_movement
+    {
+        [Test]
+        public void Has_a_custom_string_representation()
+        {
+            var ID = new Guid("3f480bfb-2f5c-41ce-ab4d-72a73cf10a9a");
+            var location = new Vector3(-1.0f, 1.0f, 3.0f);
+            var body = new Body(ID, location);
+            var destination = new Vector3(-1.0f, 1.0f, -5.0f);
+            var movement = Movement.For(body, destination);
+            var expectedString = "{"
+                + "Body="
+                + movement.Body()
+                + ", Location="
+                + movement.Location()
+                + "}";
+            Assert.AreEqual(expectedString, movement.ToString());
+        }
+    }
+
+    [TestFixture]
     public class Identical_movements
     {
         [Test]
