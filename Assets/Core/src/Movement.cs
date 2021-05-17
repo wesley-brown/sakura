@@ -57,5 +57,19 @@ namespace Sakura.Core
             hashCode = 31 * hashCode + location.GetHashCode();
             return hashCode;
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                var otherMovement = (Movement)obj;
+                return (body.Equals(otherMovement.Body()))
+                    && (location.Equals(otherMovement.Location()));
+            }
+        }
     }
 }
