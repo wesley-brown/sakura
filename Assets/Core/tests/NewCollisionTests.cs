@@ -68,4 +68,41 @@ namespace New_collision_spec
                 CreateBody());
         }
     }
+
+    [TestFixture]
+    public class Identical_new_collisions
+    {
+        [Test]
+        public void Have_the_same_hash_codes()
+        {
+            var collision = CreateCollision();
+            var duplicateCollision = CreateCollision();
+            Assert.AreEqual(
+                duplicateCollision.GetHashCode(),
+                collision.GetHashCode());
+        }
+
+        private Movement CreateMovement()
+        {
+            var ID = new Guid("9f255a1e-df00-41b1-9ccf-172c3c2a5575");
+            var location = new Vector3(5.0f, 2.0f, 4.0f);
+            var body = new Body(ID, location);
+            var destination = new Vector3(5.0f, 3.0f, 4.0f);
+            return Movement.For(body, destination);
+        }
+
+        private Body CreateBody()
+        {
+            var ID = new Guid("84e0df58-5d55-4716-b543-8f91a2250b5f");
+            var location = new Vector3(5.0f, 3.0f, 4.0f);
+            return new Body(ID, location);
+        }
+
+        private NewCollision CreateCollision()
+        {
+            return new NewCollision(
+                CreateMovement(),
+                CreateBody());
+        }
+    }
 }

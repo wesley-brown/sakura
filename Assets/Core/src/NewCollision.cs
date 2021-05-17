@@ -42,5 +42,14 @@ namespace Sakura.Core
                 + Body()
                 + "}";
         }
+
+        public override int GetHashCode()
+        {
+            // Joshua Bloch's hash code recipe from Effective Java, 3rd
+            // Edition, page 53.
+            var hashCode = movement.GetHashCode();
+            hashCode = 31 * hashCode + body.GetHashCode();
+            return hashCode;
+        }
     }
 }
