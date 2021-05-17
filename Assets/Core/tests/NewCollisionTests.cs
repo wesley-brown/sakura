@@ -82,6 +82,14 @@ namespace New_collision_spec
                 collision.GetHashCode());
         }
 
+        [Test]
+        public void Are_equal()
+        {
+            var collision = CreateCollision();
+            var duplicateCollision = CreateCollision();
+            Assert.IsTrue(duplicateCollision.Equals(collision));
+        }
+
         private Movement CreateMovement()
         {
             var ID = new Guid("9f255a1e-df00-41b1-9ccf-172c3c2a5575");
