@@ -1,86 +1,69 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Sakura.Core
 {
-    /// <summary>
-    ///     A collision between a colliding body and another body.
-    /// </summary>
     public sealed class Collision
     {
-        private readonly Body collider;
-        private readonly Body other;
+        private readonly Movement movement;
+        private readonly Body body;
 
-        /// <summary>
-        ///     Create a new collision between a given colliding body and
-        ///     another given body.
-        /// </summary>
-        /// <param name="collider">
-        ///     The colliding body.
-        /// </param>
-        /// <param name="other">
-        ///     The other body.
-        /// </param>
-        /// <returns>
-        ///     A newly created collision between the given colliding body and
-        ///     the other given body.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown when the given colliding body is null.
-        ///
-        ///     -or-
-        ///
-        ///     Thrown when the given other body is null.
-        /// </exception>
-        public static Collision ForBodyCollidingWithOther(
-            Body collider,
-            Body other)
+        public Collision(
+            Movement movement,
+            Body body)
         {
-            if (collider == null)
+            if (movement == null)
                 throw new ArgumentNullException(
-                    nameof(collider),
-                    "The given colliding body must not be null");
-            if (other == null)
+                    nameof(movement),
+                    "The given movement must not be null");
+            this.movement = movement;
+            if (body == null)
                 throw new ArgumentNullException(
-                    nameof(other),
-                    "The given other body must not be null");
-            return new Collision(
-                collider,
-                other);
+                    nameof(body),
+                    "The given body must not be null");
+            this.body = body;
         }
 
-        private Collision(
-            Body collider,
-            Body other)
+        public Movement Movement()
         {
-            Debug.Assert(
-                collider != null,
-                "The given colliding body was null");
-            this.collider = collider;
-            Debug.Assert(
-                other != null,
-                "The given other body was null");
-            this.other = other;
+            return movement;
         }
 
-        public Body Collider()
+        public Body Body()
         {
-            return collider;
-        }
-
-        public Body Other()
-        {
-            return other;
+            return body;
         }
 
         public override string ToString()
         {
             return "{"
-                + "Collider="
-                + Collider()
-                + ", Other="
-                + Other()
+                + "Movement="
+                + Movement()
+                + ", Body="
+                + Body()
                 + "}";
+        }
+
+        public override int GetHashCode()
+        {
+            // Joshua Bloch's hash code recipe from Effective Java, 3rd
+            // Edition, page 53.
+            var hashCode = movement.GetHashCode();
+            hashCode = 31 * hashCode + body.GetHashCode();
+            return hashCode;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                var otherCollision = (Collision)obj;
+                return (movement.Equals(otherCollision.movement))
+                    && (body.Equals(otherCollision.body));
+            }
         }
     }
 }
