@@ -1,8 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
+using Sakura.Core;
 using UnityEngine;
 
-namespace Sakura.Core.Tests
+namespace Collision_spec
 {
     [TestFixture]
     public class A_collision
@@ -13,7 +14,7 @@ namespace Sakura.Core.Tests
             var otherBody = CreateBody();
             Assert.Throws<ArgumentNullException>(() =>
             {
-                Collision.ForBodyCollidingWithOther(
+                Sakura.Core.Collision.ForBodyCollidingWithOther(
                     null,
                     otherBody);
             });
@@ -25,7 +26,7 @@ namespace Sakura.Core.Tests
             var body = CreateBody();
             Assert.Throws<ArgumentNullException>(() =>
             {
-                Collision.ForBodyCollidingWithOther(
+                Sakura.Core.Collision.ForBodyCollidingWithOther(
                     body,
                     null);
             });
@@ -36,7 +37,7 @@ namespace Sakura.Core.Tests
         {
             var body = CreateBody();
             var otherBody = CreateOtherBody();
-            var collision = Collision.ForBodyCollidingWithOther(
+            var collision = Sakura.Core.Collision.ForBodyCollidingWithOther(
                 body,
                 otherBody);
             var expectedString = "{"
