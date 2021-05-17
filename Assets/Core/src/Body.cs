@@ -10,7 +10,6 @@ namespace Sakura.Core
     {
         private readonly Guid entityID;
         private readonly Vector3 location;
-        private readonly string test;
 
         /// <summary>
         ///     Create a new body with a given entity ID and a given location.
@@ -44,24 +43,6 @@ namespace Sakura.Core
         public Vector3 Location()
         {
             return location;
-        }
-
-        /// <summary>
-        ///     Create a new <see cref="Body"/> representing the same entity as
-        ///     this instance that moves to a given location.
-        /// </summary>
-        /// <param name="location">
-        ///     The location of the new <see cref="Body"/>.
-        /// </param>
-        /// <returns>
-        ///     A new <see cref="Body"/> representing the same entity as this
-        ///     instance that has been moved to the given location.
-        /// </returns>
-        public Body MoveTo(Vector3 location)
-        {
-            return new Body(
-                EntityID(),
-                location);
         }
 
         public override string ToString()
