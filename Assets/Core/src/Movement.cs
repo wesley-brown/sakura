@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sakura.Core
 {
@@ -21,10 +22,17 @@ namespace Sakura.Core
         ///     A new movement that represents the act of moving the given body
         ///     to the given location.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given body is null.
+        /// </exception>
         public static Movement For(
             Body body,
             Vector3 location)
         {
+            if (body == null)
+                throw new ArgumentNullException(
+                    nameof(body),
+                    "The given body must not be null");
             return new Movement(body, location);
         }
 
@@ -35,6 +43,9 @@ namespace Sakura.Core
             Body body,
             Vector3 location)
         {
+            System.Diagnostics.Debug.Assert(
+                body != null,
+                "body was null");
             this.body = body;
             this.location = location;
         }

@@ -8,6 +8,16 @@ namespace Sakura.Core
     public class A_movement
     {
         [Test]
+        public void Throws_when_created_without_a_body()
+        {
+            var destination = new Vector3(-1.0f, 1.0f, -5.0f);
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Movement.For(null, destination);
+            });
+        }
+
+        [Test]
         public void Has_a_custom_string_representation()
         {
             var ID = new Guid("3f480bfb-2f5c-41ce-ab4d-72a73cf10a9a");
