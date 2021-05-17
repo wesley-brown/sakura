@@ -1,8 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
+using Sakura.Core;
 using UnityEngine;
 
-namespace Sakura.Core
+namespace Movement_spec
 {
     [TestFixture]
     public class A_movement
