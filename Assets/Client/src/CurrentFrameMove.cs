@@ -18,12 +18,19 @@ namespace Sakura.Client
         ///     All collisions in the simulation.
         /// </param>
         /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given movements are null.
+        ///
+        ///     -or-
         ///     Thrown when the given collisions are null.
         /// </exception>
         public CurrentFrameMove(
             AllMovements allMovements,
             AllCollisions allCollisions)
         {
+            if (allMovements == null)
+                throw new ArgumentNullException(
+                    nameof(allMovements),
+                    "The movements must not be null");
             if (allCollisions == null)
                 throw new ArgumentNullException(
                     nameof(allCollisions),
