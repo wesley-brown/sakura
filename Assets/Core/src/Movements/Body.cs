@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Sakura.Core
+namespace Sakura.Movements
 {
     /// <summary>
     ///     A physical representation of an entity.

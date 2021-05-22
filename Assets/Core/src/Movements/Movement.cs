@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Sakura.Core
+namespace Sakura.Movements
 {
     /// <summary>
     ///     An act of moving a body to a location.

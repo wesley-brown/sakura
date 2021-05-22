@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using Sakura.Core;
+using Sakura.Movements;
 using UnityEngine;
 
 namespace Collision_spec
@@ -14,7 +14,7 @@ namespace Collision_spec
             var body = CreateBody();
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new Sakura.Core.Collision(
+                new Sakura.Collisions.Collision(
                     null,
                     body);
             });
@@ -26,7 +26,7 @@ namespace Collision_spec
             var movement = CreateMovement();
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new Sakura.Core.Collision(
+                new Sakura.Collisions.Collision(
                     movement,
                     null);
             });
@@ -61,9 +61,9 @@ namespace Collision_spec
             return new Body(ID, location);
         }
 
-        private Sakura.Core.Collision CreateCollision()
+        private Sakura.Collisions.Collision CreateCollision()
         {
-            return new Sakura.Core.Collision(
+            return new Sakura.Collisions.Collision(
                 CreateMovement(),
                 CreateBody());
         }
@@ -106,9 +106,9 @@ namespace Collision_spec
             return new Body(ID, location);
         }
 
-        private Sakura.Core.Collision CreateCollision()
+        private Sakura.Collisions.Collision CreateCollision()
         {
-            return new Sakura.Core.Collision(
+            return new Sakura.Collisions.Collision(
                 CreateMovement(),
                 CreateBody());
         }

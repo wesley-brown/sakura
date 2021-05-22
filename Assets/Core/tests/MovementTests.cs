@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using Sakura.Core;
+using Sakura.Movements;
 using UnityEngine;
 
 namespace Movement_spec

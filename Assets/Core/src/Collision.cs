@@ -1,6 +1,7 @@
 ﻿using System;
+using Sakura.Movements;
 
-namespace Sakura.Core
+namespace Sakura.Collisions
 {
     public sealed class Collision
     {
