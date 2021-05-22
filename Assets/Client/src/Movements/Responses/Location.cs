@@ -1,4 +1,4 @@
-﻿namespace Sakura.Movement.Responses
+﻿namespace Sakura.Movements.Responses
 {
     /// <summary>
     ///     A 3D world space location.

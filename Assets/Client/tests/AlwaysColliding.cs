@@ -1,6 +1,4 @@
-﻿using Sakura.Client;
-
-namespace Current_frame_move_spec
+﻿namespace Sakura.Collisions
 {
     /// <summary>
     ///     A collection of all collisions that always returns a collision for

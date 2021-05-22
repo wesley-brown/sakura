@@ -1,6 +1,4 @@
-﻿using Sakura.Client;
-
-namespace Sakura.Movement
+﻿namespace Sakura.Movements
 {
     /// <summary>
     ///     A collection of movements that always has no movements for any

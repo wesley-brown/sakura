@@ -1,7 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using Sakura.Movement;
-using Sakura.Movement.Responses;
+using Sakura.Collisions;
+using Sakura.Movements;
+using Sakura.Movements.Responses;
 
 namespace Current_frame_move_spec
 {

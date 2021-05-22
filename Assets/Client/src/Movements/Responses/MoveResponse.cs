@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sakura.Movement.Responses
+namespace Sakura.Movements.Responses
 {
     /// <summary>
     ///     A response based on a request to move an entity.

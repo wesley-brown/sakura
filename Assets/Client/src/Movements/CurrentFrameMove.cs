@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Sakura.Client;
-using Sakura.Movement.Responses;
+using Sakura.Collisions;
+using Sakura.Movements.Responses;
 
-namespace Sakura.Movement
+namespace Sakura.Movements
 {
     /// <summary>
     ///     An attempt to move an entity during the current frame.

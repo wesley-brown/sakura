@@ -1,6 +1,4 @@
-﻿using Sakura.Client;
-
-namespace Current_frame_move_spec
+﻿namespace Sakura.Movements
 {
     /// <summary>
     ///     A collection of movements that always returns a movement for any

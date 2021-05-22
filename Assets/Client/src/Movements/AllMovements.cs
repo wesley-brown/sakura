@@ -1,4 +1,4 @@
-﻿namespace Sakura.Client
+﻿namespace Sakura.Movements
 {
     /// <summary>
     ///     A collection of all the movements in the simulation.

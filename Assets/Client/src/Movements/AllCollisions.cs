@@ -1,4 +1,4 @@
-﻿namespace Sakura.Client
+﻿namespace Sakura.Collisions
 {
     /// <summary>
     ///     A collection of all the collisions in the simulation.
