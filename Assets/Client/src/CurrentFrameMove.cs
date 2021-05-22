@@ -50,15 +50,10 @@ namespace Sakura.Movement
 
         public MoveResponse Response()
         {
+            var response = new MoveResponse();
             if (entityID == Guid.Empty)
-                return new MoveResponse
-                {
-                    Errors = new List<string>
-                    {
-                        "An entity with the nil UUID cannot be moved."
-                    }
-                };
-            return null;
+                response.Errors.Add("An entity with the nil UUID cannot be moved");
+            return response;
         }
     }
 }

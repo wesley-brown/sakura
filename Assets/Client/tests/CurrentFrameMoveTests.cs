@@ -62,4 +62,30 @@ namespace Current_frame_move_spec
             Assert.IsTrue(response.Errors.Count > 0);
         }
     }
+
+    [TestFixture]
+    public class An_entity_with_no_movement_during_the_current_frame
+    {
+        [Test]
+        public void Will_not_be_moved()
+        {
+            var ID = new Guid("134c6e9f-5a0b-43d5-b5bc-7d8c7501c614");
+            var allMovements = new NeverMoving();
+            var allCollisions = new AlwaysColliding();
+            var move = new CurrentFrameMove(
+                ID,
+                allMovements,
+                allCollisions);
+            var response = move.Response();
+            AssertWillNotBeMoved(response);
+        }
+
+        private void AssertWillNotBeMoved(MoveResponse response)
+        {
+            Assert.IsFalse(response.DidMove);
+            Assert.IsNull(response.NewLocation);
+            Assert.IsNotNull(response.Errors);
+            Assert.IsTrue(response.Errors.Count == 0);
+        }
+    }
 }
