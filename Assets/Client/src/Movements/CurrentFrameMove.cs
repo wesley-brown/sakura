@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sakura.Collisions;
 using Sakura.Movements.Responses;
 
@@ -10,6 +11,7 @@ namespace Sakura.Movements
     public sealed class CurrentFrameMove
     {
         private readonly Guid entityID;
+        private readonly AllMovements allMovements;
 
         /// <summary>
         ///     Create a new current frame move for an entity with a given ID
@@ -41,6 +43,7 @@ namespace Sakura.Movements
                 throw new ArgumentNullException(
                     nameof(allMovements),
                     "The movements must not be null");
+            this.allMovements = allMovements;
             if (allCollisions == null)
                 throw new ArgumentNullException(
                     nameof(allCollisions),
@@ -49,10 +52,54 @@ namespace Sakura.Movements
 
         public MoveResponse Response()
         {
-            var response = new MoveResponse();
-            if (entityID == Guid.Empty)
-                response.Errors.Add("An entity with the nil UUID cannot be moved");
-            return response;
+            if (EntityHasNilUuid())
+                return CannotMoveEntityWithNilUuid();
+            else if (WillMove())
+                return DidMove();
+            else
+                return DidNotMove();
+        }
+
+        private bool EntityHasNilUuid()
+        {
+            return entityID == Guid.Empty;
+        }
+
+        private bool WillMove()
+        {
+            return allMovements.HasMovement(entityID);
+        }
+
+        private MoveResponse CannotMoveEntityWithNilUuid()
+        {
+            return new MoveResponse
+            {
+                Errors = new List<string>
+                {
+                    "An entity with the nil UUID cannot be moved."
+                }
+            };
+        }
+
+        private MoveResponse DidMove()
+        {
+            var movement = allMovements.For(entityID);
+            var location = movement.Location();
+            return new MoveResponse
+            {
+                DidMove = true,
+                NewLocation = new Location
+                {
+                    X = location.x,
+                    Y = location.y,
+                    Z = location.z
+                }
+            };
+        }
+
+        private MoveResponse DidNotMove()
+        {
+            return new MoveResponse();
         }
     }
 }

@@ -3,7 +3,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Sakura.Client"
+        "Sakura.Client",
+        "Sakura.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
