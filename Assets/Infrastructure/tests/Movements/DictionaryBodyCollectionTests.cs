@@ -20,7 +20,7 @@ namespace Dictionary_body_collection_spec
             Assert.IsFalse(
                 bodies.HasBodyFor(
                     body.EntityID()));
-            bodies = bodies.Add(body);
+            bodies.Add(body);
             Assert.IsTrue(
                 bodies.HasBodyFor(
                     body.EntityID()));

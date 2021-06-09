@@ -35,10 +35,9 @@ namespace Sakura.Movements
             return bodies.ContainsKey(entityID);
         }
 
-        public AllBodies Add(Body body)
+        public void Add(Body body)
         {
             bodies.Add(body.EntityID(), body);
-            return new DictionaryBodyCollection(bodies);
         }
 
         public Body For(Guid entityID)

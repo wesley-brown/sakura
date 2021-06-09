@@ -26,11 +26,7 @@ namespace Sakura.Movements
         /// <param name="body">
         ///     The body to add.
         /// </param>
-        /// <returns>
-        ///     A new colleciton of all bodies containing all the bodies this
-        ///     current one has plus the given body to add.
-        /// </returns>
-        AllBodies Add(Body body);
+        void Add(Body body);
 
         /// <summary>
         ///     The body for the entity with a given ID.
