@@ -31,7 +31,55 @@ namespace Sakura.Core
                 throw new ArgumentException(
                     "The nil entity cannot have a body.",
                     nameof(entity));
-            return null;
+            return new BodyTemp(
+                entity,
+                location);
+        }
+
+        private BodyTemp(
+            Guid entity,
+            Vector3 location)
+        {
+            this.entity = entity;
+            this.location = location;
+        }
+
+        private readonly Guid entity;
+        private readonly Vector3 location;
+
+        public override string ToString()
+        {
+            return "{"
+                + "Entity="
+                + Entity
+                + ", Location="
+                + Location
+                + "}";
+        }
+
+        /// <summary>
+        ///     The entity this body is a physical representation of.
+        /// </summary>
+        public Guid Entity
+        {
+            get
+            {
+                return entity;
+            }
+        }
+
+        /// <summary>
+        ///     The world space location of this body.
+        /// </summary>
+        public Vector3 Location
+        {
+            get
+            {
+                return new Vector3(
+                    location.x,
+                    location.y,
+                    location.z);
+            }
         }
     }
 }
