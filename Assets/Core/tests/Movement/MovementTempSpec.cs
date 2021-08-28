@@ -21,4 +21,25 @@ namespace Movement_Temp_Spec
             });
         }
     }
+
+    [TestFixture]
+    public class The_string_representation_of_a_movement
+    {
+        [Test]
+        public void Includes_its_body()
+        {
+            var ID = new Guid("12c90c8a-9d7a-4a58-a9b3-f457496c9fba");
+            var startingLocation = new Vector3(-5.0f, 0.0f, 0.0f);
+            var body = BodyTemp.ForEntityLocatedAt(
+                ID,
+                startingLocation);
+            var endingLocation = new Vector3(0.0f, 0.0f, 0.0f);
+            var movement = MovementTemp.For(
+                body,
+                endingLocation);
+            StringAssert.Contains(
+                body.ToString(),
+                movement.ToString());
+        }
+    }
 }

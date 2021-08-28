@@ -8,6 +8,8 @@ namespace Sakura.Core
     /// </summary>
     public sealed class MovementTemp
     {
+        private readonly BodyTemp body;
+
         /// <summary>
         ///     Create a movement for a given body and location.
         /// </summary>
@@ -33,7 +35,38 @@ namespace Sakura.Core
                     nameof(body),
                     "The given body must not be null.");
             }
-            throw new NotImplementedException();
+            return new MovementTemp(body);
+        }
+
+        private MovementTemp(BodyTemp body)
+        {
+            Debug.Assert(body != null);
+            this.body = body;
+        }
+
+        /// <summary>
+        ///     The body this movement is for.
+        /// </summary>
+        public BodyTemp Body
+        {
+            get
+            {
+                return body;
+            }
+        }
+
+        /// <summary>
+        ///     Create a string representation of this movement.
+        /// </summary>
+        /// <returns>
+        ///     A string representation of this movement.
+        /// </returns>
+        public override string ToString()
+        {
+            return "{"
+                + "Body="
+                + Body
+                + "}";
         }
     }
 }
