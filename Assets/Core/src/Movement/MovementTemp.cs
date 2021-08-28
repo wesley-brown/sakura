@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Sakura.Core
 {
@@ -8,18 +9,23 @@ namespace Sakura.Core
     public sealed class MovementTemp
     {
         /// <summary>
-        ///     Create a movement for a given body.
+        ///     Create a movement for a given body and location.
         /// </summary>
         /// <param name="body">
         ///     The body.
         /// </param>
+        /// <param name="location">
+        ///     The location.
+        /// </param>
         /// <returns>
-        ///     A movement for the given body.
+        ///     A movement for the given body and location.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given body is null.
         /// </exception>
-        public static MovementTemp For(BodyTemp body)
+        public static MovementTemp For(
+            BodyTemp body,
+            Vector3 location)
         {
             if (body == null)
             {
