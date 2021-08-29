@@ -4,30 +4,28 @@ using UnityEngine;
 namespace Sakura.Core
 {
     /// <summary>
-    ///     A displacement of a body through world space.
+    ///     A displacement of a body through world space to a destination.
     /// </summary>
     public sealed class MovementTemp
     {
-        private readonly BodyTemp body;
-
         /// <summary>
-        ///     Create a movement for a given body and location.
+        ///     Create a movement for a given body and destination.
         /// </summary>
         /// <param name="body">
         ///     The body.
         /// </param>
-        /// <param name="location">
-        ///     The location.
+        /// <param name="destination">
+        ///     The destination.
         /// </param>
         /// <returns>
-        ///     A movement for the given body and location.
+        ///     A movement for the given body and destination.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given body is null.
         /// </exception>
         public static MovementTemp For(
             BodyTemp body,
-            Vector3 location)
+            Vector3 destination)
         {
             if (body == null)
             {
@@ -35,23 +33,48 @@ namespace Sakura.Core
                     nameof(body),
                     "The given body must not be null.");
             }
-            return new MovementTemp(body);
+            return new MovementTemp(
+                body,
+                destination);
         }
 
-        private MovementTemp(BodyTemp body)
+        private MovementTemp(
+            BodyTemp body,
+            Vector3 destination)
         {
             Debug.Assert(body != null);
             this.body = body;
+            this.destination = new Vector3(
+                destination.x,
+                destination.y,
+                destination.z);
         }
 
+        private readonly BodyTemp body;
+        private readonly Vector3 destination;
+
         /// <summary>
-        ///     The body this movement is for.
+        ///     The body to move.
         /// </summary>
         public BodyTemp Body
         {
             get
             {
                 return body;
+            }
+        }
+
+        /// <summary>
+        ///     The destination to move the body to.
+        /// </summary>
+        public Vector3 Destination
+        {
+            get
+            {
+                return new Vector3(
+                    destination.x,
+                    destination.y,
+                    destination.z);
             }
         }
 
@@ -66,6 +89,8 @@ namespace Sakura.Core
             return "{"
                 + "Body="
                 + Body
+                + "Destination="
+                + Destination
                 + "}";
         }
     }
