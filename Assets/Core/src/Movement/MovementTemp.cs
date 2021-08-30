@@ -79,6 +79,21 @@ namespace Sakura.Core
         }
 
         /// <summary>
+        ///     Create a body that is the result of moving the body to the
+        ///     destination.
+        /// </summary>
+        /// <returns>
+        ///     The body that is the result of moving the body to the
+        ///     destination.
+        /// </returns>
+        public BodyTemp ResultingBody()
+        {
+            return BodyTemp.ForEntityLocatedAt(
+                body.Entity,
+                destination);
+        }
+
+        /// <summary>
         ///     Create a string representation of this movement.
         /// </summary>
         /// <returns>
@@ -89,8 +104,10 @@ namespace Sakura.Core
             return "{"
                 + "Body="
                 + Body
-                + "Destination="
+                + ", Destination="
                 + Destination
+                + ", Resulting Body="
+                + ResultingBody()
                 + "}";
         }
     }

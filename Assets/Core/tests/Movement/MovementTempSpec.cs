@@ -43,6 +43,16 @@ namespace Movement_Temp_Spec
                 movement.ToString());
         }
 
+        [Test]
+        public void Includes_its_resulting_body()
+        {
+            var movement = Movement();
+            StringAssert.Contains(
+                movement.ResultingBody().ToString(),
+                movement.ToString());
+            Debug.Log(movement.ToString());
+        }
+
         private static MovementTemp Movement()
         {
             var ID = new Guid("12c90c8a-9d7a-4a58-a9b3-f457496c9fba");
