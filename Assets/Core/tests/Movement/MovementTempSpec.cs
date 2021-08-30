@@ -35,22 +35,12 @@ namespace Movement_Temp_Spec
         }
 
         [Test]
-        public void Includes_its_destination()
-        {
-            var movement = Movement();
-            StringAssert.Contains(
-                movement.Destination.ToString(),
-                movement.ToString());
-        }
-
-        [Test]
         public void Includes_its_resulting_body()
         {
             var movement = Movement();
             StringAssert.Contains(
                 movement.ResultingBody().ToString(),
                 movement.ToString());
-            Debug.Log(movement.ToString());
         }
 
         private static MovementTemp Movement()

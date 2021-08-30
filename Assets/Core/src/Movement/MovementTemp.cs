@@ -65,20 +65,6 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     The destination to move the body to.
-        /// </summary>
-        public Vector3 Destination
-        {
-            get
-            {
-                return new Vector3(
-                    destination.x,
-                    destination.y,
-                    destination.z);
-            }
-        }
-
-        /// <summary>
         ///     Create a body that is the result of moving the body to the
         ///     destination.
         /// </summary>
@@ -104,8 +90,6 @@ namespace Sakura.Core
             return "{"
                 + "Body="
                 + Body
-                + ", Destination="
-                + Destination
                 + ", Resulting Body="
                 + ResultingBody()
                 + "}";
