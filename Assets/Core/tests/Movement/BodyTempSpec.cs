@@ -41,4 +41,23 @@ namespace Body_Temp_Spec
                 actualString);
         }
     }
+
+    [TestFixture]
+    public class Teleporting_a_body_to_a_location
+    {
+        [Test]
+        public void Creates_one_at_that_location()
+        {
+            var entity = new Guid("92baf1df-bf4c-4548-8410-60d25ac32315");
+            var startingLocation = new Vector3(2.0f, 0.0f, 2.0f);
+            var startingBody = BodyTemp.ForEntityLocatedAt(
+                entity,
+                startingLocation);
+            var endingLocation = new Vector3(2.0f, 0.0f, 3.0f);
+            var endingBody = startingBody.TeleportTo(endingLocation);
+            Assert.AreEqual(
+                endingLocation,
+                endingBody.Location);
+        }
+    }
 }

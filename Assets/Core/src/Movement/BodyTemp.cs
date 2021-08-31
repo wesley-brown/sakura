@@ -40,12 +40,29 @@ namespace Sakura.Core
             Guid entity,
             Vector3 location)
         {
+            Debug.Assert(entity != Guid.Empty);
             this.entity = entity;
             this.location = location;
         }
 
         private readonly Guid entity;
         private readonly Vector3 location;
+
+        /// <summary>
+        ///     Teleport this body to a given location.
+        /// </summary>
+        /// <param name="location">
+        ///     The location to teleport to.
+        /// </param>
+        /// <returns>
+        ///     A body at the given location.
+        /// </returns>
+        public BodyTemp TeleportTo(Vector3 location)
+        {
+            return new BodyTemp(
+                entity,
+                location);
+        }
 
         public override string ToString()
         {
