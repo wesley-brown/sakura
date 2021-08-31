@@ -74,9 +74,7 @@ namespace Sakura.Core
         /// </returns>
         public BodyTemp ResultingBody()
         {
-            return BodyTemp.ForEntityLocatedAt(
-                body.Entity,
-                destination);
+            return body.TeleportTo(destination);
         }
 
         /// <summary>
