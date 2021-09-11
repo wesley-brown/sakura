@@ -11,7 +11,7 @@ namespace Movement_Spec
         [Test]
         public void Does_not_support_a_null_body()
         {
-            BodyTemp body = null;
+            Body body = null;
             var destination = new Vector3(10.0f, 10.0f, 10.0f);
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -47,7 +47,7 @@ namespace Movement_Spec
         {
             var ID = new Guid("12c90c8a-9d7a-4a58-a9b3-f457496c9fba");
             var startingLocation = new Vector3(-5.0f, 0.0f, 0.0f);
-            var body = BodyTemp.ForEntityLocatedAt(
+            var body = Body.ForEntityLocatedAt(
                 ID,
                 startingLocation);
             var destination = new Vector3(0.0f, 0.0f, 0.0f);

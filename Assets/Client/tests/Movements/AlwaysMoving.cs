@@ -33,7 +33,7 @@ namespace Sakura.Movements
         public Movement For(Guid entityID)
         {
             var location = new Vector3(10.0f, 10.0f, 10.0f);
-            var body = BodyTemp.ForEntityLocatedAt(
+            var body = Body.ForEntityLocatedAt(
                 this.entityID,
                 location);
             var destination = new Vector3(11.0f, 10.0f, 10.0f);

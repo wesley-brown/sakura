@@ -4,43 +4,43 @@ using UnityEngine;
 namespace Sakura.Core
 {
     /// <summary>
-    ///     A displacement of a body through world space to a destination.
+    ///     A displacement of a <see cref="Core.Body"/> through world space to a
+    ///     destination.
     /// </summary>
     public sealed class Movement
     {
         /// <summary>
-        ///     Create a <see cref="Movement"/> for a given body and
-        ///     destination.
+        ///     Create a <see cref="Movement"/> for a given
+        ///     <see cref="Core.Body"/> and destination.
         /// </summary>
         /// <param name="body">
-        ///     The body.
+        ///     The <see cref="Core.Body"/> being moved.
         /// </param>
         /// <param name="destination">
         ///     The destination.
         /// </param>
         /// <returns>
-        ///     A <see cref="Movement"/> for the given body and destination.
+        ///     A <see cref="Movement"/> for the given <see cref="Core.Body"/>
+        ///     and destination.
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        ///     Thrown when the given body is null.
+        ///     Thrown when the given <see cref="Core.Body"/> is null.
         /// </exception>
         public static Movement For(
-            BodyTemp body,
+            Body body,
             Vector3 destination)
         {
             if (body == null)
-            {
                 throw new ArgumentNullException(
                     nameof(body),
                     "The given body must not be null.");
-            }
             return new Movement(
                 body,
                 destination);
         }
 
         private Movement(
-            BodyTemp body,
+            Body body,
             Vector3 destination)
         {
             Debug.Assert(body != null);
@@ -51,13 +51,13 @@ namespace Sakura.Core
                 destination.z);
         }
 
-        private readonly BodyTemp body;
+        private readonly Body body;
         private readonly Vector3 destination;
 
         /// <summary>
-        ///     The body to move.
+        ///     The <see cref="Core.Body"/> to move.
         /// </summary>
-        public BodyTemp Body
+        public Body Body
         {
             get
             {
@@ -66,14 +66,14 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     Create a body that is the result of moving the body to the
-        ///     destination.
+        ///     Create a <see cref="Core.Body"/> that is the result of moving
+        ///     the <see cref="Core.Body"/> to the destination.
         /// </summary>
         /// <returns>
-        ///     The body that is the result of moving the body to the
-        ///     destination.
+        ///     The <see cref="Core.Body"/> that is the result of moving the
+        ///     <see cref="Core.Body"/> to the destination.
         /// </returns>
-        public BodyTemp ResultingBody()
+        public Body ResultingBody()
         {
             return body.TeleportTo(destination);
         }

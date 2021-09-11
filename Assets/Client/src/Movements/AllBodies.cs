@@ -1,4 +1,5 @@
 ﻿using System;
+using Sakura.Core;
 
 namespace Sakura.Movements
 {

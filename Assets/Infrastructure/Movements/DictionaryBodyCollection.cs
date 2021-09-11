@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sakura.Core;
 
 namespace Sakura.Movements
 {
@@ -37,7 +38,7 @@ namespace Sakura.Movements
 
         public void Add(Body body)
         {
-            bodies.Add(body.EntityID(), body);
+            bodies.Add(body.Entity, body);
         }
 
         public Body For(Guid entityID)

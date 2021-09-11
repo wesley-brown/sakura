@@ -4,34 +4,35 @@ using System.Diagnostics;
 namespace Sakura.Core
 {
     /// <summary>
-    ///     A instance of two bodies reacting to a collision between them.
+    ///     A instance of two <see cref="Body"/>s reacting to a collision
+    ///     between them.
     /// </summary>
     public sealed class CollisionReaction
     {
         /// <summary>
         ///     Create a <see cref="CollisionReaction"/> for two given collided
-        ///     bodies.
+        ///     <see cref="Body"/>s.
         /// </summary>
         /// <param name="collider">
-        ///     The body that made the collision.
+        ///     The <see cref="Body"/> that made the collision.
         /// </param>
         /// <param name="collidee">
-        ///     The body that was collided with.
+        ///     The <see cref="Body"/> that was collided with.
         /// </param>
         /// <returns>
         ///     A <see cref="CollisionReaction"/> for the two given collided
-        ///     bodies.
+        ///     <see cref="Body"/>s.
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        ///     Thrown when the given collider body is null.
+        ///     Thrown when the given collider <see cref="Body"/> is null.
         ///
         ///     -or-
         ///
-        ///     Thrown when the given collidee body is null.
+        ///     Thrown when the given collidee <see cref="Body"/> is null.
         /// </exception>
         public static CollisionReaction ForCollidedBodies(
-            BodyTemp collider,
-            BodyTemp collidee)
+            Body collider,
+            Body collidee)
         {
             if (collider == null)
                 throw new ArgumentNullException(nameof(collider));
@@ -45,8 +46,8 @@ namespace Sakura.Core
 
         private CollisionReaction(
             Guid id,
-            BodyTemp collider,
-            BodyTemp collidee)
+            Body collider,
+            Body collidee)
         {
             this.id = id;
             Debug.Assert(collider != null);
@@ -56,8 +57,8 @@ namespace Sakura.Core
         }
 
         private readonly Guid id;
-        private readonly BodyTemp collider;
-        private readonly BodyTemp collidee;
+        private readonly Body collider;
+        private readonly Body collidee;
 
         /// <summary>
         ///     The ID of this <see cref="CollisionReaction"/>.
@@ -74,7 +75,7 @@ namespace Sakura.Core
         /// <summary>
         ///     The body that made the collision.
         /// </summary>
-        public BodyTemp Collider
+        public Body Collider
         {
             get
             {
@@ -85,7 +86,7 @@ namespace Sakura.Core
         /// <summary>
         ///     The body that was collided with.
         /// </summary>
-        public BodyTemp Collidee
+        public Body Collidee
         {
             get
             {

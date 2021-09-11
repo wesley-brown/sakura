@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Sakura.Core;
 using UnityEngine;
 
-namespace Body_Temp_Spec
+namespace Body_Spec
 {
     [TestFixture]
     public class A_body
@@ -15,7 +15,7 @@ namespace Body_Temp_Spec
             var location = Vector3.zero;
             Assert.Throws<ArgumentException>(() =>
             {
-                BodyTemp.ForEntityLocatedAt(
+                Body.ForEntityLocatedAt(
                     entity,
                     location);
             });
@@ -26,7 +26,7 @@ namespace Body_Temp_Spec
         {
             var entity = new Guid("b860ea74-4e77-48ca-9d1b-1a0e7e47c4c3");
             var location = Vector3.zero;
-            var body = BodyTemp.ForEntityLocatedAt(
+            var body = Body.ForEntityLocatedAt(
                 entity,
                 location);
             var expectedString = "{"
@@ -50,7 +50,7 @@ namespace Body_Temp_Spec
         {
             var entity = new Guid("92baf1df-bf4c-4548-8410-60d25ac32315");
             var startingLocation = new Vector3(2.0f, 0.0f, 2.0f);
-            var startingBody = BodyTemp.ForEntityLocatedAt(
+            var startingBody = Body.ForEntityLocatedAt(
                 entity,
                 startingLocation);
             var endingLocation = new Vector3(2.0f, 0.0f, 3.0f);

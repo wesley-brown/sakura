@@ -11,10 +11,10 @@ namespace Collision_Reaction_Spec
         [Test]
         public void Does_not_support_a_null_collider_body()
         {
-            BodyTemp collidersBody = null;
+            Body collidersBody = null;
             var collidee = new Guid("8910b086-e969-48f4-b915-89bc8fe4432f");
             var collideesLocation = new Vector3(5.0f, 0.0f, 0.0f);
-            var collideesBody = BodyTemp.ForEntityLocatedAt(
+            var collideesBody = Body.ForEntityLocatedAt(
                 collidee,
                 collideesLocation);
             Assert.Throws<ArgumentNullException>(() =>
@@ -30,10 +30,10 @@ namespace Collision_Reaction_Spec
         {
             var collider = new Guid("dc17cb7a-10d8-4ed4-b36d-a08ff275d049");
             var collidersLocation = new Vector3(4.0f, 0.0f, 0.0f);
-            var collidersBody = BodyTemp.ForEntityLocatedAt(
+            var collidersBody = Body.ForEntityLocatedAt(
                 collider,
                 collidersLocation);
-            BodyTemp collideesBody = null;
+            Body collideesBody = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
                 CollisionReaction.ForCollidedBodies(
@@ -59,12 +59,12 @@ namespace Collision_Reaction_Spec
         {
             var collider = new Guid("dc17cb7a-10d8-4ed4-b36d-a08ff275d049");
             var collidersLocation = new Vector3(4.0f, 0.0f, 0.0f);
-            var collidersBody = BodyTemp.ForEntityLocatedAt(
+            var collidersBody = Body.ForEntityLocatedAt(
                 collider,
                 collidersLocation);
             var collidee = new Guid("8910b086-e969-48f4-b915-89bc8fe4432f");
             var collideesLocation = new Vector3(5.0f, 0.0f, 0.0f);
-            var collideesBody = BodyTemp.ForEntityLocatedAt(
+            var collideesBody = Body.ForEntityLocatedAt(
                 collidee,
                 collideesLocation);
             return CollisionReaction.ForCollidedBodies(

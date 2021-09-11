@@ -6,10 +6,10 @@ namespace Sakura.Core
     /// <summary>
     ///     A physical representation of an entity.
     /// </summary>
-    public sealed class BodyTemp
+    public sealed class Body
     {
         /// <summary>
-        ///     Create a body for an entity at a given location.
+        ///     Create a <see cref="Body"/> for an entity at a given location.
         /// </summary>
         /// <param name="entity">
         ///     The entity.
@@ -18,12 +18,13 @@ namespace Sakura.Core
         ///     The location.
         /// </param>
         /// <returns>
-        ///     A body for the given entity at the given location.
+        ///     A <see cref="Body"/> for the given entity at the given
+        ///     location.
         /// </returns>
         /// <exception cref="ArgumentException">
         ///     Thrown when the given entity is the nil entity.
         /// </exception>
-        public static BodyTemp ForEntityLocatedAt(
+        public static Body ForEntityLocatedAt(
             Guid entity,
             Vector3 location)
         {
@@ -31,12 +32,12 @@ namespace Sakura.Core
                 throw new ArgumentException(
                     "The nil entity cannot have a body.",
                     nameof(entity));
-            return new BodyTemp(
+            return new Body(
                 entity,
                 location);
         }
 
-        private BodyTemp(
+        private Body(
             Guid entity,
             Vector3 location)
         {
@@ -49,17 +50,17 @@ namespace Sakura.Core
         private readonly Vector3 location;
 
         /// <summary>
-        ///     Teleport this body to a given location.
+        ///     Teleport this <see cref="Body"/> to a given location.
         /// </summary>
         /// <param name="location">
         ///     The location to teleport to.
         /// </param>
         /// <returns>
-        ///     A body at the given location.
+        ///     A <see cref="Body"/> at the given location.
         /// </returns>
-        public BodyTemp TeleportTo(Vector3 location)
+        public Body TeleportTo(Vector3 location)
         {
-            return new BodyTemp(
+            return new Body(
                 entity,
                 location);
         }
@@ -75,7 +76,8 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     The entity this body is a physical representation of.
+        ///     The entity this <see cref="Body"/> is a physical representation
+        ///     of.
         /// </summary>
         public Guid Entity
         {
@@ -86,7 +88,7 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     The world space location of this body.
+        ///     The world space location of this <see cref="Body"/>.
         /// </summary>
         public Vector3 Location
         {

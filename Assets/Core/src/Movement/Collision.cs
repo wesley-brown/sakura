@@ -32,7 +32,7 @@ namespace Sakura.Core
         /// </exception>
         public static Collision WithAdjustedMovementTowardsBody(
             Movement adjustedMovement,
-            BodyTemp body)
+            Body body)
         {
             if (adjustedMovement == null)
                 throw new ArgumentNullException(nameof(adjustedMovement));
