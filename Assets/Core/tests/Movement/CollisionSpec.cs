@@ -51,11 +51,11 @@ namespace Collision_Spec
     public class The_string_representation_of_a_collision
     {
         [Test]
-        public void Contains_its_adjusted_movement()
+        public void Contains_its_ID()
         {
             var collision = CreateCollision();
             StringAssert.Contains(
-                collision.AdjustedMovement.ToString(),
+                collision.ID.ToString(),
                 collision.ToString());
         }
 
@@ -79,6 +79,15 @@ namespace Collision_Spec
             return Collision.WithAdjustedMovementTowardsTargetBody(
                 playersAdjustedMovement,
                 enemysBody);
+        }
+
+        [Test]
+        public void Contains_its_adjusted_movement()
+        {
+            var collision = CreateCollision();
+            StringAssert.Contains(
+                collision.AdjustedMovement.ToString(),
+                collision.ToString());
         }
 
         [Test]

@@ -40,22 +40,37 @@ namespace Sakura.Core
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
             return new Collision(
+                new Guid(),
                 adjustedMovement,
                 target);
         }
 
         private Collision(
+            Guid id,
             Movement adjustedMovement,
             Body target)
         {
+            this.id = id;
             Debug.Assert(adjustedMovement != null);
             this.adjustedMovement = adjustedMovement;
             Debug.Assert(target != null);
             this.target = target;
         }
 
+        private readonly Guid id;
         private readonly Movement adjustedMovement;
         private readonly Body target;
+
+        /// <summary>
+        ///     The ID of this <see cref="Collision"/>.
+        /// </summary>
+        public Guid ID
+        {
+            get
+            {
+                return id;
+            }
+        }
 
         /// <summary>
         ///     The adjusted <see cref="Movement"/> for the colliding body
@@ -91,7 +106,9 @@ namespace Sakura.Core
         public override string ToString()
         {
             return "{"
-                + "AdjustedMovement="
+                + "ID="
+                + ID
+                + ", AdjustedMovement="
                 + AdjustedMovement
                 + ", Target="
                 + Target
