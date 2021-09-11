@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Sakura.Core
 {
@@ -36,7 +37,42 @@ namespace Sakura.Core
                 throw new ArgumentNullException(nameof(collider));
             if (collidee == null)
                 throw new ArgumentNullException(nameof(collidee));
-            throw new NotImplementedException();
+            return new CollisionReaction(collider);
+        }
+
+        private CollisionReaction(BodyTemp collider)
+        {
+            Debug.Assert(collider != null);
+            this.collider = collider;
+        }
+
+        private readonly BodyTemp collider;
+
+        /// <summary>
+        ///     The body that made the collision.
+        /// </summary>
+        public BodyTemp Collider
+        {
+            get
+            {
+                return collider;
+            }
+        }
+
+        /// <summary>
+        ///     Create a string representation of this
+        ///     <see cref="CollisionReaction"/>.
+        /// </summary>
+        /// <returns>
+        ///     A string representation of this
+        ///     <see cref="CollisionReaction"/>.
+        /// </returns>
+        public override string ToString()
+        {
+            return "{"
+                + "Collider="
+                + Collider
+                + "}";
         }
     }
 }
