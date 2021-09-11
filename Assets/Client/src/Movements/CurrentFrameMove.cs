@@ -84,7 +84,7 @@ namespace Sakura.Movements
         private MoveResponse DidMove()
         {
             var movement = allMovements.For(entityID);
-            var location = movement.Location();
+            var location = movement.ResultingBody().Location;
             return new MoveResponse
             {
                 DidMove = true,

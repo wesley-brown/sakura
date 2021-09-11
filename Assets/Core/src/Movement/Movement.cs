@@ -6,10 +6,11 @@ namespace Sakura.Core
     /// <summary>
     ///     A displacement of a body through world space to a destination.
     /// </summary>
-    public sealed class MovementTemp
+    public sealed class Movement
     {
         /// <summary>
-        ///     Create a movement for a given body and destination.
+        ///     Create a <see cref="Movement"/> for a given body and
+        ///     destination.
         /// </summary>
         /// <param name="body">
         ///     The body.
@@ -18,12 +19,12 @@ namespace Sakura.Core
         ///     The destination.
         /// </param>
         /// <returns>
-        ///     A movement for the given body and destination.
+        ///     A <see cref="Movement"/> for the given body and destination.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given body is null.
         /// </exception>
-        public static MovementTemp For(
+        public static Movement For(
             BodyTemp body,
             Vector3 destination)
         {
@@ -33,12 +34,12 @@ namespace Sakura.Core
                     nameof(body),
                     "The given body must not be null.");
             }
-            return new MovementTemp(
+            return new Movement(
                 body,
                 destination);
         }
 
-        private MovementTemp(
+        private Movement(
             BodyTemp body,
             Vector3 destination)
         {
@@ -78,10 +79,10 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     Create a string representation of this movement.
+        ///     Create a string representation of this <see cref="Movement"/>.
         /// </summary>
         /// <returns>
-        ///     A string representation of this movement.
+        ///     A string representation of this <see cref="Movement"/>.
         /// </returns>
         public override string ToString()
         {

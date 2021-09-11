@@ -11,7 +11,7 @@ namespace Collision_Spec
         [Test]
         public void Does_not_support_a_null_movement()
         {
-            MovementTemp movement = null;
+            Movement movement = null;
             var entity = new Guid("0a35997f-1c46-426d-a9ee-dcbca907cae9");
             var location = new Vector3(5.0f, 0.0f, 0.0f);
             var body = BodyTemp.ForEntityLocatedAt(
@@ -34,7 +34,7 @@ namespace Collision_Spec
                 player,
                 playersLocation);
             var playersAdjustedDestination = new Vector3(4.0f, 0.0f, 0.0f);
-            var playersAdjustedMovement = MovementTemp.For(
+            var playersAdjustedMovement = Movement.For(
                 playersBody,
                 playersAdjustedDestination);
             BodyTemp enemyBody = null;
@@ -59,7 +59,7 @@ namespace Collision_Spec
                 player,
                 playersLocation);
             var playersAdjustedDestination = new Vector3(4.0f, 0.0f, 0.0f);
-            var playersAdjustedMovement = MovementTemp.For(
+            var playersAdjustedMovement = Movement.For(
                 playersBody,
                 playersAdjustedDestination);
 

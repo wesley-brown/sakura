@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Sakura.Core;
 using UnityEngine;
 
-namespace Movement_Temp_Spec
+namespace Movement_Spec
 {
     [TestFixture]
     public class Creating_a_movement_for_a_body_and_destination
@@ -15,7 +15,7 @@ namespace Movement_Temp_Spec
             var destination = new Vector3(10.0f, 10.0f, 10.0f);
             Assert.Throws<ArgumentNullException>(() =>
             {
-                MovementTemp.For(
+                Movement.For(
                     body,
                     destination);
             });
@@ -43,7 +43,7 @@ namespace Movement_Temp_Spec
                 movement.ToString());
         }
 
-        private static MovementTemp Movement()
+        private static Movement Movement()
         {
             var ID = new Guid("12c90c8a-9d7a-4a58-a9b3-f457496c9fba");
             var startingLocation = new Vector3(-5.0f, 0.0f, 0.0f);
@@ -51,7 +51,7 @@ namespace Movement_Temp_Spec
                 ID,
                 startingLocation);
             var destination = new Vector3(0.0f, 0.0f, 0.0f);
-            return MovementTemp.For(
+            return Sakura.Core.Movement.For(
                 body,
                 destination);
         }
