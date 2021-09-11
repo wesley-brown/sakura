@@ -21,12 +21,21 @@ namespace Sakura.Core
         ///     A <see cref="CollisionReaction"/> for the two given collided
         ///     bodies.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given collider body is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given collidee body is null.
+        /// </exception>
         public static CollisionReaction ForCollidedBodies(
             BodyTemp collider,
             BodyTemp collidee)
         {
             if (collider == null)
                 throw new ArgumentNullException(nameof(collider));
+            if (collidee == null)
+                throw new ArgumentNullException(nameof(collidee));
             throw new NotImplementedException();
         }
     }

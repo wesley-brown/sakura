@@ -24,5 +24,22 @@ namespace Collision_Reaction_Spec
                     collideesBody);
             });
         }
+
+        [Test]
+        public void Does_not_support_a_null_collidee_body()
+        {
+            var collider = new Guid("dc17cb7a-10d8-4ed4-b36d-a08ff275d049");
+            var collidersLocation = new Vector3(4.0f, 0.0f, 0.0f);
+            var collidersBody = BodyTemp.ForEntityLocatedAt(
+                collider,
+                collidersLocation);
+            BodyTemp collideesBody = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                CollisionReaction.ForCollidedBodies(
+                    collidersBody,
+                    collideesBody);
+            });
+        }
     }
 }
