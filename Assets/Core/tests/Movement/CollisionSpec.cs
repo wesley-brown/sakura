@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Sakura.Core;
 using UnityEngine;
 
-namespace Collision_Temp_Spec
+namespace Collision_Spec
 {
     [TestFixture]
     public class Creating_a_collision_with_an_adjusted_movement_towards_a_body
@@ -19,7 +19,7 @@ namespace Collision_Temp_Spec
                 location);
             Assert.Throws<ArgumentNullException>(() =>
             {
-                CollisionTemp.WithAdjustedMovementTowardsBody(
+                Sakura.Core.Collision.WithAdjustedMovementTowardsBody(
                     movement,
                     body);
             });
@@ -40,7 +40,7 @@ namespace Collision_Temp_Spec
             BodyTemp enemyBody = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                CollisionTemp.WithAdjustedMovementTowardsBody(
+                Sakura.Core.Collision.WithAdjustedMovementTowardsBody(
                     playersAdjustedMovement,
                     enemyBody);
             });
@@ -69,7 +69,7 @@ namespace Collision_Temp_Spec
                 enemy,
                 enemysLocation);
 
-            var collision = CollisionTemp.WithAdjustedMovementTowardsBody(
+            var collision = Sakura.Core.Collision.WithAdjustedMovementTowardsBody(
                 playersAdjustedMovement,
                 enemysBody);
             StringAssert.Contains(
