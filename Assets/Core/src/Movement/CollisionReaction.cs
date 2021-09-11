@@ -38,23 +38,38 @@ namespace Sakura.Core
             if (collidee == null)
                 throw new ArgumentNullException(nameof(collidee));
             return new CollisionReaction(
+                new Guid(),
                 collider,
                 collidee);
         }
 
         private CollisionReaction(
+            Guid id,
             BodyTemp collider,
             BodyTemp collidee)
         {
+            this.id = id;
             Debug.Assert(collider != null);
             this.collider = collider;
             Debug.Assert(collidee != null);
             this.collidee = collidee;
         }
 
+        private readonly Guid id;
         private readonly BodyTemp collider;
         private readonly BodyTemp collidee;
-        
+
+        /// <summary>
+        ///     The ID of this <see cref="CollisionReaction"/>.
+        /// </summary>
+        /// <returns></returns>
+        public Guid ID
+        {
+            get
+            {
+                return id;
+            }
+        }
 
         /// <summary>
         ///     The body that made the collision.
@@ -89,7 +104,9 @@ namespace Sakura.Core
         public override string ToString()
         {
             return "{"
-                + "Collider="
+                + "ID="
+                + ID
+                + ", Collider="
                 + Collider
                 + ", Collidee="
                 + Collidee

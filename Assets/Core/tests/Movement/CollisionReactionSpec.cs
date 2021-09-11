@@ -47,11 +47,11 @@ namespace Collision_Reaction_Spec
     public class The_string_representation_of_a_collision_reaction
     {
         [Test]
-        public void Contains_its_collider_body()
+        public void Contains_its_ID()
         {
             var collisionReaction = CreateCollisionReaction();
             StringAssert.Contains(
-                collisionReaction.Collider.ToString(),
+                collisionReaction.ID.ToString(),
                 collisionReaction.ToString());
         }
 
@@ -70,6 +70,15 @@ namespace Collision_Reaction_Spec
             return CollisionReaction.ForCollidedBodies(
                 collidersBody,
                 collideesBody);
+        }
+
+        [Test]
+        public void Contains_its_collider_body()
+        {
+            var collisionReaction = CreateCollisionReaction();
+            StringAssert.Contains(
+                collisionReaction.Collider.ToString(),
+                collisionReaction.ToString());
         }
 
         [Test]
