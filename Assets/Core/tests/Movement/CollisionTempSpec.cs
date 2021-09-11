@@ -24,5 +24,26 @@ namespace Collision_Temp_Spec
                     body);
             });
         }
+
+        [Test]
+        public void Does_not_support_a_null_body()
+        {
+            var player = new Guid("db8956a2-2b44-40a8-ab9e-8e0e4f064220");
+            var playersLocation = new Vector3(3.0f, 0.0f, 0.0f);
+            var playersBody = BodyTemp.ForEntityLocatedAt(
+                player,
+                playersLocation);
+            var playersAdjustedDestination = new Vector3(4.0f, 0.0f, 0.0f);
+            var playersAdjustedMovement = MovementTemp.For(
+                playersBody,
+                playersAdjustedDestination);
+            BodyTemp enemyBody = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                CollisionTemp.WithAdjustedMovementTowardsBody(
+                    playersAdjustedMovement,
+                    enemyBody);
+            });
+        }
     }
 }

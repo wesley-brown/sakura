@@ -24,6 +24,10 @@ namespace Sakura.Core
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given adjusted movement is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given body is null.
         /// </exception>
         public static CollisionTemp WithAdjustedMovementTowardsBody(
             MovementTemp adjustedMovement,
@@ -31,6 +35,8 @@ namespace Sakura.Core
         {
             if (adjustedMovement == null)
                 throw new ArgumentNullException(nameof(adjustedMovement));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
             throw new NotImplementedException();
         }
     }
