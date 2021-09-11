@@ -37,16 +37,24 @@ namespace Sakura.Core
                 throw new ArgumentNullException(nameof(collider));
             if (collidee == null)
                 throw new ArgumentNullException(nameof(collidee));
-            return new CollisionReaction(collider);
+            return new CollisionReaction(
+                collider,
+                collidee);
         }
 
-        private CollisionReaction(BodyTemp collider)
+        private CollisionReaction(
+            BodyTemp collider,
+            BodyTemp collidee)
         {
             Debug.Assert(collider != null);
             this.collider = collider;
+            Debug.Assert(collidee != null);
+            this.collidee = collidee;
         }
 
         private readonly BodyTemp collider;
+        private readonly BodyTemp collidee;
+        
 
         /// <summary>
         ///     The body that made the collision.
@@ -56,6 +64,17 @@ namespace Sakura.Core
             get
             {
                 return collider;
+            }
+        }
+
+        /// <summary>
+        ///     The body that was collided with.
+        /// </summary>
+        public BodyTemp Collidee
+        {
+            get
+            {
+                return collidee;
             }
         }
 
@@ -72,6 +91,8 @@ namespace Sakura.Core
             return "{"
                 + "Collider="
                 + Collider
+                + ", Collidee="
+                + Collidee
                 + "}";
         }
     }

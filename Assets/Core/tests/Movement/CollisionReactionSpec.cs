@@ -49,6 +49,14 @@ namespace Collision_Reaction_Spec
         [Test]
         public void Contains_its_collider_body()
         {
+            var collisionReaction = CreateCollisionReaction();
+            StringAssert.Contains(
+                collisionReaction.Collider.ToString(),
+                collisionReaction.ToString());
+        }
+
+        private static CollisionReaction CreateCollisionReaction()
+        {
             var collider = new Guid("dc17cb7a-10d8-4ed4-b36d-a08ff275d049");
             var collidersLocation = new Vector3(4.0f, 0.0f, 0.0f);
             var collidersBody = BodyTemp.ForEntityLocatedAt(
@@ -59,11 +67,17 @@ namespace Collision_Reaction_Spec
             var collideesBody = BodyTemp.ForEntityLocatedAt(
                 collidee,
                 collideesLocation);
-            var collisionReaction = CollisionReaction.ForCollidedBodies(
+            return CollisionReaction.ForCollidedBodies(
                 collidersBody,
                 collideesBody);
+        }
+
+        [Test]
+        public void Contains_its_collidee_body()
+        {
+            var collisionReaction = CreateCollisionReaction();
             StringAssert.Contains(
-                collisionReaction.Collider.ToString(),
+                collisionReaction.Collidee.ToString(),
                 collisionReaction.ToString());
         }
     }
