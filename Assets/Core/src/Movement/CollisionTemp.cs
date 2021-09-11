@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Sakura.Core
 {
@@ -37,7 +38,41 @@ namespace Sakura.Core
                 throw new ArgumentNullException(nameof(adjustedMovement));
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
-            throw new NotImplementedException();
+            return new CollisionTemp(adjustedMovement);
+        }
+
+        private CollisionTemp(MovementTemp adjustedMovement)
+        {
+            Debug.Assert(adjustedMovement != null);
+            this.adjustedMovement = adjustedMovement;
+        }
+
+        private readonly MovementTemp adjustedMovement;
+
+        /// <summary>
+        ///     The adjusted movement for the colliding body after collisions
+        ///     are taken into account.
+        /// </summary>
+        public MovementTemp AdjustedMovement
+        {
+            get
+            {
+                return adjustedMovement;
+            }
+        }
+
+        /// <summary>
+        ///     Create a string representation of this collision.
+        /// </summary>
+        /// <returns>
+        ///     A string representation of this collision.
+        /// </returns>
+        public override string ToString()
+        {
+            return "{"
+                + "AdjustedMovement="
+                + AdjustedMovement
+                + "}";
         }
     }
 }

@@ -46,4 +46,35 @@ namespace Collision_Temp_Spec
             });
         }
     }
+
+    [TestFixture]
+    public class The_string_representation_of_a_collision
+    {
+        [Test]
+        public void Contains_its_adjusted_movement()
+        {
+            var player = new Guid("db8956a2-2b44-40a8-ab9e-8e0e4f064220");
+            var playersLocation = new Vector3(3.0f, 0.0f, 0.0f);
+            var playersBody = BodyTemp.ForEntityLocatedAt(
+                player,
+                playersLocation);
+            var playersAdjustedDestination = new Vector3(4.0f, 0.0f, 0.0f);
+            var playersAdjustedMovement = MovementTemp.For(
+                playersBody,
+                playersAdjustedDestination);
+
+            var enemy = new Guid("0a35997f-1c46-426d-a9ee-dcbca907cae9");
+            var enemysLocation = new Vector3(5.0f, 0.0f, 0.0f);
+            var enemysBody = BodyTemp.ForEntityLocatedAt(
+                enemy,
+                enemysLocation);
+
+            var collision = CollisionTemp.WithAdjustedMovementTowardsBody(
+                playersAdjustedMovement,
+                enemysBody);
+            StringAssert.Contains(
+                collision.AdjustedMovement.ToString(),
+                collision.ToString());
+        }
+    }
 }
