@@ -48,6 +48,27 @@ namespace Collision_Spec
     }
 
     [TestFixture]
+    public class Creating_a_collision_between_two_bodies
+    {
+        [Test]
+        public void Does_not_support_a_null_collider_body()
+        {
+            Body colliderBody = null;
+            var collidee = new Guid("0a35997f-1c46-426d-a9ee-dcbca907cae9");
+            var collideeLocation = new UnityEngine.Vector3(5.0f, 0.0f, 0.0f);
+            var colideeBody = Body.ForEntityLocatedAt(
+                collidee,
+                collideeLocation);
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Collision.BetweenBodies(
+                    colliderBody,
+                    colliderBody);
+            });
+        }
+    }
+
+    [TestFixture]
     public class The_string_representation_of_a_collision
     {
         [Test]

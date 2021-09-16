@@ -45,6 +45,32 @@ namespace Sakura.Core
                 target);
         }
 
+        /// <summary>
+        ///     Create a <see cref="Collision"/> between two given
+        ///     <see cref="Body"/>s.
+        /// </summary>
+        /// <param name="collider">
+        ///     The <see cref="Body"/> that caused the collision by moving.
+        /// </param>
+        /// <param name="collidee">
+        ///     The <see cref="Body"/> that was moved into.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="Collision"/> between the two given
+        ///     <see cref="Body"/>s.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given collider <see cref="Body"/> is null.
+        /// </exception>
+        public static Collision BetweenBodies(
+            Body collider,
+            Body collidee)
+        {
+            if (collider == null)
+                throw new ArgumentNullException(nameof(collider));
+            throw new NotImplementedException();
+        }
+
         private Collision(
             Guid id,
             Movement adjustedMovement,
