@@ -61,6 +61,10 @@ namespace Sakura.Core
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given collider <see cref="Body"/> is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given collidee <see cref="Body"/> is null.
         /// </exception>
         public static Collision BetweenBodies(
             Body collider,
@@ -68,6 +72,8 @@ namespace Sakura.Core
         {
             if (collider == null)
                 throw new ArgumentNullException(nameof(collider));
+            if (collidee == null)
+                throw new ArgumentNullException(nameof(collidee));
             throw new NotImplementedException();
         }
 
