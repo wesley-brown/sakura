@@ -34,7 +34,39 @@ namespace Sakura.Core
                 throw new ArgumentOutOfRangeException(
                     nameof(speed),
                     "The given speed must be non-negative.");
-            throw new NotImplementedException();
+            return new Movement(speed);
+        }
+
+        private Movement(float speed)
+        {
+            Debug.Assert(speed >= 0);
+            this.speed = speed;
+        }
+
+        private readonly float speed;
+
+        /// <summary>
+        ///     The speed to move towards the destination with.
+        /// </summary>
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+        }
+
+        /// <summary>
+        ///     Create a <see cref="string"/> representation of this
+        ///     <see cref="Movement"/>.
+        /// </summary>
+        /// <returns>
+        ///     A <see cref="string"/> representation of this
+        ///     <see cref="Movement"/>.
+        /// </returns>
+        public override string ToString()
+        {
+            return "Speed=" + Speed;
         }
     }
 }

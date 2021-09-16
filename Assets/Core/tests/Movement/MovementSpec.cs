@@ -22,4 +22,21 @@ namespace Movement_Spec
             });
         }
     }
+
+    [TestFixture]
+    public class The_string_representation_of_a_movement
+    {
+        [Test]
+        public void Includes_its_speed()
+        {
+            var speed = 1.0f;
+            var destination = new Vector3(3.0f, 0.0f, 0.0f);
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                speed);
+            StringAssert.Contains(
+                movement.Speed.ToString(),
+                movement.ToString());
+        }
+    }
 }
