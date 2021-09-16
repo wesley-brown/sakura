@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Sakura.Core
 {
@@ -37,7 +38,39 @@ namespace Sakura.Core
                 throw new ArgumentNullException(nameof(collider));
             if (collidee == null)
                 throw new ArgumentNullException(nameof(collidee));
-            throw new NotImplementedException();
+            return new Collision(collider);
+        }
+
+        private Collision(Body collider)
+        {
+            Debug.Assert(collider != null);
+            this.collider = collider;
+        }
+
+        private readonly Body collider;
+
+        /// <summary>
+        ///     The <see cref="Body"/> that moved.
+        /// </summary>
+        public Body Collider
+        {
+            get
+            {
+                return collider;
+            }
+        }
+
+        /// <summary>
+        ///     Create a <see cref="string"/> representation of this
+        ///     <see cref="Collision"/>.
+        /// </summary>
+        /// <returns>
+        ///     A <see cref="string"/> representation of this
+        ///     <see cref="Collision"/>.
+        /// </returns>
+        public override string ToString()
+        {
+            return "Collider=" + collider;
         }
     }
 }
