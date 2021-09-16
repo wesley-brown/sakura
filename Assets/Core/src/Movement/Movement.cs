@@ -17,7 +17,8 @@ namespace Sakura.Core
         ///     The destination to move towards.
         /// </param>
         /// <param name="speed">
-        ///     The speed to move towards the destination with.
+        ///     The speed to move towards the destination with, measured in
+        ///     movement units per tick.
         /// </param>
         /// <returns>
         ///     A <see cref="Movement"/> that moves towards the given
@@ -63,7 +64,8 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     The speed to move towards the destination with.
+        ///     The speed to move towards the destination with, measured in
+        ///     movement units per tick.
         /// </summary>
         public float Speed
         {
@@ -71,6 +73,36 @@ namespace Sakura.Core
             {
                 return speed;
             }
+        }
+
+        /// <summary>
+        ///     Move a given <see cref="Body"/> one tick forward towards this 
+        ///     <see cref="Movement"/>'s <see cref="Destination"/> at this
+        ///     <see cref="Movement"/>'s <see cref="Speed"/>.
+        /// </summary>
+        /// <remarks>
+        ///     Since the given <see cref="Body"/> is moved one tick forward,
+        ///     its ending location may not be this <see cref="Movement"/>'s
+        ///     <see cref="Destination"/> if the given <see cref="Body"/>'s
+        ///     <see cref="Body.Location"/> is too far away to be reached in
+        ///     one tick at this <see cref="Movement"/>'s <see cref="Speed"/>.
+        /// </remarks>
+        /// <param name="body">
+        ///     The <see cref="Body"/> to move.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="Body"/> for the same entity as the given
+        ///     <see cref="Body"/> moved as close to <see cref="Destination"/>
+        ///     as possible in one tick at <see cref="Speed"/>.
+        /// </returns>
+        public Body Move(Body body)
+        {
+            var heading = destination - body.Location;
+            var distance = heading.magnitude;
+            var direction = heading / distance;
+            var movement = direction * speed;
+            var newLocation = body.Location + movement;
+            return body.TeleportTo(newLocation);
         }
 
         /// <summary>
