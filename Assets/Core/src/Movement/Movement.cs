@@ -34,16 +34,33 @@ namespace Sakura.Core
                 throw new ArgumentOutOfRangeException(
                     nameof(speed),
                     "The given speed must be non-negative.");
-            return new Movement(speed);
+            return new Movement(
+                destination,
+                speed);
         }
 
-        private Movement(float speed)
+        private Movement(
+            Vector3 destination,
+            float speed)
         {
+            this.destination = destination;
             Debug.Assert(speed >= 0);
             this.speed = speed;
         }
 
+        private readonly Vector3 destination;
         private readonly float speed;
+
+        /// <summary>
+        ///     The destination to move towards.
+        /// </summary>
+        public Vector3 Destination
+        {
+            get
+            {
+                return destination;
+            }
+        }
 
         /// <summary>
         ///     The speed to move towards the destination with.
@@ -66,7 +83,10 @@ namespace Sakura.Core
         /// </returns>
         public override string ToString()
         {
-            return "Speed=" + Speed;
+            return "Destination="
+                + Destination
+                + ", Speed="
+                + Speed;
         }
     }
 }

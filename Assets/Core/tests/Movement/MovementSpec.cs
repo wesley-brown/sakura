@@ -27,13 +27,27 @@ namespace Movement_Spec
     public class The_string_representation_of_a_movement
     {
         [Test]
-        public void Includes_its_speed()
+        public void Includes_its_destination()
         {
-            var speed = 1.0f;
+            var movement = CreateMovement();
+            StringAssert.Contains(
+                movement.Destination.ToString(),
+                movement.ToString());
+        }
+
+        private static Movement CreateMovement()
+        {
             var destination = new Vector3(3.0f, 0.0f, 0.0f);
-            var movement = Movement.TowardsDestinationWithSpeed(
+            var speed = 1.0f;
+            return Movement.TowardsDestinationWithSpeed(
                 destination,
                 speed);
+        }
+
+        [Test]
+        public void Includes_its_speed()
+        {
+            var movement = CreateMovement();
             StringAssert.Contains(
                 movement.Speed.ToString(),
                 movement.ToString());
