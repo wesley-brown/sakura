@@ -48,6 +48,14 @@ namespace Collision_Spec
         [Test]
         public void Includes_its_collider()
         {
+            var collision = CreateCollision();
+            StringAssert.Contains(
+                collision.Collider.ToString(),
+                collision.ToString());
+        }
+
+        private static Collision CreateCollision()
+        {
             var collider = new Guid("db8956a2-2b44-40a8-ab9e-8e0e4f064220");
             var colliderLocation = new UnityEngine.Vector3(3.0f, 0.0f, 0.0f);
             var colliderBody = Body.ForEntityLocatedAt(
@@ -58,11 +66,17 @@ namespace Collision_Spec
             var collideeBody = Body.ForEntityLocatedAt(
                 collidee,
                 collideeLocation);
-            var collision = Collision.BetweenBodies(
+            return Collision.BetweenBodies(
                 colliderBody,
                 collideeBody);
+        }
+
+        [Test]
+        public void Includes_its_collidee()
+        {
+            var collision = CreateCollision();
             StringAssert.Contains(
-                collision.Collider.ToString(),
+                collision.Collidee.ToString(),
                 collision.ToString());
         }
     }

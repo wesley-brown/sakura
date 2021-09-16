@@ -38,16 +38,23 @@ namespace Sakura.Core
                 throw new ArgumentNullException(nameof(collider));
             if (collidee == null)
                 throw new ArgumentNullException(nameof(collidee));
-            return new Collision(collider);
+            return new Collision(
+                collider,
+                collidee);
         }
 
-        private Collision(Body collider)
+        private Collision(
+            Body collider,
+            Body collidee)
         {
             Debug.Assert(collider != null);
             this.collider = collider;
+            Debug.Assert(collidee != null);
+            this.collidee = collidee;
         }
 
         private readonly Body collider;
+        private readonly Body collidee;
 
         /// <summary>
         ///     The <see cref="Body"/> that moved.
@@ -61,6 +68,17 @@ namespace Sakura.Core
         }
 
         /// <summary>
+        ///     The <see cref="Body"/> that was moved into.
+        /// </summary>
+        public Body Collidee
+        {
+            get
+            {
+                return collidee;
+            }
+        }
+
+        /// <summary>
         ///     Create a <see cref="string"/> representation of this
         ///     <see cref="Collision"/>.
         /// </summary>
@@ -70,7 +88,10 @@ namespace Sakura.Core
         /// </returns>
         public override string ToString()
         {
-            return "Collider=" + collider;
+            return "Collider="
+                + Collider
+                + ", Collidee="
+                + Collidee;
         }
     }
 }
