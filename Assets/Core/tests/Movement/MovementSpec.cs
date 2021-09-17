@@ -24,22 +24,22 @@ namespace Movement_Spec
     }
 
     [TestFixture]
-    public class Moving_a_body
+    public class Moving_a_body_towards_a_destination_too_slowly
     {
-        [Test]
-        public void Moves_it_as_far_as_possible_in_one_tick()
+        [TestCaseSource(nameof(Cases))]
+        public void Moves_it_as_close_as_possible_in_one_tick(
+            Vector3 startingLocation,
+            Vector3 destination,
+            float speed,
+            Vector3 expectedLocation)
         {
             var entity = new Guid("86f0373d-e578-4002-8636-3dd833781990");
-            var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
             var body = Body.ForEntityLocatedAt(
                 entity,
-                entityLocation);
-            var destination = new Vector3(2.0f, 0.0f, 0.0f);
-            var speed = 1.0f;
+                startingLocation);            
             var movement = Movement.TowardsDestinationWithSpeed(
                 destination,
                 speed);
-            var expectedLocation = new Vector3(1.0f, 0.0f, 0.0f);
             var movedBody = movement.Move(body);
             Assert.AreEqual(
                 body.Entity,
@@ -48,6 +48,51 @@ namespace Movement_Spec
                 expectedLocation,
                 movedBody.Location);
         }
+
+        static readonly object[] Cases =
+        {
+            // x-axis aligned movement
+            new object[]
+            {
+                new Vector3(0.0f, 0.0f, 0.0f),  // starting location
+                new Vector3(2.0f, 0.0f, 0.0f),  // destination
+                1.0f,                           // speed
+                new Vector3(1.0f, 0.0f, 0.0f)   // ending location
+            },
+
+            // z-axis aligned movement
+            new object[]
+            {
+                new Vector3(0.0f, 0.0f, 0.0f),  // starting location
+                new Vector3(0.0f, 0.0f, 2.0f),  // destination
+                1.0f,                           // speed
+                new Vector3(0.0f, 0.0f, 1.0f)   // ending location
+            },
+
+            // x-axis and z-axis movement
+            new object[]
+            {
+                new Vector3(0.0f, 0.0f, 0.0f),  // starting location
+                new Vector3(2.0f, 0.0f, 2.0f),  // destination
+                1.0f,                           // speed
+                new Vector3(
+                    (float)Math.Sqrt(8)/4,
+                    0.0f,
+                    (float)Math.Sqrt(8)/4)      // ending location
+            },
+
+            // x-axis, y-axis, and z-axis movement
+            new object[]
+            {
+                new Vector3(-5.0f, -5.0f, -5.0f),       // starting location
+                new Vector3(-3.0f, -3.0f, -3.0f),       // destination
+                1.0f,                                   // speed
+                new Vector3(
+                    -5 + (float)(Math.Sqrt(3) / 3),
+                    -5 + (float)(Math.Sqrt(3) / 3),
+                    -5 + (float)(Math.Sqrt(3) / 3))     // ending location
+            }
+        };
     }
 
     [TestFixture]
