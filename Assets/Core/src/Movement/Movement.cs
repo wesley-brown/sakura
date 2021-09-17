@@ -76,16 +76,25 @@ namespace Sakura.Core
         }
 
         /// <summary>
-        ///     Move a given <see cref="Body"/> one tick forward towards this 
+        ///     Move a given <see cref="Body"/> one tick towards this 
         ///     <see cref="Movement"/>'s <see cref="Destination"/> at this
         ///     <see cref="Movement"/>'s <see cref="Speed"/>.
         /// </summary>
         /// <remarks>
-        ///     Since the given <see cref="Body"/> is moved one tick forward,
-        ///     its ending location may not be this <see cref="Movement"/>'s
-        ///     <see cref="Destination"/> if the given <see cref="Body"/>'s
-        ///     <see cref="Body.Location"/> is too far away to be reached in
-        ///     one tick at this <see cref="Movement"/>'s <see cref="Speed"/>.
+        ///     If a <see cref="Movement"/> would not be enough to move a
+        ///     given <see cref="Body"/> to its <see cref="Destination"/> in a
+        ///     single tick, the <see cref="Body"/> will be placed as close as
+        ///     possible.
+        ///
+        ///     If a <see cref="Movement"/> would be exactly enough to move a
+        ///     given <see cref="Body"/> to its <see cref="Destination"/> in
+        ///     a single tick, the <see cref="Body"/> will be placed at its
+        ///     <see cref="Destination"/>.
+        ///
+        ///     If a <see cref="Movement"/> would be more than enough to move a 
+        ///     <see cref="Body"/> to its <see cref="Destination"/> in a single 
+        ///     tick, the <see cref="Body"/> will be placed at its
+        ///     <see cref="Destination"/> and no farther.
         /// </remarks>
         /// <param name="body">
         ///     The <see cref="Body"/> to move.
@@ -97,12 +106,29 @@ namespace Sakura.Core
         /// </returns>
         public Body Move(Body body)
         {
-            var heading = destination - body.Location;
-            var distance = heading.magnitude;
-            var direction = heading / distance;
-            var movement = direction * speed;
-            var newLocation = body.Location + movement;
-            return body.TeleportTo(newLocation);
+            var startingLocation = body.Location;
+            var requiredMovement = destination - startingLocation;
+            var possibleMovement =
+                MovementScaledToAmountPossibleInOneTick(requiredMovement);
+            if (WillMoveMoreThanNecessary(
+                possibleMovement,
+                requiredMovement))
+                return body.TeleportTo(startingLocation + requiredMovement);
+            return body.TeleportTo(startingLocation + possibleMovement);
+        }
+
+        private Vector3 MovementScaledToAmountPossibleInOneTick(
+            Vector3 requiredMovement)
+        {
+            var requiredDistance = requiredMovement.magnitude;
+            return (requiredMovement / requiredDistance) * speed;
+        }
+
+        private static bool WillMoveMoreThanNecessary(
+            Vector3 possibleMovement,
+            Vector3 requiredMovement)
+        {
+            return possibleMovement.magnitude > requiredMovement.magnitude;
         }
 
         /// <summary>

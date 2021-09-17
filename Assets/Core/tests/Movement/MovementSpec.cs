@@ -162,6 +162,72 @@ namespace Movement_Spec
     }
 
     [TestFixture]
+    public class Moving_a_body_towards_a_destination_faster_than_necessary
+    {
+        [TestCaseSource(nameof(Cases))]
+        public void Moves_it_only_to_the_destination_in_one_tick(
+            Vector3 startingLocation,
+            Vector3 destination,
+            float speed,
+            Vector3 expectedLocation)
+        {
+            var entity = new Guid("726946e3-9a3f-44ef-a067-0b638fd20d86");
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                startingLocation);
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                speed);
+            var movedBody = movement.Move(body);
+            Assert.AreEqual(
+                movedBody.Entity,
+                entity);
+            Assert.AreEqual(
+                expectedLocation,
+                movedBody.Location);
+        }
+
+        static readonly object[] Cases =
+        {
+            // x-axis aligned movement
+            new object[]
+            {
+                new Vector3(0.0f, 0.0f, 0.0f),  // starting location
+                new Vector3(1.0f, 0.0f, 0.0f),  // destination
+                10.0f,                          // speed
+                new Vector3(1.0f, 0.0f, 0.0f)   // ending location
+            },
+
+            // z-axis aligned movement
+            new object[]
+            {
+                new Vector3(0.0f, 0.0f, 0.5f),  // starting location
+                new Vector3(0.0f, 0.0f, -0.5f), // destination
+                123.45f,                        // speed
+                new Vector3(0.0f, 0.0f, -0.5f)  // ending location
+            },
+
+            // x-axis and z-axis aligned movement
+            new object[]
+            {
+                new Vector3(4.0f, 0.0f, 6.0f),  // starting location
+                new Vector3(3.0f, 0.0f, -6.0f), // destination
+                2000.12f,                       // speed
+                new Vector3(3.0f, 0.0f, -6.0f)  // ending location
+            },
+
+            // x-axis, y-axis, and z-axis movement
+            new object[]
+            {
+                new Vector3(1.0f, -2.0f, 3.0f), // starting location
+                new Vector3(10.0f, 2.0f, 6.0f), // destination
+                1847.73f,                       // speed
+                new Vector3(10.0f, 2.0f, 6.0f)  // ending location
+            }
+        };
+    }
+
+    [TestFixture]
     public class The_string_representation_of_a_movement
     {
         [Test]
