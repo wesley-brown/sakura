@@ -5,18 +5,22 @@ using Sakura.Client;
 namespace Collidable_Movement_System_Spec
 {
     [TestFixture]
-    public class Creating_a_collidable_movement_system_with_a_speed_and_collidable_bodies
+    public class Creating_a_collidable_movement_system_with_a_speed_and_collidable_bodies_and_presenter
     {
         [Test]
         public void Does_not_support_a_negative_speed()
         {
             var speed = -5.0f;
             var collidableBodies = new DummyCollidableBodies();
+            CollidableMovementSystemPresenter presenter =
+                new DummyCollidableMovementSystemPresenter();
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                CollidableMovementSystem.WithSpeedAndCollidableBodies(
-                    speed,
-                    collidableBodies);
+                CollidableMovementSystem
+                    .WithSpeedAndCollidableBodiesAndPresenter(
+                        speed,
+                        collidableBodies,
+                        presenter);
             });
         }
 
@@ -25,11 +29,15 @@ namespace Collidable_Movement_System_Spec
         {
             var speed = 5.0f;
             CollidableBodies collidableBodies = null;
+            CollidableMovementSystemPresenter presenter =
+                new DummyCollidableMovementSystemPresenter();
             Assert.Throws<ArgumentNullException>(() =>
             {
-                CollidableMovementSystem.WithSpeedAndCollidableBodies(
-                    speed,
-                    collidableBodies);
+                CollidableMovementSystem
+                    .WithSpeedAndCollidableBodiesAndPresenter(
+                        speed,
+                        collidableBodies,
+                        presenter);
             });
         }
     }
