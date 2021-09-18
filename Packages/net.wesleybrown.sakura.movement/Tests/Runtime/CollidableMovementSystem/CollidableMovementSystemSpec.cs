@@ -19,5 +19,18 @@ namespace Collidable_Movement_System_Spec
                     collidableBodies);
             });
         }
+
+        [Test]
+        public void Does_not_support_a_null_collection_of_collidable_bodies()
+        {
+            var speed = 5.0f;
+            CollidableBodies collidableBodies = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                CollidableMovementSystem.WithSpeedAndCollidableBodies(
+                    speed,
+                    collidableBodies);
+            });
+        }
     }
 }

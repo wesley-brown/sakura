@@ -26,6 +26,9 @@ namespace Sakura.Client
         ///     with the given non-negative speed and collection of collidable
         ///     bodies.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given collection of all bodies is null.
+        /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     Thrown when the given movement speed is negative.
         /// </exception>
@@ -37,6 +40,8 @@ namespace Sakura.Client
                 throw new ArgumentOutOfRangeException(
                     nameof(movementSpeed),
                     "The given movement speed must be non-negative.");
+            if (collidableBodies == null)
+                throw new ArgumentNullException(nameof(collidableBodies));
             throw new NotImplementedException();
         }
     }
