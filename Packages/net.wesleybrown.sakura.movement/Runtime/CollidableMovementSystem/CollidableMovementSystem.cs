@@ -27,7 +27,12 @@ namespace Sakura.Client
         ///     bodies.
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        ///     Thrown when the given collection of all bodies is null.
+        ///     Thrown when the given <see cref="CollidableBodies"/> is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given
+        ///     <see cref="CollidableMovementSystemPresenter"/> is null.
         /// </exception>
         internal static CollidableMovementSystem
             WithCollidableBodiesAndPresenter(
@@ -36,6 +41,8 @@ namespace Sakura.Client
         {
             if (collidableBodies == null)
                 throw new ArgumentNullException(nameof(collidableBodies));
+            if (presenter == null)
+                throw new ArgumentNullException(nameof(presenter));
             throw new NotImplementedException();
         }
     }

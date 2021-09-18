@@ -11,13 +11,25 @@ namespace Collidable_Movement_System_Spec
         public void Does_not_support_a_null_collection_of_collidable_bodies()
         {
             CollidableBodies collidableBodies = null;
-            CollidableMovementSystemPresenter presenter =
-                new DummyCollidableMovementSystemPresenter();
+            var presenter = new DummyCollidableMovementSystemPresenter();
             Assert.Throws<ArgumentNullException>(() =>
             {
                 CollidableMovementSystem.WithCollidableBodiesAndPresenter(
                         collidableBodies,
                         presenter);
+            });
+        }
+
+        [Test]
+        public void Does_not_support_a_null_presenter()
+        {
+            var collidableBodies = new DummyCollidableBodies();
+            CollidableMovementSystemPresenter presenter = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                CollidableMovementSystem.WithCollidableBodiesAndPresenter(
+                    collidableBodies,
+                    presenter);
             });
         }
     }
