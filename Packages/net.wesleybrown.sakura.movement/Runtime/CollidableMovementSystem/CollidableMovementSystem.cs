@@ -12,14 +12,11 @@ namespace Sakura.Client
     {
         /// <summary>
         ///     Create a <see cref="CollidableMovementSystem"/> with a given
-        ///     non-negative movement speed and collection of collidable
-        ///     bodies.
+        ///     <see cref="CollidableBodies"/> and
+        ///     <see cref="CollidableMovementSystemPresenter"/>.
         /// </summary>
-        /// <param name="movementSpeed">
-        ///     The non-negative movement speed to move entities with.
-        /// </param>
         /// <param name="collidableBodies">
-        ///     The collection of collidable bodies.
+        ///     The <see cref="CollidableBodies"/>.
         /// </param>
         /// <param name="presenter">
         ///     The <see cref="CollidableMovementSystemPresenter"/>.
@@ -32,19 +29,11 @@ namespace Sakura.Client
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given collection of all bodies is null.
         /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        ///     Thrown when the given movement speed is negative.
-        /// </exception>
         internal static CollidableMovementSystem
-            WithSpeedAndCollidableBodiesAndPresenter(
-                float movementSpeed,
+            WithCollidableBodiesAndPresenter(
                 CollidableBodies collidableBodies,
                 CollidableMovementSystemPresenter presenter)
         {
-            if (movementSpeed < 0)
-                throw new ArgumentOutOfRangeException(
-                    nameof(movementSpeed),
-                    "The given movement speed must be non-negative.");
             if (collidableBodies == null)
                 throw new ArgumentNullException(nameof(collidableBodies));
             throw new NotImplementedException();
