@@ -161,6 +161,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "net.wesleybrown.sakura.movement": {
+      "version": "file:net.wesleybrown.sakura.movement",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "net.wesleybrown.sakura.parameters": {
       "version": "file:net.wesleybrown.sakura.parameters",
       "depth": 0,

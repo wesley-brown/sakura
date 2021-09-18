@@ -1,0 +1,15 @@
+{
+    "name": "Sakura.Movement",
+    "references": [
+        "GUID:12a6beb2565b34591b5240c7a55e527d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
