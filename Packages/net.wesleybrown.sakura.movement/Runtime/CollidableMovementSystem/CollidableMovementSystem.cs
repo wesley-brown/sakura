@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Sakura.Core;
+using UnityEngine;
 
 [assembly: InternalsVisibleTo("Sakura.Movement.Tests")]
 namespace Sakura.Client
@@ -43,7 +46,41 @@ namespace Sakura.Client
                 throw new ArgumentNullException(nameof(collidableBodies));
             if (presenter == null)
                 throw new ArgumentNullException(nameof(presenter));
-            throw new NotImplementedException();
+            return new CollidableMovementSystem(
+                collidableBodies,
+                presenter);
+        }
+
+        private CollidableMovementSystem(
+            CollidableBodies collidableBodies,
+            CollidableMovementSystemPresenter presenter)
+        {
+            this.collidableBodies = collidableBodies;
+            this.presenter = presenter;
+        }
+
+        private readonly CollidableBodies collidableBodies;
+        private readonly CollidableMovementSystemPresenter presenter;
+
+        /// <inheritdoc/>
+        public async Task MoveEntityTowardsDestination(
+            Guid entity,
+            Vector3 destination)
+        {
+            var body = await collidableBodies.BodyForEntity(entity);
+            var speed = await collidableBodies.MovementSpeedForEntity(entity);
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                speed);
+            var movedBody = movement.Move(body);
+            await collidableBodies.ReplaceEntityBody(
+                entity,
+                body);
+            var collidableMovement = new CollidableMovement
+            {
+                EndingLocation = movedBody.Location
+            };
+            presenter.Present(collidableMovement);
         }
     }
 }

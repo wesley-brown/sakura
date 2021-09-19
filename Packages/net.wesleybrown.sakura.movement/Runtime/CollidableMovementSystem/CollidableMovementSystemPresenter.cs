@@ -5,5 +5,12 @@
     /// </summary>
     public interface CollidableMovementSystemPresenter
     {
+        /// <summary>
+        ///     Present a given <see cref="CollidableMovement"/>.
+        /// </summary>
+        /// <param name="collidableMovement">
+        ///     The <see cref="CollidableMovement"/> to present.
+        /// </param>
+        void Present(CollidableMovement collidableMovement);
     }
 }
