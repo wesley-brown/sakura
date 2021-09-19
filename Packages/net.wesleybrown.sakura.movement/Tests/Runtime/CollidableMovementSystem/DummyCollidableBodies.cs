@@ -86,5 +86,23 @@ namespace Collidable_Movement_System_Spec
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        ///     The <see cref="Collision"/> caused by the movement of a given
+        ///     <see cref="Body"/>.
+        /// </summary>
+        /// <param name="body">
+        ///     The <see cref="Body"/>.
+        /// </param>
+        /// <returns>
+        ///     Never returns.
+        /// </returns>
+        /// <exception cref="NotImplementedException">
+        ///     Always thrown.
+        /// </exception>
+        public Task<Collision> CollisionForBody(Body body)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

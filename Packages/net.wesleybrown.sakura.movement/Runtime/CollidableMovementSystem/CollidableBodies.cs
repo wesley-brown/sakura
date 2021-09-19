@@ -53,5 +53,34 @@ namespace Sakura.Client
         Task ReplaceEntityBody(
             Guid entity,
             Body body);
+
+        /// <summary>
+        ///     Whether or not a given <see cref="Body"/> is currently
+        ///     colliding with another <see cref="Body"/>.
+        /// </summary>
+        /// <param name="body">
+        ///     The <see cref="Body"/> to check for <see cref="Collision"/>s
+        ///     for.
+        /// </param>
+        /// <returns>
+        ///     A task representing the asynchronous opeartion.
+        ///     The task result will be true if the given <see cref="Body"/>
+        ///     is colliding with another <see cref="Body"/>; false otherwise.
+        /// </returns>
+        Task<bool> BodyIsColliding(Body body);
+
+        /// <summary>
+        ///     The <see cref="Collision"/> caused by the movement of a given
+        ///     <see cref="Body"/>.
+        /// </summary>
+        /// <param name="body">
+        ///     The <see cref="Body"/>.
+        /// </param>
+        /// <returns>
+        ///     A task representing the asynchronous operation.
+        ///     The task result will be the <see cref="Collision"/> caused by
+        ///     the movement of the given <see cref="Body"/>.
+        /// </returns>
+        Task<Collision> CollisionForBody(Body body);
     }
 }

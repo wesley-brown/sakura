@@ -75,10 +75,31 @@ namespace Sakura.Client
             var movedBody = movement.Move(body);
             await collidableBodies.ReplaceEntityBody(
                 entity,
-                body);
+                movedBody);
+            var movedBodyIsColliding =
+                await collidableBodies.BodyIsColliding(movedBody);
+            if (movedBodyIsColliding)
+                await PresentCollisionResolvedLocationOf(movedBody);
+            else
+                PresentLocationOf(movedBody);
+        }
+
+        private async Task PresentCollisionResolvedLocationOf(Body body)
+        {
+            var collision = await collidableBodies.CollisionForBody(body);
+            var adjustedBody = collision.Collider;
             var collidableMovement = new CollidableMovement
             {
-                EndingLocation = movedBody.Location
+                EndingLocation = adjustedBody.Location
+            };
+            presenter.Present(collidableMovement);
+        }
+
+        private void PresentLocationOf(Body body)
+        {
+            var collidableMovement = new CollidableMovement
+            {
+                EndingLocation = body.Location
             };
             presenter.Present(collidableMovement);
         }
