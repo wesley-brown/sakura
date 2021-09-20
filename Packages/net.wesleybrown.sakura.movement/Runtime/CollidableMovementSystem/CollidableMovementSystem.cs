@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sakura.Core;
@@ -68,6 +69,11 @@ namespace Sakura.Client
             Vector3 destination)
         {
             var body = await collidableBodies.BodyForEntity(entity);
+            if (body == null)
+                presenter.ReportError(
+                    "The entity '"
+                    + entity
+                    + "' does not have a body.");
             var speed = await collidableBodies.MovementSpeedForEntity(entity);
             var movement = Movement.TowardsDestinationWithSpeed(
                 destination,

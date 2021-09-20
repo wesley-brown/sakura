@@ -38,6 +38,30 @@ namespace Collidable_Movement_System_Spec
     }
 
     [TestFixture]
+    public class Moving_an_entity_towards_a_destination
+    {
+        [UnityTest]
+        public IEnumerator When_it_has_no_body_is_an_error()
+        {
+            var noCollidableBodies = new NoCollidableBodies();
+            var spyPresenter = new SpyPresenter();
+            var system = CollidableMovementSystem
+                .WithCollidableBodiesAndPresenter(
+                    noCollidableBodies,
+                    spyPresenter);
+            var player = new Guid("8e7eaa84-f471-42ca-91ff-0eafe4cc5af3");
+            var destination = new Vector3(3.0f, 0.0f, 3.0f);
+            // Unity Test Framework currently does not support async tasks
+            var task = system.MoveEntityTowardsDestination(
+                player,
+                destination);
+            while (!task.IsCompleted)
+                yield return null;
+            Assert.IsTrue(spyPresenter.ReportedError);
+        }
+    }
+
+    [TestFixture]
     public class Moving_a_body_towards_a_destination_with_no_collisions
     {
         [UnityTest]
@@ -57,6 +81,7 @@ namespace Collidable_Movement_System_Spec
                 destination);
             while (!task.IsCompleted)
                 yield return null;
+            Assert.IsFalse(spyPresenter.ReportedError);
             Assert.AreEqual(
                 destination,
                 spyPresenter.EndingLocation);
@@ -85,6 +110,7 @@ namespace Collidable_Movement_System_Spec
                 destination);
             while (!task.IsCompleted)
                 yield return null;
+            Assert.IsFalse(spyPresenter.ReportedError);
             Assert.AreEqual(
                 expectedEndingLocation,
                 spyPresenter.EndingLocation);

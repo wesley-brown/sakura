@@ -11,6 +11,20 @@ namespace Collidable_Movement_System_Spec
         CollidableMovementSystemPresenter
     {
         /// <summary>
+        ///     Report a given error.
+        /// </summary>
+        /// <param name="error">
+        ///     The error to report.
+        /// </param>
+        /// <exception cref="NotImplementedException">
+        ///     Always thrown.
+        /// </exception>
+        public void ReportError(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         ///     Present a given <see cref="CollidableMovement"/>.
         /// </summary>
         /// <param name="collidableMovement">

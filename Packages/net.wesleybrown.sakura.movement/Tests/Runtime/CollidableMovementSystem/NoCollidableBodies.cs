@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Sakura.Client;
 using Sakura.Core;
 
-namespace Sakura.Client
+namespace Collidable_Movement_System_Spec
 {
-    /// <summary>
-    ///     A collection of entity movement speeds, <see cref="Collision"/>s,
-    ///     and <see cref="Body"/>s.
-    /// </summary>
-    internal interface CollidableBodies
+    sealed class NoCollidableBodies : CollidableBodies
     {
         /// <summary>
         ///     The movement speed for the given entity.
@@ -18,10 +15,12 @@ namespace Sakura.Client
         /// </param>
         /// <returns>
         ///     A task representing the asynchronous operation.
-        ///     The task result will be the movement speed for the given
-        ///     entity.
+        ///     The task result will always be 0f.
         /// </returns>
-        Task<float> MovementSpeedForEntity(Guid entity);
+        public Task<float> MovementSpeedForEntity(Guid entity)
+        {
+            return Task.FromResult(0f);
+        }
 
         /// <summary>
         ///     The <see cref="Body"/> for the given entity.
@@ -31,10 +30,12 @@ namespace Sakura.Client
         /// </param>
         /// <returns>
         ///     A task representing the asynchronous operation.
-        ///     The task result will be the <see cref="Body"/> of the given
-        ///     entity, if there is one; null otherwise.
+        ///     The task result will be always be null.
         /// </returns>
-        Task<Body> BodyForEntity(Guid entity);
+        public Task<Body> BodyForEntity(Guid entity)
+        {
+            return Task.FromResult<Body>(null);
+        }
 
         /// <summary>
         ///    Replace the <see cref="Body"/> that currently represents a
@@ -50,9 +51,12 @@ namespace Sakura.Client
         /// <returns>
         ///     A task representing the asynchronous operation.
         /// </returns>
-        Task ReplaceEntityBody(
+        public Task ReplaceEntityBody(
             Guid entity,
-            Body body);
+            Body body)
+        {
+            return Task.CompletedTask;
+        }
 
         /// <summary>
         ///     Whether or not a given <see cref="Body"/> is currently
@@ -64,10 +68,12 @@ namespace Sakura.Client
         /// </param>
         /// <returns>
         ///     A task representing the asynchronous opeartion.
-        ///     The task result will be true if the given <see cref="Body"/>
-        ///     is colliding with another <see cref="Body"/>; false otherwise.
+        ///     The task result will always be false.
         /// </returns>
-        Task<bool> BodyIsColliding(Body body);
+        public Task<bool> BodyIsColliding(Body body)
+        {
+            return Task.FromResult(false);
+        }
 
         /// <summary>
         ///     The <see cref="Collision"/> caused by the movement of a given
@@ -78,9 +84,11 @@ namespace Sakura.Client
         /// </param>
         /// <returns>
         ///     A task representing the asynchronous operation.
-        ///     The task result will be the <see cref="Collision"/> caused by
-        ///     the movement of the given <see cref="Body"/>.
+        ///     The task result will always be null.
         /// </returns>
-        Task<Collision> CollisionForBody(Body body);
+        public Task<Collision> CollisionForBody(Body body)
+        {
+            return Task.FromResult<Collision>(null);
+        }
     }
 }

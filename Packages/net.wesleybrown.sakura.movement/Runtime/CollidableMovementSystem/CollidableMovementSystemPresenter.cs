@@ -6,6 +6,14 @@
     public interface CollidableMovementSystemPresenter
     {
         /// <summary>
+        ///     Report a given error.
+        /// </summary>
+        /// <param name="error">
+        ///     The error to report.
+        /// </param>
+        void ReportError(string error);
+
+        /// <summary>
         ///     Present a given <see cref="CollidableMovement"/>.
         /// </summary>
         /// <param name="collidableMovement">
