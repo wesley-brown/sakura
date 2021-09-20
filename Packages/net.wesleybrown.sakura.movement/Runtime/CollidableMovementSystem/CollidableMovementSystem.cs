@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Sakura.Core;
 using UnityEngine;
 
@@ -63,11 +62,11 @@ namespace Sakura.Client
         private readonly CollidableMovementSystemPresenter presenter;
 
         /// <inheritdoc/>
-        public async Task MoveEntityTowardsDestination(
+        public void MoveEntityTowardsDestination(
             Guid entity,
             Vector3 destination)
         {
-            var body = await collidableBodies.BodyForEntity(entity);
+            var body = collidableBodies.BodyForEntity(entity);
             if (body == null)
             {
                 presenter.ReportError(
@@ -76,26 +75,26 @@ namespace Sakura.Client
                     + "' does not have a body.");
                 return;
             }
-            var speed = await collidableBodies.MovementSpeedForEntity(entity);
+            var speed = collidableBodies.MovementSpeedForEntity(entity);
             var movement = Movement.TowardsDestinationWithSpeed(
                 destination,
                 speed);
             var movedBody = movement.Move(body);
-            await collidableBodies.ReplaceEntityBody(
+            collidableBodies.ReplaceEntityBody(
                 entity,
                 movedBody);
             var movedBodyIsColliding =
-                await collidableBodies.BodyIsColliding(movedBody);
+                collidableBodies.BodyIsColliding(movedBody);
             if (movedBodyIsColliding)
-                await PresentCollisionResolvedLocationOf(movedBody);
+                PresentCollisionResolvedLocationOf(movedBody);
             else
                 PresentLocationOf(movedBody);
         }
 
-        private async Task PresentCollisionResolvedLocationOf(Body body)
+        private void PresentCollisionResolvedLocationOf(Body body)
         {
             Debug.Assert(body != null);
-            var collision = await collidableBodies.CollisionForBody(body);
+            var collision = collidableBodies.CollisionForBody(body);
             var adjustedBody = collision.Collider;
             var collidableMovement = new CollidableMovement
             {

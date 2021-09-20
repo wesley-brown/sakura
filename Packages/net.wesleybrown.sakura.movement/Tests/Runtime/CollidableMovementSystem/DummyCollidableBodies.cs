@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Sakura.Client;
 using Sakura.Core;
 
@@ -22,7 +21,7 @@ namespace Collidable_Movement_System_Spec
         /// <exception cref="NotImplementedException">
         ///     Always thrown.
         /// </exception>
-        public Task<float> MovementSpeedForEntity(Guid entity)
+        public float MovementSpeedForEntity(Guid entity)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +38,7 @@ namespace Collidable_Movement_System_Spec
         /// <exception cref="NotImplementedException">
         ///     Always thrown.
         /// </exception>
-        public Task<Body> BodyForEntity(Guid entity)
+        public Body BodyForEntity(Guid entity)
         {
             throw new NotImplementedException();
         }
@@ -55,13 +54,10 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/> to replace the given entity's
         ///     <see cref="Body"/> with.
         /// </param>
-        /// <returns>
-        ///     Never returns.
-        /// </returns>
         /// <exception cref="NotImplementedException">
         ///     Always thrown.
         /// </exception>
-        public Task ReplaceEntityBody(
+        public void ReplaceEntityBody(
             Guid entity,
             Body body)
         {
@@ -82,7 +78,7 @@ namespace Collidable_Movement_System_Spec
         /// <exception cref="NotImplementedException">
         ///     Always thrown.
         /// </exception>
-        public Task<bool> BodyIsColliding(Body body)
+        public bool BodyIsColliding(Body body)
         {
             throw new NotImplementedException();
         }
@@ -100,7 +96,7 @@ namespace Collidable_Movement_System_Spec
         /// <exception cref="NotImplementedException">
         ///     Always thrown.
         /// </exception>
-        public Task<Collision> CollisionForBody(Body body)
+        public Collision CollisionForBody(Body body)
         {
             throw new NotImplementedException();
         }

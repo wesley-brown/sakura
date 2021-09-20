@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Sakura.Client;
 using Sakura.Core;
-using UnityEngine;
 
 namespace Collidable_Movement_System_Spec
 {
@@ -18,7 +16,7 @@ namespace Collidable_Movement_System_Spec
         internal NoCollisions()
         {
             var player = new Guid("0c6cace6-95c3-4c0c-a608-3918818a4a03");
-            var playersLocation = new Vector3(0.0f, 0.0f, 0.0f);
+            var playersLocation = new UnityEngine.Vector3(0.0f, 0.0f, 0.0f);
             playersBody = Body.ForEntityLocatedAt(
                 player,
                 playersLocation);
@@ -55,12 +53,11 @@ namespace Collidable_Movement_System_Spec
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will always be 5.0f.
+        ///     Always returns 5.0f.
         /// </returns>
-        public Task<float> MovementSpeedForEntity(Guid entity)
+        public float MovementSpeedForEntity(Guid entity)
         {
-            return Task.FromResult(5.0f);
+            return 5.0f;
         }
 
         /// <summary>
@@ -70,12 +67,11 @@ namespace Collidable_Movement_System_Spec
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will always be <see cref="PlayersBody"/>.
+        ///     Always returns <see cref="PlayersBody"/>.
         /// </returns>
-        public Task<Body> BodyForEntity(Guid entity)
+        public Body BodyForEntity(Guid entity)
         {
-            return Task.FromResult(playersBody);
+            return playersBody;
         }
 
         /// <summary>
@@ -89,16 +85,14 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/> to replace the given entity's
         ///     <see cref="Body"/> with.
         /// </param>
-        /// <returns>
-        ///     A task representing the asynchronous operation.
-        /// </returns>
-        public Task ReplaceEntityBody(
+        public void ReplaceEntityBody(
             Guid entity,
             Body body)
         {
-            return Task.CompletedTask;
+            // No-op
         }
 
+        /// <summary>
         ///     Whether or not a given <see cref="Body"/> is currently
         ///     colliding with another <see cref="Body"/>.
         /// </summary>
@@ -107,12 +101,11 @@ namespace Collidable_Movement_System_Spec
         ///     for.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous opeartion.
-        ///     The task result will always be false.
+        ///     Always returns false.
         /// </returns>
-        public Task<bool> BodyIsColliding(Body body)
+        public bool BodyIsColliding(Body body)
         {
-            return Task.FromResult(false);
+            return false;
         }
 
         /// <summary>
@@ -126,9 +119,9 @@ namespace Collidable_Movement_System_Spec
         ///     A task representing the asynchronous operation.
         ///     The task result will always be null.
         /// </returns>
-        public Task<Sakura.Core.Collision> CollisionForBody(Body body)
+        public Collision CollisionForBody(Body body)
         {
-            return Task.FromResult<Sakura.Core.Collision>(null);
+            return null;
         }
     }
 }

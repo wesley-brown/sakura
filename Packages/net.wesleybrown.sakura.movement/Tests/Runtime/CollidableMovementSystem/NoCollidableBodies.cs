@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Sakura.Client;
 using Sakura.Core;
 
@@ -14,12 +13,11 @@ namespace Collidable_Movement_System_Spec
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will always be 0f.
+        ///     Always returns 0f.
         /// </returns>
-        public Task<float> MovementSpeedForEntity(Guid entity)
+        public float MovementSpeedForEntity(Guid entity)
         {
-            return Task.FromResult(0f);
+            return 0f;
         }
 
         /// <summary>
@@ -29,12 +27,11 @@ namespace Collidable_Movement_System_Spec
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will be always be null.
+        ///     Always returns null.
         /// </returns>
-        public Task<Body> BodyForEntity(Guid entity)
+        public Body BodyForEntity(Guid entity)
         {
-            return Task.FromResult<Body>(null);
+            return null;
         }
 
         /// <summary>
@@ -48,14 +45,11 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/> to replace the given entity's
         ///     <see cref="Body"/> with.
         /// </param>
-        /// <returns>
-        ///     A task representing the asynchronous operation.
-        /// </returns>
-        public Task ReplaceEntityBody(
+        public void ReplaceEntityBody(
             Guid entity,
             Body body)
         {
-            return Task.CompletedTask;
+            // No-op
         }
 
         /// <summary>
@@ -67,12 +61,11 @@ namespace Collidable_Movement_System_Spec
         ///     for.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous opeartion.
-        ///     The task result will always be false.
+        ///     Always returns false.
         /// </returns>
-        public Task<bool> BodyIsColliding(Body body)
+        public bool BodyIsColliding(Body body)
         {
-            return Task.FromResult(false);
+            return false;
         }
 
         /// <summary>
@@ -83,12 +76,11 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/>.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will always be null.
+        ///     Always returns null.
         /// </returns>
-        public Task<Collision> CollisionForBody(Body body)
+        public Collision CollisionForBody(Body body)
         {
-            return Task.FromResult<Collision>(null);
+            return null;
         }
     }
 }

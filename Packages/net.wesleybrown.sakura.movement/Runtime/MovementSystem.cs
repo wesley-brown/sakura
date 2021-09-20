@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Sakura.Client
@@ -18,10 +17,7 @@ namespace Sakura.Client
         /// <param name="destination">
         ///     The destination to move the entity towards.
         /// </param>
-        /// <returns>
-        ///     A task representing the asychronous operation.
-        /// </returns>
-        Task MoveEntityTowardsDestination(
+        void MoveEntityTowardsDestination(
             Guid entity,
             Vector3 destination);
     }

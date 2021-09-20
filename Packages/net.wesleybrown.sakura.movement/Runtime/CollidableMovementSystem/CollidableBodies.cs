@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Sakura.Core;
 
 namespace Sakura.Client
@@ -17,11 +16,9 @@ namespace Sakura.Client
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will be the movement speed for the given
-        ///     entity.
+        ///     The movement speed for the given entity.
         /// </returns>
-        Task<float> MovementSpeedForEntity(Guid entity);
+        float MovementSpeedForEntity(Guid entity);
 
         /// <summary>
         ///     The <see cref="Body"/> for the given entity.
@@ -30,11 +27,10 @@ namespace Sakura.Client
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will be the <see cref="Body"/> of the given
-        ///     entity, if there is one; null otherwise.
+        ///     The <see cref="Body"/> of the given entity, if there is one;
+        ///     null otherwise.
         /// </returns>
-        Task<Body> BodyForEntity(Guid entity);
+        Body BodyForEntity(Guid entity);
 
         /// <summary>
         ///    Replace the <see cref="Body"/> that currently represents a
@@ -47,10 +43,7 @@ namespace Sakura.Client
         ///     The <see cref="Body"/> to replace the given entity's
         ///     <see cref="Body"/> with.
         /// </param>
-        /// <returns>
-        ///     A task representing the asynchronous operation.
-        /// </returns>
-        Task ReplaceEntityBody(
+        void ReplaceEntityBody(
             Guid entity,
             Body body);
 
@@ -63,11 +56,10 @@ namespace Sakura.Client
         ///     for.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous opeartion.
-        ///     The task result will be true if the given <see cref="Body"/>
-        ///     is colliding with another <see cref="Body"/>; false otherwise.
+        ///     True if the given <see cref="Body"/> is colliding with another
+        ///     <see cref="Body"/>; false otherwise.
         /// </returns>
-        Task<bool> BodyIsColliding(Body body);
+        bool BodyIsColliding(Body body);
 
         /// <summary>
         ///     The <see cref="Collision"/> caused by the movement of a given
@@ -77,10 +69,9 @@ namespace Sakura.Client
         ///     The <see cref="Body"/>.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will be the <see cref="Collision"/> caused by
-        ///     the movement of the given <see cref="Body"/>.
+        ///     The <see cref="Collision"/> caused by the movement of the given
+        ///     <see cref="Body"/>.
         /// </returns>
-        Task<Collision> CollisionForBody(Body body);
+        Collision CollisionForBody(Body body);
     }
 }

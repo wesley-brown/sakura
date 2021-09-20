@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Sakura.Client;
 using Sakura.Core;
-using UnityEngine;
 
 namespace Collidable_Movement_System_Spec
 {
@@ -18,27 +16,28 @@ namespace Collidable_Movement_System_Spec
         internal AlwaysCollisions()
         {
             var player = new Guid("5905dcc6-f59d-4a96-85c0-2b2e1da02ec8");
-            var playersLocation = new Vector3(0.0f, 0.0f, 0.0f);
+            var playersLocation = new UnityEngine.Vector3(0.0f, 0.0f, 0.0f);
             playersBody = Body.ForEntityLocatedAt(
                 player,
                 playersLocation);
             var enemy = new Guid("c15f7c57-f638-4cda-8a1c-07889d03d4f0");
-            var enemysLocation = new Vector3(3.5f, 0.0f, 3.5f);
+            var enemysLocation = new UnityEngine.Vector3(3.5f, 0.0f, 3.5f);
             enemysBody = Body.ForEntityLocatedAt(
                 enemy,
                 enemysLocation);
-            var adjustedPlayersLocation = new Vector3(3.0f, 0.0f, 3.0f);
+            var adjustedPlayersLocation =
+                new UnityEngine.Vector3(3.0f, 0.0f, 3.0f);
             var adjustedPlayersBody = Body.ForEntityLocatedAt(
                 player,
                 adjustedPlayersLocation);
-            playersCollision = Sakura.Core.Collision.BetweenBodies(
+            playersCollision = Collision.BetweenBodies(
                 adjustedPlayersBody,
                 enemysBody);
         }
 
         private readonly Body playersBody;
         private readonly Body enemysBody;
-        private readonly Sakura.Core.Collision playersCollision;
+        private readonly Collision playersCollision;
 
         /// <summary>
         ///     The single entity that this <see cref="AlwaysCollisions"/>
@@ -67,11 +66,11 @@ namespace Collidable_Movement_System_Spec
         ///     The adjusted location for <see cref="Player"/> after
         ///     <see cref="Collision"/>s are resolved.
         /// </summary>
-        public Vector3 AdjustedCollisionLocation
+        public UnityEngine.Vector3 AdjustedCollisionLocation
         {
             get
             {
-                return new Vector3(3.0f, 0.0f, 3.0f);
+                return new UnityEngine.Vector3(3.0f, 0.0f, 3.0f);
             }
         }
 
@@ -79,7 +78,7 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Collision"/> that <see cref="Player"/> will
         ///     always be involved in.
         /// </summary>
-        public Sakura.Core.Collision PlayersCollision
+        public Collision PlayersCollision
         {
             get
             {
@@ -94,12 +93,11 @@ namespace Collidable_Movement_System_Spec
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will be always be <see cref="PlayersBody"/>.
+        ///     Always returns <see cref="PlayersBody"/>.
         /// </returns>
-        public Task<Body> BodyForEntity(Guid entity)
+        public Body BodyForEntity(Guid entity)
         {
-            return Task.FromResult(playersBody);
+            return playersBody;
         }
 
         /// <summary>
@@ -109,12 +107,11 @@ namespace Collidable_Movement_System_Spec
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will always be 5.0f.
+        ///     Always returns 5.0f.
         /// </returns>
-        public Task<float> MovementSpeedForEntity(Guid entity)
+        public float MovementSpeedForEntity(Guid entity)
         {
-            return Task.FromResult(5.0f);
+            return 5.0f;
         }
 
         /// <summary>
@@ -128,12 +125,11 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/> to replace the given entity's
         ///     <see cref="Body"/> with.
         /// </param>
-        /// <returns>
-        ///     A task representing the asynchronous operation.
-        /// </returns>
-        public Task ReplaceEntityBody(Guid entity, Body body)
+        public void ReplaceEntityBody(
+            Guid entity,
+            Body body)
         {
-            return Task.CompletedTask;
+            // No-op
         }
 
         /// <summary>
@@ -145,12 +141,11 @@ namespace Collidable_Movement_System_Spec
         ///     for.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous opeartion.
-        ///     The task result will always be true.
+        ///     Always returns true.
         /// </returns>
-        public Task<bool> BodyIsColliding(Body body)
+        public bool BodyIsColliding(Body body)
         {
-            return Task.FromResult(true);
+            return true;
         }
 
         /// <summary>
@@ -161,12 +156,11 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/>.
         /// </param>
         /// <returns>
-        ///     A task representing the asynchronous operation.
-        ///     The task result will always be <see cref="PlayerCollision"/>.
+        ///     Aways returns <see cref="PlayerCollision"/>.
         /// </returns>
-        public Task<Sakura.Core.Collision> CollisionForBody(Body body)
+        public Collision CollisionForBody(Body body)
         {
-            return Task.FromResult(PlayersCollision);
+            return PlayersCollision;
         }
     }
 }
