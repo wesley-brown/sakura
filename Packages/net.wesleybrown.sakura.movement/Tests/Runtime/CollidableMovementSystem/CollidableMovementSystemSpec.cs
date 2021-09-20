@@ -62,10 +62,10 @@ namespace Collidable_Movement_System_Spec
     }
 
     [TestFixture]
-    public class Moving_a_body_towards_a_destination_with_no_collisions
+    public class Moving_an_entity_towards_a_destination_with_no_collisions
     {
         [UnityTest]
-        public IEnumerator Moves_that_body_as_far_as_possible_in_one_tick()
+        public IEnumerator Moves_it_as_far_as_possible_in_one_tick()
         {
             var noCollisions = new NoCollisions();
             var spyPresenter = new SpyPresenter();
@@ -89,10 +89,10 @@ namespace Collidable_Movement_System_Spec
     }
 
     [TestFixture]
-    public class Moving_a_body_towards_a_destination_with_collisions
+    public class Moving_an_entity_towards_a_destination_with_collisions
     {
         [UnityTest]
-        public IEnumerator Moves_that_body_to_the_adjusted_collision_location_in_one_tick()
+        public IEnumerator Moves_it_to_the_adjusted_collision_location_in_one_tick()
         {
             var alwaysCollisions = new AlwaysCollisions();
             var spyPresenter = new SpyPresenter();
