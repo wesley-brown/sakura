@@ -69,10 +69,13 @@ namespace Sakura.Client
         {
             var body = await collidableBodies.BodyForEntity(entity);
             if (body == null)
+            {
                 presenter.ReportError(
                     "The entity '"
                     + entity
                     + "' does not have a body.");
+                return;
+            }
             var speed = await collidableBodies.MovementSpeedForEntity(entity);
             var movement = Movement.TowardsDestinationWithSpeed(
                 destination,
@@ -91,6 +94,7 @@ namespace Sakura.Client
 
         private async Task PresentCollisionResolvedLocationOf(Body body)
         {
+            Debug.Assert(body != null);
             var collision = await collidableBodies.CollisionForBody(body);
             var adjustedBody = collision.Collider;
             var collidableMovement = new CollidableMovement
@@ -102,6 +106,7 @@ namespace Sakura.Client
 
         private void PresentLocationOf(Body body)
         {
+            Debug.Assert(body != null);
             var collidableMovement = new CollidableMovement
             {
                 EndingLocation = body.Location
