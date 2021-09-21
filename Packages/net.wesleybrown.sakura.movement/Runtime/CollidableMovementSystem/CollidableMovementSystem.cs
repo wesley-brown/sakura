@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Sakura.Core;
 using UnityEngine;
 
-[assembly: InternalsVisibleTo("Sakura.Movement.Tests")]
 namespace Sakura.Client
 {
     /// <summary>
