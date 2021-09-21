@@ -29,12 +29,14 @@ namespace Bodies_Spec
         {
             var bodies = new Bodies();
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
+            Assert.IsNull(bodies.BodyForEntity(entity));
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
             var body = Body.ForEntityLocatedAt(
                 entity,
                 entityLocation);
             bodies.AddBody(body);
             var entitysBody = bodies.BodyForEntity(entity);
+            Assert.IsNotNull(bodies.BodyForEntity(entity));
             Assert.AreEqual(
                 entity,
                 entitysBody.Entity);

@@ -49,22 +49,19 @@ namespace Sakura.Data
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     The <see cref="Body"/> for the given entity.
+        ///     The <see cref="Body"/> for the given entity, if it exists;
+        ///     null otherwise.
         /// </returns>
         internal Body BodyForEntity(Guid entity)
         {
-            try
-            {
-                return bodies[entity];
-            }
-            catch (ArgumentNullException)
-            {
-                throw new NotImplementedException();
-            }
-            catch (ArgumentException)
-            {
-                throw new NotImplementedException();
-            }
+            if (NoBodyForEntity(entity))
+                return null;
+            return bodies[entity];
+        }
+
+        private bool NoBodyForEntity(Guid entity)
+        {
+            return !bodies.ContainsKey(entity);
         }
     }
 }
