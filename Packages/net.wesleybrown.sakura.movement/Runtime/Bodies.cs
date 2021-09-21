@@ -32,14 +32,15 @@ namespace Sakura.Data
         {
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
-            try
-            {
-                bodies.Add(body.Entity, body);
-            }
-            catch (ArgumentException)
-            {
-                throw new NotImplementedException();
-            }
+            var entity = body.Entity;
+            if (HaveBodyForEntity(entity))
+                bodies.Remove(entity);
+            bodies.Add(body.Entity, body);
+        }
+
+        private bool HaveBodyForEntity(Guid entity)
+        {
+            return bodies.ContainsKey(entity);
         }
 
         /// <summary>
@@ -54,14 +55,9 @@ namespace Sakura.Data
         /// </returns>
         internal Body BodyForEntity(Guid entity)
         {
-            if (NoBodyForEntity(entity))
+            if (!HaveBodyForEntity(entity))
                 return null;
             return bodies[entity];
-        }
-
-        private bool NoBodyForEntity(Guid entity)
-        {
-            return !bodies.ContainsKey(entity);
         }
     }
 }

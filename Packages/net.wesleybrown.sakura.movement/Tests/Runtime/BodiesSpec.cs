@@ -42,4 +42,38 @@ namespace Bodies_Spec
                 entitysBody.Entity);
         }
     }
+
+    [TestFixture]
+    public class Adding_a_body_for_an_entity_that_already_has_one
+    {
+        [Test]
+        public void Makes_that_body_the_body_for_that_entity()
+        {
+            var bodies = ExistingBodies();
+            var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
+            Assert.IsNotNull(bodies.BodyForEntity(entity));
+            var entityLocation = new Vector3(5.0f, 0.0f, 5.0f);
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                entityLocation);
+            bodies.AddBody(body);
+            var entitysBody = bodies.BodyForEntity(entity);
+            Assert.IsNotNull(bodies.BodyForEntity(entity));
+            Assert.AreEqual(
+                entity,
+                entitysBody.Entity);
+        }
+
+        private static Bodies ExistingBodies()
+        {
+            var bodies = new Bodies();
+            var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
+            var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                entityLocation);
+            bodies.AddBody(body);
+            return bodies;
+        }
+    }
 }
