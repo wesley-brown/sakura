@@ -23,6 +23,10 @@ namespace Sakura.Data
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="CharacterController"/> is
         ///     null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given <see cref="Bodies"/> is null.
         /// </exception>
         internal static CharacterControllerCollisions WithControllerAndBodies(
             CharacterController controller,
@@ -30,6 +34,8 @@ namespace Sakura.Data
         {
             if (controller == null)
                 throw new ArgumentNullException(nameof(controller));
+            if (bodies == null)
+                throw new ArgumentNullException(nameof(bodies));
             throw new NotImplementedException();
         }
     }

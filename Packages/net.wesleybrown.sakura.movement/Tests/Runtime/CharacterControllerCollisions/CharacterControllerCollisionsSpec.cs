@@ -20,5 +20,20 @@ namespace Character_Controller_Collisions_Spec
                     bodies);
             });
         }
+
+        [Test]
+        public void Does_not_support_a_null_bodies()
+        {
+            var gameObject = new GameObject();
+            var characterController =
+                gameObject.AddComponent<CharacterController>();
+            Bodies bodies = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                CharacterControllerCollisions.WithControllerAndBodies(
+                    characterController,
+                    bodies);
+            });
+        }
     }
 }
