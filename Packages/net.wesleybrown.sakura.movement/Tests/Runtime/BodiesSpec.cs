@@ -7,6 +7,21 @@ using UnityEngine;
 namespace Bodies_Spec
 {
     [TestFixture]
+    public class Adding_a_body
+    {
+        [Test]
+        public void Does_not_support_a_null_body()
+        {
+            var bodies = new Bodies();
+            Body body = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                bodies.AddBody(body);
+            });
+        }
+    }
+
+    [TestFixture]
     public class Adding_a_body_for_an_entity_without_one
     {
         [Test]
