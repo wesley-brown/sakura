@@ -4,7 +4,7 @@ using Sakura.Core;
 using Sakura.Data;
 using UnityEngine;
 
-namespace Bodies_Spec
+namespace In_Memory_Bodies_Spec
 {
     [TestFixture]
     public class Adding_a_body
@@ -12,7 +12,7 @@ namespace Bodies_Spec
         [Test]
         public void Does_not_support_a_null_body()
         {
-            var bodies = new Bodies();
+            var bodies = new InMemoryBodies();
             Body body = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -27,7 +27,7 @@ namespace Bodies_Spec
         [Test]
         public void Makes_that_body_the_one_for_that_entity()
         {
-            var bodies = new Bodies();
+            var bodies = new InMemoryBodies();
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
             Assert.IsNull(bodies.BodyForEntity(entity));
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -64,9 +64,9 @@ namespace Bodies_Spec
                 entitysBody.Entity);
         }
 
-        private static Bodies ExistingBodies()
+        private static InMemoryBodies ExistingBodies()
         {
-            var bodies = new Bodies();
+            var bodies = new InMemoryBodies();
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
             var body = Body.ForEntityLocatedAt(
