@@ -78,35 +78,17 @@ namespace Sakura.Client
                 destination,
                 speed);
             var movedBody = movement.Move(body);
+            var collision = collidableBodies.CollisionCausedByMovingBody(
+                movement,
+                body);
+            if (collision != null)
+                movedBody = collision.Collider;
             collidableBodies.ReplaceEntityBody(
                 entity,
                 movedBody);
-            var movedBodyIsColliding =
-                collidableBodies.BodyIsColliding(movedBody);
-            if (movedBodyIsColliding)
-                PresentCollisionResolvedLocationOf(movedBody);
-            else
-                PresentLocationOf(movedBody);
-        }
-
-        private void PresentCollisionResolvedLocationOf(Body body)
-        {
-            Debug.Assert(body != null);
-            var collision = collidableBodies.CollisionForBody(body);
-            var adjustedBody = collision.Collider;
             var collidableMovement = new CollidableMovement
             {
-                EndingLocation = adjustedBody.Location
-            };
-            presenter.Present(collidableMovement);
-        }
-
-        private void PresentLocationOf(Body body)
-        {
-            Debug.Assert(body != null);
-            var collidableMovement = new CollidableMovement
-            {
-                EndingLocation = body.Location
+                EndingLocation = movedBody.Location
             };
             presenter.Present(collidableMovement);
         }

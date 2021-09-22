@@ -16,7 +16,8 @@ namespace Sakura.Client
         ///     The entity.
         /// </param>
         /// <returns>
-        ///     The movement speed for the given entity.
+        ///     The movement speed for the given entity, if it has one; 0.0f
+        ///     otherwise.
         /// </returns>
         float MovementSpeedForEntity(Guid entity);
 
@@ -48,30 +49,22 @@ namespace Sakura.Client
             Body body);
 
         /// <summary>
-        ///     Whether or not a given <see cref="Body"/> is currently
-        ///     colliding with another <see cref="Body"/>.
+        ///     The <see cref="Collision"/>, if any, caused by applying a given
+        ///     <see cref="Movement"/> to a given <see cref="Body"/>.
         /// </summary>
+        /// <param name="movement">
+        ///     The <see cref="Movement"/> to apply to the <see cref="Body"/>.
+        /// </param>
         /// <param name="body">
-        ///     The <see cref="Body"/> to check for <see cref="Collision"/>s
-        ///     for.
+        ///     The <see cref="Body"/> to apply the <see cref="Movement"/> to.
         /// </param>
         /// <returns>
-        ///     True if the given <see cref="Body"/> is colliding with another
-        ///     <see cref="Body"/>; false otherwise.
+        ///     The <see cref="Collision"/>, if any, caused by applying the
+        ///     given <see cref="Movement"/> to the given <see cref="Body"/>;
+        ///     null otherwise.
         /// </returns>
-        bool BodyIsColliding(Body body);
-
-        /// <summary>
-        ///     The <see cref="Collision"/> caused by the movement of a given
-        ///     <see cref="Body"/>.
-        /// </summary>
-        /// <param name="body">
-        ///     The <see cref="Body"/>.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Collision"/> caused by the movement of the given
-        ///     <see cref="Body"/>.
-        /// </returns>
-        Collision CollisionForBody(Body body);
+        Collision CollisionCausedByMovingBody(
+            Movement movement,
+            Body body);
     }
 }

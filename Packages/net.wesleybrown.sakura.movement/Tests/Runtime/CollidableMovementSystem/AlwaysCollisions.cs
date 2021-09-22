@@ -156,9 +156,29 @@ namespace Collidable_Movement_System_Spec
         ///     The <see cref="Body"/>.
         /// </param>
         /// <returns>
-        ///     Aways returns <see cref="PlayerCollision"/>.
+        ///     Aways returns <see cref="PlayersCollision"/>.
         /// </returns>
         public Collision CollisionForBody(Body body)
+        {
+            return PlayersCollision;
+        }
+
+        /// <summary>
+        ///     The <see cref="Collision"/>, if any, caused by applying a given
+        ///     <see cref="Movement"/> to a given <see cref="Body"/>.
+        /// </summary>
+        /// <param name="movement">
+        ///     The <see cref="Movement"/> to apply to the <see cref="Body"/>.
+        /// </param>
+        /// <param name="body">
+        ///     The <see cref="Body"/> to apply the <see cref="Movement"/> to.
+        /// </param>
+        /// <returns>
+        ///     Always returns <see cref="PlayersCollision"/>.
+        /// </returns>
+        public Collision CollisionCausedByMovingBody(
+            Movement movement,
+            Body body)
         {
             return PlayersCollision;
         }

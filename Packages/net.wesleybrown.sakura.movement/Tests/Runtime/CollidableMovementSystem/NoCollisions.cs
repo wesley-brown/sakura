@@ -123,5 +123,25 @@ namespace Collidable_Movement_System_Spec
         {
             return null;
         }
+
+        /// <summary>
+        ///     The <see cref="Collision"/>, if any, caused by applying a given
+        ///     <see cref="Movement"/> to a given <see cref="Body"/>.
+        /// </summary>
+        /// <param name="movement">
+        ///     The <see cref="Movement"/> to apply to the <see cref="Body"/>.
+        /// </param>
+        /// <param name="body">
+        ///     The <see cref="Body"/> to apply the <see cref="Movement"/> to.
+        /// </param>
+        /// <returns>
+        ///     Always returns null.
+        /// </returns>
+        public Collision CollisionCausedByMovingBody(
+            Movement movement,
+            Body body)
+        {
+            return null;
+        }
     }
 }
