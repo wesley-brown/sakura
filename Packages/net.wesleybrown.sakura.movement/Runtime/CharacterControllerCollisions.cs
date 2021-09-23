@@ -11,14 +11,17 @@ namespace Sakura.Data
     {
         /// <summary>
         ///     Create a <see cref="CharacterControllerCollisions"/> with a
-        ///     given <see cref="CharacterController"/> and
-        ///     <see cref="Bodies"/>.
+        ///     given <see cref="CharacterController"/>, <see cref="Bodies"/>,
+        ///     and <see cref="GameObjects"/>.
         /// </summary>
         /// <param name="controller">
         ///     The <see cref="CharacterController"/>.
         /// </param>
         /// <param name="bodies">
         ///     The <see cref="Bodies"/>.
+        /// </param>
+        /// <param name="gameObjects">
+        ///     The <see cref="GameObjects"/>.
         /// </param>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="CharacterController"/> is
@@ -28,9 +31,11 @@ namespace Sakura.Data
         ///
         ///     Thrown when the given <see cref="Bodies"/> is null.
         /// </exception>
-        internal static CharacterControllerCollisions WithControllerAndBodies(
-            CharacterController controller,
-            Bodies bodies)
+        internal static CharacterControllerCollisions
+            WithControllerAndBodiesAndGameObjects(
+                CharacterController controller,
+                Bodies bodies,
+                GameObjects gameObjects)
         {
             if (controller == null)
                 throw new ArgumentNullException(nameof(controller));
