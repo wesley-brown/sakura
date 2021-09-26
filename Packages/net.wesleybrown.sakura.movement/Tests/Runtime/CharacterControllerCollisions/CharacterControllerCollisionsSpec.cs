@@ -110,5 +110,24 @@ namespace Character_Controller_Collisions_Spec
         {
             return CollidedBodies.ColliderBody;
         }
+
+        [Test]
+        public void Has_its_game_object_positioned_at_its_location()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = PlayerMovement();
+            var playerBody = PlayerBody();
+            Assert.AreEqual(
+                playerBody.Location,
+                CollidedGameObjects.ColliderGameObject.transform.position);
+            characterControllerCollisions
+                .CollisionCausedByMovingBody(
+                    movement,
+                    playerBody);
+            Assert.AreEqual(
+                playerBody.Location,
+                CollidedGameObjects.ColliderGameObject.transform.position);
+        }
     }
 }

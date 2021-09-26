@@ -114,6 +114,7 @@ namespace Sakura.Data
             var colliderBody = bodies.BodyForEntity(colliderEntity);
             var resolvedColliderBody =
                 colliderBody.TeleportTo(colliderGameObject.transform.position);
+            colliderGameObject.transform.position = colliderBody.Location;
             var collideeBody = bodies.BodyForEntity(collideeEntity);
             var collision = Collision.BetweenBodies(
                 resolvedColliderBody,
