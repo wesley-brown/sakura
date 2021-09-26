@@ -30,6 +30,10 @@ namespace Sakura.Data
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="MovementSpeeds"/> is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given <see cref="Bodies"/> is null.
         /// </exception>
         internal static InMemoryCollidableBodies WithCollections(
             MovementSpeeds movementSpeeds,
@@ -38,6 +42,8 @@ namespace Sakura.Data
         {
             if (movementSpeeds == null)
                 throw new ArgumentNullException(nameof(movementSpeeds));
+            if (bodies == null)
+                throw new ArgumentNullException(nameof(bodies));
             throw new NotImplementedException();
         }
 
