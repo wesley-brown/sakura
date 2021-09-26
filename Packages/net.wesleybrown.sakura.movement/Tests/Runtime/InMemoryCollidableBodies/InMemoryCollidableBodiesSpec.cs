@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Sakura.Core;
 using Sakura.Data;
 
 namespace In_Memory_Collidable_Bodies_Spec
@@ -90,6 +91,39 @@ namespace In_Memory_Collidable_Bodies_Spec
             Assert.AreEqual(
                 SameMovementSpeeds.MovementSpeed,
                 movementSpeed);
+        }
+    }
+
+    [TestFixture]
+    public class Replacing_the_body_for_an_entity
+    {
+        [Test]
+        public void Makes_that_body_the_body_for_that_entity()
+        {
+            var movementSpeeds = new DummyMovementSpeeds();
+            var bodies = new SingleExistingBody();
+            var collisions = new DummyCollisions();
+            var collidableBodies = InMemoryCollidableBodies.WithCollections(
+                movementSpeeds,
+                bodies,
+                collisions);
+            var entity = SingleExistingBody.InitialBody.Entity;
+            Assert.AreEqual(
+                SingleExistingBody.InitialBody.Entity,
+                collidableBodies.BodyForEntity(entity).Entity);
+            Assert.AreEqual(
+                SingleExistingBody.InitialBody.Location,
+                collidableBodies.BodyForEntity(entity).Location);
+            var newBody = SingleExistingBody.ChangedBody;
+            collidableBodies.ReplaceEntityBody(
+                entity,
+                newBody);
+            Assert.AreEqual(
+                newBody.Entity,
+                collidableBodies.BodyForEntity(entity).Entity);
+            Assert.AreEqual(
+                newBody.Location,
+                collidableBodies.BodyForEntity(entity).Location);
         }
     }
 }
