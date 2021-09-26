@@ -50,13 +50,21 @@ namespace Sakura.Data
                 throw new ArgumentNullException(nameof(bodies));
             if (collisions == null)
                 throw new ArgumentNullException(nameof(collisions));
-            throw new NotImplementedException();
+            return new InMemoryCollidableBodies(movementSpeeds);
         }
+
+        private InMemoryCollidableBodies(MovementSpeeds movementSpeeds)
+        {
+            UnityEngine.Debug.Assert(movementSpeeds != null);
+            this.movementSpeeds = movementSpeeds;
+        }
+
+        private readonly MovementSpeeds movementSpeeds;
 
         /// <inheritdoc/>
         public float MovementSpeedForEntity(Guid entity)
         {
-            throw new NotImplementedException();
+            return movementSpeeds.MovementSpeedForEntity(entity);
         }
 
         /// <inheritdoc/>
