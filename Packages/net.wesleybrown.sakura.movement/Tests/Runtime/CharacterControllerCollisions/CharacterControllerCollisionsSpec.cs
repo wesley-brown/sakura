@@ -63,15 +63,86 @@ namespace Character_Controller_Collisions_Spec
     }
 
     [TestFixture]
-    public class A_body_moved_with_a_movement_that_does_cause_a_collision
+    public class Moving_a_body_with_a_movement
     {
+        [SetUp]
+        public void SetUp()
+        {
+            CollidedGameObjects.ColliderGameObject.SetActive(true);
+            CollidedGameObjects.CollideeGameObject.SetActive(true);
+        }
+
         [TearDown]
         public void TearDown()
         {
-            UnityEngine.Object.Destroy(
-                CollidedGameObjects.ColliderGameObject);
-            UnityEngine.Object.Destroy(
-                CollidedGameObjects.CollideeGameObject);
+            CollidedGameObjects.ColliderGameObject.SetActive(false);
+            CollidedGameObjects.CollideeGameObject.SetActive(false);
+        }
+
+        [Test]
+        public void Keeps_its_game_object_at_its_location()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = PlayerMovement();
+            var playerBody = PlayerBody();
+            Assert.AreEqual(
+                playerBody.Location,
+                CollidedGameObjects.ColliderGameObject.transform.position);
+            characterControllerCollisions
+                .CollisionCausedByMovingBody(
+                    movement,
+                    playerBody);
+            Assert.AreEqual(
+                playerBody.Location,
+                CollidedGameObjects.ColliderGameObject.transform.position);
+        }
+
+        private static CharacterControllerCollisions
+            CreateCharacterControllerCollisions()
+        {
+            var playerGameObject = CollidedGameObjects.ColliderGameObject;
+            var playerCharacterController =
+                playerGameObject.GetComponent<CharacterController>();
+            var bodies = new CollidedBodies();
+            var gameObjects = new CollidedGameObjects();
+            return CharacterControllerCollisions
+                .WithControllerAndBodiesAndGameObjects(
+                    playerCharacterController,
+                    bodies,
+                    gameObjects);
+        }
+
+        private Movement PlayerMovement()
+        {
+            var playerDestination = new Vector3(5.0f, 0.0f, 0.0f);
+            var playerSpeed = 5.0f;
+            return Movement.TowardsDestinationWithSpeed(
+                playerDestination,
+                playerSpeed);
+        }
+
+        private Body PlayerBody()
+        {
+            return CollidedBodies.ColliderBody;
+        }
+    }
+
+    [TestFixture]
+    public class A_body_moved_with_a_movement_that_does_cause_a_collision
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            CollidedGameObjects.ColliderGameObject.SetActive(true);
+            CollidedGameObjects.CollideeGameObject.SetActive(true);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            CollidedGameObjects.ColliderGameObject.SetActive(false);
+            CollidedGameObjects.CollideeGameObject.SetActive(false);
         }
 
         [Test]
@@ -119,37 +190,23 @@ namespace Character_Controller_Collisions_Spec
         {
             return CollidedBodies.ColliderBody;
         }
-
-        [Test]
-        public void Has_its_game_object_positioned_at_its_location()
-        {
-            var characterControllerCollisions =
-                CreateCharacterControllerCollisions();
-            var movement = PlayerMovement();
-            var playerBody = PlayerBody();
-            Assert.AreEqual(
-                playerBody.Location,
-                CollidedGameObjects.ColliderGameObject.transform.position);
-            characterControllerCollisions
-                .CollisionCausedByMovingBody(
-                    movement,
-                    playerBody);
-            Assert.AreEqual(
-                playerBody.Location,
-                CollidedGameObjects.ColliderGameObject.transform.position);
-        }
     }
 
     [TestFixture]
     public class A_body_moved_with_a_movement_that_does_not_cause_a_collision
     {
+        [SetUp]
+        public void SetUp()
+        {
+            NonCollidedGameObjects.PlayerGameObject.SetActive(true);
+            NonCollidedGameObjects.EnemyGameObject.SetActive(true);
+        }
+
         [TearDown]
         public void TearDown()
         {
-            UnityEngine.Object.Destroy(
-                NonCollidedGameObjects.PlayerGameObject);
-            UnityEngine.Object.Destroy(
-                NonCollidedGameObjects.EnemyGameObject);
+            NonCollidedGameObjects.PlayerGameObject.SetActive(false);
+            NonCollidedGameObjects.EnemyGameObject.SetActive(false);
         }
 
         [Test]

@@ -14,11 +14,13 @@ namespace Character_Controller_Collisions_Spec
         static NonCollidedGameObjects()
         {
             playerGameObject = new GameObject("Player");
+            playerGameObject.SetActive(false);
             playerGameObject.transform.position =
                 NonCollidedBodies.PlayerBody.Location;
             playerGameObject.AddComponent<CharacterController>();
 
             enemyGameObject = new GameObject("Enemy");
+            enemyGameObject.SetActive(false);
             enemyGameObject.transform.position =
                 NonCollidedBodies.EnemyBody.Location;
             enemyGameObject.AddComponent<CharacterController>();

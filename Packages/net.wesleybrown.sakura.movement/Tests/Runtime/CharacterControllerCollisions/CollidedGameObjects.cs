@@ -14,11 +14,13 @@ namespace Character_Controller_Collisions_Spec
         static CollidedGameObjects()
         {
             colliderGameObject = new GameObject("Collider");
+            colliderGameObject.SetActive(false);
             colliderGameObject.transform.position =
                 CollidedBodies.ColliderBody.Location;
             colliderGameObject.AddComponent<CharacterController>();
 
             collideeGameObject = new GameObject("Collidee");
+            collideeGameObject.SetActive(false);
             collideeGameObject.transform.position =
                 CollidedBodies.CollideeBody.Location;
             collideeGameObject.AddComponent<CharacterController>();
