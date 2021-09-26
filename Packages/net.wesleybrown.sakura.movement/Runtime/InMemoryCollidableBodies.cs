@@ -88,6 +88,8 @@ namespace Sakura.Data
         {
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
+            if (bodies.BodyForEntity(entity) == null)
+                throw new NonExistingEntity(entity);
             bodies.AddBody(body);
         }
 

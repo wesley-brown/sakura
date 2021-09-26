@@ -47,6 +47,9 @@ namespace Sakura.Client
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="Body"/> is null.
         /// </exception>
+        /// <exception cref="NonExistingEntity">
+        ///     Thrown when the given entity does not exist.
+        /// </exception>
         void ReplaceEntityBody(
             Guid entity,
             Body body);

@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Sakura.Client;
 using Sakura.Core;
 using Sakura.Data;
 
@@ -123,7 +124,30 @@ namespace In_Memory_Collidable_Bodies_Spec
         }
 
         [Test]
-        public void Makes_that_body_the_body_for_that_entity()
+        public void For_an_entity_that_does_not_exist_is_not_supported()
+        {
+            var movementSpeeds = new DummyMovementSpeeds();
+            var bodies = new NoBodies();
+            var collisions = new DummyCollisions();
+            var collidableBodies = InMemoryCollidableBodies.WithCollections(
+                movementSpeeds,
+                bodies,
+                collisions);
+            var entity = new Guid("36f8e845-5bac-4d97-b579-f2bc102d2b44");
+            var entityLocation = new UnityEngine.Vector3(0.0f, 0.0f, 0.0f);
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                entityLocation);
+            Assert.Throws<NonExistingEntity>(() =>
+            {
+                collidableBodies.ReplaceEntityBody(
+                    entity,
+                    body);
+            });
+        }
+
+        [Test]
+        public void For_an_entity_that_exists_makes_that_body_the_body_for_that_entity()
         {
             var collidableBodies = CreateCollidableBodies();
             var entity = SingleExistingBody.InitialBody.Entity;
