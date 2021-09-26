@@ -52,22 +52,28 @@ namespace Sakura.Data
                 throw new ArgumentNullException(nameof(collisions));
             return new InMemoryCollidableBodies(
                 movementSpeeds,
-                bodies);
+                bodies,
+                collisions);
         }
 
         private InMemoryCollidableBodies(
             MovementSpeeds movementSpeeds,
-            Bodies bodies)
+            Bodies bodies,
+            Collisions collisions)
         {
             UnityEngine.Debug.Assert(movementSpeeds != null);
             this.movementSpeeds = movementSpeeds;
 
             UnityEngine.Debug.Assert(bodies != null);
             this.bodies = bodies;
+
+            UnityEngine.Debug.Assert(collisions != null);
+            this.collisions = collisions;
         }
 
         private readonly MovementSpeeds movementSpeeds;
         private readonly Bodies bodies;
+        private readonly Collisions collisions;
 
         /// <inheritdoc/>
         public float MovementSpeedForEntity(Guid entity)
@@ -98,7 +104,16 @@ namespace Sakura.Data
             Movement movement,
             Body body)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return collisions.CollisionCausedByMovingBody(
+                    movement,
+                    body);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

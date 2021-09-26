@@ -169,4 +169,43 @@ namespace In_Memory_Collidable_Bodies_Spec
                 collidableBodies.BodyForEntity(entity).Location);
         }
     }
+
+    [TestFixture]
+    public class Querying_the_collision_caused_by_moving_a_body
+    {
+        [Test]
+        public void Returns_that_collision()
+        {
+            var movementSpeeds = new DummyMovementSpeeds();
+            var bodies = new DummyBodies();
+            var collisions = new SingleCollision();
+            var collidableBodies = InMemoryCollidableBodies.WithCollections(
+                movementSpeeds,
+                bodies,
+                collisions);
+            var movement = CreateMovement();
+            var body = CreateBody();
+            var collision = collidableBodies.CollisionCausedByMovingBody(
+                movement,
+                body);
+            Assert.AreEqual(
+                collision.Collider.Entity,
+                SingleCollision.Collision.Collider.Entity);
+            Assert.AreEqual(
+                collision.Collidee.Entity,
+                SingleCollision.Collision.Collidee.Entity);
+        }
+
+        private static Movement CreateMovement()
+        {
+            return Movement.TowardsDestinationWithSpeed(
+                new UnityEngine.Vector3(1.0f, 0.0f, 0.0f),
+                1.0f);
+        }
+
+        private static Body CreateBody()
+        {
+            return SingleCollision.Collision.Collider;
+        }
+    }
 }
