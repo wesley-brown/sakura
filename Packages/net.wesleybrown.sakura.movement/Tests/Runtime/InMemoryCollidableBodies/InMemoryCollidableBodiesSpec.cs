@@ -98,15 +98,34 @@ namespace In_Memory_Collidable_Bodies_Spec
     public class Replacing_the_body_for_an_entity
     {
         [Test]
-        public void Makes_that_body_the_body_for_that_entity()
+        public void Does_not_support_a_null_body()
+        {
+            var collidableBodies = CreateCollidableBodies();
+            var entity = SingleExistingBody.InitialBody.Entity;
+            Body body = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                collidableBodies.ReplaceEntityBody(
+                    entity,
+                    body);
+            });
+        }
+
+        private static InMemoryCollidableBodies CreateCollidableBodies()
         {
             var movementSpeeds = new DummyMovementSpeeds();
             var bodies = new SingleExistingBody();
             var collisions = new DummyCollisions();
-            var collidableBodies = InMemoryCollidableBodies.WithCollections(
+            return InMemoryCollidableBodies.WithCollections(
                 movementSpeeds,
                 bodies,
                 collisions);
+        }
+
+        [Test]
+        public void Makes_that_body_the_body_for_that_entity()
+        {
+            var collidableBodies = CreateCollidableBodies();
             var entity = SingleExistingBody.InitialBody.Entity;
             Assert.AreEqual(
                 SingleExistingBody.InitialBody.Entity,

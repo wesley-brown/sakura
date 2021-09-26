@@ -44,6 +44,9 @@ namespace Sakura.Client
         ///     The <see cref="Body"/> to replace the given entity's
         ///     <see cref="Body"/> with.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given <see cref="Body"/> is null.
+        /// </exception>
         void ReplaceEntityBody(
             Guid entity,
             Body body);

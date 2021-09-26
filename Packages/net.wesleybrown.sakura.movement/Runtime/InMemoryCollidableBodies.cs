@@ -86,14 +86,9 @@ namespace Sakura.Data
             Guid entity,
             Body body)
         {
-            try
-            {
-                bodies.AddBody(body);
-            }
-            catch (ArgumentNullException)
-            {
-                throw new NotImplementedException();
-            }
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+            bodies.AddBody(body);
         }
 
         /// <inheritdoc/>
