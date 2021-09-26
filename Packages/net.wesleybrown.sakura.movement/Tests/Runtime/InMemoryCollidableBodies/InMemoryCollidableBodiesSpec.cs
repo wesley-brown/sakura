@@ -36,5 +36,20 @@ namespace In_Memory_Collidable_Bodies_Spec
                     collisions);
             });
         }
+
+        [Test]
+        public void Does_not_support_a_null_collection_of_collisions()
+        {
+            var movementSpeeds = new DummyMovementSpeeds();
+            var bodies = new DummyBodies();
+            Collisions collisions = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                InMemoryCollidableBodies.WithCollections(
+                    movementSpeeds,
+                    bodies,
+                    collisions);
+            });
+        }
     }
 }
