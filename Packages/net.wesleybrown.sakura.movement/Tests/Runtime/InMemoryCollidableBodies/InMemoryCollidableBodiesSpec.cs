@@ -176,13 +176,7 @@ namespace In_Memory_Collidable_Bodies_Spec
         [Test]
         public void Returns_that_collision()
         {
-            var movementSpeeds = new DummyMovementSpeeds();
-            var bodies = new DummyBodies();
-            var collisions = new SingleCollision();
-            var collidableBodies = InMemoryCollidableBodies.WithCollections(
-                movementSpeeds,
-                bodies,
-                collisions);
+            var collidableBodies = CreateCollidableBodies();
             var movement = CreateMovement();
             var body = CreateBody();
             var collision = collidableBodies.CollisionCausedByMovingBody(
@@ -196,6 +190,17 @@ namespace In_Memory_Collidable_Bodies_Spec
                 SingleCollision.Collision.Collidee.Entity);
         }
 
+        private static InMemoryCollidableBodies CreateCollidableBodies()
+        {
+            var movementSpeeds = new DummyMovementSpeeds();
+            var bodies = new DummyBodies();
+            var collisions = new SingleCollision();
+            return InMemoryCollidableBodies.WithCollections(
+                movementSpeeds,
+                bodies,
+                collisions);
+        }
+
         private static Movement CreateMovement()
         {
             return Movement.TowardsDestinationWithSpeed(
@@ -206,6 +211,27 @@ namespace In_Memory_Collidable_Bodies_Spec
         private static Body CreateBody()
         {
             return SingleCollision.Collision.Collider;
+        }
+
+        [Test]
+        public void Does_not_support_a_null_movement()
+        {
+            var movementSpeeds = new DummyMovementSpeeds();
+            var bodies = new DummyBodies();
+            var collisions = new DummyCollisions();
+            var collidableBodies = InMemoryCollidableBodies
+                .WithCollections(
+                    movementSpeeds,
+                    bodies,
+                    collisions);
+            Movement movement = null;
+            var body = CreateBody();
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                collidableBodies.CollisionCausedByMovingBody(
+                    movement,
+                    body);
+            });
         }
     }
 }

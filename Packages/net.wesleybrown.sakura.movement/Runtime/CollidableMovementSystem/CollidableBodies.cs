@@ -69,6 +69,9 @@ namespace Sakura.Client
         ///     given <see cref="Movement"/> to the given <see cref="Body"/>;
         ///     null otherwise.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given <see cref="Movement"/> is null.
+        /// </exception>
         Collision CollisionCausedByMovingBody(
             Movement movement,
             Body body);

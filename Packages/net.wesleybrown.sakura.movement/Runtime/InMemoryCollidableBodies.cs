@@ -104,6 +104,8 @@ namespace Sakura.Data
             Movement movement,
             Body body)
         {
+            if (movement == null)
+                throw new ArgumentNullException(nameof(movement));
             try
             {
                 return collisions.CollisionCausedByMovingBody(
