@@ -75,6 +75,8 @@ namespace Sakura.Data
             Movement movement,
             Body body)
         {
+            if (movement == null)
+                throw new ArgumentNullException(nameof(movement));
             var move = MoveBody(movement, body);
             var gameObject = gameObjects.GameObjectForEntity(body.Entity);
             return MoveGameObjectWithCollisions(

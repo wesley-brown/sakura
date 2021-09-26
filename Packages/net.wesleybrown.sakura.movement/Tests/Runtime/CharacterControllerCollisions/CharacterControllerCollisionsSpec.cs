@@ -82,22 +82,19 @@ namespace Character_Controller_Collisions_Spec
         }
 
         [Test]
-        public void Keeps_its_game_object_at_its_location()
+        public void Does_not_support_a_null_movement()
         {
             var characterControllerCollisions =
                 CreateCharacterControllerCollisions();
-            var movement = PlayerMovement();
+            Movement movement = null;
             var playerBody = PlayerBody();
-            Assert.AreEqual(
-                playerBody.Location,
-                CollidedGameObjects.ColliderGameObject.transform.position);
-            characterControllerCollisions
-                .CollisionCausedByMovingBody(
-                    movement,
-                    playerBody);
-            Assert.AreEqual(
-                playerBody.Location,
-                CollidedGameObjects.ColliderGameObject.transform.position);
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                characterControllerCollisions
+                     .CollisionCausedByMovingBody(
+                         movement,
+                         playerBody);
+            });
         }
 
         private static CharacterControllerCollisions
@@ -127,6 +124,25 @@ namespace Character_Controller_Collisions_Spec
         private Body PlayerBody()
         {
             return CollidedBodies.ColliderBody;
+        }
+
+        [Test]
+        public void Keeps_its_game_object_at_its_location()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = PlayerMovement();
+            var playerBody = PlayerBody();
+            Assert.AreEqual(
+                playerBody.Location,
+                CollidedGameObjects.ColliderGameObject.transform.position);
+            characterControllerCollisions
+                .CollisionCausedByMovingBody(
+                    movement,
+                    playerBody);
+            Assert.AreEqual(
+                playerBody.Location,
+                CollidedGameObjects.ColliderGameObject.transform.position);
         }
 
         [UnityTest]

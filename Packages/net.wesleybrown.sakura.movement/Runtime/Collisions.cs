@@ -1,4 +1,5 @@
-﻿using Sakura.Core;
+﻿using System;
+using Sakura.Core;
 
 namespace Sakura.Data
 {
@@ -23,6 +24,9 @@ namespace Sakura.Data
         ///     <see cref="Body"/> with the given <see cref="Movement"/>, if
         ///     there is one; null otherwise.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given <see cref="Movement"/> is null.
+        /// </exception>
         Collision CollisionCausedByMovingBody(
             Movement movement,
             Body body);
