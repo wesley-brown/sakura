@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using NUnit.Framework;
 using Sakura.Core;
 using Sakura.Data;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Character_Controller_Collisions_Spec
 {
@@ -125,6 +127,24 @@ namespace Character_Controller_Collisions_Spec
         private Body PlayerBody()
         {
             return CollidedBodies.ColliderBody;
+        }
+
+        [UnityTest]
+        public IEnumerator Removes_the_extra_component_added_to_its_game_object_by_the_next_frame()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = PlayerMovement();
+            var playerBody = PlayerBody();
+            characterControllerCollisions
+                .CollisionCausedByMovingBody(
+                    movement,
+                    playerBody);
+            yield return null;
+            Assert.IsNull(
+                CollidedGameObjects
+                    .ColliderGameObject
+                    .GetComponent<RecordCollidee>());
         }
     }
 

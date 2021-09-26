@@ -98,6 +98,7 @@ namespace Sakura.Data
                 colliderGameObject.AddComponent<RecordCollidee>();
             controller.Move(move);
             var collideeGameObject = recordCollidee.Collidee;
+            UnityEngine.Object.Destroy(recordCollidee);
             if (collideeGameObject == null)
                 return null;
             return CollisionBetweenGameObjects(
