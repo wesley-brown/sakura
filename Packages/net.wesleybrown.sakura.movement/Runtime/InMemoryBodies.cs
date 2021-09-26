@@ -11,6 +11,40 @@ namespace Sakura.Data
     sealed class InMemoryBodies : Bodies
     {
         /// <summary>
+        ///     Create a <see cref="InMemoryBodies"/> from a given
+        ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
+        ///     <typeparamref name="Guid"/> and values of type
+        ///     <typeparamref name="Body"/>.
+        /// </summary>
+        /// <param name="dictionary">
+        ///     The <see cref="Dictionary{TKey, TValue}"/> with keys of type
+        ///     <typeparamref name="Guid"/> and values of type
+        ///     <typeparamref name="Body"/>.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="InMemoryBodies"/> from the given
+        ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
+        ///     <typeparamref name="Guid"/> and values of type
+        ///     <typeparamref name="Body"/>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given <see cref="Dictionary{TKey, TValue}"/>
+        ///     with keys of type <typeparamref name="Guid"/> and values of
+        ///     type <typeparamref name="Body"/> is null.
+        /// </exception>
+        internal static InMemoryBodies From(Dictionary<Guid, Body> dictionary)
+        {
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
+            return new InMemoryBodies(dictionary);
+        }
+
+        private InMemoryBodies(Dictionary<Guid, Body> bodies)
+        {
+            this.bodies = new Dictionary<Guid, Body>(bodies);
+        }
+
+        /// <summary>
 		///     Create a new <see cref="InMemoryBodies"/>.
 		/// </summary>
         internal InMemoryBodies()

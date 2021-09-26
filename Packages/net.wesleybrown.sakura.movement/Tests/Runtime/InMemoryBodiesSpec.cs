@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Sakura.Core;
 using Sakura.Data;
@@ -6,6 +7,20 @@ using UnityEngine;
 
 namespace In_Memory_Bodies_Spec
 {
+    [TestFixture]
+    public class Creating_from_a_dictionary
+    {
+        [Test]
+        public void Does_not_support_a_null_dictionary()
+        {
+            Dictionary<Guid, Body> initialBodies = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                InMemoryBodies.From(initialBodies);
+            });
+        }
+    }
+
     [TestFixture]
     public class Adding_a_body
     {
