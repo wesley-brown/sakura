@@ -106,16 +106,11 @@ namespace Sakura.Data
         {
             if (movement == null)
                 throw new ArgumentNullException(nameof(movement));
-            try
-            {
-                return collisions.CollisionCausedByMovingBody(
-                    movement,
-                    body);
-            }
-            catch (ArgumentNullException)
-            {
-                throw new NotImplementedException();
-            }
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+            return collisions.CollisionCausedByMovingBody(
+                movement,
+                body);
         }
     }
 }
