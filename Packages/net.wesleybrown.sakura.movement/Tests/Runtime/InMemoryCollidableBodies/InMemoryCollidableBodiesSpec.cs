@@ -73,5 +73,23 @@ namespace In_Memory_Collidable_Bodies_Spec
                 0.0f,
                 movementSpeed);
         }
+
+        [Test]
+        public void That_does_have_one_is_its_movement_speed()
+        {
+            var movementSpeeds = new SameMovementSpeeds();
+            var bodies = new DummyBodies();
+            var collisions = new DummyCollisions();
+            var collidableBodies = InMemoryCollidableBodies.WithCollections(
+                movementSpeeds,
+                bodies,
+                collisions);
+            var entity = new Guid("9c7aba92-ec3d-4862-a16f-c98214cd4a19");
+            var movementSpeed =
+                collidableBodies.MovementSpeedForEntity(entity);
+            Assert.AreEqual(
+                SameMovementSpeeds.MovementSpeed,
+                movementSpeed);
+        }
     }
 }
