@@ -26,6 +26,10 @@ namespace Sakura.Data
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="Movement"/> is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given <see cref="Body"/> is null.
         /// </exception>
         Collision CollisionCausedByMovingBody(
             Movement movement,

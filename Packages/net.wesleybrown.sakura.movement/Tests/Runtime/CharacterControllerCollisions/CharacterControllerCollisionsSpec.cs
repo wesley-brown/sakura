@@ -127,6 +127,22 @@ namespace Character_Controller_Collisions_Spec
         }
 
         [Test]
+        public void Does_not_support_a_null_body()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = PlayerMovement();
+            Body playerBody = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                characterControllerCollisions
+                    .CollisionCausedByMovingBody(
+                        movement,
+                        playerBody);
+            });
+        }
+
+        [Test]
         public void Keeps_its_game_object_at_its_location()
         {
             var characterControllerCollisions =
