@@ -65,6 +65,15 @@ namespace Character_Controller_Collisions_Spec
     [TestFixture]
     public class A_body_moved_with_a_movement_that_does_cause_a_collision
     {
+        [TearDown]
+        public void TearDown()
+        {
+            UnityEngine.Object.Destroy(
+                CollidedGameObjects.ColliderGameObject);
+            UnityEngine.Object.Destroy(
+                CollidedGameObjects.CollideeGameObject);
+        }
+
         [Test]
         public void Does_have_a_collision()
         {
@@ -128,6 +137,62 @@ namespace Character_Controller_Collisions_Spec
             Assert.AreEqual(
                 playerBody.Location,
                 CollidedGameObjects.ColliderGameObject.transform.position);
+        }
+    }
+
+    [TestFixture]
+    public class A_body_moved_with_a_movement_that_does_not_cause_a_collision
+    {
+        [TearDown]
+        public void TearDown()
+        {
+            UnityEngine.Object.Destroy(
+                NonCollidedGameObjects.PlayerGameObject);
+            UnityEngine.Object.Destroy(
+                NonCollidedGameObjects.EnemyGameObject);
+        }
+
+        [Test]
+        public void Does_not_have_a_collision()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = PlayerMovement();
+            var playerBody = PlayerBody();
+            var collision = characterControllerCollisions
+                .CollisionCausedByMovingBody(
+                    movement,
+                    playerBody);
+            Assert.IsNull(collision);
+        }
+
+        private static CharacterControllerCollisions
+            CreateCharacterControllerCollisions()
+        {
+            var playerGameObject = NonCollidedGameObjects.PlayerGameObject;
+            var playerCharacterController =
+                playerGameObject.GetComponent<CharacterController>();
+            var bodies = new NonCollidedBodies();
+            var gameObjects = new NonCollidedGameObjects();
+            return CharacterControllerCollisions
+                .WithControllerAndBodiesAndGameObjects(
+                    playerCharacterController,
+                    bodies,
+                    gameObjects);
+        }
+
+        private static Movement PlayerMovement()
+        {
+            var playerDestination = new Vector3(5.0f, 0.0f, 0.0f);
+            var playerSpeed = 5.0f;
+            return Movement.TowardsDestinationWithSpeed(
+                playerDestination,
+                playerSpeed);
+        }
+
+        private static Body PlayerBody()
+        {
+            return NonCollidedBodies.PlayerBody;
         }
     }
 }
