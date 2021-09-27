@@ -19,6 +19,28 @@ namespace In_Memory_Bodies_Spec
                 InMemoryBodies.From(initialBodies);
             });
         }
+
+        [Test]
+        public void Includes_those_entries()
+        {
+            var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
+            var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                entityLocation);
+            var initialBodies = new Dictionary<Guid, Body>
+            {
+                { entity, body }
+            };
+            var bodies = InMemoryBodies.From(initialBodies);
+            var actualBody = bodies.BodyForEntity(entity);
+            Assert.AreEqual(
+                body.Entity,
+                actualBody.Entity);
+            Assert.AreEqual(
+                body.Location,
+                actualBody.Location);
+        }
     }
 
     [TestFixture]
