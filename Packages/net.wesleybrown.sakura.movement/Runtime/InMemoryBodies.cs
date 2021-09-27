@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sakura.Core;
+using UnityEngine;
 
 namespace Sakura.Data
 {
@@ -10,6 +11,17 @@ namespace Sakura.Data
 	/// </summary>
     sealed class InMemoryBodies : Bodies
     {
+        /// <summary>
+        ///     Create a <see cref="InMemoryBodies"/> that has no bodies in it.
+        /// </summary>
+        /// <returns>
+        ///     An empty <see cref="InMemoryBodies"/>.
+        /// </returns>
+        internal static InMemoryBodies Empty()
+        {
+            return From(new Dictionary<Guid, Body>());
+        }
+
         /// <summary>
         ///     Create a <see cref="InMemoryBodies"/> from a given
         ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
@@ -41,15 +53,8 @@ namespace Sakura.Data
 
         private InMemoryBodies(Dictionary<Guid, Body> bodies)
         {
+            Debug.Assert(bodies != null);
             this.bodies = new Dictionary<Guid, Body>(bodies);
-        }
-
-        /// <summary>
-		///     Create a new <see cref="InMemoryBodies"/>.
-		/// </summary>
-        internal InMemoryBodies()
-        {
-            bodies = new Dictionary<Guid, Body>();
         }
 
         private readonly Dictionary<Guid, Body> bodies;

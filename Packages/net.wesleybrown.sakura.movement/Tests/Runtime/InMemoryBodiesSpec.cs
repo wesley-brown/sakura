@@ -8,6 +8,19 @@ using UnityEngine;
 namespace In_Memory_Bodies_Spec
 {
     [TestFixture]
+    public class An_empty_in_memory_bodies
+    {
+        [Test]
+        public void Does_not_have_any_bodies()
+        {
+            var entity = new Guid("3287aac0-a616-44d4-94ab-39c24aba887c");
+            var bodies = InMemoryBodies.Empty();
+            var actualBody = bodies.BodyForEntity(entity);
+            Assert.IsNull(actualBody);
+        }
+    }
+
+    [TestFixture]
     public class Creating_from_a_dictionary
     {
         [Test]
@@ -49,7 +62,7 @@ namespace In_Memory_Bodies_Spec
         [Test]
         public void Does_not_support_a_null_body()
         {
-            var bodies = new InMemoryBodies();
+            var bodies = InMemoryBodies.Empty();
             Body body = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -64,7 +77,7 @@ namespace In_Memory_Bodies_Spec
         [Test]
         public void Makes_that_body_the_one_for_that_entity()
         {
-            var bodies = new InMemoryBodies();
+            var bodies = InMemoryBodies.Empty();
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
             Assert.IsNull(bodies.BodyForEntity(entity));
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -89,11 +102,6 @@ namespace In_Memory_Bodies_Spec
             var bodies = ExistingBodies();
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
             Assert.IsNotNull(bodies.BodyForEntity(entity));
-            var entityLocation = new Vector3(5.0f, 0.0f, 5.0f);
-            var body = Body.ForEntityLocatedAt(
-                entity,
-                entityLocation);
-            bodies.AddBody(body);
             var entitysBody = bodies.BodyForEntity(entity);
             Assert.IsNotNull(bodies.BodyForEntity(entity));
             Assert.AreEqual(
@@ -103,14 +111,16 @@ namespace In_Memory_Bodies_Spec
 
         private static InMemoryBodies ExistingBodies()
         {
-            var bodies = new InMemoryBodies();
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
             var body = Body.ForEntityLocatedAt(
                 entity,
                 entityLocation);
-            bodies.AddBody(body);
-            return bodies;
+            var initialBodies = new Dictionary<Guid, Body>
+            {
+                { entity, body}
+            };
+            return InMemoryBodies.From(initialBodies);
         }
     }
 }
