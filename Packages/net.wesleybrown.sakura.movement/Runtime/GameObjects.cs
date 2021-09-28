@@ -45,7 +45,7 @@ namespace Sakura.Data
         /// </param>
         /// <returns>
         ///     The entity for the given <see cref="GameObject"/>, if it has
-        ///     one; null otherwise.
+        ///     one; <see cref="Guid.Empty"/> otherwise.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="GameObject"/> is null.

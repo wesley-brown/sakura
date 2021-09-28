@@ -95,7 +95,7 @@ namespace Sakura.Data
                 if (entry.Value == gameObject)
                     return entry.Key;
             }
-            throw new NotImplementedException();
+            return Guid.Empty;
         }
     }
 }

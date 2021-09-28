@@ -124,5 +124,16 @@ namespace In_Memory_Game_Objects_Spec
                 gameObjects.EntityForGameObject(gameObject);
             });
         }
+
+        [Test]
+        public void That_does_not_have_one_returns_the_empty_guid()
+        {
+            var gameObjects = InMemoryGameObjects.Empty();
+            var gameObject = new GameObject();
+            var entity = gameObjects.EntityForGameObject(gameObject);
+            Assert.AreEqual(
+                Guid.Empty,
+                entity);
+        }
     }
 }
