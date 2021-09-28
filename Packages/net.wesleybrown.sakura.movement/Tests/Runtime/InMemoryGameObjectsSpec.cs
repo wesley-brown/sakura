@@ -46,4 +46,22 @@ namespace In_Memory_Game_Objects_Spec
                 gameObjects.GameObjectForEntity(entity));
         }
     }
+
+    [TestFixture]
+    public class Adding_a_game_object_for_an_entity
+    {
+        [Test]
+        public void Does_not_support_a_null_game_object()
+        {
+            var entity = new Guid("166db526-42e6-4fdb-b4c3-212b5efed10e");
+            GameObject gameObject = null;
+            var gameObjects = InMemoryGameObjects.Empty();
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                gameObjects.AddGameObjectForEntity(
+                    gameObject,
+                    entity);
+            });
+        }
+    }
 }

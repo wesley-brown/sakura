@@ -65,6 +65,8 @@ namespace Sakura.Data
             GameObject gameObject,
             Guid entity)
         {
+            if (gameObject == null)
+                throw new ArgumentNullException(nameof(gameObject));
             throw new NotImplementedException();
         }
 

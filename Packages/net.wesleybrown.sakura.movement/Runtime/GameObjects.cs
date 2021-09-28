@@ -18,6 +18,9 @@ namespace Sakura.Data
         /// <param name="entity">
         ///     The entity to add the <see cref="GameObject"/> for.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given <see cref="GameObject"/> is null.
+        /// </exception>
         void AddGameObjectForEntity(
             GameObject gameObject,
             Guid entity);
