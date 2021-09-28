@@ -39,14 +39,22 @@ namespace Sakura.Data
         ///     <typeparamref name="Guid"/> and values of type
         ///     <typeparamref name="GameObject"/>.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given <see cref="Dictionary{TKey, TValue}"/>
+        ///     with keys of type <typeparamref name="Guid"/> and values of
+        ///     type <typeparamref name="GameObject"/> is null.
+        /// </exception>
         internal static InMemoryGameObjects From(
             Dictionary<Guid, GameObject> dictionary)
         {
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
             return new InMemoryGameObjects(dictionary);
         }
 
         private InMemoryGameObjects(Dictionary<Guid, GameObject> dictionary)
         {
+            Debug.Assert(dictionary != null);
             gameObjects = new Dictionary<Guid, GameObject>(dictionary);
         }
 
