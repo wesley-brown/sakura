@@ -137,6 +137,12 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "net.wesleybrown.sakura.bodies": {
+      "version": "file:net.wesleybrown.sakura.bodies",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "net.wesleybrown.sakura.core": {
       "version": "file:net.wesleybrown.sakura.core",
       "depth": 0,
@@ -157,12 +163,6 @@
     },
     "net.wesleybrown.sakura.inventories": {
       "version": "file:net.wesleybrown.sakura.inventories",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "net.wesleybrown.sakura.movement": {
-      "version": "file:net.wesleybrown.sakura.movement",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

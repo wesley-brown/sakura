@@ -1,8 +1,8 @@
 {
-  "name": "net.wesleybrown.sakura.movement",
+  "name": "net.wesleybrown.sakura.bodies",
   "version": "0.1.0",
-  "description": "Sakura movement systems.",
-  "displayName": "Sakura Movement",
+  "description": "Systems related to bodies.",
+  "displayName": "Sakura Bodies",
   "unity": "2019.1",
   "author": {
     "name": "Wesley Brown",

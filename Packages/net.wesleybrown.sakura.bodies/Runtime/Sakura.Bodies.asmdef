@@ -1,5 +1,5 @@
 {
-    "name": "Sakura.Movement",
+    "name": "Sakura.Bodies",
     "references": [
         "GUID:12a6beb2565b34591b5240c7a55e527d"
     ],
