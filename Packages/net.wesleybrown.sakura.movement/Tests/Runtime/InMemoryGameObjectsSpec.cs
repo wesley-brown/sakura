@@ -63,5 +63,20 @@ namespace In_Memory_Game_Objects_Spec
                     entity);
             });
         }
+
+        [Test]
+        public void That_does_not_have_one_uses_that_game_object_for_that_entity()
+        {
+            var entity = new Guid("166db526-42e6-4fdb-b4c3-212b5efed10e");
+            var gameObject = new GameObject();
+            var gameObjects = InMemoryGameObjects.Empty();
+            Assert.IsNull(gameObjects.GameObjectForEntity(entity));
+            gameObjects.AddGameObjectForEntity(
+                gameObject,
+                entity);
+            Assert.AreEqual(
+                gameObject,
+                gameObjects.GameObjectForEntity(entity));
+        }
     }
 }

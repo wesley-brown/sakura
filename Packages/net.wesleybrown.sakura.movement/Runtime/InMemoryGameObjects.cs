@@ -67,7 +67,16 @@ namespace Sakura.Data
         {
             if (gameObject == null)
                 throw new ArgumentNullException(nameof(gameObject));
-            throw new NotImplementedException();
+            try
+            {
+                gameObjects.Add(
+                    entity,
+                    gameObject);
+            }
+            catch (ArgumentException)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /// <inheritdoc/>
