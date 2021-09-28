@@ -6,7 +6,7 @@ namespace Sakura.Data
 {
     /// <summary>
     ///     A <see cref="GameObjects"/> that stores all
-    ///     <see cref="GameObjects"/> in memory.  
+    ///     <see cref="GameObject"/>s in memory.  
     /// </summary>
     sealed class InMemoryGameObjects : GameObjects
     {
@@ -19,12 +19,35 @@ namespace Sakura.Data
         /// </returns>
         internal static InMemoryGameObjects Empty()
         {
-            return new InMemoryGameObjects();
+            return new InMemoryGameObjects(new Dictionary<Guid, GameObject>());
         }
 
-        private InMemoryGameObjects()
+        /// <summary>
+        ///     Create a <see cref="InMemoryGameObjects"/> from a given
+        ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
+        ///     <typeparamref name="Guid"/> and values of type
+        ///     <typeparamref name="GameObject"/>.
+        /// </summary>
+        /// <param name="dictionary">
+        ///     The <see cref="Dictionary{TKey, TValue}"/> with keys of type
+        ///     <typeparamref name="Guid"/> and values of type
+        ///     <typeparamref name="GameObject"/>.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="InMemoryGameObjects"/> created from the given
+        ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
+        ///     <typeparamref name="Guid"/> and values of type
+        ///     <typeparamref name="GameObject"/>.
+        /// </returns>
+        internal static InMemoryGameObjects From(
+            Dictionary<Guid, GameObject> dictionary)
         {
-            gameObjects = new Dictionary<Guid, GameObject>();
+            return new InMemoryGameObjects(dictionary);
+        }
+
+        private InMemoryGameObjects(Dictionary<Guid, GameObject> dictionary)
+        {
+            gameObjects = new Dictionary<Guid, GameObject>(dictionary);
         }
 
         private readonly Dictionary<Guid, GameObject> gameObjects;
