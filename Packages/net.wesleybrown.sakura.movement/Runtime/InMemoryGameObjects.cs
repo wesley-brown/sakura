@@ -67,16 +67,14 @@ namespace Sakura.Data
         {
             if (gameObject == null)
                 throw new ArgumentNullException(nameof(gameObject));
-            try
+            if (gameObjects.ContainsKey(entity))
             {
-                gameObjects.Add(
-                    entity,
-                    gameObject);
+                gameObjects[entity] = gameObject;
+                return;
             }
-            catch (ArgumentException)
-            {
-                throw new NotImplementedException();
-            }
+            gameObjects.Add(
+                entity,
+                gameObject);
         }
 
         /// <inheritdoc/>

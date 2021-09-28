@@ -78,5 +78,27 @@ namespace In_Memory_Game_Objects_Spec
                 gameObject,
                 gameObjects.GameObjectForEntity(entity));
         }
+
+        [Test]
+        public void That_does_have_one_uses_that_game_object_for_that_entity()
+        {
+            var entity = new Guid("166db526-42e6-4fdb-b4c3-212b5efed10e");
+            var initialGameObject = new GameObject();
+            var initialGameObjects = new Dictionary<Guid, GameObject>
+            {
+                { entity, initialGameObject }
+            };
+            var gameObjects = InMemoryGameObjects.From(initialGameObjects);
+            Assert.AreEqual(
+                initialGameObject,
+                gameObjects.GameObjectForEntity(entity));
+            var newGameObject = new GameObject();
+            gameObjects.AddGameObjectForEntity(
+                newGameObject,
+                entity);
+            Assert.AreEqual(
+                newGameObject,
+                gameObjects.GameObjectForEntity(entity));
+        }
     }
 }
