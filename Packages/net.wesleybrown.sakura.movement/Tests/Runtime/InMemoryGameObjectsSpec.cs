@@ -77,6 +77,9 @@ namespace In_Memory_Game_Objects_Spec
             Assert.AreEqual(
                 gameObject,
                 gameObjects.GameObjectForEntity(entity));
+            Assert.AreEqual(
+                entity,
+                gameObjects.EntityForGameObject(gameObject));
         }
 
         [Test]
@@ -92,6 +95,9 @@ namespace In_Memory_Game_Objects_Spec
             Assert.AreEqual(
                 initialGameObject,
                 gameObjects.GameObjectForEntity(entity));
+            Assert.AreEqual(
+                entity,
+                gameObjects.EntityForGameObject(initialGameObject));
             var newGameObject = new GameObject();
             gameObjects.AddGameObjectForEntity(
                 newGameObject,
@@ -99,6 +105,9 @@ namespace In_Memory_Game_Objects_Spec
             Assert.AreEqual(
                 newGameObject,
                 gameObjects.GameObjectForEntity(entity));
+            Assert.AreEqual(
+                entity,
+                gameObjects.EntityForGameObject(newGameObject));
         }
     }
 }

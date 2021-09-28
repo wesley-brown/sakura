@@ -88,6 +88,11 @@ namespace Sakura.Data
         /// <inheritdoc/>
         public Guid EntityForGameObject(GameObject gameObject)
         {
+            foreach (var entry in gameObjects)
+            {
+                if (entry.Value == gameObject)
+                    return entry.Key;
+            }
             throw new NotImplementedException();
         }
     }
