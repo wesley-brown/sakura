@@ -91,7 +91,8 @@ namespace In_Memory_Game_Objects_Spec
             {
                 { entity, initialGameObject }
             };
-            var gameObjects = InMemoryGameObjects.From(initialGameObjects);
+            var gameObjects =
+                InMemoryGameObjects.From(initialGameObjects);
             Assert.AreEqual(
                 initialGameObject,
                 gameObjects.GameObjectForEntity(entity));
@@ -108,6 +109,28 @@ namespace In_Memory_Game_Objects_Spec
             Assert.AreEqual(
                 entity,
                 gameObjects.EntityForGameObject(newGameObject));
+        }
+
+        [Test]
+        public void That_is_already_used_by_an_entity_is_not_supported()
+        {
+            var initialEntity =
+                new Guid("166db526-42e6-4fdb-b4c3-212b5efed10e");
+            var initialGameObject = new GameObject();
+            var initialGameObjects = new Dictionary<Guid, GameObject>
+            {
+                { initialEntity, initialGameObject }
+            };
+            var gameObjects =
+                InMemoryGameObjects.From(initialGameObjects);
+            var newEntity =
+                new Guid("6eb2d86d-42bc-47ce-a161-a8ad28067bb2");
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                gameObjects.AddGameObjectForEntity(
+                    initialGameObject,
+                    newEntity);
+            });
         }
     }
 

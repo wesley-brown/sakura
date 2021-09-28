@@ -67,6 +67,13 @@ namespace Sakura.Data
         {
             if (gameObject == null)
                 throw new ArgumentNullException(nameof(gameObject));
+            if (gameObjects.ContainsValue(gameObject))
+                throw new InvalidOperationException(
+                    "The game object '"
+                    + gameObject.name
+                    + "' is already bound to entity '"
+                    + entity
+                    + "'.");
             if (gameObjects.ContainsKey(entity))
             {
                 gameObjects[entity] = gameObject;

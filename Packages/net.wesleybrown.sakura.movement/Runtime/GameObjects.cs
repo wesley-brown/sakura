@@ -21,6 +21,10 @@ namespace Sakura.Data
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="GameObject"/> is null.
         /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Thrown when the given <see cref="GameObject"/> is already
+        ///     bound to another entity.
+        /// </exception>
         void AddGameObjectForEntity(
             GameObject gameObject,
             Guid entity);
