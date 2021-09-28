@@ -110,4 +110,19 @@ namespace In_Memory_Game_Objects_Spec
                 gameObjects.EntityForGameObject(newGameObject));
         }
     }
+
+    [TestFixture]
+    public class Querying_the_entity_for_a_game_object
+    {
+        [Test]
+        public void Does_not_support_a_null_game_object()
+        {
+            var gameObjects = InMemoryGameObjects.Empty();
+            GameObject gameObject = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                gameObjects.EntityForGameObject(gameObject);
+            });
+        }
+    }
 }

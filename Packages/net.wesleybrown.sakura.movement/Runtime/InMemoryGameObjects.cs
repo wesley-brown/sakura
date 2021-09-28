@@ -88,6 +88,8 @@ namespace Sakura.Data
         /// <inheritdoc/>
         public Guid EntityForGameObject(GameObject gameObject)
         {
+            if (gameObject == null)
+                throw new ArgumentNullException(nameof(gameObject));
             foreach (var entry in gameObjects)
             {
                 if (entry.Value == gameObject)
