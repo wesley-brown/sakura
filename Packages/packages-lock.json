@@ -143,12 +143,6 @@
       "source": "embedded",
       "dependencies": {}
     },
-    "net.wesleybrown.sakura.core": {
-      "version": "file:net.wesleybrown.sakura.core",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "net.wesleybrown.sakura.events": {
       "version": "file:net.wesleybrown.sakura.events",
       "depth": 0,
