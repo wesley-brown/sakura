@@ -9,6 +9,18 @@ namespace Sakura.Bodies.CollidableMovement.Data
     /// </summary>
     sealed class InMemoryMovementSpeeds : MovementSpeeds
     {
+        /// <summary>
+        ///     Create a <see cref="InMemoryMovementSpeeds"/> that does not
+        ///     have any movement speeds in it.
+        /// </summary>
+        /// <returns>
+        ///     An empty <see cref="InMemoryMovementSpeeds"/>.
+        /// </returns>
+        internal static InMemoryMovementSpeeds Empty()
+        {
+            return From(new Dictionary<Guid, float>());
+        }
+
 		/// <summary>
         ///		Create a <see cref="InMemoryMovementSpeeds"/> from a given
         ///		dictionary.
@@ -28,8 +40,15 @@ namespace Sakura.Bodies.CollidableMovement.Data
         {
             if (dictionary == null)
                 throw new ArgumentNullException(nameof(dictionary));
-			throw new NotImplementedException();
+            return new InMemoryMovementSpeeds(dictionary);
         }
+
+        private InMemoryMovementSpeeds(Dictionary<Guid, float> dictionary)
+        {
+            movementSpeeds = new Dictionary<Guid, float>(dictionary);
+        }
+
+        private readonly Dictionary<Guid, float> movementSpeeds;
 
 		/// <summary>
 		///     The movement speed for a given entity.
@@ -43,6 +62,8 @@ namespace Sakura.Bodies.CollidableMovement.Data
 		/// </returns>
 		public float MovementSpeedForEntity(Guid entity)
         {
+            if (!movementSpeeds.ContainsKey(entity))
+                return 0.0f;
             throw new NotImplementedException();
         }
     }
