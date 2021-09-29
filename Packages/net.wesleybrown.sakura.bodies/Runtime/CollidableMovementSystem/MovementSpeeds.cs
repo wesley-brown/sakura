@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     /// <summary>
 	///     A collection of entity movement speeds.
 	/// </summary>
-    public interface MovementSpeeds
+    internal interface MovementSpeeds
     {
         /// <summary>
 		///     The movement speed for a given entity.

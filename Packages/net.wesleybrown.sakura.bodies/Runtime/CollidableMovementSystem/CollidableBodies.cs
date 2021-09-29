@@ -1,7 +1,7 @@
 ﻿using System;
 using Sakura.Core;
 
-namespace Sakura.Client
+namespace Sakura.Bodies.CollidableMovement
 {
     /// <summary>
     ///     A collection of entity movement speeds, <see cref="Collision"/>s,

@@ -1,8 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using Sakura.Client;
 using Sakura.Core;
-using Sakura.Data;
+using Sakura.Bodies.CollidableMovement;
+using Sakura.Bodies.CollidableMovement.Data;
 
 namespace In_Memory_Collidable_Bodies_Spec
 {

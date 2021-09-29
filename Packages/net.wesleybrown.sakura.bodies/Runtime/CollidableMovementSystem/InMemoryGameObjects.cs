@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     /// <summary>
     ///     A <see cref="GameObjects"/> that stores all

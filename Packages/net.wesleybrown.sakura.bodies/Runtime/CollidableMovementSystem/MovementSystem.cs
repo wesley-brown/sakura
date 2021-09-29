@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Sakura.Client
+namespace Sakura.Bodies.CollidableMovement
 {
     /// <summary>
     ///     A system that moves entities.

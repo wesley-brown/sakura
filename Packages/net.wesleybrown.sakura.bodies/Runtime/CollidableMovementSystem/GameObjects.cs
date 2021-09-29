@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     /// <summary>
     ///     A collection of <see cref="GameObjects"/> and the entities that
     ///     they represent.
     /// </summary>
-    public interface GameObjects
+    internal interface GameObjects
     {
         /// <summary>
         ///     Add a given <see cref="GameObject"/> for a given entity.

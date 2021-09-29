@@ -1,7 +1,7 @@
 ﻿using System;
 using Sakura.Core;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     /// <summary>
 	///     A collection of <see cref="Body"/>s.

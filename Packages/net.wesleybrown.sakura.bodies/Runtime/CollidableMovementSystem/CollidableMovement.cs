@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura.Client
+namespace Sakura.Bodies.CollidableMovement
 {
     public sealed class CollidableMovement
     {

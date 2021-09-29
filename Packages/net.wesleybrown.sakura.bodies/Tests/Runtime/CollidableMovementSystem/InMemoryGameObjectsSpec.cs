@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Sakura.Data;
+using Sakura.Bodies.CollidableMovement.Data;
 using UnityEngine;
 
 namespace In_Memory_Game_Objects_Spec

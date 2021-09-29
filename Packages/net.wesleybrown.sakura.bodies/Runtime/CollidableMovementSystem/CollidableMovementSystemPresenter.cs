@@ -1,4 +1,4 @@
-﻿namespace Sakura.Client
+﻿namespace Sakura.Bodies.CollidableMovement
 {
     /// <summary>
     ///     A presenter for a <see cref="CollidableMovementSystem"/>.

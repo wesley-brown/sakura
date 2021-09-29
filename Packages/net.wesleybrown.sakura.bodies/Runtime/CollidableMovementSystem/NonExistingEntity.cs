@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
-namespace Sakura.Client
+namespace Sakura.Bodies.CollidableMovement
 {
     /// <summary>
     ///     The <see cref="Exception"/> that is thrown when an entity does not

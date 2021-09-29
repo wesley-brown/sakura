@@ -1,5 +1,5 @@
 ﻿using System;
-using Sakura.Data;
+using Sakura.Bodies.CollidableMovement.Data;
 using UnityEngine;
 
 namespace Character_Controller_Collisions_Spec

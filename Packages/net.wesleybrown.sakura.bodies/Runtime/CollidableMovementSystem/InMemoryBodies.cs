@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sakura.Core;
 using UnityEngine;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     /// <summary>
 	///     A <see cref="Bodies"/> that stores all <see cref="Body"/>s in

@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using Sakura.Client;
+using Sakura.Bodies.CollidableMovement;
 using UnityEngine;
 
 namespace Collidable_Movement_System_Spec

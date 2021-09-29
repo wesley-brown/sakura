@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     sealed class RecordCollidee : MonoBehaviour
     {

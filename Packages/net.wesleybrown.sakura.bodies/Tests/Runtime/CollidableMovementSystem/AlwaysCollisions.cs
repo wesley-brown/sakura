@@ -1,5 +1,5 @@
 ﻿using System;
-using Sakura.Client;
+using Sakura.Bodies.CollidableMovement;
 using Sakura.Core;
 
 namespace Collidable_Movement_System_Spec

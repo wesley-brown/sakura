@@ -2,7 +2,7 @@
 using Sakura.Core;
 using UnityEngine;
 
-namespace Sakura.Client
+namespace Sakura.Bodies.CollidableMovement
 {
     /// <summary>
     ///     A <see cref="MovementSystem"/> that checks for and resolves

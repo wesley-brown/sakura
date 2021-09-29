@@ -1,8 +1,7 @@
 ﻿using System;
-using Sakura.Client;
 using Sakura.Core;
 
-namespace Sakura.Data
+namespace Sakura.Bodies.CollidableMovement.Data
 {
     /// <summary>
     ///     An in-memory <see cref="CollidableBodies"/>.
