@@ -26,7 +26,7 @@ namespace In_Memory_Bodies_Spec
         [Test]
         public void Does_not_support_a_null_dictionary()
         {
-            Dictionary<Guid, Body> initialBodies = null;
+            Dictionary<Guid, Vector3> initialBodies = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
                 InMemoryBodies.From(initialBodies);
@@ -41,9 +41,9 @@ namespace In_Memory_Bodies_Spec
             var body = Body.ForEntityLocatedAt(
                 entity,
                 entityLocation);
-            var initialBodies = new Dictionary<Guid, Body>
+            var initialBodies = new Dictionary<Guid, Vector3>
             {
-                { entity, body }
+                { entity, entityLocation }
             };
             var bodies = InMemoryBodies.From(initialBodies);
             var actualBody = bodies.BodyForEntity(entity);
@@ -113,12 +113,9 @@ namespace In_Memory_Bodies_Spec
         {
             var entity = new Guid("eddc06dc-e22f-450b-a270-2c395716d1d9");
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
-            var body = Body.ForEntityLocatedAt(
-                entity,
-                entityLocation);
-            var initialBodies = new Dictionary<Guid, Body>
+            var initialBodies = new Dictionary<Guid, Vector3>
             {
-                { entity, body}
+                { entity, entityLocation}
             };
             return InMemoryBodies.From(initialBodies);
         }

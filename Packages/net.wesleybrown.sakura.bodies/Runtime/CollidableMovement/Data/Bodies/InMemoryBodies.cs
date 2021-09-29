@@ -19,42 +19,42 @@ namespace Sakura.Bodies.CollidableMovement.Data
         /// </returns>
         internal static InMemoryBodies Empty()
         {
-            return From(new Dictionary<Guid, Body>());
+            return From(new Dictionary<Guid, Vector3>());
         }
 
         /// <summary>
         ///     Create a <see cref="InMemoryBodies"/> from a given
-        ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
-        ///     <typeparamref name="Guid"/> and values of type
-        ///     <typeparamref name="Body"/>.
+        ///     dictionary.
         /// </summary>
         /// <param name="dictionary">
-        ///     The <see cref="Dictionary{TKey, TValue}"/> with keys of type
-        ///     <typeparamref name="Guid"/> and values of type
-        ///     <typeparamref name="Body"/>.
+        ///     The dictionary.
         /// </param>
         /// <returns>
-        ///     A <see cref="InMemoryBodies"/> from the given
-        ///     <see cref="Dictionary{TKey, TValue}"/> with keys of type
-        ///     <typeparamref name="Guid"/> and values of type
-        ///     <typeparamref name="Body"/>.
+        ///     A <see cref="InMemoryBodies"/> created from the given
+        ///     dictionary.
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        ///     Thrown when the given <see cref="Dictionary{TKey, TValue}"/>
-        ///     with keys of type <typeparamref name="Guid"/> and values of
-        ///     type <typeparamref name="Body"/> is null.
+        ///     Thrown when the given dictionary is null.
         /// </exception>
-        internal static InMemoryBodies From(Dictionary<Guid, Body> dictionary)
+        internal static InMemoryBodies From(
+            Dictionary<Guid, Vector3> dictionary)
         {
             if (dictionary == null)
                 throw new ArgumentNullException(nameof(dictionary));
             return new InMemoryBodies(dictionary);
         }
 
-        private InMemoryBodies(Dictionary<Guid, Body> bodies)
+        private InMemoryBodies(Dictionary<Guid, Vector3> dictionary)
         {
-            Debug.Assert(bodies != null);
-            this.bodies = new Dictionary<Guid, Body>(bodies);
+            Debug.Assert(dictionary != null);
+            bodies = new Dictionary<Guid, Body>();
+            foreach (var entry in dictionary)
+            {
+                var body = Body.ForEntityLocatedAt(
+                    entry.Key,
+                    entry.Value);
+                bodies.Add(entry.Key, body);
+            }
         }
 
         private readonly Dictionary<Guid, Body> bodies;
