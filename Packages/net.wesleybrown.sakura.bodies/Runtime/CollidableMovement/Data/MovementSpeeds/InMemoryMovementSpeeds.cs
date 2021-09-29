@@ -64,7 +64,7 @@ namespace Sakura.Bodies.CollidableMovement.Data
         {
             if (!movementSpeeds.ContainsKey(entity))
                 return 0.0f;
-            throw new NotImplementedException();
+            return movementSpeeds[entity];
         }
     }
 }

@@ -32,5 +32,22 @@ namespace In_Memory_Movement_Speeds_Spec
                 0.0f,
                 movementSpeed);
         }
+
+        [Test]
+        public void For_an_entity_that_does_exist_is_that_entitys_movement_speed()
+        {
+            var entity = new Guid("8015ce2b-621c-4c16-81a7-8b248bf6ce69");
+            var entityMovementSpeed = 5.0f;
+            var initialMovementSpeeds = new Dictionary<Guid, float>
+            {
+                { entity, entityMovementSpeed }
+            };
+            var movementSpeeds =
+                InMemoryMovementSpeeds.From(initialMovementSpeeds);
+            var movementSpeed = movementSpeeds.MovementSpeedForEntity(entity);
+            Assert.AreEqual(
+                entityMovementSpeed,
+                movementSpeed);
+        }
     }
 }
