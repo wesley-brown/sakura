@@ -1,6 +1,6 @@
 ﻿using System;
 using Sakura.Bodies.CollidableMovement;
-using Sakura.Core;
+using Sakura.Bodies.Core;
 
 namespace Collidable_Movement_System_Spec
 {

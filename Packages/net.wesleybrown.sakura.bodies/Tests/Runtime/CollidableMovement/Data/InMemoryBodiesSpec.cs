@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Sakura.Core;
 using Sakura.Bodies.CollidableMovement.Data;
+using Sakura.Bodies.Core;
 using UnityEngine;
 
 namespace In_Memory_Bodies_Spec

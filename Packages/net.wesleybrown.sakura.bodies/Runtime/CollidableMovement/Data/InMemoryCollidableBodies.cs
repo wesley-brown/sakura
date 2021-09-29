@@ -1,5 +1,5 @@
 ﻿using System;
-using Sakura.Core;
+using Sakura.Bodies.Core;
 
 namespace Sakura.Bodies.CollidableMovement.Data
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using NUnit.Framework;
-using Sakura.Core;
+using Sakura.Bodies.Core;
 using Sakura.Bodies.CollidableMovement.Data;
 using UnityEngine;
 using UnityEngine.TestTools;

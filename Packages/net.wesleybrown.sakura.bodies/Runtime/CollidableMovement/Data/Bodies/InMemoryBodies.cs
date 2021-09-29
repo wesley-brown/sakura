@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sakura.Core;
+using Sakura.Bodies.Core;
 using UnityEngine;
 
 namespace Sakura.Bodies.CollidableMovement.Data
