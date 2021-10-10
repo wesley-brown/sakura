@@ -2,7 +2,8 @@
     "name": "Sakura.DetectPlayerMovement.Unity",
     "references": [
         "GUID:7d972f4cebd064b8c84b4d06c3f7e088",
-        "GUID:8023e7e9293a74d48b7262bb677a826b"
+        "GUID:8023e7e9293a74d48b7262bb677a826b",
+        "GUID:c4e53ea0923bb44abbdd0a68d7ab0702"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

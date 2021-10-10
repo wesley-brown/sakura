@@ -1128,6 +1128,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1111581264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3008551558207851855, guid: 217ec6e030c864203b9fc39417579a97,
+    type: 3}
+  m_PrefabInstance: {fileID: 798290041068369953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1111581266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111581264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000001, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1189192326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1380,25 +1399,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b9948a9d29d4ee2bcace6bdf4e5ae1, type: 3}
---- !u!1 &1225626020 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 823991750059615004, guid: 30b9948a9d29d4ee2bcace6bdf4e5ae1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1225626019}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1225626021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225626020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03726463906bc4e2e9a9873ce6bb82fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 564c678144e724eb790dd28c71d0e852, type: 2}
 --- !u!1001 &1274248906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2470,7 +2470,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmhouse
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1886229016794701342, guid: 217ec6e030c864203b9fc39417579a97, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 217ec6e030c864203b9fc39417579a97, type: 3}
 --- !u!1001 &886263781726224485
 PrefabInstance:
@@ -2806,6 +2807,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3785275852710581340, guid: c235f782e9abd444ead0ecdd72a3ee80,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3785275852710581340, guid: c235f782e9abd444ead0ecdd72a3ee80,
         type: 3}
       propertyPath: entityConfig

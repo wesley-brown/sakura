@@ -304,4 +304,65 @@ namespace Character_Controller_Collisions_Spec
             return NonCollidedBodies.PlayerBody;
         }
     }
+
+    [TestFixture]
+    public class A_body_whos_game_object_is_moved_into_another_collidable_game_object_not_for_a_body
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            OnlyColliderBodyGameObjects.Collider.SetActive(true);
+            OnlyColliderBodyGameObjects.Collidee.SetActive(true);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            OnlyColliderBodyGameObjects.Collider.SetActive(false);
+            OnlyColliderBodyGameObjects.Collidee.SetActive(false);
+        }
+
+        [Test]
+        public void Does_not_have_a_collision()
+        {
+            var characterControllerCollisions =
+                CreateCharacterControllerCollisions();
+            var movement = CreateMovement();
+            var body = CreateBody();
+            var collision = characterControllerCollisions
+                .CollisionCausedByMovingBody(
+                    movement,
+                    body);
+            Assert.IsNull(collision);
+        }
+
+        private static CharacterControllerCollisions
+            CreateCharacterControllerCollisions()
+        {
+            var colliderGameObject = OnlyColliderBodyGameObjects.Collider;
+            var characterController =
+                colliderGameObject.GetComponent<CharacterController>();
+            var bodies = new OnlyColliderBodyBodies();
+            var gameObjects = new OnlyColliderBodyGameObjects();
+            return CharacterControllerCollisions
+                .WithControllerAndBodiesAndGameObjects(
+                    characterController,
+                    bodies,
+                    gameObjects);
+        }
+
+        private static Movement CreateMovement()
+        {
+            var playerDestination = new Vector3(5.0f, 0.0f, 0.0f);
+            var playerSpeed = 1.0f;
+            return Movement.TowardsDestinationWithSpeed(
+                playerDestination,
+                playerSpeed);
+        }
+
+        private static Body CreateBody()
+        {
+            return OnlyColliderBodyBodies.Collider;
+        }
+    }
 }
