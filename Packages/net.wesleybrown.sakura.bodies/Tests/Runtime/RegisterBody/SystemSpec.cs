@@ -1,6 +1,6 @@
 ﻿using System;
-using Sakura.Bodies.RegisterBody;
 using NUnit.Framework;
+using Sakura.Bodies.RegisterBody;
 
 namespace Register_Body_System_Spec
 {
@@ -12,6 +12,19 @@ namespace Register_Body_System_Spec
         {
             Registrations registrations = null;
             var presenter = new DummyPresenter();
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Registration.Of(
+                    registrations,
+                    presenter);
+            });
+        }
+
+        [Test]
+        public void Does_not_support_a_null_presenter()
+        {
+            var registrations = new DummyRegistrations();
+            Presenter presenter = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
                 Registration.Of(

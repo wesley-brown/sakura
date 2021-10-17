@@ -24,6 +24,10 @@ namespace Sakura.Bodies.RegisterBody
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given <see cref="Registrations"/> is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given <see cref="Presenter"/> is null.
         /// </exception>
         internal static Registration Of(
             Registrations registrations,
@@ -31,7 +35,9 @@ namespace Sakura.Bodies.RegisterBody
         {
             if (registrations == null)
                 throw new ArgumentNullException(nameof(registrations));
-            throw new ArgumentNullException();
+            if (presenter == null)
+                throw new ArgumentNullException(nameof(presenter));
+            throw new NotImplementedException();
         }
 
         /// <inheritdoc/>
