@@ -1,4 +1,5 @@
 ﻿using System;
+using Sakura.Bodies.Core;
 using UnityEngine;
 
 namespace Sakura.Bodies.RegisterBody
@@ -37,15 +38,39 @@ namespace Sakura.Bodies.RegisterBody
                 throw new ArgumentNullException(nameof(registrations));
             if (presenter == null)
                 throw new ArgumentNullException(nameof(presenter));
-            throw new NotImplementedException();
+            return new Registration(
+                registrations,
+                presenter);
         }
 
-        /// <inheritdoc/>
-        public void Register(
-            Vector3 bodyLocation,
-            Guid entity)
+        private Registration(
+            Registrations registrations,
+            Presenter presenter)
         {
-            throw new NotImplementedException();
+            Debug.Assert(registrations != null);
+            this.registrations = registrations;
+            Debug.Assert(presenter != null);
+            this.presenter = presenter;
+        }
+
+        private readonly Registrations registrations;
+        private readonly Presenter presenter;
+
+        /// <inheritdoc/>
+        public void Register(Input input)
+        {
+            var body = Body.ForEntityLocatedAt(
+                input.Entity,
+                input.BodyLocation);
+            registrations.Add(
+                body,
+                body.Entity);
+            var output = new Output
+            {
+                Entity = input.Entity,
+                BodyLocation = input.BodyLocation
+            };
+            presenter.Present(output);
         }
     }
 }
