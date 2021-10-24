@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sakura.Bodies.RegisterBody;
 
 namespace Register_Body_System_Spec
@@ -25,8 +26,8 @@ namespace Register_Body_System_Spec
         ///     The list of output errors that this <see cref="SpyPresenter"/>
         ///     was told to present.
         /// </summary>
-        public List<string> OutputErrors { get; private set; } =
-            new List<string>();
+        public List<Exception> OutputErrors { get; private set; } =
+            new List<Exception>();
 
         /// <inheritdoc/>
         public void Present(Output output)
@@ -41,9 +42,9 @@ namespace Register_Body_System_Spec
         }
 
         /// <inheritdoc/>
-        public void PresentOutputErrors(List<string> outputErrors)
+        public void PresentOutputErrors(List<Exception> outputErrors)
         {
-            OutputErrors = new List<string>(outputErrors);
+            OutputErrors = new List<Exception>(outputErrors);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sakura.Bodies.RegisterBody
 {
@@ -29,6 +30,6 @@ namespace Sakura.Bodies.RegisterBody
         /// <param name="outputErrors">
         ///     The output errors to present.
         /// </param>
-        void PresentOutputErrors(List<string> outputErrors);
+        void PresentOutputErrors(List<Exception> outputErrors);
     }
 }

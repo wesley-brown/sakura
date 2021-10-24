@@ -46,7 +46,7 @@ namespace Register_Body_System_Spec
         /// <exception cref="NotImplementedException">
         ///     Always thrown.
         /// </exception>
-        public void PresentOutputErrors(List<string> outputErrors)
+        public void PresentOutputErrors(List<Exception> outputErrors)
         {
             throw new NotImplementedException();
         }

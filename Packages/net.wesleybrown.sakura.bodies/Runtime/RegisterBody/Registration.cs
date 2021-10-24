@@ -60,6 +60,22 @@ namespace Sakura.Bodies.RegisterBody
         /// <inheritdoc/>
         public void Register(Input input)
         {
+            try
+            {
+                TryRegister(input);
+            }
+            catch (Exception exception)
+            {
+                var outputErrors = new List<Exception>
+                {
+                    exception
+                };
+                presenter.PresentOutputErrors(outputErrors);
+            }
+        }
+
+        private void TryRegister(Input input)
+        {
             if (registrations.HasBodyFor(input.Entity))
             {
                 var errors = new List<string>
