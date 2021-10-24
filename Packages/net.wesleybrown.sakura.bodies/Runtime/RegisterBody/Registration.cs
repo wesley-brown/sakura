@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sakura.Bodies.Core;
 using UnityEngine;
 
@@ -59,6 +60,16 @@ namespace Sakura.Bodies.RegisterBody
         /// <inheritdoc/>
         public void Register(Input input)
         {
+            if (registrations.HasBodyFor(input.Entity))
+            {
+                var errors = new List<string>
+                {
+                    "There is already a body registered for"
+                        + $" entity {input.Entity}"
+                };
+                presenter.PresentInputErrors(errors);
+                return;
+            }
             var body = Body.ForEntityLocatedAt(
                 input.Entity,
                 input.BodyLocation);

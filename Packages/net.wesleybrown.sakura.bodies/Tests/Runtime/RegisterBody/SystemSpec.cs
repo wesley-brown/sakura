@@ -61,10 +61,35 @@ namespace Register_Body_System_Spec
                 presenter.OutputErrors.Count);
             Assert.AreEqual(
                 entity,
-                presenter.Output.Entity.Value);
+                presenter.Output.Entity);
             Assert.AreEqual(
                 bodyLocation,
-                presenter.Output.BodyLocation.Value);
+                presenter.Output.BodyLocation);
+        }
+
+        [Test]
+        public void For_an_entity_that_does_have_one_is_an_error()
+        {
+            var registrations = new ExistingRegistrations();
+            var presenter = new SpyPresenter();
+            var system = Registration.Of(
+                registrations,
+                presenter);
+            var entity = new Guid("db1395c6-6978-4e29-83bd-3088287acdc8");
+            var bodyLocation = new UnityEngine.Vector3(0.0f, 0.0f, 0.0f);
+            var input = new Input
+            {
+                Entity = entity,
+                BodyLocation = bodyLocation
+            };
+            system.Register(input);
+            Assert.AreEqual(
+                1,
+                presenter.InputErrors.Count);
+            Assert.AreEqual(
+                0,
+                presenter.OutputErrors.Count);
+            Assert.IsNull(presenter.Output);
         }
     }
 }
