@@ -47,5 +47,27 @@ namespace In_Memory_Registrations_Spec
                 entityLocation,
                 addedBody.Location);
         }
+
+        [Test]
+        public void That_already_has_one_is_an_error()
+        {
+            var entity = new Guid("5ee573c8-805d-462d-84cf-1c60080b3e8a");
+            var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                entityLocation);
+            var initialBodies = new Dictionary<Guid, Body>
+            {
+                { entity, body }
+            };
+            var registrations = InMemoryRegistrations.Of(initialBodies);
+            Assert.IsTrue(registrations.HasBodyFor(entity));
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                registrations.Add(
+                    body,
+                    entity);
+            });
+        }
     }
 }

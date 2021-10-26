@@ -51,16 +51,11 @@ namespace Sakura.Bodies.RegisterBody.Data
             Body body,
             Guid entity)
         {
-            try
-            {
-                bodies.Add(
-                    entity,
-                    body);
-            }
-            catch (ArgumentException)
-            {
-                throw new NotImplementedException();
-            }
+            if (HasBodyFor(entity))
+                throw new InvalidOperationException();
+            bodies.Add(
+                entity,
+                body);
         }
 
         /// <inheritdoc/>
