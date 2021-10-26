@@ -38,5 +38,17 @@ namespace Sakura.Bodies.RegisterBody
         void Add(
             Body body,
             Guid entity);
+
+        /// <summary>
+        ///     The <see cref="Body"/> for a given entity.
+        /// </summary>
+        /// <param name="entity">
+        ///     The entity.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="Body"/> for the given entity if there is one;
+        ///     null otherwise.
+        /// </returns>
+        Body BodyFor(Guid entity);
     }
 }

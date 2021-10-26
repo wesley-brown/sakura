@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sakura.Bodies.Core;
+using UnityEngine;
 
 namespace Sakura.Bodies.RegisterBody.Data
 {
@@ -28,43 +29,51 @@ namespace Sakura.Bodies.RegisterBody.Data
         {
             if (dictionary == null)
                 throw new ArgumentNullException(nameof(dictionary));
-            throw new ArgumentNullException();
+            return new InMemoryRegistrations(dictionary);
         }
 
-        /// <summary>
-        ///     Whether or not there is already a <see cref="Body"/>
-        ///     registered for a given entity.
-        /// </summary>
-        /// <param name="entity">
-        ///     The entity to check for a registred <see cref="Body"/>.
-        /// </param>
-        /// <returns>
-        ///     True if the given entity has a registred <see cref="Body"/>;
-        ///     false otherwise.
-        /// </returns>
+        private InMemoryRegistrations(Dictionary<Guid, Body> bodies)
+        {
+            Debug.Assert(bodies != null);
+            this.bodies = bodies;
+        }
+
+        private readonly Dictionary<Guid, Body> bodies;
+
+        /// <inheritdoc/>
         public bool HasBodyFor(Guid entity)
         {
-            throw new NotImplementedException();
+            return bodies.ContainsKey(entity);
         }
 
-        /// <summary>
-        ///     Add a <see cref="Body"/> that represents a given entity.
-        /// </summary>
-        /// <param name="body">
-        ///     The <see cref="Body"/>.
-        /// </param>
-        /// <param name="entity">
-        ///     The entity.
-        /// </param>
-        /// <exception cref="InvalidOperationException">
-        ///     Thrown when the given entity already has a <see cref="Body"/>
-        ///     registered for it.
-        /// </exception>
+        /// <inheritdoc/>
         public void Add(
             Body body,
             Guid entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                bodies.Add(
+                    entity,
+                    body);
+            }
+            catch (ArgumentException)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <inheritdoc/>
+        public Body BodyFor(Guid entity)
+        {
+            try
+            {
+                return bodies[entity];
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

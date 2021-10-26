@@ -45,5 +45,22 @@ namespace Register_Body_System_Spec
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        ///     The <see cref="Body"/> for a given entity.
+        /// </summary>
+        /// <param name="entity">
+        ///     The entity.
+        /// </param>
+        /// <returns>
+        ///     Never returns.
+        /// </returns>
+        /// <exception cref="NotImplementedException">
+        ///     Always thrown.
+        /// </exception>
+        public Body BodyFor(Guid entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
