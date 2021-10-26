@@ -52,7 +52,8 @@ namespace Sakura.Bodies.RegisterBody.Data
             Guid entity)
         {
             if (HasBodyFor(entity))
-                throw new InvalidOperationException();
+                throw new InvalidOperationException(
+                    $"The entity '{entity}' already has a registered body.");
             bodies.Add(
                 entity,
                 body);
@@ -61,14 +62,10 @@ namespace Sakura.Bodies.RegisterBody.Data
         /// <inheritdoc/>
         public Body BodyFor(Guid entity)
         {
-            try
-            {
-                return bodies[entity];
-            }
-            catch (KeyNotFoundException)
-            {
-                throw new NotImplementedException();
-            }
+            if (!HasBodyFor(entity))
+                throw new InvalidOperationException(
+                    $"The entity '{entity}' does not have a registered body.");
+            return bodies[entity];
         }
     }
 }

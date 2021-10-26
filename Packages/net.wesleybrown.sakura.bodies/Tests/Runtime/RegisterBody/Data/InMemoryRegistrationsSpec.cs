@@ -70,4 +70,21 @@ namespace In_Memory_Registrations_Spec
             });
         }
     }
+
+    [TestFixture]
+    public class Querying_the_body_for_an_entity
+    {
+        [Test]
+        public void That_does_not_have_one_is_an_error()
+        {
+            var entity = new Guid("5ee573c8-805d-462d-84cf-1c60080b3e8a");
+            var initialBodies = new Dictionary<Guid, Body>();
+            var registrations = InMemoryRegistrations.Of(initialBodies);
+            Assert.IsFalse(registrations.HasBodyFor(entity));
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                registrations.BodyFor(entity);
+            });
+        }
+    }
 }

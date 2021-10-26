@@ -49,6 +49,10 @@ namespace Sakura.Bodies.RegisterBody
         ///     The <see cref="Body"/> for the given entity if there is one;
         ///     null otherwise.
         /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     Thrown when this <see cref="Registrations"/> does not have a
+        ///     <see cref="Body"/> for the given entity.
+        /// </exception>
         Body BodyFor(Guid entity);
     }
 }
