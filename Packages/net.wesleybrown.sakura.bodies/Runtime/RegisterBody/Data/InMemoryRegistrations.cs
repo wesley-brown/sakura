@@ -25,20 +25,20 @@ namespace Sakura.Bodies.RegisterBody.Data
         ///     Thrown when the given dictionary is null.
         /// </exception>
         internal static InMemoryRegistrations Of(
-            Dictionary<Guid, Body> dictionary)
+            Dictionary<Guid, Vector3> dictionary)
         {
             if (dictionary == null)
                 throw new ArgumentNullException(nameof(dictionary));
             return new InMemoryRegistrations(dictionary);
         }
 
-        private InMemoryRegistrations(Dictionary<Guid, Body> bodies)
+        private InMemoryRegistrations(Dictionary<Guid, Vector3> bodies)
         {
             Debug.Assert(bodies != null);
             this.bodies = bodies;
         }
 
-        private readonly Dictionary<Guid, Body> bodies;
+        private readonly Dictionary<Guid, Vector3> bodies;
 
         /// <inheritdoc/>
         public bool HasBodyFor(Guid entity)
@@ -56,7 +56,7 @@ namespace Sakura.Bodies.RegisterBody.Data
                     $"The entity '{entity}' already has a registered body.");
             bodies.Add(
                 entity,
-                body);
+                body.Location);
         }
 
         /// <inheritdoc/>
@@ -65,7 +65,10 @@ namespace Sakura.Bodies.RegisterBody.Data
             if (!HasBodyFor(entity))
                 throw new InvalidOperationException(
                     $"The entity '{entity}' does not have a registered body.");
-            return bodies[entity];
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                bodies[entity]);
+            return body;
         }
     }
 }

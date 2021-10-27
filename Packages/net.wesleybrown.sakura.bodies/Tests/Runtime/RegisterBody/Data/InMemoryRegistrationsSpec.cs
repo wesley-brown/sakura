@@ -13,7 +13,7 @@ namespace In_Memory_Registrations_Spec
         [Test]
         public void Does_not_support_a_null_dictionary()
         {
-            Dictionary<Guid, Body> initialBodies = null;
+            Dictionary<Guid, Vector3> initialBodies = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
                 InMemoryRegistrations.Of(initialBodies);
@@ -27,7 +27,7 @@ namespace In_Memory_Registrations_Spec
         [Test]
         public void That_does_not_have_one_uses_that_body()
         {
-            var initialBodies = new Dictionary<Guid, Body>();
+            var initialBodies = new Dictionary<Guid, Vector3>();
             var registrations = InMemoryRegistrations.Of(initialBodies);
             var entity = new Guid("5ee573c8-805d-462d-84cf-1c60080b3e8a");
             var entityLocation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -56,9 +56,9 @@ namespace In_Memory_Registrations_Spec
             var body = Body.ForEntityLocatedAt(
                 entity,
                 entityLocation);
-            var initialBodies = new Dictionary<Guid, Body>
+            var initialBodies = new Dictionary<Guid, Vector3>
             {
-                { entity, body }
+                { entity, entityLocation }
             };
             var registrations = InMemoryRegistrations.Of(initialBodies);
             Assert.IsTrue(registrations.HasBodyFor(entity));
@@ -78,7 +78,7 @@ namespace In_Memory_Registrations_Spec
         public void That_does_not_have_one_is_an_error()
         {
             var entity = new Guid("5ee573c8-805d-462d-84cf-1c60080b3e8a");
-            var initialBodies = new Dictionary<Guid, Body>();
+            var initialBodies = new Dictionary<Guid, Vector3>();
             var registrations = InMemoryRegistrations.Of(initialBodies);
             Assert.IsFalse(registrations.HasBodyFor(entity));
             Assert.Throws<InvalidOperationException>(() =>
