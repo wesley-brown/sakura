@@ -47,17 +47,10 @@ namespace Sakura.Bodies.CollidableMovement.Data
         private InMemoryBodies(Dictionary<Guid, Vector3> dictionary)
         {
             Debug.Assert(dictionary != null);
-            bodies = new Dictionary<Guid, Body>();
-            foreach (var entry in dictionary)
-            {
-                var body = Body.ForEntityLocatedAt(
-                    entry.Key,
-                    entry.Value);
-                bodies.Add(entry.Key, body);
-            }
+            bodies = dictionary;
         }
 
-        private readonly Dictionary<Guid, Body> bodies;
+        private readonly Dictionary<Guid, Vector3> bodies;
 
         /// <summary>
 		///     Add a given <see cref="Body"/> to this
@@ -76,7 +69,7 @@ namespace Sakura.Bodies.CollidableMovement.Data
             var entity = body.Entity;
             if (HaveBodyForEntity(entity))
                 bodies.Remove(entity);
-            bodies.Add(body.Entity, body);
+            bodies.Add(body.Entity, body.Location);
         }
 
         private bool HaveBodyForEntity(Guid entity)
@@ -98,7 +91,10 @@ namespace Sakura.Bodies.CollidableMovement.Data
         {
             if (!HaveBodyForEntity(entity))
                 return null;
-            return bodies[entity];
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                bodies[entity]);
+            return body;
         }
     }
 }
