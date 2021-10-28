@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sakura.Bodies.CollidableMovement;
-using Sakura.Bodies.CollidableMovement.Data;
 using UnityEngine;
 
 namespace Sakura.Bodies
@@ -13,33 +11,62 @@ namespace Sakura.Bodies
             Dictionary<Guid, Vector3> initialBodies,
             Dictionary<Guid, GameObject> initialGameObjects)
         {
-            movementSpeeds =
-                InMemoryMovementSpeeds.From(initialMovementSpeeds);
-            bodies = InMemoryBodies.From(initialBodies);
-            gameObjects = InMemoryGameObjects.From(initialGameObjects);
+            this.initialBodies = initialBodies;
+            movementSpeeds = CollidableMovement
+                .Data
+                .InMemoryMovementSpeeds
+                .From(initialMovementSpeeds);
+            bodies = CollidableMovement
+                .Data
+                .InMemoryBodies
+                .From(initialBodies);
+            gameObjects = CollidableMovement
+                .Data
+                .InMemoryGameObjects
+                .From(initialGameObjects);
         }
 
-        private readonly MovementSpeeds movementSpeeds;
+        private readonly Dictionary<Guid, Vector3> initialBodies;
+        private readonly CollidableMovement.Data.MovementSpeeds movementSpeeds;
         private readonly CollidableMovement.Data.Bodies bodies;
-        private readonly GameObjects gameObjects;
+        private readonly CollidableMovement.Data.GameObjects gameObjects;
 
-        public MovementSystem MovementSystem(
+        public CollidableMovement.MovementSystem MovementSystem(
             CharacterController characterController,
-            CollidableMovementSystemPresenter presenter)
+            CollidableMovement.CollidableMovementSystemPresenter presenter)
         {
-            var collisions = CharacterControllerCollisions
+            var collisions = CollidableMovement
+                .Data
+                .CharacterControllerCollisions
                 .WithControllerAndBodiesAndGameObjects(
                     characterController,
                     bodies,
                     gameObjects);
-            var collidableBodies = InMemoryCollidableBodies
+            var collidableBodies = CollidableMovement
+                .Data
+                .InMemoryCollidableBodies
                 .WithCollections(
                     movementSpeeds,
                     bodies,
                     collisions);
-            return CollidableMovementSystem
+            return CollidableMovement
+                .CollidableMovementSystem
                 .WithCollidableBodiesAndPresenter(
                     collidableBodies,
+                    presenter);
+        }
+
+        public RegisterBody.System RegisterBodySystem(
+            RegisterBody.Presenter presenter)
+        {
+            var registrations = RegisterBody
+                .Data
+                .InMemoryRegistrations
+                .Of(initialBodies);
+            return RegisterBody
+                .Registration
+                .Of(
+                    registrations,
                     presenter);
         }
     }
