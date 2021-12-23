@@ -95,6 +95,10 @@ namespace Sakura.Bodies.Core
         ///     <see cref="Body"/> to its <see cref="Destination"/> in a single 
         ///     tick, the <see cref="Body"/> will be placed at its
         ///     <see cref="Destination"/> and no farther.
+        ///
+        ///     If a <see cref="Moevment"/> would not move a
+        ///     <see cref="Body"/>, the <see cref="Body"/> will remain where it
+        ///     was before being moved.
         /// </remarks>
         /// <param name="body">
         ///     The <see cref="Body"/> to move.
@@ -121,6 +125,8 @@ namespace Sakura.Bodies.Core
             Vector3 requiredMovement)
         {
             var requiredDistance = requiredMovement.magnitude;
+            if (requiredDistance == 0)
+                return Vector3.zero;
             return (requiredMovement / requiredDistance) * speed;
         }
 

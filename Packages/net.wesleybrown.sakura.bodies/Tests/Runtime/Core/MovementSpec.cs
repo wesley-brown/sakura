@@ -228,6 +228,33 @@ namespace Movement_Spec
     }
 
     [TestFixture]
+    public class Moving_a_body_to_where_it_already_is
+    {
+        [Test]
+        public void Does_not_move_it()
+        {
+            var entity = new Guid("c326e79f-3510-4cbf-ba10-902fca16ac8c");
+            var startingLocation = new Vector3(1.0f, 2.0f, 3.0f);
+            var body = Body.ForEntityLocatedAt(
+                entity,
+                startingLocation);
+            var destination = startingLocation;
+            var speed = 5.0f;
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                speed);
+            var movedBody = movement.Move(body);
+            var expectedLocation = startingLocation;
+            Assert.AreEqual(
+                movedBody.Entity,
+                entity);
+            Assert.AreEqual(
+                expectedLocation,
+                movedBody.Location);
+        }
+    }
+
+    [TestFixture]
     public class The_string_representation_of_a_movement
     {
         [Test]
