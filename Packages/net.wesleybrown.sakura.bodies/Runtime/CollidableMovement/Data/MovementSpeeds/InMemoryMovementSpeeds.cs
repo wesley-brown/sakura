@@ -45,7 +45,7 @@ namespace Sakura.Bodies.CollidableMovement.Data
 
         private InMemoryMovementSpeeds(Dictionary<Guid, float> dictionary)
         {
-            movementSpeeds = new Dictionary<Guid, float>(dictionary);
+            movementSpeeds = dictionary;
         }
 
         private readonly Dictionary<Guid, float> movementSpeeds;
