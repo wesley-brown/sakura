@@ -55,7 +55,7 @@ namespace Sakura.Bodies.CollidableMovement.Data
         private InMemoryGameObjects(Dictionary<Guid, GameObject> dictionary)
         {
             Debug.Assert(dictionary != null);
-            gameObjects = new Dictionary<Guid, GameObject>(dictionary);
+            gameObjects = dictionary;
         }
 
         private readonly Dictionary<Guid, GameObject> gameObjects;
