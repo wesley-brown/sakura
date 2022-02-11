@@ -2,7 +2,7 @@
 using Sakura.DetectPlayerMovement.Infrastructure;
 using UnityEngine;
 
-namespace Sakura.DetectPlayerMovement.Unity
+namespace Sakura.Inputs
 {
     /// <summary>
     ///     A configuration for the legacy touch input plugin from the

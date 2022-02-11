@@ -1,12 +1,9 @@
 {
-    "name": "Sakura.Runtime",
+    "name": "Sakura.Player",
     "rootNamespace": "",
     "references": [
-        "GUID:9445552cfe69d4087a9cbf7256f28166",
-        "GUID:8cfdd4310aa5741689c843ecc8b0890e",
-        "GUID:92457ded0cb0e412693942684cf65d6d",
-        "GUID:04f9fbf5b8cd649f3801763f57fa9698",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:dde4ba2c10b54456ea8e393ef99ee375",
+        "GUID:40aa95cc2e9d544f8a2cb10117ddc2e7",
         "GUID:c4e53ea0923bb44abbdd0a68d7ab0702"
     ],
     "includePlatforms": [],

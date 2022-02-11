@@ -138,6 +138,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -162,6 +163,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &823991750059615004
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +173,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9084701725514037563}
+  - component: {fileID: 5561307072800645500}
+  - component: {fileID: 3074612683397032303}
+  - component: {fileID: 4133397904859739689}
   - component: {fileID: 1225626022}
   - component: {fileID: 1225626021}
   m_Layer: 0
@@ -196,6 +201,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5561307072800645500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823991750059615004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d6bc8377bc9401fa13903f9c4eed76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3074612683397032303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823991750059615004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76db0703da5e48608c8192e77a17ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: 
+  movementSpeed: 0
+--- !u!114 &4133397904859739689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823991750059615004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencies: {fileID: 0}
 --- !u!143 &1225626022
 CharacterController:
   m_ObjectHideFlags: 0
@@ -226,4 +270,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03726463906bc4e2e9a9873ce6bb82fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 564c678144e724eb790dd28c71d0e852, type: 2}
+  config: {fileID: 0}
+  entity: 

@@ -1,85 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using Sakura.Bodies;
-using Sakura.Bodies.CollidableMovement;
-using Sakura.DetectPlayerMovement.Client;
+﻿using Sakura.DetectPlayerMovement.Client;
 using UnityEngine;
 
-namespace Sakura.DetectPlayerMovement.Unity
+namespace Sakura.Inputs
 {
     /// <summary>
     ///     A component that detects player movement each frame.
     /// </summary>
-    public sealed class DetectPlayerMovement
-        : MonoBehaviour, CollidableMovementSystemPresenter
+    /// <remarks>
+    ///     This MonoBehaviour is a temporary implementation of the "input
+    ///     component". When an actual input component is created, this
+    ///     class will be removed.
+    /// </remarks>
+    public sealed class DetectPlayerMovement : MonoBehaviour
     {
         public DetectPlayerMovementConfig config;
 
         private void Start()
         {
-            var initialMovementSpeeds = new Dictionary<Guid, float>
-            {
-                { entity, 0.0608f * 2 } // measured in meters / tick
-            };
-            var initialBodies = new Dictionary<Guid, Vector3>
-            {
-                { entity, gameObject.transform.position }
-            };
-            var initialGameObjects = new Dictionary<Guid, GameObject>
-            {
-                { entity, gameObject }
-            };
-            var bodiesComponent = new BodiesComponent(
-                initialMovementSpeeds,
-                initialBodies,
-                initialGameObjects);
-            var characterController = GetComponent<CharacterController>();
-            movementSystem = bodiesComponent.MovementSystem(
-                characterController,
-                this);
             transform = GetComponent<Transform>();
-            destination = transform.position;
+            latestDestination = transform.position;
         }
 
-        private MovementSystem movementSystem;
-        private readonly Guid entity =
-            new Guid("7b116831-5b7b-4ceb-972c-93b0221c4ccc");
         private new Transform transform;
-        private Vector3 destination;
+        private float accumulator;
 
-        private void FixedUpdate()
+        /// <summary>
+        /// The destination given by the player's input for the current tick.
+        /// </summary>
+        /// <returns>
+        /// The destination given by the player's input for the current tick
+        /// or null if no input was given.
+        /// </returns>
+        public Vector3? Destination()
         {
             var check = DestinationCheck.Against(config.Create());
-            if (check.PlayerMovedLastFrame())
+            if (!check.PlayerMovedLastFrame())
+                return null;
+            var y = transform.position.y;
+            var destination = check.DesiredDestination();
+            return new Vector3(
+                destination.x,
+                y,
+                destination.z);
+        }
+
+        /// <summary>
+        ///     The latest destination based on player input. Only one
+        ///     destination input between fixed timesteps will be accepted as
+        ///     the latest destination. This will always be the first
+        ///     input-based destination the player provides that occurs
+        ///     between fixed timesteps.
+        /// </summary>
+        private Vector3 latestDestination;
+        private bool canAcceptNewLatestDestination = true;
+
+        public Vector3 CurrentDestination()
+        {
+            if (canAcceptNewLatestDestination)
             {
-                var y = gameObject.transform.position.y;
-                var destination = check.DesiredDestination();
-                movementSystem.MoveEntityTowardsDestination(
-                    entity,
-                    new Vector3(destination.x, y, destination.z));
+                latestDestination = transform.position;
+                var check = DestinationCheck.Against(config.Create());
+                if (check.PlayerMovedLastFrame())
+                {
+                    var y = transform.position.y;
+                    var unadjustedDestination = check.DesiredDestination();
+                    latestDestination = new Vector3(
+                        unadjustedDestination.x,
+                        y,
+                        unadjustedDestination.z);
+                    canAcceptNewLatestDestination = false;
+                }
             }
-        }
-
-        private void Update()
-        {
-            var lag = Time.time - Time.fixedTime;
-            var alpha = lag / Time.fixedDeltaTime;
-            transform.position = Vector3.Lerp(
-                transform.position,
-                destination,
-                alpha);
-        }
-
-        /// <inheritdoc/>
-        public void Present(CollidableMovement collidableMovement)
-        {
-            destination = collidableMovement.EndingLocation;
-        }
-
-        /// <inheritdoc/>
-        public void ReportError(string error)
-        {
-            Debug.LogError(error);
+            accumulator += Time.deltaTime;
+            while (accumulator >= Time.fixedDeltaTime)
+            {
+                accumulator -= Time.fixedDeltaTime;
+                canAcceptNewLatestDestination = true;
+            }
+            return latestDestination;
         }
     }
 }

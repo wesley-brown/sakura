@@ -1,7 +1,7 @@
 ﻿using Sakura.DetectPlayerMovement.Client;
 using UnityEngine;
 
-namespace Sakura.DetectPlayerMovement.Unity
+namespace Sakura.Inputs
 {
     /// <summary>
     ///     Configures which implementations of the infrastructure layer are

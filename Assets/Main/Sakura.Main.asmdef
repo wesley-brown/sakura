@@ -1,10 +1,10 @@
 {
-    "name": "Sakura.DetectPlayerMovement.Unity",
+    "name": "Sakura.Main",
     "rootNamespace": "",
     "references": [
-        "GUID:7d972f4cebd064b8c84b4d06c3f7e088",
-        "GUID:8023e7e9293a74d48b7262bb677a826b",
-        "GUID:c4e53ea0923bb44abbdd0a68d7ab0702"
+        "GUID:975359e7fdd244d159cbd7e1046ce263",
+        "GUID:c4e53ea0923bb44abbdd0a68d7ab0702",
+        "GUID:40aa95cc2e9d544f8a2cb10117ddc2e7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
