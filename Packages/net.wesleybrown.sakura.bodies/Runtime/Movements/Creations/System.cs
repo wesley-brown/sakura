@@ -71,8 +71,17 @@ namespace Sakura.Bodies.Movements.Creations
             Debug.Assert(presenter != null);
             var validationErrors = new List<string>();
             if (input == null)
+            {
                 validationErrors.Add("The given input must not be null.");
-            presenter.OnValidationError(validationErrors);
+                presenter.OnValidationError(validationErrors);
+            }
+            else
+            {
+                Debug.Assert(input != null);
+                if (input.Entity == null)
+                    validationErrors.Add("The given entity must not be null.");
+                presenter.OnValidationError(validationErrors);
+            }
         }
     }
 }
