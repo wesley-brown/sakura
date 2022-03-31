@@ -54,5 +54,20 @@ namespace Movement_Creation_System_Spec
                     fixedTimeStepSeconds);
             });
         }
+
+        [Test]
+        public void With_A_Null_Presenter_Is_Not_Supported()
+        {
+            var gateway = new Gateways.Dummy();
+            OutputPort presenter = null;
+            var fixedTimeStepSeconds = 0.5f;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Sakura.Bodies.Movements.Creations.System.Of(
+                    gateway,
+                    presenter,
+                    fixedTimeStepSeconds);
+            });
+        }
     }
 }

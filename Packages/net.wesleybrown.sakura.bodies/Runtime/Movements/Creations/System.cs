@@ -24,6 +24,10 @@ namespace Sakura.Bodies.Movements.Creations
         /// </returns>
         /// <exception cref="global::System.ArgumentNullException">
         ///     Thrown when the given gateway is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given presenter is null.
         /// </exception>
         /// <exception cref="global::System.ArgumentOutOfRangeException">
         ///     Thrown when the given fixed time step is <= 0.
@@ -36,6 +40,9 @@ namespace Sakura.Bodies.Movements.Creations
             if (gateway == null)
                 throw new global::System.ArgumentNullException(
                     nameof(gateway));
+            if (presenter == null)
+                throw new global::System.ArgumentNullException(
+                    nameof(presenter));
             if (fixedTimeStepSeconds <= 0)
                 throw new global::System.ArgumentOutOfRangeException(
                     nameof(fixedTimeStepSeconds),
