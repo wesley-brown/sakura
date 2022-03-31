@@ -23,17 +23,17 @@ namespace Sakura.Bodies.Movements.Creations
         ///     presenter, and fixed time step.
         /// </returns>
         /// <exception cref="global::System.ArgumentOutOfRangeException">
-        /// Thrown when the given fixed time step is negative.
+        /// Thrown when the given fixed time step is <= 0.
         /// </exception>
         internal static System Of(
             Gateway gateway,
             OutputPort presenter,
             float fixedTimeStepSeconds)
         {
-            if (fixedTimeStepSeconds < 0)
+            if (fixedTimeStepSeconds <= 0)
                 throw new global::System.ArgumentOutOfRangeException(
                     nameof(fixedTimeStepSeconds),
-                    "The given fixed time step must be non-negative.");
+                    "The given fixed time step must be > 0");
             throw new global::System.NotImplementedException();
         }
     }

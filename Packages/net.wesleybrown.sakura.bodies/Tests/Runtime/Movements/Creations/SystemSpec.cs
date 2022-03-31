@@ -23,5 +23,20 @@ namespace Movement_Creation_System_Spec
                     fixedTimeStepSeconds);
             });
         }
+
+        [Test]
+        public void With_A_Time_Step_Of_0_Is_Not_Supported()
+        {
+            var gateway = new Gateways.Dummy();
+            var presenter = new Presenters.Dummy();
+            var fixedTimeStepSeconds = 0f;
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                Sakura.Bodies.Movements.Creations.System.Of(
+                    gateway,
+                    presenter,
+                    fixedTimeStepSeconds);
+            });
+        }
     }
 }
