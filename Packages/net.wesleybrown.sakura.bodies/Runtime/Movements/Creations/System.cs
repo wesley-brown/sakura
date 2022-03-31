@@ -22,14 +22,20 @@ namespace Sakura.Bodies.Movements.Creations
         ///     A movement creation system made of the given gateway,
         ///     presenter, and fixed time step.
         /// </returns>
+        /// <exception cref="global::System.ArgumentNullException">
+        ///     Thrown when the given gateway is null.
+        /// </exception>
         /// <exception cref="global::System.ArgumentOutOfRangeException">
-        /// Thrown when the given fixed time step is <= 0.
+        ///     Thrown when the given fixed time step is <= 0.
         /// </exception>
         internal static System Of(
             Gateway gateway,
             OutputPort presenter,
             float fixedTimeStepSeconds)
         {
+            if (gateway == null)
+                throw new global::System.ArgumentNullException(
+                    nameof(gateway));
             if (fixedTimeStepSeconds <= 0)
                 throw new global::System.ArgumentOutOfRangeException(
                     nameof(fixedTimeStepSeconds),

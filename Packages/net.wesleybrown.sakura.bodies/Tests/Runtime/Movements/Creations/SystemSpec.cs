@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using Sakura.Bodies.Movements.Creations;
 
 namespace Movement_Creation_System_Spec
 {
@@ -31,6 +32,21 @@ namespace Movement_Creation_System_Spec
             var presenter = new Presenters.Dummy();
             var fixedTimeStepSeconds = 0f;
             Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                Sakura.Bodies.Movements.Creations.System.Of(
+                    gateway,
+                    presenter,
+                    fixedTimeStepSeconds);
+            });
+        }
+
+        [Test]
+        public void With_A_Null_Gateway_Is_Not_Supported()
+        {
+            Gateway gateway = null;
+            var presenter = new Presenters.Dummy();
+            var fixedTimeStepSeconds = 1.0f;
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 Sakura.Bodies.Movements.Creations.System.Of(
                     gateway,
