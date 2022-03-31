@@ -70,4 +70,29 @@ namespace Movement_Creation_System_Spec
             });
         }
     }
+
+    [TestFixture]
+    public class Creating_A_Movement
+    {
+        [Test]
+        public void Based_On_A_Null_Input_Is_A_Validation_Error()
+        {
+            var gateway = new Gateways.Dummy();
+            var presenter = new Presenters.Spy();
+            var fixedTimeStepSeconds = 2.3f;
+            var system = Sakura.Bodies.Movements.Creations.System.Of(
+                gateway,
+                presenter,
+                fixedTimeStepSeconds);
+            Input input = null;
+            system.Move(input);
+            Assert.IsNull(presenter.Output);
+            Assert.AreEqual(
+                1,
+                presenter.ValidaitonErrors.Count);
+            Assert.AreEqual(
+                0,
+                presenter.ProcessingErrors.Count);
+        }
+    }
 }

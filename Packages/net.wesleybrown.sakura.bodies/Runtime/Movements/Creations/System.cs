@@ -1,10 +1,15 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Sakura.Bodies.Movements.Creations
 {
     /// <summary>
     ///     A system that creates movements.
     /// </summary>
-    internal sealed class System
+    internal sealed class System : InputPort
     {
+        private readonly OutputPort presenter;
+
         /// <summary>
         ///     Create a movement creation system made of a given gateway,
         ///     presenter, and fixed time step.
@@ -47,7 +52,27 @@ namespace Sakura.Bodies.Movements.Creations
                 throw new global::System.ArgumentOutOfRangeException(
                     nameof(fixedTimeStepSeconds),
                     "The given fixed time step must be > 0");
-            throw new global::System.NotImplementedException();
+            return new System(presenter);
+        }
+
+        private System(OutputPort presenter)
+        {
+            this.presenter = presenter;
+        }
+
+        /// <summary>
+        ///     Create a movement based on the given input.
+        /// </summary>
+        /// <param name="input">
+        ///     The input to creation the movement with.
+        /// </param>
+        public void Move(Input input)
+        {
+            Debug.Assert(presenter != null);
+            var validationErrors = new List<string>();
+            if (input == null)
+                validationErrors.Add("The given input must not be null.");
+            presenter.OnValidationError(validationErrors);
         }
     }
 }

@@ -28,9 +28,9 @@ namespace Sakura.Bodies.Movements.Creations
         ///     Called when errors were encountered while processing the valid
         ///     input data to create a movement.
         /// </summary>
-        /// <param name="processingError">
+        /// <param name="processingErrors">
         ///     The processing errors.
         /// </param>
-        void OnProcessingError(IList<string> processingError);
+        void OnProcessingError(IList<string> processingErrors);
     }
 }
