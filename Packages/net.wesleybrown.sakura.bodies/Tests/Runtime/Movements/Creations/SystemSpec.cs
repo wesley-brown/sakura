@@ -89,7 +89,7 @@ namespace Movement_Creation_System_Spec
             Assert.IsNull(presenter.Output);
             Assert.AreEqual(
                 1,
-                presenter.ValidaitonErrors.Count);
+                presenter.ValidationErrors.Count);
             Assert.AreEqual(
                 0,
                 presenter.ProcessingErrors.Count);
@@ -116,7 +116,7 @@ namespace Movement_Creation_System_Spec
             Assert.IsNull(presenter.Output);
             Assert.AreEqual(
                 1,
-                presenter.ValidaitonErrors.Count);
+                presenter.ValidationErrors.Count);
             Assert.AreEqual(
                 0,
                 presenter.ProcessingErrors.Count);
@@ -143,10 +143,41 @@ namespace Movement_Creation_System_Spec
             Assert.IsNull(presenter.Output);
             Assert.AreEqual(
                 1,
-                presenter.ValidaitonErrors.Count);
+                presenter.ValidationErrors.Count);
             Assert.AreEqual(
                 0,
                 presenter.ProcessingErrors.Count);
+        }
+
+        [Test]
+        [TestCase(-0.000000001f)]
+        [TestCase(-100.0f)]
+        [TestCase(float.MinValue)]
+        public void Based_On_A_Negative_Speed_Is_A_Validation_Error(float speed)
+        {
+            var gateway = new Gateways.Dummy();
+            var presenter = new Presenters.Spy();
+            var fixedTimeStepSeconds = 7184.1816f;
+            var system = Sakura.Bodies.Movements.Creations.System.Of(
+                gateway,
+                presenter,
+                fixedTimeStepSeconds);
+            var input = new Input
+            {
+                Entity = "550d48a2-13fc-4f85-99ae-9ceccac1ec90",
+                Destination = new UnityEngine.Vector3(-1.0f, 5.4f, 1.2345f),
+                SpeedMetersPerSecond = speed,
+                Timestamp = 987654321.012345f
+            };
+            system.Move(input);
+            Assert.IsNull(presenter.Output);
+            Assert.AreEqual(
+                1,
+                presenter.ValidationErrors.Count);
+            Assert.AreEqual(
+                0,
+                presenter.ProcessingErrors.Count);
+
         }
     }
 }

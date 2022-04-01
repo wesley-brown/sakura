@@ -16,7 +16,7 @@ namespace Movement_Creation_System_Spec.Presenters
         /// <summary>
         ///     The validation errors received by this spy.
         /// </summary>
-        public IList<string> ValidaitonErrors { get; private set; } =
+        public IList<string> ValidationErrors { get; private set; } =
             new List<string>();
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Movement_Creation_System_Spec.Presenters
         /// </param>
         public void OnValidationError(IList<string> validationErrors)
         {
-            ValidaitonErrors = validationErrors;
+            ValidationErrors = validationErrors;
         }
 
         /// <summary>

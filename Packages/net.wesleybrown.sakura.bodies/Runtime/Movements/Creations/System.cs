@@ -8,8 +8,6 @@ namespace Sakura.Bodies.Movements.Creations
     /// </summary>
     internal sealed class System : InputPort
     {
-        private readonly OutputPort presenter;
-
         /// <summary>
         ///     Create a movement creation system made of a given gateway,
         ///     presenter, and fixed time step.
@@ -61,6 +59,7 @@ namespace Sakura.Bodies.Movements.Creations
             validationErrors = new List<string>();
         }
 
+        private readonly OutputPort presenter;
         private readonly List<string> validationErrors;
 
         /// <summary>
@@ -90,6 +89,7 @@ namespace Sakura.Bodies.Movements.Creations
             else
             {
                 ValidateEntity(input.Entity);
+                ValidateSpeed(input.SpeedMetersPerSecond);
             }
         }
 
@@ -101,6 +101,13 @@ namespace Sakura.Bodies.Movements.Creations
                 out _);
             if (!isGuid)
                 validationErrors.Add($"{entity} is not a valid Guid.");
+        }
+
+        private void ValidateSpeed(float speed)
+        {
+            Debug.Assert(validationErrors != null);
+            if (speed < 0)
+                validationErrors.Add($"The given speed must be non-negative");
         }
     }
 }
