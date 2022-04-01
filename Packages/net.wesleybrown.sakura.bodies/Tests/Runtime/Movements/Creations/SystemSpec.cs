@@ -121,5 +121,32 @@ namespace Movement_Creation_System_Spec
                 0,
                 presenter.ProcessingErrors.Count);
         }
+
+        [Test]
+        public void Based_On_An_Entity_That_Is_Not_A_Guid_Is_A_Validation_Error()
+        {
+            var gateway = new Gateways.Dummy();
+            var presenter = new Presenters.Spy();
+            var fixedTimeStepSeconds = 123.456f;
+            var system = Sakura.Bodies.Movements.Creations.System.Of(
+                gateway,
+                presenter,
+                fixedTimeStepSeconds);
+            var input = new Input
+            {
+                Entity = "not a guid",
+                Destination = new UnityEngine.Vector3(1.0f, 2.0f, 3.0f),
+                SpeedMetersPerSecond = 5.0f,
+                Timestamp = 1234.56f
+            };
+            system.Move(input);
+            Assert.IsNull(presenter.Output);
+            Assert.AreEqual(
+                1,
+                presenter.ValidaitonErrors.Count);
+            Assert.AreEqual(
+                0,
+                presenter.ProcessingErrors.Count);
+        }
     }
 }

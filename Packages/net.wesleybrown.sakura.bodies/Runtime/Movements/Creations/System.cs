@@ -58,7 +58,10 @@ namespace Sakura.Bodies.Movements.Creations
         private System(OutputPort presenter)
         {
             this.presenter = presenter;
+            validationErrors = new List<string>();
         }
+
+        private readonly List<string> validationErrors;
 
         /// <summary>
         ///     Create a movement based on the given input.
@@ -69,19 +72,35 @@ namespace Sakura.Bodies.Movements.Creations
         public void Move(Input input)
         {
             Debug.Assert(presenter != null);
-            var validationErrors = new List<string>();
+            Debug.Assert(validationErrors != null);
+            ValidateInput(input);
+            if (validationErrors.Count > 0)
+                presenter.OnValidationError(
+                    new List<string>(validationErrors));
+        }
+
+        private void ValidateInput(Input input)
+        {
+            Debug.Assert(presenter != null);
+            Debug.Assert(validationErrors != null);
             if (input == null)
             {
                 validationErrors.Add("The given input must not be null.");
-                presenter.OnValidationError(validationErrors);
             }
             else
             {
-                Debug.Assert(input != null);
-                if (input.Entity == null)
-                    validationErrors.Add("The given entity must not be null.");
-                presenter.OnValidationError(validationErrors);
+                ValidateEntity(input.Entity);
             }
+        }
+
+        private void ValidateEntity(string entity)
+        {
+            Debug.Assert(validationErrors != null);
+            var isGuid = global::System.Guid.TryParse(
+                entity,
+                out _);
+            if (!isGuid)
+                validationErrors.Add($"{entity} is not a valid Guid.");
         }
     }
 }
