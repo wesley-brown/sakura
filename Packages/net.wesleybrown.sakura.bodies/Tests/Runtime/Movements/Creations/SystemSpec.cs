@@ -179,5 +179,36 @@ namespace Movement_Creation_System_Spec
                 presenter.ProcessingErrors.Count);
 
         }
+
+        [Test]
+        [TestCase(-1.0f)]
+        [TestCase(-456.789f)]
+        [TestCase(float.MinValue)]
+        public void Based_On_A_Negative_Timestamp_Is_A_Validation_Error(
+            float timestamp)
+        {
+            var gateway = new Gateways.Dummy();
+            var presenter = new Presenters.Spy();
+            var fixedTimeStepSeconds = 0.3333333333f;
+            var system = Sakura.Bodies.Movements.Creations.System.Of(
+                gateway,
+                presenter,
+                fixedTimeStepSeconds);
+            var input = new Input
+            {
+                Entity = "9c76984b-2c6b-486b-8477-980c294c185d",
+                Destination = new UnityEngine.Vector3(1.0f, -5.0f, 0.123f),
+                SpeedMetersPerSecond = 1.0f,
+                Timestamp = timestamp
+            };
+            system.Move(input);
+            Assert.IsNull(presenter.Output);
+            Assert.AreEqual(
+                1,
+                presenter.ValidationErrors.Count);
+            Assert.AreEqual(
+                0,
+                presenter.ProcessingErrors.Count);
+        }
     }
 }

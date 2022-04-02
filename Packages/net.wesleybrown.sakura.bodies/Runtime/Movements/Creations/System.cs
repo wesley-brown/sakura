@@ -90,6 +90,7 @@ namespace Sakura.Bodies.Movements.Creations
             {
                 ValidateEntity(input.Entity);
                 ValidateSpeed(input.SpeedMetersPerSecond);
+                ValidateTimestamp(input.Timestamp);
             }
         }
 
@@ -107,7 +108,15 @@ namespace Sakura.Bodies.Movements.Creations
         {
             Debug.Assert(validationErrors != null);
             if (speed < 0)
-                validationErrors.Add($"The given speed must be non-negative");
+                validationErrors.Add("The given speed must be non-negative.");
+        }
+
+        private void ValidateTimestamp(float timestamp)
+        {
+            Debug.Assert(validationErrors != null);
+            if (timestamp < 0)
+                validationErrors.Add(
+                    "The given timestamp must be non-negative.");
         }
     }
 }
