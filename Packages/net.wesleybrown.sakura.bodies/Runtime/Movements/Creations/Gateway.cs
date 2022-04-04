@@ -38,6 +38,6 @@ namespace Sakura.Bodies.Movements.Creations
         /// <returns>
         ///     The body for the given entity if one exists; null otherwise.
         /// </returns>
-        Body For(Guid entity);
+        Body BodyFor(Guid entity);
     }
 }

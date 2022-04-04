@@ -5,9 +5,10 @@ using Sakura.Bodies.Movements.Creations;
 namespace Movement_Creation_System_Spec.Gateways
 {
     /// <summary>
-    ///     A dummy test double of a movement creation system gateway.
+    ///     A stub test double for a movement creation system gateway that
+    ///     has no bodies to return.
     /// </summary>
-    internal sealed class Dummy : Gateway
+    internal sealed class NoBodies : Gateway
     {
         /// <summary>
         ///     Add a given movement at a given timestamp as a given entity's
@@ -25,15 +26,12 @@ namespace Movement_Creation_System_Spec.Gateways
         /// <returns>
         ///     The added movement.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        ///     Always thrown.
-        /// </exception>
         public Movement Add(
             Movement movement,
             float timestamp,
             Guid entity)
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
 
         /// <summary>
@@ -45,12 +43,9 @@ namespace Movement_Creation_System_Spec.Gateways
         /// <returns>
         ///     The body for the given entity if one exists; null otherwise.
         /// </returns>
-        /// <exception cref="NotImplementedException">
-        ///     Always thrown.
-        /// </exception>
         public Body BodyFor(Guid entity)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

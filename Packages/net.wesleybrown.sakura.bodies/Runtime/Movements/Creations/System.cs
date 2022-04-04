@@ -50,17 +50,21 @@ namespace Sakura.Bodies.Movements.Creations
                 throw new global::System.ArgumentOutOfRangeException(
                     nameof(fixedTimeStepSeconds),
                     "The given fixed time step must be > 0");
-            return new System(presenter);
+            return new System(
+                gateway,
+                presenter);
         }
 
-        private System(OutputPort presenter)
+        private System(
+            Gateway gateway,
+            OutputPort presenter)
         {
+            this.gateway = gateway;
             this.presenter = presenter;
-            validationErrors = new List<string>();
         }
 
+        private readonly Gateway gateway;
         private readonly OutputPort presenter;
-        private readonly List<string> validationErrors;
 
         /// <summary>
         ///     Create a movement based on the given input.
@@ -71,52 +75,44 @@ namespace Sakura.Bodies.Movements.Creations
         public void Move(Input input)
         {
             Debug.Assert(presenter != null);
-            Debug.Assert(validationErrors != null);
-            ValidateInput(input);
-            if (validationErrors.Count > 0)
-                presenter.OnValidationError(
-                    new List<string>(validationErrors));
-        }
-
-        private void ValidateInput(Input input)
-        {
-            Debug.Assert(presenter != null);
-            Debug.Assert(validationErrors != null);
+            Debug.Assert(gateway != null);
+            var syntacticErrors = new List<string>();
             if (input == null)
             {
-                validationErrors.Add("The given input must not be null.");
+                syntacticErrors.Add("input must not be null.");
+                PresentSyntacticErrors(syntacticErrors);
+                return;
+            }
+            Debug.Assert(input != null);
+            if (!global::System.Guid.TryParse(
+                    input.Entity,
+                    out var entity))
+                syntacticErrors.Add("input.Entity must be a GUID.");
+            if (input.SpeedMetersPerSecond < 0)
+                syntacticErrors.Add(
+                    "input.SpeedMetersPerSecond must be >= 0.");
+            if (input.Timestamp < 0)
+                syntacticErrors.Add("input.Timestamp must be >= 0.");
+            if (syntacticErrors.Count > 0)
+            {
+                PresentSyntacticErrors(syntacticErrors);
             }
             else
             {
-                ValidateEntity(input.Entity);
-                ValidateSpeed(input.SpeedMetersPerSecond);
-                ValidateTimestamp(input.Timestamp);
+                var semanticErrors = new List<string>();
+                var body = gateway.BodyFor(entity);
+                if (body == null)
+                    semanticErrors.Add($"No body found for entity {entity}");
+                if (semanticErrors.Count > 0)
+                    presenter.OnProcessingError(semanticErrors);
             }
         }
 
-        private void ValidateEntity(string entity)
+        private void PresentSyntacticErrors(List<string> syntacticErrors)
         {
-            Debug.Assert(validationErrors != null);
-            var isGuid = global::System.Guid.TryParse(
-                entity,
-                out _);
-            if (!isGuid)
-                validationErrors.Add($"{entity} is not a valid Guid.");
-        }
-
-        private void ValidateSpeed(float speed)
-        {
-            Debug.Assert(validationErrors != null);
-            if (speed < 0)
-                validationErrors.Add("The given speed must be non-negative.");
-        }
-
-        private void ValidateTimestamp(float timestamp)
-        {
-            Debug.Assert(validationErrors != null);
-            if (timestamp < 0)
-                validationErrors.Add(
-                    "The given timestamp must be non-negative.");
+            Debug.Assert(presenter != null);
+            Debug.Assert(syntacticErrors != null);
+            presenter.OnValidationError(new List<string>(syntacticErrors));
         }
     }
 }

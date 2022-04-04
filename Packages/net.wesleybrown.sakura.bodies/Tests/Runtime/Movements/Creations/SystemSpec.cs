@@ -210,5 +210,32 @@ namespace Movement_Creation_System_Spec
                 0,
                 presenter.ProcessingErrors.Count);
         }
+
+        [Test]
+        public void For_An_Entity_That_Does_Have_A_Body_Is_A_Processing_Error()
+        {
+            var gateway = new Gateways.NoBodies();
+            var presenter = new Presenters.Spy();
+            var fixedTimeStepSeconds = 0.2f;
+            var system = Sakura.Bodies.Movements.Creations.System.Of(
+                gateway,
+                presenter,
+                fixedTimeStepSeconds);
+            var input = new Input
+            {
+                Entity = "491288cb-969b-4cf3-a9ea-472e2bd3fdbe",
+                Destination = UnityEngine.Vector3.zero,
+                SpeedMetersPerSecond = 0.0f,
+                Timestamp = 0.5f
+            };
+            system.Move(input);
+            Assert.IsNull(presenter.Output);
+            Assert.AreEqual(
+                0,
+                presenter.ValidationErrors.Count);
+            Assert.AreEqual(
+                1,
+                presenter.ProcessingErrors.Count);
+        }
     }
 }
