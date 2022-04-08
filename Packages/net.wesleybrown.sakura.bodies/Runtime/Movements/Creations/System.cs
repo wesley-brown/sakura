@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sakura.Bodies.Core;
 using UnityEngine;
 
 namespace Sakura.Bodies.Movements.Creations
@@ -74,19 +75,23 @@ namespace Sakura.Bodies.Movements.Creations
         /// </param>
         public void Move(Input input)
         {
-            Debug.Assert(presenter != null);
-            Debug.Assert(gateway != null);
-            var syntacticErrors = new List<string>();
             if (input == null)
-            {
-                syntacticErrors.Add("input must not be null.");
-                PresentSyntacticErrors(syntacticErrors);
-                return;
-            }
+                PresentSyntacticErrors(new List<string>
+                {
+                    "input must not be null."
+                });
+            else
+                ValidateSyntax(input);
+        }
+
+        private void ValidateSyntax(Input input)
+        {
             Debug.Assert(input != null);
-            if (!global::System.Guid.TryParse(
+            var syntacticErrors = new List<string>();
+            var isGuid = global::System.Guid.TryParse(
                     input.Entity,
-                    out var entity))
+                    out _);
+            if (!isGuid)
                 syntacticErrors.Add("input.Entity must be a GUID.");
             if (input.SpeedMetersPerSecond < 0)
                 syntacticErrors.Add(
@@ -94,18 +99,9 @@ namespace Sakura.Bodies.Movements.Creations
             if (input.Timestamp < 0)
                 syntacticErrors.Add("input.Timestamp must be >= 0.");
             if (syntacticErrors.Count > 0)
-            {
                 PresentSyntacticErrors(syntacticErrors);
-            }
             else
-            {
-                var semanticErrors = new List<string>();
-                var body = gateway.BodyFor(entity);
-                if (body == null)
-                    semanticErrors.Add($"No body found for entity {entity}");
-                if (semanticErrors.Count > 0)
-                    presenter.OnProcessingError(semanticErrors);
-            }
+                ValidateSemantics(input);
         }
 
         private void PresentSyntacticErrors(List<string> syntacticErrors)
@@ -113,6 +109,59 @@ namespace Sakura.Bodies.Movements.Creations
             Debug.Assert(presenter != null);
             Debug.Assert(syntacticErrors != null);
             presenter.OnValidationError(new List<string>(syntacticErrors));
+        }
+
+        private void ValidateSemantics(Input input)
+        {
+            Debug.Assert(input != null);
+            Debug.Assert(gateway != null);
+            Debug.Assert(presenter != null);
+            var semanticErrors = new List<string>();
+            var isGuid = global::System.Guid.TryParse(
+                input.Entity,
+                out var entity);
+            Debug.Assert(isGuid);
+            var body = gateway.BodyFor(entity);
+            if (body == null)
+                semanticErrors.Add($"No body found for entity {entity}.");
+            if (semanticErrors.Count > 0)
+                PresentSemanticErrors(semanticErrors);
+            else
+                CreateMovement(input);
+        }
+
+        private void PresentSemanticErrors(List<string> semanticErrors)
+        {
+            Debug.Assert(presenter != null);
+            Debug.Assert(semanticErrors != null);
+            presenter.OnProcessingError(new List<string>(semanticErrors));
+        }
+
+        private void CreateMovement(Input input)
+        {
+            Debug.Assert(input != null);
+            var isGuid = global::System.Guid.TryParse(
+                input.Entity,
+                out var entity);
+            Debug.Assert(isGuid);
+            Debug.Assert(input.SpeedMetersPerSecond >= 0);
+            Debug.Assert(input.Timestamp >= 0);
+            var destination = input.Destination;
+            var speed = input.SpeedMetersPerSecond;
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                speed);
+            var addedMovement = gateway.Add(
+                movement,
+                input.Timestamp,
+                entity);
+            var output = new Output
+            {
+                Entity = entity.ToString(),
+                Destination = addedMovement.Destination,
+                SpeedMetersPerSecond = addedMovement.Speed
+            };
+            presenter.OnCreation(output);
         }
     }
 }

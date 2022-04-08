@@ -237,5 +237,40 @@ namespace Movement_Creation_System_Spec
                 1,
                 presenter.ProcessingErrors.Count);
         }
+
+        [Test]
+        public void Returns_The_Created_Movement()
+        {
+            var gateway = new Gateways.SingleMovementAndBody();
+            var presenter = new Presenters.Spy();
+            var fixedTimeStepSeconds = 0.167f;
+            var system = Sakura.Bodies.Movements.Creations.System.Of(
+                gateway,
+                presenter,
+                fixedTimeStepSeconds);
+            var input = new Input
+            {
+                Entity = gateway.Body.Entity.ToString(),
+                Destination = gateway.Movement.Destination,
+                SpeedMetersPerSecond = gateway.Movement.Speed,
+                Timestamp = 0f
+            };
+            system.Move(input);
+            Assert.AreEqual(
+                input.Entity,
+                presenter.Output.Entity);
+            Assert.AreEqual(
+                input.Destination,
+                presenter.Output.Destination);
+            Assert.AreEqual(
+                input.SpeedMetersPerSecond,
+                presenter.Output.SpeedMetersPerSecond);
+            Assert.AreEqual(
+                0,
+                presenter.ValidationErrors.Count);
+            Assert.AreEqual(
+                0,
+                presenter.ProcessingErrors.Count);
+        }
     }
 }
