@@ -84,5 +84,32 @@ namespace Movement_Gateway_Spec
                 movement,
                 addedMovement);
         }
+
+        [Test]
+        public void For_An_Entity_That_Does_Not_Have_One_Adds_That_Movement_To_The_Dictionary()
+        {
+            var bodies = new Dictionary<Guid, Body>();
+            var movements = new Dictionary<Guid, Movement>();
+            var gateway = Gateway.Of(
+                bodies,
+                movements);
+            var destination = new Vector3(3.1f, -0.54f, 123.87f);
+            var movementSpeed = 10.5f;
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                movementSpeed);
+            var timestamp = 1000000.1233456f;
+            var entity = new Guid("291512c2-e7b0-43f2-aa69-d6d93bf2534d");
+            gateway.Add(
+                movement,
+                timestamp,
+                entity);
+            var expectedEntry = new KeyValuePair<Guid, Movement>(
+                entity,
+                movement);
+            CollectionAssert.Contains(
+                movements,
+                expectedEntry);
+        }
     }
 }
