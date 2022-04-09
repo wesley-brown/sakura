@@ -147,4 +147,21 @@ namespace Movement_Gateway_Spec
                 expectedEntry);
         }
     }
+
+    [TestFixture]
+    public class Retrieving_The_Body
+    {
+        [Test]
+        public void For_An_Entity_That_Does_Not_Have_One_Returns_Null()
+        {
+            var bodies = new Dictionary<Guid, Body>();
+            var movements = new Dictionary<Guid, Movement>();
+            var gateway = Gateway.Of(
+                bodies,
+                movements);
+            var entity = new Guid("73903060-f4c7-4e47-953d-e73c83a8bcdd");
+            var body = gateway.BodyFor(entity);
+            Assert.IsNull(body);
+        }
+    }
 }

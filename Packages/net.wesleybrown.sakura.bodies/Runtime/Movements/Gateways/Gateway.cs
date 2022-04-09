@@ -48,9 +48,11 @@ namespace Sakura.Bodies.Movements.Gateways
             IDictionary<Guid, Body> bodies,
             IDictionary<Guid, Movement> movements)
         {
+            this.bodies = bodies;
             this.movements = movements;
         }
 
+        private readonly IDictionary<Guid, Body> bodies;
         private readonly IDictionary<Guid, Movement> movements;
 
         #region Creations
@@ -74,6 +76,9 @@ namespace Sakura.Bodies.Movements.Gateways
         /// <inheritdoc/>
         public Body BodyFor(Guid entity)
         {
+            Debug.Assert(bodies != null);
+            if (!bodies.ContainsKey(entity))
+                return null;
             throw new NotImplementedException();
         }
         #endregion
