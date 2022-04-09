@@ -24,6 +24,9 @@ namespace Sakura.Bodies.Movements.Creations
         /// <returns>
         ///     The added movement.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when the given movement is null.
+        /// </exception>
         Movement Add(
             Movement movement,
             float timestamp,

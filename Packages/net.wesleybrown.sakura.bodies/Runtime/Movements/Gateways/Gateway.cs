@@ -7,7 +7,7 @@ namespace Sakura.Bodies.Movements.Gateways
     /// <summary>
     ///     A movement system gateway.
     /// </summary>
-    internal sealed class Gateway
+    internal sealed class Gateway : Creations.Gateway
     {
         /// <summary>
         ///     Create a movement system gateway made of a given dicitonary of
@@ -38,7 +38,34 @@ namespace Sakura.Bodies.Movements.Gateways
                 throw new ArgumentNullException(nameof(bodies));
             if (movements == null)
                 throw new ArgumentNullException(nameof(movements));
+            return new Gateway(
+                bodies,
+                movements);
+        }
+
+        private Gateway(
+            IDictionary<Guid, Body> bodies,
+            IDictionary<Guid, Movement> movements)
+        {
+        }
+
+        #region Creations
+        /// <inheritdoc/>
+        public Movement Add(
+            Movement movement,
+            float timestamp,
+            Guid entity)
+        {
+            if (movement == null)
+                throw new ArgumentNullException(nameof(movement));
             throw new NotImplementedException();
         }
+
+        /// <inheritdoc/>
+        public Body BodyFor(Guid entity)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

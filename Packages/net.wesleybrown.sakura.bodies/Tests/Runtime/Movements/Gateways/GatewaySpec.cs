@@ -35,4 +35,28 @@ namespace Movement_Gateway_Spec
             });
         }
     }
+
+    [TestFixture]
+    public class Adding_A_Movement
+    {
+        [Test]
+        public void Does_Not_Support_A_Null_Movement()
+        {
+            var bodies = new Dictionary<Guid, Body>();
+            var movements = new Dictionary<Guid, Movement>();
+            var gateway = Gateway.Of(
+                bodies,
+                movements);
+            Movement movement = null;
+            var timestamp = 0f;
+            var entity = new Guid("6475ca49-e034-45f4-8a89-873bba7f93f1");
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                gateway.Add(
+                    movement,
+                    timestamp,
+                    entity);
+            });
+        }
+    }
 }
