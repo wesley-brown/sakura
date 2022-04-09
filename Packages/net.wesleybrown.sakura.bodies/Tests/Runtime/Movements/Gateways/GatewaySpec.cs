@@ -21,5 +21,18 @@ namespace Movement_Gateway_Spec
                     movements);
             });
         }
+
+        [Test]
+        public void With_A_Null_Dictionary_Of_Movements_Is_Not_Supported()
+        {
+            var bodies = new Dictionary<Guid, Body>();
+            IDictionary<Guid, Movement> movements = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Gateway.Of(
+                    bodies,
+                    movements);
+            });
+        }
     }
 }

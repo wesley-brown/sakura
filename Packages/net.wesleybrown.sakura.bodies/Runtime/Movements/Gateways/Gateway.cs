@@ -25,6 +25,10 @@ namespace Sakura.Bodies.Movements.Gateways
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when the given dictionary of bodies is null.
+        ///
+        ///     -or-
+        ///
+        ///     Thrown when the given dictionary of movements is null.
         /// </exception>
         internal static Gateway Of(
             IDictionary<Guid, Body> bodies,
@@ -32,6 +36,8 @@ namespace Sakura.Bodies.Movements.Gateways
         {
             if (bodies == null)
                 throw new ArgumentNullException(nameof(bodies));
+            if (movements == null)
+                throw new ArgumentNullException(nameof(movements));
             throw new NotImplementedException();
         }
     }
