@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Sakura.Bodies.Core;
+using UnityEngine;
 
 namespace Sakura.Bodies.Movements.Gateways
 {
@@ -61,16 +62,12 @@ namespace Sakura.Bodies.Movements.Gateways
         {
             if (movement == null)
                 throw new ArgumentNullException(nameof(movement));
-            try
-            {
+            Debug.Assert(movements != null);
+            var hasEntryForEntity = movements.ContainsKey(entity);
+            if (!hasEntryForEntity)
                 movements.Add(
                     entity,
                     movement);
-            }
-            catch (ArgumentException)
-            {
-                throw new NotImplementedException();
-            }
             return movement;
         }
 
