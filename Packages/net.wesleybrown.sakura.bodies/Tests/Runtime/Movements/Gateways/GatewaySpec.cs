@@ -163,5 +163,27 @@ namespace Movement_Gateway_Spec
             var body = gateway.BodyFor(entity);
             Assert.IsNull(body);
         }
+
+        [Test]
+        public void For_An_Entity_That_Has_One_Returns_That_Body()
+        {
+            var entity = new Guid("54d0732e-f54e-4c7a-ba3b-b43a601149c5");
+            var location = new Vector3(1.0f, 0.0f, 0.0f);
+            var existingBody = Body.ForEntityLocatedAt(
+                entity,
+                location);
+            var bodies = new Dictionary<Guid, Body>
+            {
+                { entity, existingBody }
+            };
+            var movements = new Dictionary<Guid, Movement>();
+            var gateway = Gateway.Of(
+                bodies,
+                movements);
+            var body = gateway.BodyFor(entity);
+            Assert.AreEqual(
+                existingBody,
+                body);
+        }
     }
 }

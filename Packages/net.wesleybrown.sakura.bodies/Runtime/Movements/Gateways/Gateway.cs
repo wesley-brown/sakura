@@ -77,9 +77,9 @@ namespace Sakura.Bodies.Movements.Gateways
         public Body BodyFor(Guid entity)
         {
             Debug.Assert(bodies != null);
-            if (!bodies.ContainsKey(entity))
-                return null;
-            throw new NotImplementedException();
+            return bodies.ContainsKey(entity)
+                ? bodies[entity]
+                : null;
         }
         #endregion
     }
