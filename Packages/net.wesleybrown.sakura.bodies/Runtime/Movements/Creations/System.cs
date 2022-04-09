@@ -146,11 +146,13 @@ namespace Sakura.Bodies.Movements.Creations
             Debug.Assert(isGuid);
             Debug.Assert(input.SpeedMetersPerSecond >= 0);
             Debug.Assert(input.Timestamp >= 0);
+            Debug.Assert(gateway != null);
             var destination = input.Destination;
             var speed = input.SpeedMetersPerSecond;
             var movement = Movement.TowardsDestinationWithSpeed(
                 destination,
                 speed);
+            Debug.Assert(movement != null);
             var addedMovement = gateway.Add(
                 movement,
                 input.Timestamp,
