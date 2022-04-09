@@ -58,7 +58,7 @@ namespace Sakura.Bodies.Movements.Gateways
         {
             if (movement == null)
                 throw new ArgumentNullException(nameof(movement));
-            throw new NotImplementedException();
+            return movement;
         }
 
         /// <inheritdoc/>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Sakura.Bodies.Core;
 using Sakura.Bodies.Movements.Gateways;
+using UnityEngine;
 
 namespace Movement_Gateway_Spec
 {
@@ -42,11 +43,7 @@ namespace Movement_Gateway_Spec
         [Test]
         public void Does_Not_Support_A_Null_Movement()
         {
-            var bodies = new Dictionary<Guid, Body>();
-            var movements = new Dictionary<Guid, Movement>();
-            var gateway = Gateway.Of(
-                bodies,
-                movements);
+            var gateway = CreateEmptyGateway();
             Movement movement = null;
             var timestamp = 0f;
             var entity = new Guid("6475ca49-e034-45f4-8a89-873bba7f93f1");
@@ -57,6 +54,35 @@ namespace Movement_Gateway_Spec
                     timestamp,
                     entity);
             });
+        }
+
+        private static Gateway CreateEmptyGateway()
+        {
+            var bodies = new Dictionary<Guid, Body>();
+            var movements = new Dictionary<Guid, Movement>();
+            return Gateway.Of(
+                bodies,
+                movements);
+        }
+
+        [Test]
+        public void Returns_That_Movement()
+        {
+            var gateway = CreateEmptyGateway();
+            var destination = new Vector3(1.0f, 0.0f, 1.0f);
+            var movementSpeed = 1.0f;
+            var movement = Movement.TowardsDestinationWithSpeed(
+                destination,
+                movementSpeed);
+            var timestamp = 0f;
+            var entity = new Guid("442789aa-94ac-4565-b62a-fe19ea526e87");
+            var addedMovement = gateway.Add(
+                movement,
+                timestamp,
+                entity);
+            Assert.AreEqual(
+                movement,
+                addedMovement);
         }
     }
 }
