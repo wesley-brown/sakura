@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Sakura.Bodies.Core;
-using Sakura.Bodies.Movements.Gateways;
 using UnityEngine;
 
 namespace Movement_Gateway_Spec
@@ -13,11 +11,11 @@ namespace Movement_Gateway_Spec
         [Test]
         public void With_A_Null_Dictionary_Of_Bodies_Is_Not_Supported()
         {
-            IDictionary<Guid, Body> bodies = null;
-            var movements = new Dictionary<Guid, Movement>();
+            IDictionary<Guid, Sakura.Bodies.Core.Body> bodies = null;
+            var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
             Assert.Throws<ArgumentNullException>(() =>
             {
-                Gateway.Of(
+                Sakura.Bodies.Movements.Gateways.Gateway.Of(
                     bodies,
                     movements);
             });
@@ -26,11 +24,11 @@ namespace Movement_Gateway_Spec
         [Test]
         public void With_A_Null_Dictionary_Of_Movements_Is_Not_Supported()
         {
-            var bodies = new Dictionary<Guid, Body>();
-            IDictionary<Guid, Movement> movements = null;
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            IDictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement> movements = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                Gateway.Of(
+                Sakura.Bodies.Movements.Gateways.Gateway.Of(
                     bodies,
                     movements);
             });
@@ -44,7 +42,7 @@ namespace Movement_Gateway_Spec
         public void Does_Not_Support_A_Null_Movement()
         {
             var gateway = CreateEmptyGateway();
-            Movement movement = null;
+            Sakura.Bodies.Core.Movement movement = null;
             var timestamp = 0f;
             var entity = new Guid("6475ca49-e034-45f4-8a89-873bba7f93f1");
             Assert.Throws<ArgumentNullException>(() =>
@@ -56,11 +54,11 @@ namespace Movement_Gateway_Spec
             });
         }
 
-        private static Gateway CreateEmptyGateway()
+        private static Sakura.Bodies.Movements.Creations.Gateway CreateEmptyGateway()
         {
-            var bodies = new Dictionary<Guid, Body>();
-            var movements = new Dictionary<Guid, Movement>();
-            return Gateway.Of(
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
+            return Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
                 movements);
         }
@@ -71,7 +69,7 @@ namespace Movement_Gateway_Spec
             var gateway = CreateEmptyGateway();
             var destination = new Vector3(1.0f, 0.0f, 1.0f);
             var movementSpeed = 1.0f;
-            var movement = Movement.TowardsDestinationWithSpeed(
+            var movement = Sakura.Bodies.Core.Movement.TowardsDestinationWithSpeed(
                 destination,
                 movementSpeed);
             var timestamp = 0f;
@@ -88,14 +86,14 @@ namespace Movement_Gateway_Spec
         [Test]
         public void For_An_Entity_That_Does_Not_Have_One_Adds_That_Movement_To_The_Dictionary()
         {
-            var bodies = new Dictionary<Guid, Body>();
-            var movements = new Dictionary<Guid, Movement>();
-            var gateway = Gateway.Of(
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
+            var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
                 movements);
             var destination = new Vector3(3.1f, -0.54f, 123.87f);
             var movementSpeed = 10.5f;
-            var movement = Movement.TowardsDestinationWithSpeed(
+            var movement = Sakura.Bodies.Core.Movement.TowardsDestinationWithSpeed(
                 destination,
                 movementSpeed);
             var timestamp = 1000000.1233456f;
@@ -104,9 +102,14 @@ namespace Movement_Gateway_Spec
                 movement,
                 timestamp,
                 entity);
-            var expectedEntry = new KeyValuePair<Guid, Movement>(
+            var expectedMovement = new Sakura.Bodies.Movements.Gateways.Movement
+            {
+                Destination = destination,
+                MovementSpeed = movementSpeed
+            };
+            var expectedEntry = new KeyValuePair<Guid, Sakura.Bodies.Movements.Gateways.Movement>(
                 entity,
-                movement);
+                expectedMovement);
             CollectionAssert.Contains(
                 movements,
                 expectedEntry);
@@ -118,20 +121,22 @@ namespace Movement_Gateway_Spec
             var entity = new Guid("543e5263-4670-4092-b814-5d2f72e03860");
             var existingDestination = new Vector3(-0.1f, 12.45f, 0f);
             var existingMovementSpeed = 10.5f;
-            var existingMovement = Movement.TowardsDestinationWithSpeed(
-                existingDestination,
-                existingMovementSpeed);
-            var bodies = new Dictionary<Guid, Body>();
-            var movements = new Dictionary<Guid, Movement>
+            var existingMovement = new Sakura.Bodies.Movements.Gateways.Movement
+            {
+                Destination = existingDestination,
+                MovementSpeed = existingMovementSpeed
+            };
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>
             {
                 { entity, existingMovement }
             };
-            var gateway = Gateway.Of(
+            var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
                 movements);
             var destination = new Vector3(2.0f, 0.5f, -9f);
             var movementSpeed = 8.4f;
-            var movement = Movement.TowardsDestinationWithSpeed(
+            var movement = Sakura.Bodies.Core.Movement.TowardsDestinationWithSpeed(
                 destination,
                 movementSpeed);
             var timestamp = 0.16f;
@@ -139,7 +144,7 @@ namespace Movement_Gateway_Spec
                 movement,
                 timestamp,
                 entity);
-            var expectedEntry = new KeyValuePair<Guid, Movement>(
+            var expectedEntry = new KeyValuePair<Guid, Sakura.Bodies.Movements.Gateways.Movement>(
                 entity,
                 existingMovement);
             CollectionAssert.Contains(
@@ -154,9 +159,9 @@ namespace Movement_Gateway_Spec
         [Test]
         public void For_An_Entity_That_Does_Not_Have_One_Returns_Null()
         {
-            var bodies = new Dictionary<Guid, Body>();
-            var movements = new Dictionary<Guid, Movement>();
-            var gateway = Gateway.Of(
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
+            var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
                 movements);
             var entity = new Guid("73903060-f4c7-4e47-953d-e73c83a8bcdd");
@@ -169,15 +174,15 @@ namespace Movement_Gateway_Spec
         {
             var entity = new Guid("54d0732e-f54e-4c7a-ba3b-b43a601149c5");
             var location = new Vector3(1.0f, 0.0f, 0.0f);
-            var existingBody = Body.ForEntityLocatedAt(
+            var existingBody = Sakura.Bodies.Core.Body.ForEntityLocatedAt(
                 entity,
                 location);
-            var bodies = new Dictionary<Guid, Body>
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>
             {
                 { entity, existingBody }
             };
-            var movements = new Dictionary<Guid, Movement>();
-            var gateway = Gateway.Of(
+            var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
+            var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
                 movements);
             var body = gateway.BodyFor(entity);

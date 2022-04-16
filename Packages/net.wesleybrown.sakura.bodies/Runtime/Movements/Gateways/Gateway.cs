@@ -57,8 +57,8 @@ namespace Sakura.Bodies.Movements.Gateways
 
         #region Creations
         /// <inheritdoc/>
-        public Movement Add(
-            Movement movement,
+        public Core.Movement Add(
+            Core.Movement movement,
             float timestamp,
             Guid entity)
         {
@@ -67,9 +67,16 @@ namespace Sakura.Bodies.Movements.Gateways
             Debug.Assert(movements != null);
             var hasEntryForEntity = movements.ContainsKey(entity);
             if (!hasEntryForEntity)
+            {
+                var serializedMovement = new Movement
+                {
+                    Destination = movement.Destination,
+                    MovementSpeed = movement.Speed
+                };
                 movements.Add(
                     entity,
-                    movement);
+                    serializedMovement);
+            }
             return movement;
         }
 
