@@ -81,12 +81,22 @@ namespace Sakura.Bodies.Movements.Gateways
         }
 
         /// <inheritdoc/>
-        public Body BodyFor(Guid entity)
+        public Core.Body BodyFor(Guid entity)
         {
             Debug.Assert(bodies != null);
-            return bodies.ContainsKey(entity)
-                ? bodies[entity]
-                : null;
+            var hasBody = bodies.ContainsKey(entity);
+            if (hasBody)
+            {
+                var serializedBody = bodies[entity];
+                var deserializedBody = Core.Body.ForEntityLocatedAt(
+                    entity,
+                    serializedBody.Location);
+                return deserializedBody;
+            }
+            else
+            {
+                return null;
+            }
         }
         #endregion
     }

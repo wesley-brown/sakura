@@ -11,7 +11,7 @@ namespace Movement_Gateway_Spec
         [Test]
         public void With_A_Null_Dictionary_Of_Bodies_Is_Not_Supported()
         {
-            IDictionary<Guid, Sakura.Bodies.Core.Body> bodies = null;
+            IDictionary<Guid, Sakura.Bodies.Movements.Gateways.Body> bodies = null;
             var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -24,7 +24,7 @@ namespace Movement_Gateway_Spec
         [Test]
         public void With_A_Null_Dictionary_Of_Movements_Is_Not_Supported()
         {
-            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Body>();
             IDictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement> movements = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -56,7 +56,7 @@ namespace Movement_Gateway_Spec
 
         private static Sakura.Bodies.Movements.Creations.Gateway CreateEmptyGateway()
         {
-            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Body>();
             var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
             return Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
@@ -86,7 +86,7 @@ namespace Movement_Gateway_Spec
         [Test]
         public void For_An_Entity_That_Does_Not_Have_One_Adds_That_Movement_To_The_Dictionary()
         {
-            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Body>();
             var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
             var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
@@ -126,7 +126,7 @@ namespace Movement_Gateway_Spec
                 Destination = existingDestination,
                 MovementSpeed = existingMovementSpeed
             };
-            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Body>();
             var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>
             {
                 { entity, existingMovement }
@@ -159,7 +159,7 @@ namespace Movement_Gateway_Spec
         [Test]
         public void For_An_Entity_That_Does_Not_Have_One_Returns_Null()
         {
-            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>();
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Body>();
             var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
             var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
                 bodies,
@@ -177,9 +177,13 @@ namespace Movement_Gateway_Spec
             var existingBody = Sakura.Bodies.Core.Body.ForEntityLocatedAt(
                 entity,
                 location);
-            var bodies = new Dictionary<Guid, Sakura.Bodies.Core.Body>
+            var serializedExistingBody = new Sakura.Bodies.Movements.Gateways.Body
             {
-                { entity, existingBody }
+                Location = location
+            };
+            var bodies = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Body>
+            {
+                { entity, serializedExistingBody }
             };
             var movements = new Dictionary<Guid, Sakura.Bodies.Movements.Gateways.Movement>();
             var gateway = Sakura.Bodies.Movements.Gateways.Gateway.Of(
@@ -187,8 +191,11 @@ namespace Movement_Gateway_Spec
                 movements);
             var body = gateway.BodyFor(entity);
             Assert.AreEqual(
-                existingBody,
-                body);
+                existingBody.Entity,
+                body.Entity);
+            Assert.AreEqual(
+                existingBody.Location,
+                body.Location);
         }
     }
 }
