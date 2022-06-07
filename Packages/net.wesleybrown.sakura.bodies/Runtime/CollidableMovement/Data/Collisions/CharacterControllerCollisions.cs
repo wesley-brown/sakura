@@ -100,14 +100,17 @@ namespace Sakura.Bodies.CollidableMovement.Data
         {
             var recordCollidee =
                 colliderGameObject.AddComponent<RecordCollidee>();
+            var positionBeforeMove = colliderGameObject.transform.position;
             controller.Move(move);
             var collideeGameObject = recordCollidee.Collidee;
             UnityEngine.Object.Destroy(recordCollidee);
             if (collideeGameObject == null)
                 return null;
-            return CollisionBetweenGameObjects(
+            var collision = CollisionBetweenGameObjects(
                 colliderGameObject,
                 collideeGameObject);
+            colliderGameObject.transform.position = positionBeforeMove;
+            return collision;
         }
 
         private Collision CollisionBetweenGameObjects(
@@ -121,7 +124,6 @@ namespace Sakura.Bodies.CollidableMovement.Data
             var colliderBody = bodies.BodyForEntity(colliderEntity);
             var resolvedColliderBody =
                 colliderBody.TeleportTo(colliderGameObject.transform.position);
-            colliderGameObject.transform.position = colliderBody.Location;
             var collideeBody = bodies.BodyForEntity(collideeEntity);
             if (collideeBody == null)
                 return null;

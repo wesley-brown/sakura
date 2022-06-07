@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sakura.Bodies
 {
@@ -6,12 +8,33 @@ namespace Sakura.Bodies
     ///     A component that creates instances of systems related to bodies.
     /// </summary>
     [DisallowMultipleComponent]
-    public sealed class SakuraBody : MonoBehaviour
+    public sealed class SakuraBody
+    :
+        MonoBehaviour,
+        RegisterBody.Presenter
     {
         [Header("Dependencies")]
         [Tooltip("The dependencies necessary for the systems contained within"
             + " the Sakura Bodies component")]
         public SakuraBodyDependencies dependencies;
+
+        public string entityID = "";
+
+        private void Start()
+        {
+            var registrations = RegisterBody.Data
+                .InMemoryRegistrations
+                .Of(dependencies.bodies);
+            var system = RegisterBody.Registration
+                .Of(
+                    registrations,
+                    this);
+            system.Register(new RegisterBody.Input
+            {
+                Entity = new Guid(entityID),
+                BodyLocation = transform.position
+            });
+        }
 
         /// <summary>
         ///     A <see cref="CollidableMovement.MovementSystem"/> that uses a
@@ -82,5 +105,28 @@ namespace Sakura.Bodies
                     registrations,
                     presenter);
         }
+
+        #region Sakura.Bodies.RegisterBody.Presenter
+        public void Present(RegisterBody.Output output)
+        {
+            Debug.Log($"Entity {gameObject.name} registered at position {output.BodyLocation}.");
+        }
+
+        public void PresentInputErrors(List<string> inputErrors)
+        {
+            foreach (var error in inputErrors)
+            {
+                Debug.LogError(error);
+            }
+        }
+
+        public void PresentOutputErrors(List<Exception> outputErrors)
+        {
+            foreach (var error in outputErrors)
+            {
+                Debug.LogError(error);
+            }
+        }
+        #endregion
     }
 }

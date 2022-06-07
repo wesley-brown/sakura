@@ -143,21 +143,23 @@ namespace Character_Controller_Collisions_Spec
         }
 
         [Test]
-        public void Keeps_its_game_object_at_its_location()
+        public void Keeps_its_game_object_where_it_was_after_calculating_the_caused_collision()
         {
+            // This case is especially important when a game object is at a
+            // different location than the body of the entity it represents.
+            // This would most likely be due to interpolation.
             var characterControllerCollisions =
                 CreateCharacterControllerCollisions();
             var movement = PlayerMovement();
             var playerBody = PlayerBody();
-            Assert.AreEqual(
-                playerBody.Location,
-                CollidedGameObjects.ColliderGameObject.transform.position);
+            var gameObjectPositionBeforeCalculatingCollision =
+                CollidedGameObjects.ColliderGameObject.transform.position;
             characterControllerCollisions
                 .CollisionCausedByMovingBody(
                     movement,
                     playerBody);
             Assert.AreEqual(
-                playerBody.Location,
+                gameObjectPositionBeforeCalculatingCollision,
                 CollidedGameObjects.ColliderGameObject.transform.position);
         }
 
