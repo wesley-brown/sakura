@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Sakura.Bodies;
 using Sakura.Bodies.CollidableMovement;
-using Sakura.Inputs;
 using UnityEngine;
 
 namespace Sakura.Player
@@ -12,7 +11,6 @@ namespace Sakura.Player
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(CharacterController))]
-    [RequireComponent(typeof(DetectPlayerMovement))]
     [RequireComponent(typeof(SakuraBody))]
     [RequireComponent(typeof(SakuraEntity))]
     public sealed class TestPlayer
@@ -29,7 +27,6 @@ namespace Sakura.Player
         private SakuraBody body;
         private CharacterController characterController;
         private MovementSystem movementSystem;
-        private DetectPlayerMovement input;
         private Vector3 previousLocation;
         private Vector3 currentLocation;
 
@@ -41,7 +38,6 @@ namespace Sakura.Player
             movementSystem = body.MovementSystem(
                 characterController,
                 this);
-            input = GetComponent<DetectPlayerMovement>();
         }
 
         private void Start()
@@ -55,14 +51,6 @@ namespace Sakura.Player
             registerBody.Register(input);
             previousLocation = transform.position;
             currentLocation = transform.position;
-        }
-
-        private void FixedUpdate()
-        {
-            var destination = input.CurrentDestination();
-            movementSystem.MoveEntityTowardsDestination(
-                new Guid(entity.ID),
-                destination);
         }
 
         private void Update()
