@@ -951,26 +951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   entityID: 75d28306-1b2b-41b3-bfd4-90f0f5f8663c
---- !u!1 &868359288 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3785275852710581342, guid: c235f782e9abd444ead0ecdd72a3ee80,
-    type: 3}
-  m_PrefabInstance: {fileID: 3785275852259000942}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &868359289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868359288}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b050abd51d754b25aaeff688829f9b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playersWallet: {fileID: 11400000, guid: 7fa66a94efdb94a17b8b8077735eb664, type: 2}
-  entityConfig: {fileID: 11400000, guid: 6d9a05b61ecab41caa651c318b9cca63, type: 2}
 --- !u!1 &874966560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3544646611625937056, guid: 0747ae2f500d342a3bffda30f54770d6,
@@ -1677,7 +1657,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1169656645284624004, guid: 5e3bb106a0cae422da99a4bc49479e86, type: 3}
+    - {fileID: 7019427757952780111, guid: 5e3bb106a0cae422da99a4bc49479e86, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e3bb106a0cae422da99a4bc49479e86, type: 3}
 --- !u!1 &1354511713 stripped
 GameObject:
@@ -2456,6 +2438,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8704034672424800866, guid: 61fb2863bb2694180999fa60776e12d2, type: 3}
+    - {fileID: 5119518205309548535, guid: 61fb2863bb2694180999fa60776e12d2, type: 3}
+    - {fileID: 7280154729824788808, guid: 61fb2863bb2694180999fa60776e12d2, type: 3}
+    - {fileID: 459244460594646877, guid: 61fb2863bb2694180999fa60776e12d2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61fb2863bb2694180999fa60776e12d2, type: 3}
 --- !u!1001 &1715044135
 PrefabInstance:
@@ -3609,6 +3594,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 7355896290156100925, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
+    - {fileID: 471069133845912145, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
+    - {fileID: 7286373557428583422, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
+    - {fileID: 6252280394769751706, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0747ae2f500d342a3bffda30f54770d6, type: 3}
 --- !u!1001 &6148927212645691818
 PrefabInstance:
