@@ -42,13 +42,11 @@ namespace Sakura.Player
 
         private void Start()
         {
-            var registerBody = body.RegisterBodySystem(this);
             var input = new Bodies.RegisterBody.Input
             {
                 Entity = new Guid(entity.ID),
                 BodyLocation = transform.position
             };
-            registerBody.Register(input);
             previousLocation = transform.position;
             currentLocation = transform.position;
         }

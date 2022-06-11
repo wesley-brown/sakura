@@ -20,16 +20,17 @@ namespace Sakura.Bodies
 
         public string entityID = "";
 
+        private PhysicalSimulation physicalSimulation;
+
         private void Start()
         {
-            var registrations = RegisterBody.Data
-                .InMemoryRegistrations
-                .Of(dependencies.bodies);
-            var system = RegisterBody.Registration
-                .Of(
-                    registrations,
-                    this);
-            system.Register(new RegisterBody.Input
+            physicalSimulation = new PhysicalSimulation(
+                dependencies.bodies,
+                dependencies.movementSpeeds,
+                dependencies.gameObjects);
+            var registerBodySystem =
+                physicalSimulation.RegisterBodySystem(this);
+            registerBodySystem.Register(new RegisterBody.Input
             {
                 Entity = new Guid(entityID),
                 BodyLocation = transform.position
@@ -56,54 +57,9 @@ namespace Sakura.Bodies
             CharacterController characterController,
             CollidableMovement.CollidableMovementSystemPresenter presenter)
         {
-            var movementSpeeds = CollidableMovement.Data
-                .InMemoryMovementSpeeds
-                .From(dependencies.movementSpeeds);
-            var bodies = CollidableMovement.Data
-                .InMemoryBodies
-                .From(dependencies.bodies);
-            var gameObjects = CollidableMovement.Data
-                .InMemoryGameObjects
-                .From(dependencies.gameObjects);
-            var collisions = CollidableMovement.Data
-                .CharacterControllerCollisions
-                .WithControllerAndBodiesAndGameObjects(
-                    characterController,
-                    bodies,
-                    gameObjects);
-            var collidableBodies = CollidableMovement.Data
-                .InMemoryCollidableBodies
-                .WithCollections(
-                    movementSpeeds,
-                    bodies,
-                    collisions);
-            return CollidableMovement.CollidableMovementSystem
-                .WithCollidableBodiesAndPresenter(
-                    collidableBodies,
-                    presenter);
-        }
-
-        /// <summary>
-        ///     A <see cref="RegisterBody.System"/> that uses a given
-        ///     <see cref="RegisterBody.Presenter"/>.
-        /// </summary>
-        /// <param name="presenter">
-        ///     The <see cref="RegisterBody.Presenter"/>.
-        /// </param>
-        /// <returns>
-        ///     A <see cref="RegisterBody.System"/> that uses the given
-        ///     <see cref="RegisterBody.Presenter"/>.
-        /// </returns>
-        public RegisterBody.System RegisterBodySystem(
-            RegisterBody.Presenter presenter)
-        {
-            var registrations = RegisterBody.Data
-                .InMemoryRegistrations
-                .Of(dependencies.bodies);
-            return RegisterBody.Registration
-                .Of(
-                    registrations,
-                    presenter);
+            return physicalSimulation.MovementSystem(
+                characterController,
+                presenter);
         }
 
         #region Sakura.Bodies.RegisterBody.Presenter
