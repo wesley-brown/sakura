@@ -4,6 +4,8 @@ using UnityEngine;
 
 public sealed class SakuraInput : MonoBehaviour
 {
+    public new Camera camera;
+
     private const int Num_Mouse_Buttons = 6;
     private bool[] latestMouseButtonsDown = new bool[Num_Mouse_Buttons];
     private bool[] latestMouseButtons = new bool[Num_Mouse_Buttons];
@@ -11,6 +13,16 @@ public sealed class SakuraInput : MonoBehaviour
 
     private List<Touch> latestTouches = new List<Touch>();
     private int numFixedUpdatesThisFrame = 0;
+
+    private void Start()
+    {
+        if (camera == null)
+        {
+            Debug.LogError(
+                "A camera is required.",
+                this);
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -20,6 +32,7 @@ public sealed class SakuraInput : MonoBehaviour
             ClearMouseButtonsDown();
             ClearMouseButtons();
             ClearLatestMousePosition();
+            ClearLatestHighlightedGameObject();
         }
         else
         {
@@ -27,6 +40,7 @@ public sealed class SakuraInput : MonoBehaviour
             RecordLatestMouseButtonsDown();
             RecordLatestMouseButtons();
             RecordLatestMousePosition();
+            RecordLatestHighlightedGameObject();
             numFixedUpdatesThisFrame++;
         }
     }
@@ -90,6 +104,36 @@ public sealed class SakuraInput : MonoBehaviour
         latestMousePosition = Input.mousePosition;
     }
 
+    #region Latest Highlighted Game Object
+    public GameObject HighlightedGameObject
+    {
+        get
+        {
+            return latestHighlightedGameObject;
+        }
+    }
+
+    private GameObject latestHighlightedGameObject;
+
+    private void RecordLatestHighlightedGameObject()
+    {
+        Debug.Assert(camera != null);
+        var ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        bool didHit = Physics.Raycast(
+            ray,
+            out hit,
+            Mathf.Infinity);
+        if (didHit)
+            latestHighlightedGameObject = hit.collider.gameObject;
+    }
+
+    private void ClearLatestHighlightedGameObject()
+    {
+        latestHighlightedGameObject = null;
+    }
+    #endregion
+
     private void Update()
     {
         if (RanAtLeastOneFixedUpdateThisFrame())
@@ -98,6 +142,7 @@ public sealed class SakuraInput : MonoBehaviour
             ClearMouseButtonsDown();
             ClearMouseButtons();
             ClearLatestMousePosition();
+            ClearLatestHighlightedGameObject();
             numFixedUpdatesThisFrame = 0;
         }
         else
@@ -106,6 +151,7 @@ public sealed class SakuraInput : MonoBehaviour
             RecordLatestMouseButtonsDown();
             RecordLatestMouseButtons();
             RecordLatestMousePosition();
+            RecordLatestHighlightedGameObject();
         }
     }
 

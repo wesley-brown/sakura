@@ -737,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4034479adf1c14ff6830e26b41d3f6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 722617595}
 --- !u!1001 &683613999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -821,6 +822,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36612714b83b7482281f1cd14905f814, type: 3}
+--- !u!20 &722617595 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 534669904, guid: 30b9948a9d29d4ee2bcace6bdf4e5ae1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225626019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &849099488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -949,7 +956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!1 &874966560 stripped
 GameObject:
@@ -969,7 +975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!114 &874966562
 MonoBehaviour:
@@ -1068,6 +1073,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36612714b83b7482281f1cd14905f814, type: 3}
+--- !u!1 &910303963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8527146012106230018, guid: 5e3bb106a0cae422da99a4bc49479e86,
+    type: 3}
+  m_PrefabInstance: {fileID: 1274248906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &910303964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910303963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4034479adf1c14ff6830e26b41d3f6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 722617595}
+--- !u!114 &910303971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910303963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fbbecc40e114cab892e06ea0a0aa79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &929252827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5648663373206322497, guid: 217ec6e030c864203b9fc39417579a97,
@@ -1112,7 +1148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!1001 &1015090902
 PrefabInstance:
@@ -1263,7 +1298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!114 &1097227397
 MonoBehaviour:
@@ -1703,7 +1737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!114 &1354511715
 MonoBehaviour:
@@ -2000,7 +2033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!114 &1529293677
 MonoBehaviour:
@@ -2568,7 +2600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e370fcc7c2d49b7aa305b96bcb7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencies: {fileID: 11400000, guid: bb7e7e1d5a23646a5989635167e04e45, type: 2}
   movementSpeed: 0
 --- !u!114 &1775982853
 MonoBehaviour:
