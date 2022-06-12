@@ -1,7 +1,7 @@
 using System;
-using Sakura;
 using Sakura.Bodies;
 using Sakura.Bodies.CollidableMovement;
+using Sakura.Entities;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sakura.Entities;
 using UnityEngine;
 
 namespace Sakura.Bodies
@@ -8,6 +9,8 @@ namespace Sakura.Bodies
     ///     A component that creates instances of systems related to bodies.
     /// </summary>
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(SakuraEntity))]
+    [RequireComponent(typeof(Transform))]
     public sealed class SakuraBody
     :
         MonoBehaviour,
@@ -15,27 +18,52 @@ namespace Sakura.Bodies
     {
         [Header("Dependencies")]
         [Tooltip("The dependencies necessary for the systems contained within"
-            + " the Sakura Bodies component")]
+            + " the Sakura Bodies component.")]
         public SakuraBodyDependencies dependencies;
 
-        public string entityID = "";
+        [Header("Properties")]
+        [Tooltip("How many meters per second this body can move.")]
+        public float movementSpeed;
 
-        private PhysicalSimulation physicalSimulation;
+        private void Awake()
+        {
+            entity = GetComponent<SakuraEntity>();
+            transform = GetComponent<Transform>();
+        }
+
+        private SakuraEntity entity;
+        private new Transform transform;
 
         private void Start()
         {
             physicalSimulation = new PhysicalSimulation(
                 dependencies.bodies,
                 dependencies.movementSpeeds,
-                dependencies.gameObjects);
+                SakuraEntity.GameObjects);
             var registerBodySystem =
                 physicalSimulation.RegisterBodySystem(this);
-            registerBodySystem.Register(new RegisterBody.Input
+            if (entity.IDasGuid != null)
             {
-                Entity = new Guid(entityID),
-                BodyLocation = transform.position
-            });
+                registerBodySystem.Register(new RegisterBody.Input
+                {
+                    Entity = entity.IDasGuid.Value,
+                    BodyLocation = transform.position
+                });
+                dependencies.movementSpeeds.Add(
+                    entity.IDasGuid.Value,
+                    movementSpeed);
+            }
+            else
+            {
+                Debug.LogError(
+                    "A body can only be registered for an entity."
+                        + $" Game object '{gameObject.name}' is not"
+                        + " bound to an entity.",
+                    this);
+            }
         }
+
+        private PhysicalSimulation physicalSimulation;
 
         /// <summary>
         ///     A <see cref="CollidableMovement.MovementSystem"/> that uses a
@@ -65,14 +93,19 @@ namespace Sakura.Bodies
         #region Sakura.Bodies.RegisterBody.Presenter
         public void Present(RegisterBody.Output output)
         {
-            Debug.Log($"Entity {gameObject.name} registered at position {output.BodyLocation}.");
+            Debug.Log(
+                $"Body for entity {output.Entity}"
+                    + $" registered at position {output.BodyLocation}.",
+                this);
         }
 
         public void PresentInputErrors(List<string> inputErrors)
         {
             foreach (var error in inputErrors)
             {
-                Debug.LogError(error);
+                Debug.LogError(
+                    error,
+                    this);
             }
         }
 
@@ -80,7 +113,9 @@ namespace Sakura.Bodies
         {
             foreach (var error in outputErrors)
             {
-                Debug.LogError(error);
+                Debug.LogError(
+                    error,
+                    this);
             }
         }
         #endregion

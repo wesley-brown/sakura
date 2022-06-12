@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sakura.Bodies;
 using Sakura.Bodies.CollidableMovement;
+using Sakura.Entities;
 using UnityEngine;
 
 namespace Sakura.Player

@@ -159,6 +159,14 @@
       "version": "file:net.wesleybrown.sakura.bodies",
       "depth": 0,
       "source": "embedded",
+      "dependencies": {
+        "net.wesleybrown.sakura.entities": "0.1.0"
+      }
+    },
+    "net.wesleybrown.sakura.entities": {
+      "version": "file:net.wesleybrown.sakura.entities",
+      "depth": 0,
+      "source": "embedded",
       "dependencies": {}
     },
     "net.wesleybrown.sakura.events": {

@@ -1,7 +1,9 @@
 {
     "name": "Sakura.Bodies",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:704c23b60c4d84f18b4eb0f5c756198a"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

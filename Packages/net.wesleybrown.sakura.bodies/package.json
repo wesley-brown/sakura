@@ -7,6 +7,8 @@
   "author": {
     "name": "Wesley Brown",
     "email": "wesleybrown@wesleybrown.net"
+  },
+  "dependencies": {
+    "net.wesleybrown.sakura.entities": "0.1.0"
   }
 }
-
