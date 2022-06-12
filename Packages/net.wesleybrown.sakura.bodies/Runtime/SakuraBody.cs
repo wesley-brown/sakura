@@ -16,10 +16,10 @@ namespace Sakura.Bodies
         MonoBehaviour,
         RegisterBody.Presenter
     {
-        [Header("Dependencies")]
-        [Tooltip("The dependencies necessary for the systems contained within"
-            + " the Sakura Bodies component.")]
-        public SakuraBodyDependencies dependencies;
+        private static Dictionary<Guid, Vector3> bodies =
+            new Dictionary<Guid, Vector3>();
+        private static Dictionary<Guid, float> movementSpeeds =
+            new Dictionary<Guid, float>();
 
         [Header("Properties")]
         [Tooltip("How many meters per second this body can move.")]
@@ -37,8 +37,8 @@ namespace Sakura.Bodies
         private void Start()
         {
             physicalSimulation = new PhysicalSimulation(
-                dependencies.bodies,
-                dependencies.movementSpeeds,
+                bodies,
+                movementSpeeds,
                 SakuraEntity.GameObjects);
             var registerBodySystem =
                 physicalSimulation.RegisterBodySystem(this);
@@ -49,7 +49,7 @@ namespace Sakura.Bodies
                     Entity = entity.IDasGuid.Value,
                     BodyLocation = transform.position
                 });
-                dependencies.movementSpeeds.Add(
+                movementSpeeds.Add(
                     entity.IDasGuid.Value,
                     movementSpeed);
             }
